@@ -339,6 +339,9 @@ body {
   transition: all var(--transition-fast);
   white-space: nowrap;
   font-family: inherit;
+  position: relative;
+  text-align: center;
+  min-height: 2.5rem;
 }
 
 .btn:disabled {
@@ -386,6 +389,54 @@ body {
 .btn-sm {
   padding: var(--space-2) var(--space-4);
   font-size: var(--font-size-xs);
+  min-height: 2rem;
+}
+
+/* Button with icon only */
+.btn-icon-only {
+  padding: var(--space-2);
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.btn-icon-only .icon {
+  margin: 0;
+}
+
+/* Button groups */
+.btn-group {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.btn-group .btn {
+  flex: 1;
+}
+
+/* Button grid */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.btn-grid .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Centered button containers */
+.btn-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.btn-center .btn {
+  flex-shrink: 0;
 }
 
 .btn-lg {
