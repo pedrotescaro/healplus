@@ -58,14 +58,6 @@
                 
                 <div class="nav-section">
                     <div class="nav-section-title">Sistema</div>
-                    <a href="#assessments" class="nav-item">
-                        <span class="icon icon-shield"></span>
-                        Assessments
-                    </a>
-                    <a href="#fhir-logs" class="nav-item">
-                        <span class="icon icon-chart"></span>
-                        FHIR Logs
-                    </a>
                     <a href="profile.html" class="nav-item">
                         <span class="icon icon-user"></span>
                         Perfil
@@ -106,7 +98,10 @@
                         </div>
                         <h3 class="action-card-title">Nova Avaliação de Ferida</h3>
                         <p class="action-card-description">Crie uma nova ficha de avaliação guiada pelo framework TIMERS.</p>
-                        <button class="btn btn-primary">Criar Avaliação</button>
+                        <button class="btn btn-primary">
+                            <span class="icon icon-plus"></span>
+                            Criar Avaliação
+                        </button>
                     </div>
 
                     <div class="action-card" onclick="window.location.href='#gerar-relatorio'">
@@ -115,7 +110,10 @@
                         </div>
                         <h3 class="action-card-title">Gerar Relatório da Ferida</h3>
                         <p class="action-card-description">Compile um relatório em PDF a partir de uma ficha de anamnese salva.</p>
-                        <button class="btn btn-primary">Criar Relatório</button>
+                        <button class="btn btn-primary">
+                            <span class="icon icon-download"></span>
+                            Criar Relatório
+                        </button>
                     </div>
 
                     <div class="action-card" onclick="window.location.href='#comparar-relatorios'">
@@ -124,63 +122,15 @@
                         </div>
                         <h3 class="action-card-title">Comparar Relatórios</h3>
                         <p class="action-card-description">Analise a progressão da cicatrização comparando relatórios com IA.</p>
-                        <button class="btn btn-primary">Comparar Relatórios</button>
+                        <button class="btn btn-primary">
+                            <span class="icon icon-chart"></span>
+                            Comparar Relatórios
+                        </button>
                     </div>
                 </div>
 
                 <!-- Recent Activity -->
                 <div class="grid grid-cols-2">
-                    <!-- Recent Assessments -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Avaliações Recentes</h3>
-                            <p class="card-subtitle">Veja as últimas fichas de avaliação que você preencheu.</p>
-                        </div>
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Paciente</th>
-                                        <th>Localização da Ferida</th>
-                                        <th>Data da Consulta</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Pedro Antonio Silvestre Tescaro</td>
-                                        <td><span class="badge badge-gray">Perna Esquerda (Anterior)</span></td>
-                                        <td>07/09/2025</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-secondary">
-                                                <span class="icon icon-eye"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Guilherme</td>
-                                        <td><span class="badge badge-gray">Pelve (Anterior)</span></td>
-                                        <td>05/09/2025</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-secondary">
-                                                <span class="icon icon-eye"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pedro Antonio Silvestre Tescaro</td>
-                                        <td><span class="badge badge-gray">Perna Direita (Anterior)</span></td>
-                                        <td>02/09/2025</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-secondary">
-                                                <span class="icon icon-eye"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
 
                     <!-- Activity Summary -->
                     <div class="card">
