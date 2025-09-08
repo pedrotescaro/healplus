@@ -1,472 +1,384 @@
-// Profile and Settings Management
+// Heal+ Profile Management
 class ProfileManager {
     constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'light';
-        this.currentFontSize = localStorage.getItem('fontSize') || 'medium';
-        this.currentLanguage = localStorage.getItem('language') || 'pt-BR';
-        
         this.init();
     }
 
     init() {
-        this.setupTabs();
-        this.setupThemeToggle();
-        this.setupFontSizeToggle();
-        this.setupLanguageSelect();
-        this.setupPasswordToggle();
-        this.setupFormHandlers();
-        this.applySettings();
+        this.setupEventListeners();
+        this.loadProfileData();
     }
 
-    setupTabs() {
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabPanels = document.querySelectorAll('.tab-panel');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetTab = button.getAttribute('data-tab');
-                
-                // Remove active class from all buttons and panels
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabPanels.forEach(panel => panel.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding panel
-                button.classList.add('active');
-                document.getElementById(targetTab).classList.add('active');
-            });
-        });
-    }
-
-    setupThemeToggle() {
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const highContrastToggle = document.getElementById('high-contrast-toggle');
-
-        if (darkModeToggle) {
-            darkModeToggle.checked = this.currentTheme === 'dark';
-            darkModeToggle.addEventListener('change', (e) => {
-                this.currentTheme = e.target.checked ? 'dark' : 'light';
-                this.applyTheme();
-                localStorage.setItem('theme', this.currentTheme);
+    setupEventListeners() {
+        // Profile form submission
+        const profileForm = document.getElementById('profileForm');
+        if (profileForm) {
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.saveProfile();
             });
         }
 
-        if (highContrastToggle) {
-            highContrastToggle.addEventListener('change', (e) => {
-                if (e.target.checked) {
-                    this.currentTheme = 'high-contrast';
-                } else {
-                    this.currentTheme = darkModeToggle.checked ? 'dark' : 'light';
-                }
-                this.applyTheme();
-                localStorage.setItem('theme', this.currentTheme);
+        // Avatar upload
+        const avatarUpload = document.querySelector('.avatar-upload');
+        if (avatarUpload) {
+            avatarUpload.addEventListener('click', () => {
+                this.uploadAvatar();
             });
         }
-    }
 
-    setupFontSizeToggle() {
-        const fontSizeButtons = document.querySelectorAll('.font-size-btn');
-        
-        fontSizeButtons.forEach(button => {
-            const size = button.getAttribute('data-size');
-            if (size === this.currentFontSize) {
-                button.classList.add('active');
-            }
-
-            button.addEventListener('click', () => {
-                fontSizeButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                this.currentFontSize = size;
-                this.applyFontSize();
-                localStorage.setItem('fontSize', this.currentFontSize);
+        // Toggle switches
+        document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                this.updateSetting(toggle.id, e.target.checked);
             });
         });
-    }
 
-    setupLanguageSelect() {
+        // Font size buttons
+        document.querySelectorAll('.font-size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.setFontSize(btn.getAttribute('data-size'));
+            });
+        });
+
+        // Language select
         const languageSelect = document.getElementById('language-select');
-        
         if (languageSelect) {
-            languageSelect.value = this.currentLanguage;
             languageSelect.addEventListener('change', (e) => {
-                this.currentLanguage = e.target.value;
-                this.applyLanguage();
-                localStorage.setItem('language', this.currentLanguage);
+                this.setLanguage(e.target.value);
+            });
+        }
+
+        // Danger zone buttons
+        const deleteAccountBtn = document.getElementById('delete-account');
+        if (deleteAccountBtn) {
+            deleteAccountBtn.addEventListener('click', () => {
+                this.deleteAccount();
+            });
+        }
+
+        const exportDataBtn = document.getElementById('export-data');
+        if (exportDataBtn) {
+            exportDataBtn.addEventListener('click', () => {
+                this.exportData();
             });
         }
     }
 
-    setupPasswordToggle() {
-        const passwordToggles = document.querySelectorAll('.password-toggle');
-        
-        passwordToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const targetId = toggle.getAttribute('data-target');
-                const input = document.getElementById(targetId);
-                const icon = toggle.querySelector('.icon');
-                
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.classList.remove('icon-eye');
-                    icon.classList.add('icon-eye-off');
-                } else {
-                    input.type = 'password';
-                    icon.classList.remove('icon-eye-off');
-                    icon.classList.add('icon-eye');
-                }
-            });
-        });
+    loadProfileData() {
+        // Load user profile data
+        const profileData = {
+            fullName: 'Dr. Maria Santos',
+            email: 'maria.santos@healplus.com',
+            specialty: 'Dermatologia',
+            woundSpecialist: true,
+            crm: 'CRM 123456',
+            coren: 'COREN 789012',
+            phone: '+55 11 99999-9999',
+            institution: 'Hospital São Paulo',
+            bio: 'Especialista em dermatologia com foco em tratamento de feridas complexas.'
+        };
+
+        this.populateProfileForm(profileData);
     }
 
-    setupFormHandlers() {
-        // Personal Information Form
-        const personalForm = document.querySelector('#personal .profile-form');
-        if (personalForm) {
-            personalForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.savePersonalInfo(personalForm);
-            });
-        }
+    populateProfileForm(data) {
+        // Populate form fields
+        const fields = {
+            'full-name': data.fullName,
+            'email': data.email,
+            'specialty': data.specialty,
+            'crm': data.crm,
+            'coren': data.coren,
+            'phone': data.phone,
+            'institution': data.institution,
+            'bio': data.bio
+        };
 
-        // Professional Information Form
-        const professionalForm = document.querySelector('#professional .profile-form');
-        if (professionalForm) {
-            professionalForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.saveProfessionalInfo(professionalForm);
-            });
-        }
-
-        // Security Form
-        const securityForm = document.querySelector('.security-form');
-        if (securityForm) {
-            securityForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.changePassword(securityForm);
-            });
-        }
-
-        // Notification Settings
-        this.setupNotificationSettings();
-    }
-
-    setupNotificationSettings() {
-        const emailNotifications = document.getElementById('email-notifications');
-        const pushNotifications = document.getElementById('push-notifications');
-        const appointmentReminders = document.getElementById('appointment-reminders');
-
-        // Load saved settings
-        emailNotifications.checked = localStorage.getItem('emailNotifications') !== 'false';
-        pushNotifications.checked = localStorage.getItem('pushNotifications') !== 'false';
-        appointmentReminders.checked = localStorage.getItem('appointmentReminders') !== 'false';
-
-        // Save settings on change
-        emailNotifications.addEventListener('change', (e) => {
-            localStorage.setItem('emailNotifications', e.target.checked);
-        });
-
-        pushNotifications.addEventListener('change', (e) => {
-            localStorage.setItem('pushNotifications', e.target.checked);
-            if (e.target.checked) {
-                this.requestNotificationPermission();
+        Object.entries(fields).forEach(([id, value]) => {
+            const field = document.getElementById(id);
+            if (field) {
+                field.value = value;
             }
         });
 
-        appointmentReminders.addEventListener('change', (e) => {
-            localStorage.setItem('appointmentReminders', e.target.checked);
+        // Set wound specialist toggle
+        const woundSpecialistToggle = document.getElementById('wound-specialist');
+        if (woundSpecialistToggle) {
+            woundSpecialistToggle.checked = data.woundSpecialist;
+        }
+    }
+
+    async saveProfile() {
+        try {
+            if (window.healPlusApp) {
+                window.healPlusApp.showLoading();
+            }
+
+            const formData = new FormData(document.getElementById('profileForm'));
+            const profileData = Object.fromEntries(formData.entries());
+
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('Perfil atualizado com sucesso!', 'success');
+                window.healPlusApp.hideLoading();
+            }
+        } catch (error) {
+            console.error('Error saving profile:', error);
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('Erro ao salvar perfil', 'error');
+                window.healPlusApp.hideLoading();
+            }
+        }
+    }
+
+    uploadAvatar() {
+        // Create file input
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                this.handleAvatarUpload(file);
+            }
         });
+
+        document.body.appendChild(fileInput);
+        fileInput.click();
+        document.body.removeChild(fileInput);
     }
 
-    applySettings() {
-        this.applyTheme();
-        this.applyFontSize();
-        this.applyLanguage();
-    }
-
-    applyTheme() {
-        document.documentElement.setAttribute('data-theme', this.currentTheme);
-        
-        // Update toggle states
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const highContrastToggle = document.getElementById('high-contrast-toggle');
-        
-        if (darkModeToggle) {
-            darkModeToggle.checked = this.currentTheme === 'dark';
+    handleAvatarUpload(file) {
+        // Validate file
+        if (!file.type.startsWith('image/')) {
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('Por favor, selecione uma imagem válida', 'error');
+            }
+            return;
         }
-        
-        if (highContrastToggle) {
-            highContrastToggle.checked = this.currentTheme === 'high-contrast';
+
+        if (file.size > 5 * 1024 * 1024) { // 5MB limit
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('A imagem deve ter menos de 5MB', 'error');
+            }
+            return;
         }
-    }
 
-    applyFontSize() {
-        document.documentElement.setAttribute('data-font-size', this.currentFontSize);
-    }
+        // Create preview
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const avatarElements = document.querySelectorAll('.user-avatar');
+            avatarElements.forEach(avatar => {
+                if (avatar.tagName === 'IMG') {
+                    avatar.src = e.target.result;
+                } else {
+                    // For text avatars, we could update the background image
+                    avatar.style.backgroundImage = `url(${e.target.result})`;
+                    avatar.style.backgroundSize = 'cover';
+                    avatar.style.backgroundPosition = 'center';
+                }
+            });
 
-    applyLanguage() {
-        document.documentElement.lang = this.currentLanguage;
-        // Here you would typically load language files and update all text
-        this.updateLanguageText();
-    }
-
-    updateLanguageText() {
-        const translations = {
-            'pt-BR': {
-                'dashboard': 'Dashboard',
-                'clinical-portal': 'Portal Clínico',
-                'capture': 'Captura',
-                'monitoring': 'Monitoramento',
-                'personal-data': 'Dados Pessoais',
-                'professional-data': 'Dados Profissionais',
-                'settings': 'Configurações',
-                'security': 'Segurança'
-            },
-            'en-US': {
-                'dashboard': 'Dashboard',
-                'clinical-portal': 'Clinical Portal',
-                'capture': 'Capture',
-                'monitoring': 'Monitoring',
-                'personal-data': 'Personal Data',
-                'professional-data': 'Professional Data',
-                'settings': 'Settings',
-                'security': 'Security'
-            },
-            'es-ES': {
-                'dashboard': 'Panel',
-                'clinical-portal': 'Portal Clínico',
-                'capture': 'Captura',
-                'monitoring': 'Monitoreo',
-                'personal-data': 'Datos Personales',
-                'professional-data': 'Datos Profesionales',
-                'settings': 'Configuración',
-                'security': 'Seguridad'
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('Avatar atualizado com sucesso!', 'success');
             }
         };
 
-        const currentTranslations = translations[this.currentLanguage] || translations['pt-BR'];
+        reader.readAsDataURL(file);
+    }
+
+    updateSetting(settingId, value) {
+        // Save setting to localStorage
+        localStorage.setItem(settingId, value);
+
+        // Apply setting
+        switch (settingId) {
+            case 'email-notifications':
+                this.toggleEmailNotifications(value);
+                break;
+            case 'push-notifications':
+                this.togglePushNotifications(value);
+                break;
+            case 'appointment-reminders':
+                this.toggleAppointmentReminders(value);
+                break;
+            case 'two-factor-auth':
+                this.toggleTwoFactorAuth(value);
+                break;
+        }
+
+        if (window.healPlusApp) {
+            window.healPlusApp.showNotification('Configuração atualizada!', 'success');
+        }
+    }
+
+    toggleEmailNotifications(enabled) {
+        console.log('Email notifications:', enabled ? 'enabled' : 'disabled');
+    }
+
+    togglePushNotifications(enabled) {
+        console.log('Push notifications:', enabled ? 'enabled' : 'disabled');
         
-        // Update navigation links
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            const text = link.textContent.trim();
-            const key = Object.keys(currentTranslations).find(k => 
-                translations['pt-BR'][k] === text
-            );
-            if (key) {
-                link.textContent = currentTranslations[key];
-            }
-        });
-    }
-
-    async savePersonalInfo(form) {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        try {
-            // Simulate API call
-            await this.simulateApiCall();
-            this.showNotification('Informações pessoais salvas com sucesso!', 'success');
-        } catch (error) {
-            this.showNotification('Erro ao salvar informações pessoais', 'error');
-        }
-    }
-
-    async saveProfessionalInfo(form) {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        try {
-            // Simulate API call
-            await this.simulateApiCall();
-            this.showNotification('Informações profissionais salvas com sucesso!', 'success');
-        } catch (error) {
-            this.showNotification('Erro ao salvar informações profissionais', 'error');
-        }
-    }
-
-    async changePassword(form) {
-        const formData = new FormData(form);
-        const currentPassword = formData.get('current-password');
-        const newPassword = formData.get('new-password');
-        const confirmPassword = formData.get('confirm-password');
-
-        // Validation
-        if (newPassword !== confirmPassword) {
-            this.showNotification('As senhas não coincidem', 'error');
-            return;
-        }
-
-        if (newPassword.length < 8) {
-            this.showNotification('A senha deve ter pelo menos 8 caracteres', 'error');
-            return;
-        }
-
-        try {
-            // Simulate API call
-            await this.simulateApiCall();
-            this.showNotification('Senha alterada com sucesso!', 'success');
-            form.reset();
-        } catch (error) {
-            this.showNotification('Erro ao alterar senha', 'error');
-        }
-    }
-
-    async requestNotificationPermission() {
-        if ('Notification' in window) {
-            const permission = await Notification.requestPermission();
-            if (permission === 'granted') {
-                this.showNotification('Notificações ativadas com sucesso!', 'success');
-            } else {
-                this.showNotification('Permissão para notificações negada', 'warning');
-            }
-        }
-    }
-
-    simulateApiCall() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simulate 90% success rate
-                if (Math.random() > 0.1) {
-                    resolve();
-                } else {
-                    reject(new Error('API Error'));
+        if (enabled && 'Notification' in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    console.log('Push notifications permission granted');
                 }
-            }, 1000);
-        });
+            });
+        }
     }
 
-    showNotification(message, type = 'info') {
-        // Remove existing notifications
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(notification => notification.remove());
+    toggleAppointmentReminders(enabled) {
+        console.log('Appointment reminders:', enabled ? 'enabled' : 'disabled');
+    }
 
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <span class="icon icon-${type}"></span>
-                <span class="notification-message">${message}</span>
-                <button class="notification-close">
-                    <span class="icon icon-close"></span>
-                </button>
-            </div>
-        `;
+    toggleTwoFactorAuth(enabled) {
+        console.log('Two-factor authentication:', enabled ? 'enabled' : 'disabled');
+        
+        if (enabled) {
+            // In a real app, this would initiate 2FA setup
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('Configuração de 2FA iniciada. Verifique seu email.', 'info');
+            }
+        }
+    }
 
-        // Add to page
-        document.body.appendChild(notification);
-
-        // Animate in
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }, 5000);
-
-        // Close button functionality
-        const closeBtn = notification.querySelector('.notification-close');
-        closeBtn.addEventListener('click', () => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
+    setFontSize(size) {
+        // Remove active class from all buttons
+        document.querySelectorAll('.font-size-btn').forEach(btn => {
+            btn.classList.remove('active');
         });
+
+        // Add active class to selected button
+        const selectedBtn = document.querySelector(`[data-size="${size}"]`);
+        if (selectedBtn) {
+            selectedBtn.classList.add('active');
+        }
+
+        // Apply font size
+        document.documentElement.setAttribute('data-font-size', size);
+        localStorage.setItem('fontSize', size);
+
+        if (window.healPlusApp) {
+            window.healPlusApp.showNotification(`Tamanho da fonte alterado para: ${this.getFontSizeName(size)}`, 'info');
+        }
+    }
+
+    setLanguage(language) {
+        document.documentElement.lang = language;
+        localStorage.setItem('language', language);
+
+        if (window.healPlusApp) {
+            window.healPlusApp.showNotification(`Idioma alterado para: ${this.getLanguageName(language)}`, 'info');
+        }
+    }
+
+    getFontSizeName(size) {
+        const names = {
+            'small': 'Pequeno',
+            'medium': 'Médio',
+            'large': 'Grande'
+        };
+        return names[size] || size;
+    }
+
+    getLanguageName(language) {
+        const names = {
+            'pt-BR': 'Português (Brasil)',
+            'en-US': 'English (US)',
+            'es-ES': 'Español'
+        };
+        return names[language] || language;
+    }
+
+    deleteAccount() {
+        if (confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita e todos os seus dados serão permanentemente removidos.')) {
+            if (confirm('Esta é sua última chance. Tem certeza absoluta?')) {
+                if (window.healPlusApp) {
+                    window.healPlusApp.showLoading();
+                }
+
+                // Simulate account deletion
+                setTimeout(() => {
+                    if (window.healPlusApp) {
+                        window.healPlusApp.showNotification('Conta excluída com sucesso', 'success');
+                        window.healPlusApp.hideLoading();
+                        
+                        // Redirect to login
+                        setTimeout(() => {
+                            window.location.href = '/login';
+                        }, 2000);
+                    }
+                }, 3000);
+            }
+        }
+    }
+
+    exportData() {
+        if (window.healPlusApp) {
+            window.healPlusApp.showLoading();
+        }
+
+        // Simulate data export
+        setTimeout(() => {
+            // Create and download data file
+            const data = {
+                profile: this.getProfileData(),
+                settings: this.getSettingsData(),
+                exportDate: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `healplus-data-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            URL.revokeObjectURL(url);
+
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification('Dados exportados com sucesso!', 'success');
+                window.healPlusApp.hideLoading();
+            }
+        }, 2000);
+    }
+
+    getProfileData() {
+        const form = document.getElementById('profileForm');
+        if (!form) return {};
+
+        const formData = new FormData(form);
+        return Object.fromEntries(formData.entries());
+    }
+
+    getSettingsData() {
+        return {
+            emailNotifications: localStorage.getItem('email-notifications') === 'true',
+            pushNotifications: localStorage.getItem('push-notifications') === 'true',
+            appointmentReminders: localStorage.getItem('appointment-reminders') === 'true',
+            twoFactorAuth: localStorage.getItem('two-factor-auth') === 'true',
+            fontSize: localStorage.getItem('fontSize') || 'medium',
+            language: localStorage.getItem('language') || 'pt-BR',
+            theme: localStorage.getItem('theme') || 'dark'
+        };
     }
 }
 
-// Notification Styles
-const notificationStyles = `
-    .notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-        max-width: 400px;
-        background: var(--white);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-lg);
-        border-left: 4px solid var(--info-color);
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .notification.show {
-        transform: translateX(0);
-    }
-
-    .notification-success {
-        border-left-color: var(--success-color);
-    }
-
-    .notification-error {
-        border-left-color: var(--error-color);
-    }
-
-    .notification-warning {
-        border-left-color: var(--warning-color);
-    }
-
-    .notification-content {
-        display: flex;
-        align-items: center;
-        gap: var(--space-3);
-        padding: var(--space-4);
-    }
-
-    .notification-message {
-        flex: 1;
-        font-size: var(--font-size-sm);
-        color: var(--gray-900);
-    }
-
-    .notification-close {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: var(--gray-500);
-        padding: var(--space-1);
-    }
-
-    .notification-close:hover {
-        color: var(--gray-700);
-    }
-
-    .notification .icon {
-        width: 1.25rem;
-        height: 1.25rem;
-    }
-
-    .notification-success .icon {
-        color: var(--success-color);
-    }
-
-    .notification-error .icon {
-        color: var(--error-color);
-    }
-
-    .notification-warning .icon {
-        color: var(--warning-color);
-    }
-
-    .notification-info .icon {
-        color: var(--info-color);
-    }
-`;
-
-// Add notification styles to page
-const styleSheet = document.createElement('style');
-styleSheet.textContent = notificationStyles;
-document.head.appendChild(styleSheet);
-
-// Initialize Profile Manager when DOM is loaded
+// Initialize profile manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new ProfileManager();
+    // Only initialize if we're on a profile page
+    if (document.getElementById('profileForm') || document.querySelector('.profile-section')) {
+        window.profileManager = new ProfileManager();
+    }
 });
 
 // Export for use in other modules

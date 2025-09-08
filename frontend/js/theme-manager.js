@@ -52,12 +52,16 @@ class ThemeManager {
         const highContrastToggle = document.getElementById('high-contrast-toggle');
         const themeToggle = document.getElementById('theme-toggle');
 
+        // Also look for toggle switches in the new design
+        const toggleSwitches = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
+
         if (darkModeToggle) {
             darkModeToggle.checked = this.currentTheme === 'dark';
             darkModeToggle.addEventListener('change', (e) => {
                 this.currentTheme = e.target.checked ? 'dark' : 'light';
                 this.applyTheme();
                 localStorage.setItem('theme', this.currentTheme);
+                this.showNotification(`Tema alterado para: ${this.getThemeName(this.currentTheme)}`, 'info');
             });
         }
 
@@ -71,6 +75,7 @@ class ThemeManager {
                 }
                 this.applyTheme();
                 localStorage.setItem('theme', this.currentTheme);
+                this.showNotification(`Tema alterado para: ${this.getThemeName(this.currentTheme)}`, 'info');
             });
         }
 
@@ -79,6 +84,28 @@ class ThemeManager {
                 this.toggleTheme();
             });
         }
+
+        // Handle toggle switches in the new design
+        toggleSwitches.forEach(toggle => {
+            const toggleId = toggle.id;
+            
+            if (toggleId === 'dark-mode-toggle' || toggleId === 'high-contrast-toggle') {
+                // These are handled above
+                return;
+            }
+            
+            // Set initial state based on current settings
+            if (toggleId === 'email-notifications' || toggleId === 'push-notifications' || 
+                toggleId === 'appointment-reminders' || toggleId === 'two-factor-auth') {
+                toggle.checked = localStorage.getItem(toggleId) === 'true';
+            }
+            
+            // Add change listener
+            toggle.addEventListener('change', (e) => {
+                localStorage.setItem(toggleId, e.target.checked);
+                this.showNotification('Configuração atualizada!', 'success');
+            });
+        });
     }
 
     setupFontSizeToggle() {

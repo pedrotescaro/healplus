@@ -1,7 +1,6 @@
-// Heal+ Patient Portal - Main Application
+// Heal+ Modern Application - Updated for New Design
 class HealPlusApp {
     constructor() {
-        this.currentSection = 'dashboard';
         this.currentUser = null;
         this.apiBaseUrl = 'http://localhost:8080/api';
         this.init();
@@ -10,37 +9,85 @@ class HealPlusApp {
     init() {
         this.setupEventListeners();
         this.loadUserData();
-        this.initializeCharts();
-        this.setupNavigation();
+        this.initializeComponents();
     }
 
     setupEventListeners() {
-        // Navigation
-        document.querySelectorAll('.nav-link').forEach(link => {
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', () => {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar) {
+                    sidebar.classList.toggle('open');
+                }
+            });
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            if (window.innerWidth <= 1024 && 
+                sidebar && 
+                !sidebar.contains(event.target) && 
+                !mobileToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 1024 && sidebar) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Logout functionality
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                this.logout();
+            });
+        }
+
+        // Navigation links
+        document.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                const section = link.getAttribute('data-section');
-                this.showSection(section);
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    this.handleNavigation(href.substring(1));
+                } else if (href && !href.startsWith('#')) {
+                    // External link
+                    window.location.href = href;
+                }
             });
         });
 
-        // Logout
-        document.querySelector('.logout-btn').addEventListener('click', () => {
-            this.logout();
-        });
-
-        // Modal close
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                this.closeModal(e.target);
-            }
+        // Action cards
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const onclick = card.getAttribute('onclick');
+                if (onclick) {
+                    eval(onclick);
+                }
+            });
         });
 
         // Form submissions
         document.addEventListener('submit', (e) => {
             e.preventDefault();
-            if (e.target.id === 'appointmentForm') {
-                this.submitAppointment();
+            this.handleFormSubmission(e.target);
+        });
+
+        // Button clicks
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.btn') || e.target.closest('.btn')) {
+                const button = e.target.matches('.btn') ? e.target : e.target.closest('.btn');
+                this.handleButtonClick(button);
             }
         });
 
@@ -52,36 +99,10 @@ class HealPlusApp {
         });
     }
 
-    setupNavigation() {
-        // Update active nav link based on current section
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('data-section') === this.currentSection) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    showSection(sectionName) {
-        // Hide all sections
-        document.querySelectorAll('.section').forEach(section => {
-            section.classList.remove('active');
-        });
-
-        // Show selected section
-        const targetSection = document.getElementById(sectionName);
-        if (targetSection) {
-            targetSection.classList.add('active');
-            this.currentSection = sectionName;
-            this.setupNavigation();
-
-            // Load section-specific data
-            this.loadSectionData(sectionName);
-        }
-    }
-
-    loadSectionData(sectionName) {
-        switch (sectionName) {
+    handleNavigation(section) {
+        console.log('Navigating to:', section);
+        // Handle internal navigation
+        switch (section) {
             case 'dashboard':
                 this.loadDashboardData();
                 break;
@@ -100,6 +121,62 @@ class HealPlusApp {
         }
     }
 
+    handleFormSubmission(form) {
+        const formId = form.id;
+        console.log('Form submitted:', formId);
+        
+        switch (formId) {
+            case 'profileForm':
+                this.submitProfile(form);
+                break;
+            case 'appointmentForm':
+                this.submitAppointment(form);
+                break;
+            default:
+                this.showNotification('Formulário enviado com sucesso!', 'success');
+        }
+    }
+
+    handleButtonClick(button) {
+        const buttonText = button.textContent.trim();
+        const buttonClass = button.className;
+        
+        console.log('Button clicked:', buttonText, buttonClass);
+        
+        // Handle specific button actions
+        if (buttonText.includes('Salvar')) {
+            this.showNotification('Dados salvos com sucesso!', 'success');
+        } else if (buttonText.includes('Excluir')) {
+            this.handleDeleteAction(button);
+        } else if (buttonText.includes('Entrar')) {
+            this.handleJoinAction(button);
+        } else if (buttonText.includes('Capturar')) {
+            this.handleCaptureAction(button);
+        }
+    }
+
+    handleDeleteAction(button) {
+        if (confirm('Tem certeza que deseja excluir? Esta ação não pode ser desfeita.')) {
+            this.showNotification('Item excluído com sucesso!', 'success');
+        }
+    }
+
+    handleJoinAction(button) {
+        this.showNotification('Entrando na sessão...', 'info');
+        // Simulate joining session
+        setTimeout(() => {
+            this.showNotification('Conectado com sucesso!', 'success');
+        }, 2000);
+    }
+
+    handleCaptureAction(button) {
+        this.showNotification('Iniciando captura...', 'info');
+        // Simulate capture process
+        setTimeout(() => {
+            this.showNotification('Captura realizada com sucesso!', 'success');
+        }, 3000);
+    }
+
     async loadUserData() {
         try {
             // Simulate API call
@@ -107,30 +184,113 @@ class HealPlusApp {
                 id: 1,
                 name: 'João Silva',
                 email: 'joao.silva@email.com',
-                avatar: 'https://via.placeholder.com/40'
+                role: 'patient',
+                avatar: 'JS'
             };
 
-            // Update UI
-            document.querySelector('.user-name').textContent = this.currentUser.name;
-            document.querySelector('.user-avatar').src = this.currentUser.avatar;
+            // Update UI elements
+            const userNameElements = document.querySelectorAll('.user-name');
+            userNameElements.forEach(element => {
+                element.textContent = this.currentUser.name;
+            });
+
+            const userEmailElements = document.querySelectorAll('.user-email');
+            userEmailElements.forEach(element => {
+                element.textContent = this.currentUser.email;
+            });
+
+            const userAvatarElements = document.querySelectorAll('.user-avatar');
+            userAvatarElements.forEach(element => {
+                element.textContent = this.currentUser.avatar;
+            });
+
         } catch (error) {
             console.error('Error loading user data:', error);
             this.showNotification('Erro ao carregar dados do usuário', 'error');
         }
     }
 
+    initializeComponents() {
+        this.initializeCharts();
+        this.initializeProgressBars();
+        this.initializeTooltips();
+    }
+
+    initializeCharts() {
+        // Initialize any charts on the page
+        const chartElements = document.querySelectorAll('[data-chart]');
+        chartElements.forEach(element => {
+            this.createSimpleChart(element);
+        });
+    }
+
+    createSimpleChart(element) {
+        const chartType = element.getAttribute('data-chart');
+        const data = element.getAttribute('data-data');
+        
+        if (chartType === 'progress') {
+            const progressBar = element.querySelector('.progress-fill');
+            if (progressBar && data) {
+                progressBar.style.width = data + '%';
+            }
+        }
+    }
+
+    initializeProgressBars() {
+        // Animate progress bars
+        const progressBars = document.querySelectorAll('.progress-fill');
+        progressBars.forEach(bar => {
+            const width = bar.style.width || bar.getAttribute('data-width') || '0%';
+            bar.style.width = '0%';
+            
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 500);
+        });
+    }
+
+    initializeTooltips() {
+        // Add tooltip functionality
+        const tooltipElements = document.querySelectorAll('[data-tooltip]');
+        tooltipElements.forEach(element => {
+            element.addEventListener('mouseenter', (e) => {
+                this.showTooltip(e.target, e.target.getAttribute('data-tooltip'));
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                this.hideTooltip();
+            });
+        });
+    }
+
+    showTooltip(element, text) {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = text;
+        document.body.appendChild(tooltip);
+        
+        const rect = element.getBoundingClientRect();
+        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.top = rect.top - tooltip.offsetHeight - 5 + 'px';
+        
+        setTimeout(() => tooltip.classList.add('show'), 10);
+    }
+
+    hideTooltip() {
+        const tooltip = document.querySelector('.tooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+
+    // Data loading methods
     async loadDashboardData() {
         try {
             this.showLoading();
             
             // Simulate API calls
             const stats = await this.fetchDashboardStats();
-            const assessments = await this.fetchRecentAssessments();
-            const appointments = await this.fetchUpcomingAppointments();
-
             this.updateDashboardStats(stats);
-            this.updateRecentAssessments(assessments);
-            this.updateUpcomingAppointments(appointments);
             
             this.hideLoading();
         } catch (error) {
@@ -144,7 +304,7 @@ class HealPlusApp {
         try {
             this.showLoading();
             
-            const assessments = await this.fetchAllAssessments();
+            const assessments = await this.fetchAssessments();
             this.updateAssessmentsList(assessments);
             
             this.hideLoading();
@@ -159,9 +319,8 @@ class HealPlusApp {
         try {
             this.showLoading();
             
-            const appointments = await this.fetchAllAppointments();
+            const appointments = await this.fetchAppointments();
             this.updateAppointmentsList(appointments);
-            this.generateCalendar();
             
             this.hideLoading();
         } catch (error) {
@@ -186,9 +345,13 @@ class HealPlusApp {
         }
     }
 
-    // API Methods
+    initializeChatbot() {
+        console.log('Initializing chatbot...');
+        this.showNotification('Chatbot inicializado', 'info');
+    }
+
+    // API simulation methods
     async fetchDashboardStats() {
-        // Simulate API call
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
@@ -201,8 +364,7 @@ class HealPlusApp {
         });
     }
 
-    async fetchRecentAssessments() {
-        // Simulate API call
+    async fetchAssessments() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve([
@@ -214,23 +376,13 @@ class HealPlusApp {
                         tissue: '75% Granulação',
                         risk: 'low',
                         aiAnalysis: 'Melhorando'
-                    },
-                    {
-                        id: 2,
-                        location: 'Pé Direito',
-                        date: '2024-01-08',
-                        area: 15.2,
-                        tissue: '65% Granulação',
-                        risk: 'medium',
-                        aiAnalysis: 'Estável'
                     }
                 ]);
             }, 800);
         });
     }
 
-    async fetchUpcomingAppointments() {
-        // Simulate API call
+    async fetchAppointments() {
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve([
@@ -242,396 +394,99 @@ class HealPlusApp {
                         doctor: 'Dr. Maria Santos',
                         specialty: 'Dermatologia',
                         status: 'confirmed'
-                    },
-                    {
-                        id: 2,
-                        date: '2024-01-29',
-                        time: '10:00',
-                        type: 'Teleconsulta',
-                        doctor: 'Dr. João Oliveira',
-                        specialty: 'Cirurgia Vascular',
-                        status: 'scheduled'
                     }
                 ]);
             }, 600);
-        });
-    }
-
-    async fetchAllAssessments() {
-        // Simulate API call
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve([
-                    {
-                        id: 1,
-                        location: 'Pé Direito - Úlcera Venosa',
-                        date: '2024-01-15',
-                        time: '14:30',
-                        status: 'improving',
-                        metrics: {
-                            tissue: {
-                                granulation: 75,
-                                slough: 20,
-                                necrosis: 5
-                            },
-                            infection: {
-                                risk: 'low',
-                                description: 'Sem sinais de infecção ativa'
-                            },
-                            moisture: {
-                                level: 'balanced',
-                                description: 'Exsudato moderado, sem maceração'
-                            },
-                            edge: {
-                                progress: 'advancing',
-                                description: 'Contração de 5% desde última avaliação'
-                            }
-                        },
-                        aiAnalysis: {
-                            trajectory: 'Melhorando',
-                            estimatedDays: 45,
-                            recommendation: 'Continuar tratamento atual',
-                            confidence: 87
-                        }
-                    }
-                ]);
-            }, 1000);
-        });
-    }
-
-    async fetchAllAppointments() {
-        // Simulate API call
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve([
-                    {
-                        id: 1,
-                        date: '2024-01-22',
-                        time: '14:30',
-                        type: 'Presencial',
-                        doctor: 'Dr. Maria Santos',
-                        specialty: 'Dermatologia',
-                        location: 'Clínica São Paulo - Sala 205',
-                        status: 'confirmed'
-                    }
-                ]);
-            }, 800);
         });
     }
 
     async fetchTelehealthSessions() {
-        // Simulate API call
         return new Promise((resolve) => {
             setTimeout(() => {
                 resolve({
-                    active: [
-                        {
-                            id: 1,
-                            doctor: 'Dr. João Oliveira',
-                            specialty: 'Cirurgia Vascular',
-                            time: '10:00',
-                            status: 'active'
-                        }
-                    ],
-                    history: [
-                        {
-                            id: 1,
-                            date: '2024-01-15',
-                            doctor: 'Dr. Maria Santos',
-                            time: '14:30',
-                            duration: 25
-                        }
-                    ]
+                    active: [],
+                    upcoming: [],
+                    recent: []
                 });
-            }, 600);
+            }, 500);
         });
     }
 
-    // UI Update Methods
+    // UI update methods
     updateDashboardStats(stats) {
-        // Update stats cards
+        console.log('Updating dashboard stats:', stats);
+        // Update stats cards if they exist
         const statCards = document.querySelectorAll('.stat-card');
-        if (statCards[0]) {
-            statCards[0].querySelector('.stat-number').textContent = stats.activeWounds;
+        if (statCards.length > 0) {
+            // Update stat values
+            const statValues = document.querySelectorAll('.stat-value');
+            if (statValues[0]) statValues[0].textContent = stats.activeWounds;
+            if (statValues[1]) statValues[1].textContent = stats.progress + '%';
+            if (statValues[2]) statValues[2].textContent = stats.nextAppointment;
         }
-        if (statCards[1]) {
-            statCards[1].querySelector('.stat-number').textContent = stats.progress + '%';
-        }
-        if (statCards[2]) {
-            statCards[2].querySelector('.stat-number').textContent = stats.nextAppointment;
-        }
-        if (statCards[3]) {
-            const riskElement = statCards[3].querySelector('.stat-number');
-            riskElement.textContent = this.getRiskLabel(stats.infectionRisk);
-            riskElement.className = `stat-number risk-${stats.infectionRisk}`;
-        }
-    }
-
-    updateRecentAssessments(assessments) {
-        const assessmentsGrid = document.querySelector('.assessments-grid');
-        if (!assessmentsGrid) return;
-
-        assessmentsGrid.innerHTML = assessments.map(assessment => `
-            <div class="assessment-card">
-                <div class="assessment-header">
-                    <h3>${assessment.location}</h3>
-                    <span class="assessment-date">${this.formatDate(assessment.date)}</span>
-                </div>
-                <div class="assessment-metrics">
-                    <div class="metric">
-                        <span class="metric-label">Área:</span>
-                        <span class="metric-value">${assessment.area} cm²</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">Tecido:</span>
-                        <span class="metric-value">${assessment.tissue}</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">Risco:</span>
-                        <span class="metric-value risk-${assessment.risk}">${this.getRiskLabel(assessment.risk)}</span>
-                    </div>
-                </div>
-                <div class="assessment-ai">
-                    <i class="fas fa-robot"></i>
-                    <span>Análise IA: ${assessment.aiAnalysis}</span>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    updateUpcomingAppointments(appointments) {
-        const appointmentsList = document.querySelector('.appointments-list');
-        if (!appointmentsList) return;
-
-        appointmentsList.innerHTML = appointments.map(appointment => `
-            <div class="appointment-item">
-                <div class="appointment-date">
-                    <span class="day">${new Date(appointment.date).getDate()}</span>
-                    <span class="month">${this.getMonthName(new Date(appointment.date).getMonth())}</span>
-                </div>
-                <div class="appointment-details">
-                    <h3>${appointment.type === 'Presencial' ? 'Consulta de Acompanhamento' : 'Teleconsulta'}</h3>
-                    <p>${appointment.doctor} - ${appointment.specialty}</p>
-                    <p>${appointment.time} - ${appointment.type}</p>
-                    ${appointment.location ? `<p>${appointment.location}</p>` : ''}
-                </div>
-                <div class="appointment-actions">
-                    <button class="btn btn-outline btn-sm">Detalhes</button>
-                    <button class="btn btn-primary btn-sm">${appointment.type === 'Presencial' ? 'Confirmar' : 'Entrar'}</button>
-                </div>
-            </div>
-        `).join('');
     }
 
     updateAssessmentsList(assessments) {
-        const assessmentsList = document.querySelector('.assessments-list');
-        if (!assessmentsList) return;
-
-        assessmentsList.innerHTML = assessments.map(assessment => `
-            <div class="assessment-item">
-                <div class="assessment-header">
-                    <div class="assessment-info">
-                        <h3>${assessment.location}</h3>
-                        <span class="assessment-date">${this.formatDate(assessment.date)} - ${assessment.time}</span>
-                    </div>
-                    <div class="assessment-status">
-                        <span class="status-badge status-${assessment.status}">${this.getStatusLabel(assessment.status)}</span>
-                    </div>
-                </div>
-                <div class="assessment-content">
-                    <div class="assessment-metrics">
-                        <div class="metric-card">
-                            <h4>T - Tecido</h4>
-                            <div class="tissue-composition">
-                                <div class="tissue-item">
-                                    <span class="tissue-color granulation"></span>
-                                    <span>Granulação: ${assessment.metrics.tissue.granulation}%</span>
-                                </div>
-                                <div class="tissue-item">
-                                    <span class="tissue-color slough"></span>
-                                    <span>Esfacelo: ${assessment.metrics.tissue.slough}%</span>
-                                </div>
-                                <div class="tissue-item">
-                                    <span class="tissue-color necrosis"></span>
-                                    <span>Necrose: ${assessment.metrics.tissue.necrosis}%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h4>I - Infecção</h4>
-                            <div class="infection-status">
-                                <span class="risk-indicator risk-${assessment.metrics.infection.risk}">${this.getRiskLabel(assessment.metrics.infection.risk)}</span>
-                                <p>${assessment.metrics.infection.description}</p>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h4>M - Umidade</h4>
-                            <div class="moisture-status">
-                                <span class="moisture-level ${assessment.metrics.moisture.level}">${this.getMoistureLabel(assessment.metrics.moisture.level)}</span>
-                                <p>${assessment.metrics.moisture.description}</p>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h4>E - Borda</h4>
-                            <div class="edge-status">
-                                <span class="edge-progress ${assessment.metrics.edge.progress}">${this.getEdgeLabel(assessment.metrics.edge.progress)}</span>
-                                <p>${assessment.metrics.edge.description}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="assessment-ai-analysis">
-                        <h4>Análise de IA</h4>
-                        <div class="ai-insights">
-                            <div class="ai-insight">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Trajetória de cicatrização: ${assessment.aiAnalysis.trajectory}</span>
-                            </div>
-                            <div class="ai-insight">
-                                <i class="fas fa-clock"></i>
-                                <span>Tempo estimado para cicatrização: ${assessment.aiAnalysis.estimatedDays} dias</span>
-                            </div>
-                            <div class="ai-insight">
-                                <i class="fas fa-lightbulb"></i>
-                                <span>Recomendação: ${assessment.aiAnalysis.recommendation}</span>
-                            </div>
-                        </div>
-                        <div class="ai-confidence">
-                            <span>Confiança da IA: ${assessment.aiAnalysis.confidence}%</span>
-                            <div class="confidence-bar">
-                                <div class="confidence-fill" style="width: ${assessment.aiAnalysis.confidence}%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="assessment-actions">
-                        <button class="btn btn-outline">
-                            <i class="fas fa-image"></i>
-                            Ver Imagens
+        console.log('Updating assessments list:', assessments);
+        // Update assessments table if it exists
+        const tableBody = document.querySelector('.table tbody');
+        if (tableBody && assessments.length > 0) {
+            tableBody.innerHTML = assessments.map(assessment => `
+                <tr>
+                    <td>${assessment.location}</td>
+                    <td><span class="badge badge-gray">${assessment.tissue}</span></td>
+                    <td>${this.formatDate(assessment.date)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary">
+                            <span class="icon icon-eye"></span>
                         </button>
-                        <button class="btn btn-outline">
-                            <i class="fas fa-download"></i>
-                            Relatório
-                        </button>
-                        <button class="btn btn-primary">
-                            <i class="fas fa-comments"></i>
-                            Comentar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `).join('');
+                    </td>
+                </tr>
+            `).join('');
+        }
     }
 
     updateAppointmentsList(appointments) {
-        // Implementation for appointments list update
         console.log('Updating appointments list:', appointments);
+        // Update appointments list if it exists
     }
 
     updateTelehealthSessions(sessions) {
-        // Implementation for telehealth sessions update
         console.log('Updating telehealth sessions:', sessions);
+        // Update telehealth sessions if they exist
     }
 
-    // Chart Methods
-    initializeCharts() {
-        this.initializeHealingChart();
-    }
-
-    initializeHealingChart() {
-        const ctx = document.getElementById('healingChart');
-        if (!ctx) return;
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan 1', 'Jan 8', 'Jan 15', 'Jan 22', 'Jan 29'],
-                datasets: [{
-                    label: 'Área da Ferida (cm²)',
-                    data: [20, 18, 15.2, 12.5, 10],
-                    borderColor: '#2563eb',
-                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Área (cm²)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Data'
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    // Modal Methods
-    openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    closeModal(modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    closeAllModals() {
-        document.querySelectorAll('.modal').forEach(modal => {
-            modal.classList.remove('active');
-        });
-        document.body.style.overflow = 'auto';
-    }
-
-    // Appointment Methods
-    openAppointmentModal(type) {
-        const modal = document.getElementById('appointmentModal');
-        const typeSelect = document.getElementById('appointmentType');
-        
-        if (typeSelect) {
-            typeSelect.value = type;
-        }
-        
-        this.openModal('appointmentModal');
-    }
-
-    closeAppointmentModal() {
-        this.closeModal(document.getElementById('appointmentModal'));
-        document.getElementById('appointmentForm').reset();
-    }
-
-    async submitAppointment() {
+    // Form submission methods
+    async submitProfile(form) {
         try {
             this.showLoading();
             
-            const formData = new FormData(document.getElementById('appointmentForm'));
+            const formData = new FormData(form);
+            const profileData = Object.fromEntries(formData.entries());
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            this.showNotification('Perfil atualizado com sucesso!', 'success');
+            this.hideLoading();
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            this.showNotification('Erro ao atualizar perfil', 'error');
+            this.hideLoading();
+        }
+    }
+
+    async submitAppointment(form) {
+        try {
+            this.showLoading();
+            
+            const formData = new FormData(form);
             const appointmentData = Object.fromEntries(formData.entries());
             
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 2000));
             
             this.showNotification('Consulta agendada com sucesso!', 'success');
-            this.closeAppointmentModal();
-            this.loadAppointmentsData();
-            
             this.hideLoading();
         } catch (error) {
             console.error('Error submitting appointment:', error);
@@ -640,113 +495,114 @@ class HealPlusApp {
         }
     }
 
-    // Utility Methods
+    // Utility methods
     formatDate(dateString) {
         const date = new Date(dateString);
         return date.toLocaleDateString('pt-BR');
     }
 
-    getMonthName(monthIndex) {
-        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 
-                       'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-        return months[monthIndex];
-    }
-
-    getRiskLabel(risk) {
-        const labels = {
-            low: 'Baixo',
-            medium: 'Médio',
-            high: 'Alto',
-            critical: 'Crítico'
-        };
-        return labels[risk] || risk;
-    }
-
-    getStatusLabel(status) {
-        const labels = {
-            improving: 'Melhorando',
-            stable: 'Estável',
-            declining: 'Declinando',
-            stagnant: 'Estagnado'
-        };
-        return labels[status] || status;
-    }
-
-    getMoistureLabel(level) {
-        const labels = {
-            dry: 'Seco',
-            balanced: 'Equilibrado',
-            moist: 'Úmido',
-            wet: 'Molhado',
-            'very-wet': 'Muito Molhado'
-        };
-        return labels[level] || level;
-    }
-
-    getEdgeLabel(progress) {
-        const labels = {
-            advancing: 'Avançando',
-            stable: 'Estável',
-            stagnant: 'Estagnado'
-        };
-        return labels[progress] || progress;
-    }
-
-    // Loading and Notification Methods
     showLoading() {
-        document.getElementById('loadingOverlay').classList.add('active');
+        // Create loading overlay if it doesn't exist
+        let loadingOverlay = document.getElementById('loadingOverlay');
+        if (!loadingOverlay) {
+            loadingOverlay = document.createElement('div');
+            loadingOverlay.id = 'loadingOverlay';
+            loadingOverlay.className = 'loading-overlay';
+            loadingOverlay.innerHTML = `
+                <div class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Carregando...</p>
+                </div>
+            `;
+            document.body.appendChild(loadingOverlay);
+        }
+        loadingOverlay.classList.add('active');
     }
 
     hideLoading() {
-        document.getElementById('loadingOverlay').classList.remove('active');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        if (loadingOverlay) {
+            loadingOverlay.classList.remove('active');
+        }
     }
 
     showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => notification.remove());
+
         // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.innerHTML = `
             <div class="notification-content">
-                <i class="fas fa-${this.getNotificationIcon(type)}"></i>
-                <span>${message}</span>
+                <span class="icon icon-${this.getNotificationIcon(type)}"></span>
+                <span class="notification-message">${message}</span>
+                <button class="notification-close">
+                    <span class="icon icon-close"></span>
+                </button>
             </div>
         `;
 
         // Add to page
         document.body.appendChild(notification);
 
-        // Show notification
+        // Animate in
         setTimeout(() => {
             notification.classList.add('show');
         }, 100);
 
-        // Hide and remove notification
+        // Auto remove after 3 seconds
         setTimeout(() => {
             notification.classList.remove('show');
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (notification.parentNode) {
+                    notification.remove();
+                }
             }, 300);
         }, 3000);
+
+        // Close button functionality
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.addEventListener('click', () => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        });
     }
 
     getNotificationIcon(type) {
         const icons = {
-            success: 'check-circle',
-            error: 'exclamation-circle',
-            warning: 'exclamation-triangle',
-            info: 'info-circle'
+            success: 'check',
+            error: 'x',
+            warning: 'alert-triangle',
+            info: 'info'
         };
-        return icons[type] || 'info-circle';
+        return icons[type] || 'info';
     }
 
-    // Logout
+    closeAllModals() {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.classList.remove('active');
+        });
+    }
+
     logout() {
         if (confirm('Tem certeza que deseja sair?')) {
             // Clear user data
             this.currentUser = null;
             
+            // Show logout message
+            this.showNotification('Logout realizado com sucesso!', 'success');
+            
             // Redirect to login (in a real app)
-            window.location.href = '/login';
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 1500);
         }
     }
 }
@@ -758,47 +614,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Global functions for HTML onclick handlers
 function showSection(sectionName) {
-    window.healPlusApp.showSection(sectionName);
+    if (window.healPlusApp) {
+        window.healPlusApp.handleNavigation(sectionName);
+    }
 }
 
 function openAppointmentModal(type) {
-    window.healPlusApp.openAppointmentModal(type);
+    console.log('Opening appointment modal for type:', type);
+    // Implementation for appointment modal
 }
 
 function closeAppointmentModal() {
-    window.healPlusApp.closeAppointmentModal();
+    console.log('Closing appointment modal');
+    // Implementation for closing appointment modal
 }
 
 function submitAppointment() {
-    window.healPlusApp.submitAppointment();
+    if (window.healPlusApp) {
+        const form = document.getElementById('appointmentForm');
+        if (form) {
+            window.healPlusApp.submitAppointment(form);
+        }
+    }
 }
 
 function clearChat() {
-    if (window.chatbot) {
-        window.chatbot.clearChat();
-    }
+    console.log('Clearing chat');
+    // Implementation for clearing chat
 }
 
 function sendMessage() {
-    if (window.chatbot) {
-        window.chatbot.sendMessage();
-    }
+    console.log('Sending message');
+    // Implementation for sending message
 }
 
 function sendQuickMessage(message) {
-    if (window.chatbot) {
-        window.chatbot.sendQuickMessage(message);
-    }
+    console.log('Sending quick message:', message);
+    // Implementation for sending quick message
 }
 
 function previousMonth() {
-    if (window.calendar) {
-        window.calendar.previousMonth();
-    }
+    console.log('Previous month');
+    // Implementation for previous month
 }
 
 function nextMonth() {
-    if (window.calendar) {
-        window.calendar.nextMonth();
-    }
+    console.log('Next month');
+    // Implementation for next month
 }
+
+// Export for use in other modules
+window.HealPlusApp = HealPlusApp;
