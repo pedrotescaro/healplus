@@ -4,331 +4,286 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Captura e Análise de Feridas</title>
-    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/modern-design.css">
     <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/wound-capture.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-content">
-                <div class="logo">
-                    <span class="icon icon-hospital icon-lg"></span>
-                    <div class="logo-text">
-                        <h1>Heal+</h1>
-                        <span>Captura Inteligente de Feridas</span>
-                    </div>
-                </div>
-                <nav class="header-nav">
-                    <a href="index.html" class="nav-link">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Navegação</div>
+                    <a href="index.html" class="nav-item">
                         <span class="icon icon-chart"></span>
                         Dashboard
                     </a>
-                    <a href="clinician.html" class="nav-link">
+                    <a href="clinician.html" class="nav-item">
                         <span class="icon icon-user-group"></span>
                         Portal Clínico
                     </a>
-                    <a href="telehealth.html" class="nav-link">
+                    <a href="telehealth.html" class="nav-item">
                         <span class="icon icon-video"></span>
                         Telessaúde
                     </a>
-                </nav>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Captura</div>
+                    <a href="#capture" class="nav-item active">
+                        <span class="icon icon-camera"></span>
+                        Nova Captura
+                    </a>
+                    <a href="#analysis" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Análise IA
+                    </a>
+                    <a href="#history" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Histórico
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">JS</div>
+                    <div class="user-info">
+                        <div class="user-name">João Silva</div>
+                        <div class="user-email">joao.silva@email.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <span class="icon icon-arrow-right"></span>
+                    Sair
+                </button>
             </div>
-        </header>
+        </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <div class="wound-capture-container">
+            <!-- Content Header -->
+            <header class="content-header">
+                <h1 class="content-title">Captura Inteligente de Feridas</h1>
+                <p class="content-subtitle">Registre fotos da sua ferida para análise automática com IA e acompanhamento médico.</p>
+            </header>
+
+            <!-- Content Body -->
+            <div class="content-body">
                 <!-- Progress Steps -->
-                <div class="progress-steps">
-                    <div class="step active" data-step="1">
-                        <div class="step-number">1</div>
-                        <div class="step-label">Preparação</div>
-                    </div>
-                    <div class="step" data-step="2">
-                        <div class="step-number">2</div>
-                        <div class="step-label">Captura</div>
-                    </div>
-                    <div class="step" data-step="3">
-                        <div class="step-number">3</div>
-                        <div class="step-label">Análise IA</div>
-                    </div>
-                    <div class="step" data-step="4">
-                        <div class="step-number">4</div>
-                        <div class="step-label">Resultados</div>
-                    </div>
-                </div>
-
-                <!-- Step 1: Preparation -->
-                <div class="capture-step active" id="step-1">
-                    <div class="step-content">
-                        <h2>📋 Preparação para Captura</h2>
-                        <div class="preparation-guide">
-                            <div class="guide-section">
-                                <h3>🎯 Posicionamento</h3>
-                                <ul>
-                                    <li>Mantenha o dispositivo a 15-20cm da ferida</li>
-                                    <li>Use a régua de referência para calibração</li>
-                                    <li>Certifique-se de que a ferida está bem iluminada</li>
-                                    <li>Evite sombras ou reflexos</li>
-                                </ul>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                            <div style="text-align: center; flex: 1;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-blue); color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: 600;">1</div>
+                                <div style="font-size: 0.875rem; font-weight: 500; color: var(--text-primary);">Preparação</div>
                             </div>
-                            <div class="guide-section">
-                                <h3>📏 Calibração</h3>
-                                <div class="calibration-tools">
-                                    <div class="reference-ruler">
-                                        <div class="ruler-markings">
-                                            <div class="marking" data-cm="1">1cm</div>
-                                            <div class="marking" data-cm="2">2cm</div>
-                                            <div class="marking" data-cm="3">3cm</div>
-                                            <div class="marking" data-cm="4">4cm</div>
-                                            <div class="marking" data-cm="5">5cm</div>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary" onclick="startCalibration()">
-                                        Iniciar Calibração
-                                    </button>
-                                </div>
+                            <div style="flex: 1; height: 2px; background: var(--accent-blue); margin: 0 1rem;"></div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: var(--text-muted); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: 600;">2</div>
+                                <div style="font-size: 0.875rem; font-weight: 500; color: var(--text-muted);">Captura</div>
                             </div>
-                            <div class="guide-section">
-                                <h3>📱 Configurações da Câmera</h3>
-                                <div class="camera-settings">
-                                    <label>
-                                        <input type="checkbox" id="flash-enabled" checked>
-                                        Flash automático
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" id="stabilization-enabled" checked>
-                                        Estabilização de imagem
-                                    </label>
-                                    <label>
-                                        <input type="checkbox" id="hdr-enabled">
-                                        HDR (alta definição)
-                                    </label>
-                                </div>
+                            <div style="flex: 1; height: 2px; background: rgba(255, 255, 255, 0.1); margin: 0 1rem;"></div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: var(--text-muted); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: 600;">3</div>
+                                <div style="font-size: 0.875rem; font-weight: 500; color: var(--text-muted);">Análise IA</div>
                             </div>
-                        </div>
-                        <div class="step-actions">
-                            <button class="btn btn-primary" onclick="nextStep()">
-                                Próximo: Captura
-                            </button>
+                            <div style="flex: 1; height: 2px; background: rgba(255, 255, 255, 0.1); margin: 0 1rem;"></div>
+                            <div style="text-align: center; flex: 1;">
+                                <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: var(--text-muted); display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem; font-weight: 600;">4</div>
+                                <div style="font-size: 0.875rem; font-weight: 500; color: var(--text-muted);">Resultados</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 2: Capture -->
-                <div class="capture-step" id="step-2">
-                    <div class="step-content">
-                        <h2>📸 Captura da Ferida</h2>
-                        <div class="capture-interface">
-                            <div class="camera-container">
-                                <video id="camera-preview" autoplay muted></video>
-                                <canvas id="capture-canvas" style="display: none;"></canvas>
-                                <div class="capture-overlay">
-                                    <div class="focus-ring"></div>
-                                    <div class="reference-grid"></div>
-                                    <div class="distance-indicator">
-                                        <span id="distance-text">15-20cm</span>
+                <!-- Capture Interface -->
+                <div class="grid grid-cols-2">
+                    <!-- Camera Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Captura da Ferida</h3>
+                            <p class="card-subtitle">Posicione a câmera sobre a ferida para captura automática.</p>
+                        </div>
+                        <div class="card-body">
+                            <div style="background: var(--secondary-bg); border-radius: var(--radius-lg); height: 300px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; border: 2px dashed rgba(255, 255, 255, 0.2);">
+                                <div style="text-align: center; color: var(--text-muted);">
+                                    <div style="width: 64px; height: 64px; background: rgba(59, 130, 246, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                        <span class="icon icon-camera" style="width: 32px; height: 32px; color: var(--accent-blue);"></span>
                                     </div>
+                                    <div style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Clique para capturar</div>
+                                    <div style="font-size: 0.875rem;">ou arraste uma imagem aqui</div>
                                 </div>
                             </div>
-                            <div class="capture-controls">
-                                <button class="btn btn-secondary" onclick="switchCamera()">
-                                    🔄 Trocar Câmera
+                            
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="btn btn-primary" style="flex: 1;">
+                                    <span class="icon icon-camera"></span>
+                                    Capturar Foto
                                 </button>
-                                <button class="btn btn-primary capture-btn" onclick="captureImage()">
-                                    📸 Capturar
-                                </button>
-                                <button class="btn btn-secondary" onclick="previousStep()">
-                                    ← Voltar
+                                <button class="btn btn-secondary" style="flex: 1;">
+                                    <span class="icon icon-upload"></span>
+                                    Upload
                                 </button>
                             </div>
-                        </div>
-                        <div class="capture-tips">
-                            <h3>💡 Dicas para Melhor Captura</h3>
-                            <ul>
-                                <li>Mantenha o dispositivo estável</li>
-                                <li>Certifique-se de que toda a ferida está visível</li>
-                                <li>Use a régua de referência para escala</li>
-                                <li>Evite movimentos durante a captura</li>
-                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <!-- Step 3: AI Analysis -->
-                <div class="capture-step" id="step-3">
-                    <div class="step-content">
-                        <h2>🤖 Análise por Inteligência Artificial</h2>
-                        <div class="analysis-container">
-                            <div class="analysis-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" id="analysis-progress"></div>
+                    <!-- Instructions -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Instruções de Captura</h3>
+                            <p class="card-subtitle">Siga estas diretrizes para obter a melhor análise.</p>
+                        </div>
+                        <div class="card-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <span style="color: white; font-weight: 600; font-size: 0.875rem;">1</span>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Iluminação Adequada</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted);">Use luz natural ou artificial clara, evite sombras.</div>
+                                    </div>
                                 </div>
-                                <div class="progress-text" id="analysis-text">Iniciando análise...</div>
+
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <span style="color: white; font-weight: 600; font-size: 0.875rem;">2</span>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Distância Correta</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted);">Mantenha 15-20cm de distância da ferida.</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                    <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <span style="color: white; font-weight: 600; font-size: 0.875rem;">3</span>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Ângulo Perpendicular</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted);">Capture diretamente de cima, sem inclinação.</div>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 32px; height: 32px; background: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <span style="color: white; font-weight: 600; font-size: 0.875rem;">4</span>
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Foco na Ferida</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted);">Centralize a ferida na imagem, com margem ao redor.</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="analysis-steps">
-                                <div class="analysis-step active" id="step-segmentation">
-                                    <div class="step-icon">🎯</div>
-                                    <div class="step-info">
-                                        <h4>Segmentação da Ferida</h4>
-                                        <p>Identificando contornos e área da ferida</p>
-                                    </div>
+
+                            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: var(--radius-lg); padding: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                    <span class="icon icon-check" style="color: var(--success);"></span>
+                                    <span style="font-weight: 600; color: var(--success);">Dica Pro</span>
                                 </div>
-                                <div class="analysis-step" id="step-tissue">
-                                    <div class="step-icon">🔬</div>
-                                    <div class="step-info">
-                                        <h4>Classificação de Tecidos</h4>
-                                        <p>Analisando tipos de tecido (granulação, esfacelo, necrose)</p>
-                                    </div>
-                                </div>
-                                <div class="analysis-step" id="step-measurement">
-                                    <div class="step-icon">📏</div>
-                                    <div class="step-info">
-                                        <h4>Medições Automáticas</h4>
-                                        <p>Calculando área, perímetro e dimensões</p>
-                                    </div>
-                                </div>
-                                <div class="analysis-step" id="step-risk">
-                                    <div class="step-icon">⚠️</div>
-                                    <div class="step-info">
-                                        <h4>Avaliação de Risco</h4>
-                                        <p>Determinando risco de infecção e complicações</p>
-                                    </div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">
+                                    Use uma régua ou moeda como referência de escala para medições mais precisas.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 4: Results -->
-                <div class="capture-step" id="step-4">
-                    <div class="step-content">
-                        <h2>📊 Resultados da Análise</h2>
-                        <div class="results-container">
-                            <div class="results-grid">
-                                <!-- Wound Image with Overlay -->
-                                <div class="result-card image-card">
-                                    <h3>🖼️ Imagem Analisada</h3>
-                                    <div class="wound-image-container">
-                                        <img id="analyzed-image" src="" alt="Ferida analisada">
-                                        <canvas id="overlay-canvas"></canvas>
-                                    </div>
-                                    <div class="image-controls">
-                                        <button class="btn btn-sm" onclick="toggleOverlay('segmentation')">
-                                            Contorno
-                                        </button>
-                                        <button class="btn btn-sm" onclick="toggleOverlay('tissue')">
-                                            Tecidos
-                                        </button>
-                                        <button class="btn btn-sm" onclick="toggleOverlay('measurements')">
-                                            Medições
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Measurements -->
-                                <div class="result-card measurements-card">
-                                    <h3>📏 Medições</h3>
-                                    <div class="measurements-grid">
-                                        <div class="measurement-item">
-                                            <div class="measurement-label">Área</div>
-                                            <div class="measurement-value" id="area-value">-- cm²</div>
-                                        </div>
-                                        <div class="measurement-item">
-                                            <div class="measurement-label">Perímetro</div>
-                                            <div class="measurement-value" id="perimeter-value">-- cm</div>
-                                        </div>
-                                        <div class="measurement-item">
-                                            <div class="measurement-label">Largura</div>
-                                            <div class="measurement-value" id="width-value">-- cm</div>
-                                        </div>
-                                        <div class="measurement-item">
-                                            <div class="measurement-label">Comprimento</div>
-                                            <div class="measurement-value" id="length-value">-- cm</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Tissue Analysis -->
-                                <div class="result-card tissue-card">
-                                    <h3>🔬 Análise de Tecidos</h3>
-                                    <div class="tissue-analysis">
-                                        <div class="tissue-item">
-                                            <div class="tissue-color granulation"></div>
-                                            <div class="tissue-info">
-                                                <div class="tissue-name">Granulação</div>
-                                                <div class="tissue-percentage" id="granulation-percent">--%</div>
-                                            </div>
-                                        </div>
-                                        <div class="tissue-item">
-                                            <div class="tissue-color slough"></div>
-                                            <div class="tissue-info">
-                                                <div class="tissue-name">Esfacelo</div>
-                                                <div class="tissue-percentage" id="slough-percent">--%</div>
-                                            </div>
-                                        </div>
-                                        <div class="tissue-item">
-                                            <div class="tissue-color necrosis"></div>
-                                            <div class="tissue-info">
-                                                <div class="tissue-name">Necrose</div>
-                                                <div class="tissue-percentage" id="necrosis-percent">--%</div>
-                                            </div>
-                                        </div>
-                                        <div class="tissue-item">
-                                            <div class="tissue-color epithelial"></div>
-                                            <div class="tissue-info">
-                                                <div class="tissue-name">Epitelial</div>
-                                                <div class="tissue-percentage" id="epithelial-percent">--%</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Risk Assessment -->
-                                <div class="result-card risk-card">
-                                    <h3>⚠️ Avaliação de Risco</h3>
-                                    <div class="risk-assessment">
-                                        <div class="risk-item">
-                                            <div class="risk-label">Risco de Infecção</div>
-                                            <div class="risk-level" id="infection-risk">--</div>
-                                        </div>
-                                        <div class="risk-item">
-                                            <div class="risk-label">Progresso da Cicatrização</div>
-                                            <div class="risk-level" id="healing-progress">--</div>
-                                        </div>
-                                        <div class="risk-item">
-                                            <div class="risk-label">Recomendação</div>
-                                            <div class="risk-recommendation" id="recommendation">--</div>
-                                        </div>
-                                    </div>
+                <!-- Recent Captures -->
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Capturas Recentes</h3>
+                        <p class="card-subtitle">Suas últimas fotos de feridas para comparação.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;">
+                            <div style="background: var(--secondary-bg); border-radius: var(--radius-lg); height: 120px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="text-align: center; color: var(--text-muted);">
+                                    <span class="icon icon-camera" style="width: 24px; height: 24px; margin-bottom: 0.5rem;"></span>
+                                    <div style="font-size: 0.75rem;">15/01/2025</div>
                                 </div>
                             </div>
-
-                            <!-- Actions -->
-                            <div class="results-actions">
-                                <button class="btn btn-secondary" onclick="retakePhoto()">
-                                    📸 Nova Captura
-                                </button>
-                                <button class="btn btn-primary" onclick="saveResults()">
-                                    💾 Salvar Análise
-                                </button>
-                                <button class="btn btn-success" onclick="scheduleFollowUp()">
-                                    📅 Agendar Acompanhamento
-                                </button>
+                            <div style="background: var(--secondary-bg); border-radius: var(--radius-lg); height: 120px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="text-align: center; color: var(--text-muted);">
+                                    <span class="icon icon-camera" style="width: 24px; height: 24px; margin-bottom: 0.5rem;"></span>
+                                    <div style="font-size: 0.75rem;">12/01/2025</div>
+                                </div>
+                            </div>
+                            <div style="background: var(--secondary-bg); border-radius: var(--radius-lg); height: 120px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="text-align: center; color: var(--text-muted);">
+                                    <span class="icon icon-camera" style="width: 24px; height: 24px; margin-bottom: 0.5rem;"></span>
+                                    <div style="font-size: 0.75rem;">10/01/2025</div>
+                                </div>
+                            </div>
+                            <div style="background: var(--secondary-bg); border-radius: var(--radius-lg); height: 120px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="text-align: center; color: var(--text-muted);">
+                                    <span class="icon icon-plus" style="width: 24px; height: 24px; margin-bottom: 0.5rem;"></span>
+                                    <div style="font-size: 0.75rem;">Nova Captura</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span class="icon icon-menu"></span>
+        </button>
+
+        <!-- Chat Assistant Button -->
+        <button class="chat-assistant-btn" onclick="window.location.href='chatbot.html'">
+            <span class="icon icon-chat"></span>
+        </button>
     </div>
 
     <!-- Scripts -->
-    <script src="js/wound-capture.js"></script>
-    <script src="js/ai-analysis.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !mobileToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Implement logout logic here
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
 </body>
 </html>
