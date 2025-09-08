@@ -216,6 +216,22 @@ O sistema implementa completamente o framework **TIMERS** para avaliação holí
 - **Gestão de Consentimento**: Controle granular de permissões
 - **Criptografia End-to-End**: Proteção de dados sensíveis
 
+### 6. 📱 Monitoramento Remoto Avançado
+- **Check-ins Diários**: Sistema de acompanhamento contínuo
+- **Captura Inteligente**: Fotos com calibração automática e análise IA
+- **Triagem Automatizada**: Avaliação de risco em tempo real
+- **Lembretes Personalizados**: Notificações de medicação e cuidados
+- **Gamificação**: Sistema de pontos e conquistas para engajamento
+- **Alertas Inteligentes**: Notificações baseadas em padrões de risco
+
+### 7. 🎯 Funcionalidades Inspiradas no WoundWise
+- **Análise Fotográfica**: Processamento automático de imagens de feridas
+- **Monitoramento Contínuo**: Acompanhamento 24/7 do progresso
+- **Check-ins Estruturados**: Questionários padronizados para sintomas
+- **Documentação Automatizada**: Geração automática de relatórios
+- **Planos Personalizados**: Tratamentos adaptados ao perfil do paciente
+- **Comunicação Bidirecional**: Feedback contínuo entre paciente e clínico
+
 ## 🚀 Instalação e Configuração
 
 ### 📋 Pré-requisitos
@@ -340,6 +356,9 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 - **Educação**: Acesse conteúdo personalizado
 - **Teleconsulta**: Participe de consultas remotas
 - **Exportação**: Baixe seus dados (LGPD)
+- **Captura Inteligente**: Sistema avançado de fotos com análise IA
+- **Monitoramento Remoto**: Check-ins diários automatizados
+- **Alertas Personalizados**: Notificações baseadas em seu progresso
 
 ### 👨‍⚕️ Para Clínicos
 
@@ -445,6 +464,9 @@ app.security.rate-limit.window=3600
 - ✅ **Autenticação**: Sistema JWT com conformidade LGPD
 - ✅ **Telessaúde**: Módulo básico de consultas remotas
 - ✅ **Assistente IA**: Chatbot conversacional
+- ✅ **Captura Avançada**: Sistema de captura e análise de feridas
+- ✅ **Monitoramento Remoto**: Check-ins diários e acompanhamento
+- ✅ **Triagem Automatizada**: Análise de risco em tempo real
 
 ### 🔄 Fase 2 - Expansão (Q2 2024)
 - [ ] **Integração PEPs**: Compatibilidade HL7 FHIR

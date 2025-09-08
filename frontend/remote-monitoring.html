@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Monitoramento Remoto</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/remote-monitoring.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🏥 Heal+</h1>
+                    <span>Monitoramento Remoto</span>
+                </div>
+                <nav class="header-nav">
+                    <a href="index.html" class="nav-link">Dashboard</a>
+                    <a href="clinician.html" class="nav-link">Portal Clínico</a>
+                    <a href="wound-capture.html" class="nav-link">Captura de Feridas</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="monitoring-container">
+                <!-- Patient Dashboard -->
+                <div class="patient-dashboard">
+                    <div class="dashboard-header">
+                        <h2>📱 Seu Check-in Diário</h2>
+                        <div class="streak-counter">
+                            <span class="streak-number" id="streak-count">7</span>
+                            <span class="streak-label">dias consecutivos</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <button class="action-btn primary" onclick="startPhotoCheckIn()">
+                            📸 Foto da Ferida
+                        </button>
+                        <button class="action-btn secondary" onclick="startSymptomCheckIn()">
+                            📋 Sintomas
+                        </button>
+                        <button class="action-btn tertiary" onclick="startPainAssessment()">
+                            😊 Avaliação de Dor
+                        </button>
+                    </div>
+
+                    <!-- Progress Overview -->
+                    <div class="progress-overview">
+                        <h3>📊 Progresso da Semana</h3>
+                        <div class="progress-grid">
+                            <div class="progress-item">
+                                <div class="progress-icon">📸</div>
+                                <div class="progress-info">
+                                    <div class="progress-label">Fotos Enviadas</div>
+                                    <div class="progress-value">5/7</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 71%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-icon">📋</div>
+                                <div class="progress-info">
+                                    <div class="progress-label">Check-ins</div>
+                                    <div class="progress-value">6/7</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 86%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-item">
+                                <div class="progress-icon">💊</div>
+                                <div class="progress-info">
+                                    <div class="progress-label">Medicação</div>
+                                    <div class="progress-value">7/7</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Check-in Forms -->
+                <div class="checkin-forms" id="checkin-forms">
+                    <!-- Photo Check-in -->
+                    <div class="checkin-form" id="photo-checkin">
+                        <div class="form-header">
+                            <h3>📸 Check-in Fotográfico</h3>
+                            <button class="close-btn" onclick="closeCheckIn()">×</button>
+                        </div>
+                        <div class="form-content">
+                            <div class="photo-instructions">
+                                <h4>Instruções para a Foto</h4>
+                                <ul>
+                                    <li>Posicione a ferida no centro da imagem</li>
+                                    <li>Use boa iluminação natural</li>
+                                    <li>Mantenha a câmera a 15-20cm da ferida</li>
+                                    <li>Inclua a régua de referência se possível</li>
+                                </ul>
+                            </div>
+                            <div class="photo-capture">
+                                <div class="camera-preview" id="camera-preview">
+                                    <video id="photo-video" autoplay muted></video>
+                                    <div class="capture-overlay">
+                                        <div class="focus-guide"></div>
+                                        <div class="distance-guide">15-20cm</div>
+                                    </div>
+                                </div>
+                                <div class="photo-controls">
+                                    <button class="btn btn-secondary" onclick="switchCamera()">
+                                        🔄 Trocar Câmera
+                                    </button>
+                                    <button class="btn btn-primary" onclick="capturePhoto()">
+                                        📸 Capturar
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="photo-notes">
+                                <label for="photo-notes">Observações (opcional):</label>
+                                <textarea id="photo-notes" placeholder="Descreva qualquer mudança que notou..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Symptom Check-in -->
+                    <div class="checkin-form" id="symptom-checkin">
+                        <div class="form-header">
+                            <h3>📋 Check-in de Sintomas</h3>
+                            <button class="close-btn" onclick="closeCheckIn()">×</button>
+                        </div>
+                        <div class="form-content">
+                            <div class="symptom-questions">
+                                <div class="question-group">
+                                    <h4>Como está a aparência da ferida hoje?</h4>
+                                    <div class="radio-group">
+                                        <label><input type="radio" name="appearance" value="better"> Melhor que ontem</label>
+                                        <label><input type="radio" name="appearance" value="same"> Igual a ontem</label>
+                                        <label><input type="radio" name="appearance" value="worse"> Pior que ontem</label>
+                                    </div>
+                                </div>
+
+                                <div class="question-group">
+                                    <h4>Você notou algum destes sintomas?</h4>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" name="symptoms" value="redness"> Vermelhidão ao redor</label>
+                                        <label><input type="checkbox" name="symptoms" value="swelling"> Inchaço</label>
+                                        <label><input type="checkbox" name="symptoms" value="warmth"> Calor na região</label>
+                                        <label><input type="checkbox" name="symptoms" value="discharge"> Secreção</label>
+                                        <label><input type="checkbox" name="symptoms" value="odor"> Odor desagradável</label>
+                                        <label><input type="checkbox" name="symptoms" value="fever"> Febre</label>
+                                    </div>
+                                </div>
+
+                                <div class="question-group">
+                                    <h4>Como está a dor?</h4>
+                                    <div class="pain-scale">
+                                        <div class="scale-item" data-level="0">
+                                            <div class="scale-icon">😊</div>
+                                            <div class="scale-label">Sem dor</div>
+                                        </div>
+                                        <div class="scale-item" data-level="2">
+                                            <div class="scale-icon">🙂</div>
+                                            <div class="scale-label">Leve</div>
+                                        </div>
+                                        <div class="scale-item" data-level="4">
+                                            <div class="scale-icon">😐</div>
+                                            <div class="scale-label">Moderada</div>
+                                        </div>
+                                        <div class="scale-item" data-level="6">
+                                            <div class="scale-icon">😣</div>
+                                            <div class="scale-label">Forte</div>
+                                        </div>
+                                        <div class="scale-item" data-level="8">
+                                            <div class="scale-icon">😫</div>
+                                            <div class="scale-label">Muito forte</div>
+                                        </div>
+                                        <div class="scale-item" data-level="10">
+                                            <div class="scale-icon">😵</div>
+                                            <div class="scale-label">Insuportável</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="question-group">
+                                    <h4>Observações adicionais:</h4>
+                                    <textarea id="symptom-notes" placeholder="Descreva qualquer outra observação..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medication Check-in -->
+                    <div class="checkin-form" id="medication-checkin">
+                        <div class="form-header">
+                            <h3>💊 Check-in de Medicação</h3>
+                            <button class="close-btn" onclick="closeCheckIn()">×</button>
+                        </div>
+                        <div class="form-content">
+                            <div class="medication-list">
+                                <div class="medication-item">
+                                    <div class="med-info">
+                                        <h4>Antibiótico - Amoxicilina</h4>
+                                        <p>500mg - 3x ao dia</p>
+                                    </div>
+                                    <div class="med-status">
+                                        <label class="med-checkbox">
+                                            <input type="checkbox" name="medication" value="amoxicillin">
+                                            <span class="checkmark">✓</span>
+                                            Tomado
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="medication-item">
+                                    <div class="med-info">
+                                        <h4>Analgésico - Paracetamol</h4>
+                                        <p>500mg - 2x ao dia</p>
+                                    </div>
+                                    <div class="med-status">
+                                        <label class="med-checkbox">
+                                            <input type="checkbox" name="medication" value="paracetamol">
+                                            <span class="checkmark">✓</span>
+                                            Tomado
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="medication-item">
+                                    <div class="med-info">
+                                        <h4>Vitamina C</h4>
+                                        <p>1000mg - 1x ao dia</p>
+                                    </div>
+                                    <div class="med-status">
+                                        <label class="med-checkbox">
+                                            <input type="checkbox" name="medication" value="vitamin-c">
+                                            <span class="checkmark">✓</span>
+                                            Tomado
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="medication-notes">
+                                <label for="med-notes">Observações sobre medicação:</label>
+                                <textarea id="med-notes" placeholder="Efeitos colaterais, esquecimentos, etc..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h3>📈 Atividade Recente</h3>
+                    <div class="activity-timeline">
+                        <div class="activity-item">
+                            <div class="activity-icon">📸</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Foto enviada</div>
+                                <div class="activity-time">Hoje, 14:30</div>
+                                <div class="activity-status success">Análise concluída</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">📋</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Check-in de sintomas</div>
+                                <div class="activity-time">Hoje, 09:15</div>
+                                <div class="activity-status success">Completado</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">💊</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Medicação registrada</div>
+                                <div class="activity-time">Ontem, 20:00</div>
+                                <div class="activity-status success">Em dia</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⚠️</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Alerta de risco</div>
+                                <div class="activity-time">Ontem, 16:45</div>
+                                <div class="activity-status warning">Monitorar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerts and Notifications -->
+                <div class="alerts-section">
+                    <h3>🔔 Alertas e Notificações</h3>
+                    <div class="alerts-list">
+                        <div class="alert-item warning">
+                            <div class="alert-icon">⚠️</div>
+                            <div class="alert-content">
+                                <div class="alert-title">Lembrete de Medicação</div>
+                                <div class="alert-message">Hora de tomar o antibiótico</div>
+                                <div class="alert-time">Há 15 minutos</div>
+                            </div>
+                            <button class="alert-action">Marcar como lido</button>
+                        </div>
+                        <div class="alert-item info">
+                            <div class="alert-icon">ℹ️</div>
+                            <div class="alert-content">
+                                <div class="alert-title">Dica de Cuidado</div>
+                                <div class="alert-message">Mantenha a ferida seca após o banho</div>
+                                <div class="alert-time">Há 2 horas</div>
+                            </div>
+                            <button class="alert-action">Marcar como lido</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/remote-monitoring.js"></script>
+    <script src="js/ai-analysis.js"></script>
+</body>
+</html>
