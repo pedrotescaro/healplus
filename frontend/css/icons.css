@@ -1,6 +1,23 @@
 /* Heal+ Icons System - Font Awesome */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
+/* Global icon color override */
+* {
+  --fa-primary-color: #ffffff !important;
+  --fa-secondary-color: #ffffff !important;
+}
+
+/* Force all Font Awesome icons to be white */
+.fa,
+.fas,
+.far,
+.fab,
+.fal,
+.fad,
+.fat {
+  color: #ffffff !important;
+}
+
 /* Base icon class */
 .icon {
   display: inline-flex;
@@ -8,7 +25,7 @@
   justify-content: center;
   width: 1.25rem;
   height: 1.25rem;
-  color: currentColor;
+  color: #ffffff !important;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
@@ -329,17 +346,24 @@
   font-weight: 400;
 }
 
-/* Color variations for icons */
-.icon-primary { color: var(--accent-blue); }
-.icon-secondary { color: var(--text-secondary); }
-.icon-success { color: var(--success); }
-.icon-warning { color: var(--warning); }
-.icon-error { color: var(--error); }
-.icon-info { color: var(--info); }
-.icon-white { color: var(--white); }
-.icon-gray-500 { color: var(--gray-500); }
-.icon-gray-600 { color: var(--gray-600); }
-.icon-gray-700 { color: var(--gray-700); }
+/* Force white color for all icons */
+.icon,
+.icon::before,
+.icon * {
+  color: #ffffff !important;
+}
+
+/* Color variations for icons - override with white */
+.icon-primary { color: #ffffff !important; }
+.icon-secondary { color: #ffffff !important; }
+.icon-success { color: #ffffff !important; }
+.icon-warning { color: #ffffff !important; }
+.icon-error { color: #ffffff !important; }
+.icon-info { color: #ffffff !important; }
+.icon-white { color: #ffffff !important; }
+.icon-gray-500 { color: #ffffff !important; }
+.icon-gray-600 { color: #ffffff !important; }
+.icon-gray-700 { color: #ffffff !important; }
 
 /* Icon animations */
 .icon:hover {
@@ -362,11 +386,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #ffffff !important;
 }
 
 .btn .icon:only-child {
   margin-right: 0;
   margin-left: 0;
+  color: #ffffff !important;
 }
 
 /* Center icons in buttons */
@@ -378,6 +404,17 @@
 
 .btn .icon {
   flex-shrink: 0;
+  color: #ffffff !important;
+}
+
+/* Force white color for icons in all contexts */
+.nav-item .icon,
+.action-card-icon .icon,
+.stat-icon .icon,
+.card .icon,
+.sidebar .icon,
+.header .icon {
+  color: #ffffff !important;
 }
 
 /* Icon in navigation */
