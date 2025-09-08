@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Portal do Paciente</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Heal+</span>
+                </div>
+                <nav class="nav">
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                    <a href="#assessments" class="nav-link" data-section="assessments">
+                        <i class="fas fa-clipboard-list"></i>
+                        Avaliações
+                    </a>
+                    <a href="#appointments" class="nav-link" data-section="appointments">
+                        <i class="fas fa-calendar-alt"></i>
+                        Consultas
+                    </a>
+                    <a href="#telehealth" class="nav-link" data-section="telehealth">
+                        <i class="fas fa-video"></i>
+                        Teleconsulta
+                    </a>
+                    <a href="#chatbot" class="nav-link" data-section="chatbot">
+                        <i class="fas fa-robot"></i>
+                        Assistente IA
+                    </a>
+                </nav>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
+                        <span class="user-name">João Silva</span>
+                    </div>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Visão geral do seu tratamento e progresso</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-wound"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Ferida Ativa</h3>
+                            <p class="stat-number">1</p>
+                            <p class="stat-label">Pé direito</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Progresso</h3>
+                            <p class="stat-number">75%</p>
+                            <p class="stat-label">Cicatrização</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Próxima Consulta</h3>
+                            <p class="stat-number">15</p>
+                            <p class="stat-label">Dias</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Risco de Infecção</h3>
+                            <p class="stat-number risk-low">Baixo</p>
+                            <p class="stat-label">Monitorado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Chart -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Progresso da Cicatrização</h2>
+                        <div class="chart-controls">
+                            <button class="btn btn-outline active" data-period="30">30 dias</button>
+                            <button class="btn btn-outline" data-period="90">90 dias</button>
+                            <button class="btn btn-outline" data-period="180">6 meses</button>
+                        </div>
+                    </div>
+                    <div class="chart">
+                        <canvas id="healingChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Assessments -->
+                <div class="recent-assessments">
+                    <div class="section-header">
+                        <h2>Avaliações Recentes</h2>
+                        <button class="btn btn-primary" onclick="showSection('assessments')">
+                            Ver Todas
+                        </button>
+                    </div>
+                    <div class="assessments-grid">
+                        <div class="assessment-card">
+                            <div class="assessment-header">
+                                <h3>Pé Direito</h3>
+                                <span class="assessment-date">15/01/2024</span>
+                            </div>
+                            <div class="assessment-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Área:</span>
+                                    <span class="metric-value">12.5 cm²</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Tecido:</span>
+                                    <span class="metric-value">75% Granulação</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Risco:</span>
+                                    <span class="metric-value risk-low">Baixo</span>
+                                </div>
+                            </div>
+                            <div class="assessment-ai">
+                                <i class="fas fa-robot"></i>
+                                <span>Análise IA: Melhorando</span>
+                            </div>
+                        </div>
+                        <div class="assessment-card">
+                            <div class="assessment-header">
+                                <h3>Pé Direito</h3>
+                                <span class="assessment-date">08/01/2024</span>
+                            </div>
+                            <div class="assessment-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Área:</span>
+                                    <span class="metric-value">15.2 cm²</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Tecido:</span>
+                                    <span class="metric-value">65% Granulação</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Risco:</span>
+                                    <span class="metric-value risk-medium">Médio</span>
+                                </div>
+                            </div>
+                            <div class="assessment-ai">
+                                <i class="fas fa-robot"></i>
+                                <span>Análise IA: Estável</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="upcoming-appointments">
+                    <div class="section-header">
+                        <h2>Próximas Consultas</h2>
+                        <button class="btn btn-primary" onclick="showSection('appointments')">
+                            Agendar
+                        </button>
+                    </div>
+                    <div class="appointments-list">
+                        <div class="appointment-item">
+                            <div class="appointment-date">
+                                <span class="day">22</span>
+                                <span class="month">Jan</span>
+                            </div>
+                            <div class="appointment-details">
+                                <h3>Consulta de Acompanhamento</h3>
+                                <p>Dr. Maria Santos - Dermatologia</p>
+                                <p>14:30 - Presencial</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-outline btn-sm">Detalhes</button>
+                                <button class="btn btn-primary btn-sm">Confirmar</button>
+                            </div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-date">
+                                <span class="day">29</span>
+                                <span class="month">Jan</span>
+                            </div>
+                            <div class="appointment-details">
+                                <h3>Teleconsulta</h3>
+                                <p>Dr. João Oliveira - Cirurgia Vascular</p>
+                                <p>10:00 - Online</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-outline btn-sm">Detalhes</button>
+                                <button class="btn btn-primary btn-sm">Entrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessments Section -->
+            <section id="assessments" class="section">
+                <div class="section-header">
+                    <h1>Histórico de Avaliações</h1>
+                    <p>Acompanhe o progresso do seu tratamento</p>
+                </div>
+
+                <!-- Assessment Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Período:</label>
+                        <select id="periodFilter">
+                            <option value="all">Todos</option>
+                            <option value="30">Últimos 30 dias</option>
+                            <option value="90">Últimos 90 dias</option>
+                            <option value="180">Últimos 6 meses</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Localização:</label>
+                        <select id="locationFilter">
+                            <option value="all">Todas</option>
+                            <option value="foot">Pé</option>
+                            <option value="leg">Perna</option>
+                            <option value="arm">Braço</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Risco:</label>
+                        <select id="riskFilter">
+                            <option value="all">Todos</option>
+                            <option value="low">Baixo</option>
+                            <option value="medium">Médio</option>
+                            <option value="high">Alto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Assessments List -->
+                <div class="assessments-list">
+                    <div class="assessment-item">
+                        <div class="assessment-header">
+                            <div class="assessment-info">
+                                <h3>Pé Direito - Úlcera Venosa</h3>
+                                <span class="assessment-date">15/01/2024 - 14:30</span>
+                            </div>
+                            <div class="assessment-status">
+                                <span class="status-badge status-improving">Melhorando</span>
+                            </div>
+                        </div>
+                        <div class="assessment-content">
+                            <div class="assessment-metrics">
+                                <div class="metric-card">
+                                    <h4>T - Tecido</h4>
+                                    <div class="tissue-composition">
+                                        <div class="tissue-item">
+                                            <span class="tissue-color granulation"></span>
+                                            <span>Granulação: 75%</span>
+                                        </div>
+                                        <div class="tissue-item">
+                                            <span class="tissue-color slough"></span>
+                                            <span>Esfacelo: 20%</span>
+                                        </div>
+                                        <div class="tissue-item">
+                                            <span class="tissue-color necrosis"></span>
+                                            <span>Necrose: 5%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>I - Infecção</h4>
+                                    <div class="infection-status">
+                                        <span class="risk-indicator risk-low">Baixo Risco</span>
+                                        <p>Sem sinais de infecção ativa</p>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>M - Umidade</h4>
+                                    <div class="moisture-status">
+                                        <span class="moisture-level balanced">Equilibrada</span>
+                                        <p>Exsudato moderado, sem maceração</p>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>E - Borda</h4>
+                                    <div class="edge-status">
+                                        <span class="edge-progress advancing">Avançando</span>
+                                        <p>Contração de 5% desde última avaliação</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assessment-ai-analysis">
+                                <h4>Análise de IA</h4>
+                                <div class="ai-insights">
+                                    <div class="ai-insight">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Trajetória de cicatrização: Melhorando</span>
+                                    </div>
+                                    <div class="ai-insight">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Tempo estimado para cicatrização: 45 dias</span>
+                                    </div>
+                                    <div class="ai-insight">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Recomendação: Continuar tratamento atual</span>
+                                    </div>
+                                </div>
+                                <div class="ai-confidence">
+                                    <span>Confiança da IA: 87%</span>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" style="width: 87%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assessment-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-image"></i>
+                                    Ver Imagens
+                                </button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-download"></i>
+                                    Relatório
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-comments"></i>
+                                    Comentar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="section">
+                <div class="section-header">
+                    <h1>Consultas e Agendamentos</h1>
+                    <p>Gerencie suas consultas e agende novos atendimentos</p>
+                </div>
+
+                <!-- Appointment Types -->
+                <div class="appointment-types">
+                    <div class="type-card" onclick="openAppointmentModal('in-person')">
+                        <div class="type-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Consulta Presencial</h3>
+                        <p>Atendimento no consultório</p>
+                    </div>
+                    <div class="type-card" onclick="openAppointmentModal('telehealth')">
+                        <div class="type-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Teleconsulta</h3>
+                        <p>Atendimento online</p>
+                    </div>
+                    <div class="type-card" onclick="openAppointmentModal('emergency')">
+                        <div class="type-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Urgência</h3>
+                        <p>Atendimento de emergência</p>
+                    </div>
+                </div>
+
+                <!-- Appointments Calendar -->
+                <div class="appointments-calendar">
+                    <div class="calendar-header">
+                        <h2>Calendário de Consultas</h2>
+                        <div class="calendar-controls">
+                            <button class="btn btn-outline" onclick="previousMonth()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span id="currentMonth">Janeiro 2024</span>
+                            <button class="btn btn-outline" onclick="nextMonth()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <!-- Calendar will be generated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Appointments List -->
+                <div class="appointments-list">
+                    <h2>Próximas Consultas</h2>
+                    <div class="appointment-item">
+                        <div class="appointment-date">
+                            <span class="day">22</span>
+                            <span class="month">Jan</span>
+                        </div>
+                        <div class="appointment-details">
+                            <h3>Consulta de Acompanhamento</h3>
+                            <p>Dr. Maria Santos - Dermatologia</p>
+                            <p>14:30 - Presencial</p>
+                            <p>Clínica São Paulo - Sala 205</p>
+                        </div>
+                        <div class="appointment-status">
+                            <span class="status-badge status-confirmed">Confirmada</span>
+                        </div>
+                        <div class="appointment-actions">
+                            <button class="btn btn-outline btn-sm">Detalhes</button>
+                            <button class="btn btn-primary btn-sm">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Telehealth Section -->
+            <section id="telehealth" class="section">
+                <div class="section-header">
+                    <h1>Teleconsulta</h1>
+                    <p>Atendimento médico online seguro e conveniente</p>
+                </div>
+
+                <!-- Telehealth Features -->
+                <div class="telehealth-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Consulta por Vídeo</h3>
+                        <p>Atendimento face a face com seu médico</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3>Compartilhamento de Tela</h3>
+                        <p>Visualize análises e exames em tempo real</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Segurança Total</h3>
+                        <p>Criptografia de ponta a ponta</p>
+                    </div>
+                </div>
+
+                <!-- Active Sessions -->
+                <div class="active-sessions">
+                    <h2>Sessões Ativas</h2>
+                    <div class="session-card">
+                        <div class="session-info">
+                            <h3>Consulta com Dr. João Oliveira</h3>
+                            <p>Cirurgia Vascular - 10:00</p>
+                            <span class="session-status status-active">Em andamento</span>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-video"></i>
+                                Entrar na Consulta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session History -->
+                <div class="session-history">
+                    <h2>Histórico de Sessões</h2>
+                    <div class="history-item">
+                        <div class="history-date">
+                            <span class="day">15</span>
+                            <span class="month">Jan</span>
+                        </div>
+                        <div class="history-details">
+                            <h3>Consulta de Acompanhamento</h3>
+                            <p>Dr. Maria Santos - 14:30</p>
+                            <p>Duração: 25 minutos</p>
+                        </div>
+                        <div class="history-actions">
+                            <button class="btn btn-outline btn-sm">Ver Gravação</button>
+                            <button class="btn btn-outline btn-sm">Relatório</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chatbot Section -->
+            <section id="chatbot" class="section">
+                <div class="section-header">
+                    <h1>Assistente de IA</h1>
+                    <p>Seu assistente virtual para dúvidas e orientações</p>
+                </div>
+
+                <!-- Chatbot Interface -->
+                <div class="chatbot-container">
+                    <div class="chatbot-header">
+                        <div class="bot-info">
+                            <div class="bot-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="bot-details">
+                                <h3>Assistente Heal+</h3>
+                                <span class="bot-status">Online</span>
+                            </div>
+                        </div>
+                        <div class="chat-controls">
+                            <button class="btn btn-outline btn-sm" onclick="clearChat()">
+                                <i class="fas fa-trash"></i>
+                                Limpar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Olá! Sou seu assistente virtual Heal+. Como posso ajudá-lo hoje?</p>
+                                <span class="message-time">Agora</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <div class="input-group">
+                            <input type="text" id="chatInput" placeholder="Digite sua mensagem..." maxlength="500">
+                            <button class="btn btn-primary" onclick="sendMessage()">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="quick-btn" onclick="sendQuickMessage('Como está meu progresso?')">
+                                Progresso
+                            </button>
+                            <button class="quick-btn" onclick="sendQuickMessage('Quando é minha próxima consulta?')">
+                                Próxima Consulta
+                            </button>
+                            <button class="quick-btn" onclick="sendQuickMessage('Preciso de ajuda com medicação')">
+                                Medicação
+                            </button>
+                            <button class="quick-btn" onclick="sendQuickMessage('Tenho dúvidas sobre cuidados')">
+                                Cuidados
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chatbot Features -->
+                <div class="chatbot-features">
+                    <h2>O que posso fazer por você?</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Monitorar Progresso</h3>
+                            <p>Acompanhe sua evolução e receba insights</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Gerenciar Consultas</h3>
+                            <p>Agende e confirme seus atendimentos</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-pills"></i>
+                            <h3>Lembretes de Medicação</h3>
+                            <p>Nunca esqueça de tomar seus medicamentos</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-question-circle"></i>
+                            <h3>Responder Dúvidas</h3>
+                            <p>Esclareça suas questões sobre o tratamento</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Triagem de Sintomas</h3>
+                            <p>Identifique quando buscar ajuda médica</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h3>Educação em Saúde</h3>
+                            <p>Aprenda sobre cuidados com feridas</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Appointment Modal -->
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Agendar Consulta</h2>
+                <button class="modal-close" onclick="closeAppointmentModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label>Tipo de Consulta</label>
+                        <select id="appointmentType" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="in-person">Presencial</option>
+                            <option value="telehealth">Teleconsulta</option>
+                            <option value="emergency">Urgência</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Especialidade</label>
+                        <select id="specialty" required>
+                            <option value="">Selecione a especialidade</option>
+                            <option value="dermatology">Dermatologia</option>
+                            <option value="vascular">Cirurgia Vascular</option>
+                            <option value="wound-care">Cuidados com Feridas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Médico</label>
+                        <select id="doctor" required>
+                            <option value="">Selecione o médico</option>
+                            <option value="dr-maria">Dr. Maria Santos</option>
+                            <option value="dr-joao">Dr. João Oliveira</option>
+                            <option value="dr-ana">Dr. Ana Costa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Data</label>
+                        <input type="date" id="appointmentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Horário</label>
+                        <select id="appointmentTime" required>
+                            <option value="">Selecione o horário</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Motivo da Consulta</label>
+                        <textarea id="appointmentReason" rows="3" placeholder="Descreva o motivo da consulta..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeAppointmentModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="submitAppointment()">Agendar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processando...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+</html>
