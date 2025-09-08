@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Portal do Clínico</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/clinician.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>Heal+</span>
+                    <span class="portal-badge">Clínico</span>
+                </div>
+                <nav class="nav">
+                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                    <a href="#patients" class="nav-link" data-section="patients">
+                        <i class="fas fa-users"></i>
+                        Pacientes
+                    </a>
+                    <a href="#assessments" class="nav-link" data-section="assessments">
+                        <i class="fas fa-clipboard-list"></i>
+                        Avaliações
+                    </a>
+                    <a href="#ai-analysis" class="nav-link" data-section="ai-analysis">
+                        <i class="fas fa-brain"></i>
+                        Análise IA
+                    </a>
+                    <a href="#telehealth" class="nav-link" data-section="telehealth">
+                        <i class="fas fa-video"></i>
+                        Teleconsulta
+                    </a>
+                    <a href="#analytics" class="nav-link" data-section="analytics">
+                        <i class="fas fa-chart-bar"></i>
+                        Analytics
+                    </a>
+                </nav>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
+                        <div class="user-details">
+                            <span class="user-name">Dr. Maria Santos</span>
+                            <span class="user-role">Dermatologia</span>
+                        </div>
+                    </div>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h1>Dashboard Clínico</h1>
+                    <p>Visão geral da sua prática e pacientes</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Pacientes Ativos</h3>
+                            <p class="stat-number">127</p>
+                            <p class="stat-label">+12 este mês</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Avaliações Hoje</h3>
+                            <p class="stat-number">8</p>
+                            <p class="stat-label">3 pendentes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Alertas de Risco</h3>
+                            <p class="stat-number">3</p>
+                            <p class="stat-label">Requer atenção</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Taxa de Cicatrização</h3>
+                            <p class="stat-number">87%</p>
+                            <p class="stat-label">Últimos 30 dias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alerts and Notifications -->
+                <div class="alerts-section">
+                    <div class="section-header">
+                        <h2>Alertas e Notificações</h2>
+                        <button class="btn btn-outline btn-sm" onclick="markAllAsRead()">
+                            <i class="fas fa-check-double"></i>
+                            Marcar como Lidas
+                        </button>
+                    </div>
+                    <div class="alerts-list">
+                        <div class="alert-item alert-high">
+                            <div class="alert-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="alert-content">
+                                <h3>Alto Risco de Infecção</h3>
+                                <p>Paciente João Silva - Ferida no pé direito apresenta sinais de infecção</p>
+                                <span class="alert-time">Há 2 horas</span>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="btn btn-primary btn-sm">Avaliar</button>
+                            </div>
+                        </div>
+                        <div class="alert-item alert-medium">
+                            <div class="alert-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="alert-content">
+                                <h3>Consulta Pendente</h3>
+                                <p>Ana Costa - Avaliação de ferida aguardando revisão</p>
+                                <span class="alert-time">Há 4 horas</span>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="btn btn-outline btn-sm">Revisar</button>
+                            </div>
+                        </div>
+                        <div class="alert-item alert-low">
+                            <div class="alert-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="alert-content">
+                                <h3>Nova Avaliação</h3>
+                                <p>Carlos Santos - Nova avaliação de ferida disponível</p>
+                                <span class="alert-time">Há 6 horas</span>
+                            </div>
+                            <div class="alert-actions">
+                                <button class="btn btn-outline btn-sm">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Patients -->
+                <div class="recent-patients">
+                    <div class="section-header">
+                        <h2>Pacientes Recentes</h2>
+                        <button class="btn btn-primary" onclick="showSection('patients')">
+                            Ver Todos
+                        </button>
+                    </div>
+                    <div class="patients-grid">
+                        <div class="patient-card">
+                            <div class="patient-header">
+                                <div class="patient-avatar">
+                                    <img src="https://via.placeholder.com/50" alt="Avatar">
+                                </div>
+                                <div class="patient-info">
+                                    <h3>João Silva</h3>
+                                    <p>Úlcera Venosa - Pé Direito</p>
+                                </div>
+                                <div class="patient-status">
+                                    <span class="status-badge status-high">Alto Risco</span>
+                                </div>
+                            </div>
+                            <div class="patient-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Última Avaliação:</span>
+                                    <span class="metric-value">15/01/2024</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Progresso:</span>
+                                    <span class="metric-value">-15%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Próxima Consulta:</span>
+                                    <span class="metric-value">22/01/2024</span>
+                                </div>
+                            </div>
+                            <div class="patient-actions">
+                                <button class="btn btn-outline btn-sm">Ver Detalhes</button>
+                                <button class="btn btn-primary btn-sm">Avaliar</button>
+                            </div>
+                        </div>
+                        <div class="patient-card">
+                            <div class="patient-header">
+                                <div class="patient-avatar">
+                                    <img src="https://via.placeholder.com/50" alt="Avatar">
+                                </div>
+                                <div class="patient-info">
+                                    <h3>Ana Costa</h3>
+                                    <p>Ferida Cirúrgica - Abdômen</p>
+                                </div>
+                                <div class="patient-status">
+                                    <span class="status-badge status-improving">Melhorando</span>
+                                </div>
+                            </div>
+                            <div class="patient-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Última Avaliação:</span>
+                                    <span class="metric-value">14/01/2024</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Progresso:</span>
+                                    <span class="metric-value">+25%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Próxima Consulta:</span>
+                                    <span class="metric-value">28/01/2024</span>
+                                </div>
+                            </div>
+                            <div class="patient-actions">
+                                <button class="btn btn-outline btn-sm">Ver Detalhes</button>
+                                <button class="btn btn-primary btn-sm">Avaliar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Metrics -->
+                <div class="performance-metrics">
+                    <div class="section-header">
+                        <h2>Métricas de Performance</h2>
+                        <div class="metric-controls">
+                            <button class="btn btn-outline btn-sm active" data-period="30">30 dias</button>
+                            <button class="btn btn-outline btn-sm" data-period="90">90 dias</button>
+                            <button class="btn btn-outline btn-sm" data-period="180">6 meses</button>
+                        </div>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Taxa de Cicatrização</h3>
+                            <div class="metric-chart">
+                                <canvas id="healingRateChart"></canvas>
+                            </div>
+                            <div class="metric-summary">
+                                <span class="metric-value">87%</span>
+                                <span class="metric-change positive">+5%</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Tempo Médio de Cicatrização</h3>
+                            <div class="metric-chart">
+                                <canvas id="healingTimeChart"></canvas>
+                            </div>
+                            <div class="metric-summary">
+                                <span class="metric-value">45 dias</span>
+                                <span class="metric-change negative">-3 dias</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Taxa de Infecção</h3>
+                            <div class="metric-chart">
+                                <canvas id="infectionRateChart"></canvas>
+                            </div>
+                            <div class="metric-summary">
+                                <span class="metric-value">8%</span>
+                                <span class="metric-change positive">-2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Patients Section -->
+            <section id="patients" class="section">
+                <div class="section-header">
+                    <h1>Gestão de Pacientes</h1>
+                    <p>Gerencie seus pacientes e suas avaliações</p>
+                </div>
+
+                <!-- Patient Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Buscar:</label>
+                        <input type="text" id="patientSearch" placeholder="Nome, CPF ou email..." class="form-control">
+                    </div>
+                    <div class="filter-group">
+                        <label>Status:</label>
+                        <select id="statusFilter" class="form-control">
+                            <option value="all">Todos</option>
+                            <option value="active">Ativos</option>
+                            <option value="high-risk">Alto Risco</option>
+                            <option value="improving">Melhorando</option>
+                            <option value="stable">Estável</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Última Avaliação:</label>
+                        <select id="lastAssessmentFilter" class="form-control">
+                            <option value="all">Todas</option>
+                            <option value="today">Hoje</option>
+                            <option value="week">Esta semana</option>
+                            <option value="month">Este mês</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button class="btn btn-primary" onclick="addNewPatient()">
+                            <i class="fas fa-plus"></i>
+                            Novo Paciente
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Patients Table -->
+                <div class="patients-table-container">
+                    <table class="patients-table">
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Diagnóstico</th>
+                                <th>Última Avaliação</th>
+                                <th>Progresso</th>
+                                <th>Risco</th>
+                                <th>Próxima Consulta</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="patient-cell">
+                                        <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
+                                        <div class="patient-details">
+                                            <span class="patient-name">João Silva</span>
+                                            <span class="patient-id">ID: 001</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Úlcera Venosa - Pé Direito</td>
+                                <td>15/01/2024</td>
+                                <td>
+                                    <div class="progress-indicator">
+                                        <span class="progress-value negative">-15%</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill negative" style="width: 15%"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge status-high">Alto</span></td>
+                                <td>22/01/2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-outline btn-sm" onclick="viewPatient(1)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm" onclick="assessPatient(1)">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </button>
+                                        <button class="btn btn-outline btn-sm" onclick="editPatient(1)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="patient-cell">
+                                        <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
+                                        <div class="patient-details">
+                                            <span class="patient-name">Ana Costa</span>
+                                            <span class="patient-id">ID: 002</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Ferida Cirúrgica - Abdômen</td>
+                                <td>14/01/2024</td>
+                                <td>
+                                    <div class="progress-indicator">
+                                        <span class="progress-value positive">+25%</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill positive" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="status-badge status-low">Baixo</span></td>
+                                <td>28/01/2024</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-outline btn-sm" onclick="viewPatient(2)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-primary btn-sm" onclick="assessPatient(2)">
+                                            <i class="fas fa-clipboard-list"></i>
+                                        </button>
+                                        <button class="btn btn-outline btn-sm" onclick="editPatient(2)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Assessments Section -->
+            <section id="assessments" class="section">
+                <div class="section-header">
+                    <h1>Avaliações de Feridas</h1>
+                    <p>Revise e gerencie avaliações de feridas</p>
+                </div>
+
+                <!-- Assessment Filters -->
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Paciente:</label>
+                        <select id="patientFilter" class="form-control">
+                            <option value="all">Todos os pacientes</option>
+                            <option value="1">João Silva</option>
+                            <option value="2">Ana Costa</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Status:</label>
+                        <select id="assessmentStatusFilter" class="form-control">
+                            <option value="all">Todos</option>
+                            <option value="pending">Pendentes</option>
+                            <option value="reviewed">Revisadas</option>
+                            <option value="approved">Aprovadas</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Risco:</label>
+                        <select id="riskFilter" class="form-control">
+                            <option value="all">Todos</option>
+                            <option value="low">Baixo</option>
+                            <option value="medium">Médio</option>
+                            <option value="high">Alto</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button class="btn btn-primary" onclick="createNewAssessment()">
+                            <i class="fas fa-plus"></i>
+                            Nova Avaliação
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Assessments List -->
+                <div class="assessments-list">
+                    <div class="assessment-item">
+                        <div class="assessment-header">
+                            <div class="assessment-info">
+                                <h3>João Silva - Pé Direito</h3>
+                                <span class="assessment-date">15/01/2024 - 14:30</span>
+                            </div>
+                            <div class="assessment-status">
+                                <span class="status-badge status-pending">Pendente</span>
+                            </div>
+                        </div>
+                        <div class="assessment-content">
+                            <div class="assessment-metrics">
+                                <div class="metric-card">
+                                    <h4>T - Tecido</h4>
+                                    <div class="tissue-composition">
+                                        <div class="tissue-item">
+                                            <span class="tissue-color granulation"></span>
+                                            <span>Granulação: 45%</span>
+                                        </div>
+                                        <div class="tissue-item">
+                                            <span class="tissue-color slough"></span>
+                                            <span>Esfacelo: 40%</span>
+                                        </div>
+                                        <div class="tissue-item">
+                                            <span class="tissue-color necrosis"></span>
+                                            <span>Necrose: 15%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>I - Infecção</h4>
+                                    <div class="infection-status">
+                                        <span class="risk-indicator risk-high">Alto Risco</span>
+                                        <p>Sinais de infecção presentes</p>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>M - Umidade</h4>
+                                    <div class="moisture-status">
+                                        <span class="moisture-level wet">Molhado</span>
+                                        <p>Exsudato excessivo</p>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>E - Borda</h4>
+                                    <div class="edge-status">
+                                        <span class="edge-progress stagnant">Estagnada</span>
+                                        <p>Sem progresso na cicatrização</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assessment-ai-analysis">
+                                <h4>Análise de IA</h4>
+                                <div class="ai-insights">
+                                    <div class="ai-insight">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <span>Alto risco de infecção detectado</span>
+                                    </div>
+                                    <div class="ai-insight">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Trajetória: Declinando</span>
+                                    </div>
+                                    <div class="ai-insight">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <span>Recomendação: Antibioticoterapia</span>
+                                    </div>
+                                </div>
+                                <div class="ai-confidence">
+                                    <span>Confiança da IA: 92%</span>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="assessment-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-image"></i>
+                                    Ver Imagens
+                                </button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-download"></i>
+                                    Relatório
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-check"></i>
+                                    Aprovar
+                                </button>
+                                <button class="btn btn-warning">
+                                    <i class="fas fa-edit"></i>
+                                    Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Analysis Section -->
+            <section id="ai-analysis" class="section">
+                <div class="section-header">
+                    <h1>Análise de IA</h1>
+                    <p>Insights e recomendações baseadas em inteligência artificial</p>
+                </div>
+
+                <!-- AI Overview -->
+                <div class="ai-overview">
+                    <div class="ai-stats">
+                        <div class="ai-stat-card">
+                            <div class="ai-stat-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="ai-stat-content">
+                                <h3>Análises Realizadas</h3>
+                                <p class="ai-stat-number">1,247</p>
+                                <p class="ai-stat-label">Este mês</p>
+                            </div>
+                        </div>
+                        <div class="ai-stat-card">
+                            <div class="ai-stat-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="ai-stat-content">
+                                <h3>Precisão Média</h3>
+                                <p class="ai-stat-number">94.2%</p>
+                                <p class="ai-stat-label">Últimos 30 dias</p>
+                            </div>
+                        </div>
+                        <div class="ai-stat-card">
+                            <div class="ai-stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="ai-stat-content">
+                                <h3>Tempo Médio</h3>
+                                <p class="ai-stat-number">2.3s</p>
+                                <p class="ai-stat-label">Por análise</p>
+                            </div>
+                        </div>
+                        <div class="ai-stat-card">
+                            <div class="ai-stat-icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="ai-stat-content">
+                                <h3>Taxa de Aceitação</h3>
+                                <p class="ai-stat-number">87%</p>
+                                <p class="ai-stat-label">Recomendações aceitas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Models Performance -->
+                <div class="ai-models">
+                    <div class="section-header">
+                        <h2>Performance dos Modelos de IA</h2>
+                        <div class="model-controls">
+                            <button class="btn btn-outline btn-sm active" data-model="all">Todos</button>
+                            <button class="btn btn-outline btn-sm" data-model="segmentation">Segmentação</button>
+                            <button class="btn btn-outline btn-sm" data-model="classification">Classificação</button>
+                            <button class="btn btn-outline btn-sm" data-model="prediction">Predição</button>
+                        </div>
+                    </div>
+                    <div class="models-grid">
+                        <div class="model-card">
+                            <div class="model-header">
+                                <h3>Segmentação de Feridas</h3>
+                                <span class="model-status status-active">Ativo</span>
+                            </div>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Precisão:</span>
+                                    <span class="metric-value">96.8%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Recall:</span>
+                                    <span class="metric-value">94.2%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">F1-Score:</span>
+                                    <span class="metric-value">95.5%</span>
+                                </div>
+                            </div>
+                            <div class="model-chart">
+                                <canvas id="segmentationChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-header">
+                                <h3>Classificação de Tecidos</h3>
+                                <span class="model-status status-active">Ativo</span>
+                            </div>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Precisão:</span>
+                                    <span class="metric-value">92.1%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Recall:</span>
+                                    <span class="metric-value">89.7%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">F1-Score:</span>
+                                    <span class="metric-value">90.9%</span>
+                                </div>
+                            </div>
+                            <div class="model-chart">
+                                <canvas id="classificationChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-header">
+                                <h3>Predição de Cicatrização</h3>
+                                <span class="model-status status-active">Ativo</span>
+                            </div>
+                            <div class="model-metrics">
+                                <div class="metric">
+                                    <span class="metric-label">Precisão:</span>
+                                    <span class="metric-value">88.3%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">Recall:</span>
+                                    <span class="metric-value">85.9%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-label">F1-Score:</span>
+                                    <span class="metric-value">87.1%</span>
+                                </div>
+                            </div>
+                            <div class="model-chart">
+                                <canvas id="predictionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Insights -->
+                <div class="ai-insights-section">
+                    <div class="section-header">
+                        <h2>Insights de IA</h2>
+                        <button class="btn btn-primary" onclick="generateNewInsights()">
+                            <i class="fas fa-sync"></i>
+                            Gerar Novos Insights
+                        </button>
+                    </div>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Padrões de Cicatrização</h3>
+                                <span class="insight-confidence">Confiança: 89%</span>
+                            </div>
+                            <div class="insight-content">
+                                <p>Pacientes com diabetes tipo 2 apresentam 23% mais tempo de cicatrização em feridas nos membros inferiores.</p>
+                                <div class="insight-actions">
+                                    <button class="btn btn-outline btn-sm">Ver Detalhes</button>
+                                    <button class="btn btn-primary btn-sm">Aplicar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Fatores de Risco</h3>
+                                <span class="insight-confidence">Confiança: 92%</span>
+                            </div>
+                            <div class="insight-content">
+                                <p>Fumar aumenta o risco de infecção em 45% e retarda a cicatrização em 30%.</p>
+                                <div class="insight-actions">
+                                    <button class="btn btn-outline btn-sm">Ver Detalhes</button>
+                                    <button class="btn btn-primary btn-sm">Aplicar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <h3>Eficácia de Tratamentos</h3>
+                                <span class="insight-confidence">Confiança: 87%</span>
+                            </div>
+                            <div class="insight-content">
+                                <p>Terapia por pressão negativa reduz o tempo de cicatrização em 40% para feridas profundas.</p>
+                                <div class="insight-actions">
+                                    <button class="btn btn-outline btn-sm">Ver Detalhes</button>
+                                    <button class="btn btn-primary btn-sm">Aplicar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Telehealth Section -->
+            <section id="telehealth" class="section">
+                <div class="section-header">
+                    <h1>Teleconsulta</h1>
+                    <p>Gerencie suas consultas online</p>
+                </div>
+
+                <!-- Telehealth Stats -->
+                <div class="telehealth-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Sessões Hoje</h3>
+                            <p class="stat-number">5</p>
+                            <p class="stat-label">3 concluídas</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Tempo Médio</h3>
+                            <p class="stat-number">28min</p>
+                            <p class="stat-label">Por sessão</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Avaliação Média</h3>
+                            <p class="stat-number">4.7</p>
+                            <p class="stat-label">De 5.0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Sessions -->
+                <div class="active-sessions">
+                    <h2>Sessões Ativas</h2>
+                    <div class="sessions-list">
+                        <div class="session-item">
+                            <div class="session-info">
+                                <div class="session-patient">
+                                    <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
+                                    <div class="patient-details">
+                                        <h3>Carlos Santos</h3>
+                                        <p>Consulta de Acompanhamento</p>
+                                    </div>
+                                </div>
+                                <div class="session-time">
+                                    <span class="session-duration">25 min</span>
+                                    <span class="session-status status-active">Em andamento</span>
+                                </div>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-video"></i>
+                                    Entrar na Sessão
+                                </button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-comments"></i>
+                                    Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Sessions -->
+                <div class="upcoming-sessions">
+                    <h2>Próximas Sessões</h2>
+                    <div class="sessions-list">
+                        <div class="session-item">
+                            <div class="session-info">
+                                <div class="session-patient">
+                                    <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
+                                    <div class="patient-details">
+                                        <h3>Maria Oliveira</h3>
+                                        <p>Primeira Consulta</p>
+                                    </div>
+                                </div>
+                                <div class="session-time">
+                                    <span class="session-scheduled">14:30 - Hoje</span>
+                                    <span class="session-status status-scheduled">Agendada</span>
+                                </div>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-calendar"></i>
+                                    Detalhes
+                                </button>
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-video"></i>
+                                    Preparar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="section">
+                <div class="section-header">
+                    <h1>Analytics e Relatórios</h1>
+                    <p>Análise detalhada da sua prática</p>
+                </div>
+
+                <!-- Analytics Filters -->
+                <div class="analytics-filters">
+                    <div class="filter-group">
+                        <label>Período:</label>
+                        <select id="analyticsPeriod" class="form-control">
+                            <option value="30">Últimos 30 dias</option>
+                            <option value="90">Últimos 90 dias</option>
+                            <option value="180">Últimos 6 meses</option>
+                            <option value="365">Último ano</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Métrica:</label>
+                        <select id="analyticsMetric" class="form-control">
+                            <option value="healing">Taxa de Cicatrização</option>
+                            <option value="infection">Taxa de Infecção</option>
+                            <option value="time">Tempo de Cicatrização</option>
+                            <option value="satisfaction">Satisfação do Paciente</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button class="btn btn-primary" onclick="generateReport()">
+                            <i class="fas fa-download"></i>
+                            Gerar Relatório
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Analytics Charts -->
+                <div class="analytics-charts">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                            <h2>Performance Geral</h2>
+                            <div class="chart-controls">
+                                <button class="btn btn-outline btn-sm active" data-chart="line">Linha</button>
+                                <button class="btn btn-outline btn-sm" data-chart="bar">Barras</button>
+                                <button class="btn btn-outline btn-sm" data-chart="area">Área</button>
+                            </div>
+                        </div>
+                        <div class="chart">
+                            <canvas id="analyticsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="key-metrics">
+                    <h2>Métricas Principais</h2>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Taxa de Cicatrização</h3>
+                            <div class="metric-value-large">87.3%</div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+5.2% vs período anterior</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Tempo Médio de Cicatrização</h3>
+                            <div class="metric-value-large">42 dias</div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>-3 dias vs período anterior</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Taxa de Infecção</h3>
+                            <div class="metric-value-large">7.8%</div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>-1.5% vs período anterior</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Satisfação do Paciente</h3>
+                            <div class="metric-value-large">4.6/5</div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+0.2 vs período anterior</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparative Analysis -->
+                <div class="comparative-analysis">
+                    <h2>Análise Comparativa</h2>
+                    <div class="comparison-chart">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Patient Details Modal -->
+    <div id="patientDetailsModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Detalhes do Paciente</h2>
+                <button class="modal-close" onclick="closeModal('patientDetailsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Patient details content will be populated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('patientDetailsModal')">Fechar</button>
+                <button class="btn btn-primary" onclick="editPatient()">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>Nova Avaliação</h2>
+                <button class="modal-close" onclick="closeModal('assessmentModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Assessment form content will be populated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('assessmentModal')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveAssessment()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processando...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/clinician.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>
