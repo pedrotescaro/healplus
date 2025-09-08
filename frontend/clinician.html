@@ -4,60 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Portal do Clínico</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/clinician.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-heartbeat"></i>
-                    <span>Heal+</span>
-                    <span class="portal-badge">Clínico</span>
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="icon icon-hospital icon-lg"></span>
+                <div class="logo-text">
+                    <h1>Heal+</h1>
+                    <span>Portal do Clínico</span>
                 </div>
-                <nav class="nav">
-                    <a href="#dashboard" class="nav-link active" data-section="dashboard">
-                        <i class="fas fa-tachometer-alt"></i>
-                        Dashboard
-                    </a>
-                    <a href="#patients" class="nav-link" data-section="patients">
-                        <i class="fas fa-users"></i>
-                        Pacientes
-                    </a>
-                    <a href="#assessments" class="nav-link" data-section="assessments">
-                        <i class="fas fa-clipboard-list"></i>
-                        Avaliações
-                    </a>
-                    <a href="#ai-analysis" class="nav-link" data-section="ai-analysis">
-                        <i class="fas fa-brain"></i>
-                        Análise IA
-                    </a>
-                    <a href="#telehealth" class="nav-link" data-section="telehealth">
-                        <i class="fas fa-video"></i>
-                        Teleconsulta
-                    </a>
-                    <a href="#analytics" class="nav-link" data-section="analytics">
-                        <i class="fas fa-chart-bar"></i>
-                        Analytics
-                    </a>
-                </nav>
-                <div class="user-menu">
-                    <div class="user-info">
-                        <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
-                        <div class="user-details">
-                            <span class="user-name">Dr. Maria Santos</span>
-                            <span class="user-role">Dermatologia</span>
-                        </div>
+            </div>
+            <nav class="header-nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <span class="icon icon-chart"></span>
+                    Dashboard
+                </a>
+                <a href="#patients" class="nav-link" data-section="patients">
+                    <span class="icon icon-user-group"></span>
+                    Pacientes
+                </a>
+                <a href="#assessments" class="nav-link" data-section="assessments">
+                    <span class="icon icon-shield"></span>
+                    Avaliações
+                </a>
+                <a href="#ai-analysis" class="nav-link" data-section="ai-analysis">
+                    <span class="icon icon-chart"></span>
+                    Análise IA
+                </a>
+                <a href="#telehealth" class="nav-link" data-section="telehealth">
+                    <span class="icon icon-video"></span>
+                    Teleconsulta
+                </a>
+                <a href="#analytics" class="nav-link" data-section="analytics">
+                    <span class="icon icon-chart"></span>
+                    Analytics
+                </a>
+            </nav>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <span class="icon icon-user"></span>
                     </div>
-                    <button class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i>
+                    <div class="user-details">
+                        <span class="user-name">Dr. Maria Santos</span>
+                        <span class="user-role">Especialista em Feridas</span>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <a href="profile.html" class="btn btn-sm btn-secondary">
+                        <span class="icon icon-settings"></span>
+                        Perfil
+                    </a>
+                    <button class="btn btn-sm btn-error logout-btn">
+                        <span class="icon icon-logout"></span>
                     </button>
                 </div>
             </div>

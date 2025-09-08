@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Monitoramento Remoto</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/remote-monitoring.css">
     <link rel="stylesheet" href="css/animations.css">
 </head>
@@ -14,13 +16,25 @@
         <header class="app-header">
             <div class="header-content">
                 <div class="logo">
-                    <h1>🏥 Heal+</h1>
-                    <span>Monitoramento Remoto</span>
+                    <span class="icon icon-hospital icon-lg"></span>
+                    <div class="logo-text">
+                        <h1>Heal+</h1>
+                        <span>Monitoramento Remoto</span>
+                    </div>
                 </div>
                 <nav class="header-nav">
-                    <a href="index.html" class="nav-link">Dashboard</a>
-                    <a href="clinician.html" class="nav-link">Portal Clínico</a>
-                    <a href="wound-capture.html" class="nav-link">Captura de Feridas</a>
+                    <a href="index.html" class="nav-link">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="clinician.html" class="nav-link">
+                        <span class="icon icon-user-group"></span>
+                        Portal Clínico
+                    </a>
+                    <a href="wound-capture.html" class="nav-link">
+                        <span class="icon icon-camera"></span>
+                        Captura de Feridas
+                    </a>
                 </nav>
             </div>
         </header>
@@ -31,7 +45,10 @@
                 <!-- Patient Dashboard -->
                 <div class="patient-dashboard">
                     <div class="dashboard-header">
-                        <h2>📱 Seu Check-in Diário</h2>
+                        <h2>
+                            <span class="icon icon-phone"></span>
+                            Seu Check-in Diário
+                        </h2>
                         <div class="streak-counter">
                             <span class="streak-number" id="streak-count">7</span>
                             <span class="streak-label">dias consecutivos</span>
@@ -41,13 +58,16 @@
                     <!-- Quick Actions -->
                     <div class="quick-actions">
                         <button class="action-btn primary" onclick="startPhotoCheckIn()">
-                            📸 Foto da Ferida
+                            <span class="icon icon-camera"></span>
+                            Foto da Ferida
                         </button>
                         <button class="action-btn secondary" onclick="startSymptomCheckIn()">
-                            📋 Sintomas
+                            <span class="icon icon-shield"></span>
+                            Sintomas
                         </button>
                         <button class="action-btn tertiary" onclick="startPainAssessment()">
-                            😊 Avaliação de Dor
+                            <span class="icon icon-heart"></span>
+                            Avaliação de Dor
                         </button>
                     </div>
 
