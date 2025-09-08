@@ -4,52 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Portal do Paciente</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
+    <header class="app-header">
+        <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-heartbeat"></i>
-                    <span>Heal+</span>
+                    <span class="icon icon-hospital icon-lg"></span>
+                    <div class="logo-text">
+                        <h1>Heal+</h1>
+                        <span>Portal do Paciente</span>
+                    </div>
                 </div>
                 <nav class="nav">
                     <a href="#dashboard" class="nav-link active" data-section="dashboard">
-                        <i class="fas fa-tachometer-alt"></i>
+                        <span class="icon icon-chart"></span>
                         Dashboard
                     </a>
                     <a href="#assessments" class="nav-link" data-section="assessments">
-                        <i class="fas fa-clipboard-list"></i>
+                        <span class="icon icon-shield"></span>
                         Avaliações
                     </a>
                     <a href="#appointments" class="nav-link" data-section="appointments">
-                        <i class="fas fa-calendar-alt"></i>
+                        <span class="icon icon-calendar"></span>
                         Consultas
                     </a>
                     <a href="#telehealth" class="nav-link" data-section="telehealth">
-                        <i class="fas fa-video"></i>
+                        <span class="icon icon-video"></span>
                         Teleconsulta
                     </a>
                     <a href="#chatbot" class="nav-link" data-section="chatbot">
-                        <i class="fas fa-robot"></i>
+                        <span class="icon icon-chat"></span>
                         Assistente IA
                     </a>
                 </nav>
                 <div class="user-menu">
                     <div class="user-info">
-                        <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
+                        <div class="user-avatar">
+                            <span class="icon icon-user"></span>
+                        </div>
                         <span class="user-name">João Silva</span>
                     </div>
-                    <button class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
+                    <div class="user-actions">
+                        <a href="profile.html" class="btn btn-sm btn-secondary">
+                            <span class="icon icon-settings"></span>
+                            Perfil
+                        </a>
+                        <button class="btn btn-sm btn-error logout-btn">
+                            <span class="icon icon-logout"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -4,19 +4,19 @@
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-6);
-    margin-bottom: var(--spacing-8);
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
 }
 
 .stat-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     display: flex;
     align-items: center;
-    gap: var(--spacing-4);
+    gap: var(--space-4);
     transition: all var(--transition-fast);
 }
 
@@ -41,7 +41,7 @@
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--gray-600);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -50,7 +50,7 @@
     font-size: var(--font-size-3xl);
     font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .stat-label {
@@ -62,17 +62,17 @@
 .chart-container {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--space-8);
 }
 
 .chart-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--spacing-6);
+    margin-bottom: var(--space-6);
 }
 
 .chart-header h2 {
@@ -83,7 +83,7 @@
 
 .chart-controls {
     display: flex;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 .chart {
@@ -93,19 +93,19 @@
 
 /* Recent Assessments */
 .recent-assessments {
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--space-8);
 }
 
 .assessments-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-6);
+    gap: var(--space-6);
 }
 
 .assessment-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     transition: all var(--transition-fast);
@@ -120,7 +120,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--space-4);
 }
 
 .assessment-header h3 {
@@ -137,14 +137,14 @@
 .assessment-metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-4);
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
 }
 
 .metric {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-1);
+    gap: var(--space-1);
 }
 
 .metric-label {
@@ -163,8 +163,8 @@
 .assessment-ai {
     display: flex;
     align-items: center;
-    gap: var(--spacing-2);
-    padding: var(--spacing-2) var(--spacing-3);
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
     background-color: var(--gray-50);
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
@@ -177,24 +177,24 @@
 
 /* Upcoming Appointments */
 .upcoming-appointments {
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--space-8);
 }
 
 .appointments-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-4);
+    gap: var(--space-4);
 }
 
 .appointment-item {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     display: flex;
     align-items: center;
-    gap: var(--spacing-4);
+    gap: var(--space-4);
     transition: all var(--transition-fast);
 }
 
@@ -231,13 +231,13 @@
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .appointment-details p {
     font-size: var(--font-size-sm);
     color: var(--gray-600);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .appointment-details p:last-child {
@@ -246,14 +246,14 @@
 
 .appointment-actions {
     display: flex;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 /* Assessment Details */
 .assessments-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-6);
+    gap: var(--space-6);
 }
 
 .assessment-item {
@@ -265,33 +265,33 @@
 }
 
 .assessment-item .assessment-header {
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     border-bottom: 1px solid var(--gray-200);
     background-color: var(--gray-50);
 }
 
 .assessment-content {
-    padding: var(--spacing-6);
+    padding: var(--space-6);
 }
 
 .assessment-metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-6);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
 }
 
 .metric-card {
     background: var(--gray-50);
     border-radius: var(--radius-md);
-    padding: var(--spacing-4);
+    padding: var(--space-4);
 }
 
 .metric-card h4 {
     font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-3);
+    margin-bottom: var(--space-3);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -300,13 +300,13 @@
 .tissue-composition {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 .tissue-item {
     display: flex;
     align-items: center;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
     font-size: var(--font-size-sm);
     color: var(--gray-700);
 }
@@ -337,13 +337,13 @@
 .infection-status {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 .risk-indicator {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    padding: var(--spacing-1) var(--spacing-2);
+    padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-md);
     text-align: center;
 }
@@ -367,13 +367,13 @@
 .moisture-status {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 .moisture-level {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    padding: var(--spacing-1) var(--spacing-2);
+    padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-md);
     text-align: center;
 }
@@ -407,13 +407,13 @@
 .edge-status {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 .edge-progress {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    padding: var(--spacing-1) var(--spacing-2);
+    padding: var(--space-1) var(--space-2);
     border-radius: var(--radius-md);
     text-align: center;
 }
@@ -437,28 +437,28 @@
 .assessment-ai-analysis {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     color: var(--white);
-    margin-bottom: var(--spacing-6);
+    margin-bottom: var(--space-6);
 }
 
 .assessment-ai-analysis h4 {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    margin-bottom: var(--spacing-4);
+    margin-bottom: var(--space-4);
 }
 
 .ai-insights {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-3);
-    margin-bottom: var(--spacing-4);
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
 }
 
 .ai-insight {
     display: flex;
     align-items: center;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
     font-size: var(--font-size-sm);
 }
 
@@ -469,7 +469,7 @@
 .ai-confidence {
     display: flex;
     align-items: center;
-    gap: var(--spacing-3);
+    gap: var(--space-3);
     font-size: var(--font-size-sm);
 }
 
@@ -491,22 +491,22 @@
 /* Assessment Actions */
 .assessment-actions {
     display: flex;
-    gap: var(--spacing-3);
+    gap: var(--space-3);
     flex-wrap: wrap;
 }
 
 /* Filters */
 .filters {
     display: flex;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-6);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
     flex-wrap: wrap;
 }
 
 .filter-group {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
     min-width: 150px;
 }
 
@@ -517,7 +517,7 @@
 }
 
 .filter-group select {
-    padding: var(--spacing-2) var(--spacing-3);
+    padding: var(--space-2) var(--space-3);
     border: 1px solid var(--gray-300);
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
@@ -528,14 +528,14 @@
 .appointment-types {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-6);
-    margin-bottom: var(--spacing-8);
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
 }
 
 .type-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     text-align: center;
@@ -559,14 +559,14 @@
     font-size: var(--font-size-2xl);
     color: var(--white);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    margin: 0 auto var(--spacing-4);
+    margin: 0 auto var(--space-4);
 }
 
 .type-card h3 {
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--space-2);
 }
 
 .type-card p {
@@ -578,17 +578,17 @@
 .appointments-calendar {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--space-8);
 }
 
 .calendar-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: var(--spacing-6);
+    margin-bottom: var(--space-6);
 }
 
 .calendar-header h2 {
@@ -600,13 +600,13 @@
 .calendar-controls {
     display: flex;
     align-items: center;
-    gap: var(--spacing-4);
+    gap: var(--space-4);
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 .calendar-day {
@@ -648,14 +648,14 @@
 .telehealth-features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-6);
-    margin-bottom: var(--spacing-8);
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
 }
 
 .feature-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     text-align: center;
@@ -677,14 +677,14 @@
     font-size: var(--font-size-2xl);
     color: var(--white);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    margin: 0 auto var(--spacing-4);
+    margin: 0 auto var(--space-4);
 }
 
 .feature-card h3 {
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--space-2);
 }
 
 .feature-card p {
@@ -694,13 +694,13 @@
 
 /* Active Sessions */
 .active-sessions {
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--space-8);
 }
 
 .session-card {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     display: flex;
@@ -712,13 +712,13 @@
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .session-info p {
     font-size: var(--font-size-sm);
     color: var(--gray-600);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .session-info p:last-child {
@@ -727,19 +727,19 @@
 
 /* Session History */
 .session-history {
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--space-8);
 }
 
 .history-item {
     background: var(--white);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
+    padding: var(--space-6);
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-200);
     display: flex;
     align-items: center;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-4);
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
 }
 
 .history-date {
@@ -771,13 +771,13 @@
     font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--gray-900);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .history-details p {
     font-size: var(--font-size-sm);
     color: var(--gray-600);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--space-1);
 }
 
 .history-details p:last-child {
@@ -786,7 +786,7 @@
 
 .history-actions {
     display: flex;
-    gap: var(--spacing-2);
+    gap: var(--space-2);
 }
 
 /* Responsive Design */
@@ -831,7 +831,7 @@
     .session-card {
         flex-direction: column;
         text-align: center;
-        gap: var(--spacing-4);
+        gap: var(--space-4);
     }
     
     .history-item {
@@ -844,7 +844,7 @@
     }
     
     .calendar-grid {
-        gap: var(--spacing-1);
+        gap: var(--space-1);
     }
     
     .calendar-day {
