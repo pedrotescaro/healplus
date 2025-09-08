@@ -1,248 +1,595 @@
-# Heal+ - Sistema de Gestão de Feridas com IA
+# 🏥 Heal+ - Sistema Inteligente de Gestão de Feridas
 
-## Visão Geral
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://openjdk.java.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-blue.svg)](https://www.mysql.com/)
+[![LGPD](https://img.shields.io/badge/LGPD-Compliant-green.svg)](https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd)
+[![ANVISA](https://img.shields.io/badge/ANVISA-SaMD%20Ready-red.svg)](https://www.gov.br/anvisa/)
 
-O Heal+ é um sistema completo de gestão de feridas baseado no framework clínico TIMERS (Tissue, Infection/Inflammation, Moisture, Wound Edge, Repair/Regeneration, Social), integrado com Inteligência Artificial para análise de imagens, predições de cicatrização e suporte à decisão clínica.
+## 🎯 Visão Geral
 
-## Arquitetura do Sistema
+O **Heal+** é uma plataforma revolucionária de gestão de feridas que combina o rigor científico do framework clínico **TIMERS** com o poder da **Inteligência Artificial** para transformar o cuidado com feridas. O sistema oferece análise automatizada de imagens, predições de cicatrização, telessaúde integrada e suporte à decisão clínica baseado em evidências.
 
-### Backend (Spring Boot)
+### 🌟 Principais Diferenciais
 
-#### Modelos de Dados
-- **User**: Gerenciamento de usuários com conformidade LGPD
-- **Patient**: Dados do paciente incluindo fatores sociais (TIMERS 'S')
-- **Clinician**: Informações do profissional de saúde
-- **WoundAssessment**: Avaliações baseadas no framework TIMERS
-- **WoundImage**: Imagens de feridas para análise por IA
-- **AIAnalysis**: Resultados de análises de IA
-- **Appointment**: Sistema de agendamento
-- **TelehealthSession**: Sessões de telessaúde
-- **ChatSession/ChatMessage**: Assistente conversacional de IA
+- **Framework TIMERS**: Implementação completa do padrão clínico internacional
+- **IA Explicável**: Transparência nas decisões de IA com Grad-CAM e LIME
+- **Telessaúde Integrada**: Consultas remotas com análise pré-consulta por IA
+- **Conformidade Total**: LGPD e preparação para ANVISA SaMD
+- **Interoperabilidade**: Compatível com HL7 FHIR para integração com PEPs
 
-#### Serviços de IA
+## 🏗️ Arquitetura do Sistema
+
+### 📊 Diagrama de Arquitetura
+
+```mermaid
+graph TB
+    subgraph "Frontend"
+        A[Portal do Paciente] --> B[Portal do Clínico]
+        B --> C[Módulo de Telessaúde]
+        C --> D[Assistente de IA]
+    end
+    
+    subgraph "Backend Spring Boot"
+        E[API REST] --> F[Serviços de IA]
+        F --> G[Modelos de Dados]
+        G --> H[Repositórios JPA]
+        H --> I[MySQL Database]
+    end
+    
+    subgraph "IA & ML"
+        J[Segmentação U-Net] --> K[Classificação CNN]
+        K --> L[Análise Preditiva]
+        L --> M[XAI - Grad-CAM/LIME]
+    end
+    
+    subgraph "Conformidade"
+        N[LGPD] --> O[ANVISA SaMD]
+        O --> P[HL7 FHIR]
+    end
+    
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+    F --> J
+    E --> N
+```
+
+### 🔧 Backend (Spring Boot)
+
+#### 📋 Modelos de Dados
+| Modelo | Descrição | Campos Principais |
+|--------|-----------|-------------------|
+| **User** | Gerenciamento de usuários com conformidade LGPD | email, password, role, consentimentos, timestamps |
+| **Patient** | Dados do paciente incluindo fatores sociais (TIMERS 'S') | dadosPessoais, fatoresSociais, comorbidades, medicamentos |
+| **Clinician** | Informações do profissional de saúde | dadosProfissionais, especialidades, licenças |
+| **WoundAssessment** | Avaliações baseadas no framework TIMERS | tissue, infection, moisture, edge, repair, social |
+| **WoundImage** | Imagens de feridas para análise por IA | imageData, metadata, analysisResults |
+| **AIAnalysis** | Resultados de análises de IA | tissueClassification, riskScores, predictions |
+| **Appointment** | Sistema de agendamento | patient, clinician, datetime, status |
+| **TelehealthSession** | Sessões de telessaúde | sessionData, recordings, notes |
+| **ChatSession/ChatMessage** | Assistente conversacional de IA | messages, context, intents |
+
+#### 🤖 Serviços de IA
 - **AIService**: Orquestração principal de análises de IA
 - **ImageProcessingService**: Processamento de imagens e segmentação
 - **MachineLearningService**: Modelos preditivos e recomendações
 
-#### Segurança e Conformidade
-- **JWT Authentication**: Autenticação segura
+#### 🔒 Segurança e Conformidade
+- **JWT Authentication**: Autenticação segura com refresh tokens
 - **LGPD Compliance**: Conformidade com a Lei Geral de Proteção de Dados
 - **ANVISA Compliance**: Preparação para regulamentação de SaMD
 - **Email Service**: Notificações e verificação de email
 
-### Frontend
+### 🎨 Frontend
 
-#### Portal do Paciente
-- Dashboard com progresso de cicatrização
-- Agendamento de consultas
-- Acesso ao histórico médico
-- Interação com assistente de IA
+#### 👤 Portal do Paciente
+- **Dashboard Interativo**: Visualização do progresso de cicatrização com gráficos
+- **Agendamento Inteligente**: Sistema de agendamento com lembretes automáticos
+- **Histórico Médico**: Acesso completo ao histórico de tratamentos
+- **Assistente de IA**: Chat integrado para dúvidas e orientações
+- **Gamificação**: Sistema de pontos e conquistas para engajamento
 
-#### Portal do Clínico
-- Visualização de pacientes
-- Análises de IA com explicações (XAI)
-- Sistema de alertas e notificações
-- Analytics e relatórios
+#### 👨‍⚕️ Portal do Clínico
+- **Painel de Controle**: Visão geral de todos os pacientes
+- **Análises de IA**: Resultados com explicações visuais (XAI)
+- **Sistema de Alertas**: Notificações de pacientes de alto risco
+- **Analytics Avançados**: Relatórios e métricas de performance
+- **Workflow TIMERS**: Interface guiada para avaliações padronizadas
 
-#### Módulo de Telessaúde
-- Consultas por vídeo
-- Compartilhamento de análises de IA
-- Chat integrado
-- Gravação de sessões
+#### 📹 Módulo de Telessaúde
+- **Consultas por Vídeo**: Integração com WebRTC para chamadas seguras
+- **Análise Pré-Consulta**: IA processa imagens antes da consulta
+- **Compartilhamento de Tela**: Visualização de análises em tempo real
+- **Chat Integrado**: Comunicação durante a consulta
+- **Gravação de Sessões**: Armazenamento seguro com consentimento
 
-#### Assistente de IA Conversacional
-- Suporte 24/7
-- Triagem de sintomas
-- Lembretes de medicação
-- Educação em saúde
+#### 🤖 Assistente de IA Conversacional
+- **Suporte 24/7**: Respostas instantâneas a perguntas frequentes
+- **Triagem Inteligente**: Avaliação de sintomas com recomendações
+- **Lembretes Personalizados**: Notificações de medicação e cuidados
+- **Educação em Saúde**: Conteúdo personalizado baseado no perfil
+- **Multilíngue**: Suporte a múltiplos idiomas
 
-## Framework TIMERS
+## 🔬 Framework TIMERS
 
-O sistema implementa o framework TIMERS para avaliação holística de feridas:
+O sistema implementa completamente o framework **TIMERS** para avaliação holística de feridas, transformando cada componente em funcionalidades tecnológicas avançadas:
 
-- **T - Tissue**: Análise de tecidos por IA (granulação, esfacelo, necrose)
-- **I - Infection**: Detecção de sinais de infecção
-- **M - Moisture**: Avaliação do equilíbrio de umidade
-- **E - Edge**: Análise das bordas da ferida
-- **R - Repair**: Recomendações de tratamento
-- **S - Social**: Fatores sociais do paciente
+### 📊 Mapeamento TIMERS → Funcionalidades
 
-## Tecnologias Utilizadas
+| Componente | Questão Clínica | Implementação no Heal+ | Saída da IA |
+|------------|-----------------|------------------------|-------------|
+| **T - Tissue** | Qual é a condição do leito da ferida? | Segmentação U-Net + Classificação CNN | Análise quantitativa: 45% granulação, 55% esfacelo |
+| **I - Infection** | Existem sinais de infecção? | Checklists + Análise de imagem | Escore de risco: Baixo/Médio/Alto com fatores |
+| **M - Moisture** | A ferida está equilibrada? | Descritores predefinidos | Sugestão de coberturas apropriadas |
+| **E - Edge** | As bordas estão avançando? | Análise de perímetro + histórico | Detecção de epíbole, taxa de contração |
+| **R - Repair** | Precisa de terapias avançadas? | Análise longitudinal | Alertas de estagnação, sugestões de encaminhamento |
+| **S - Social** | Quais fatores impactam a cicatrização? | Questionário + dados clínicos | Personalização de cuidados, refinamento de riscos |
 
-### Backend
-- Spring Boot 3.x
-- Spring Security
-- Spring Data JPA
-- MySQL
-- JWT
-- Lombok
-- Apache Commons Lang3
-- Jackson
-- Caffeine Cache
-- Spring Mail
+### 🎯 Benefícios da Implementação TIMERS
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Responsive Design
+- **Dados Estruturados**: Cada avaliação gera dados rotulados de alta qualidade
+- **Ciclo de Melhoria**: Mais uso → melhor IA → maior valor → mais uso
+- **Cuidado Holístico**: Integração de fatores clínicos e sociais
+- **Padronização**: Eliminação da subjetividade nas avaliações
 
-### IA e Machine Learning
-- Segmentação de imagens (U-Net)
-- Classificação de tecidos (CNNs)
-- Análise preditiva
-- IA Explicável (XAI - Grad-CAM, LIME)
-- GANs para aumento de dados
+## 🛠️ Stack Tecnológico
 
-## Funcionalidades Principais
+### 🔧 Backend
+| Tecnologia | Versão | Propósito |
+|------------|--------|-----------|
+| **Spring Boot** | 3.x | Framework principal |
+| **Spring Security** | 6.x | Autenticação e autorização |
+| **Spring Data JPA** | 3.x | Persistência de dados |
+| **MySQL** | 8.0+ | Banco de dados principal |
+| **JWT** | 0.11+ | Tokens de autenticação |
+| **Lombok** | 1.18+ | Redução de boilerplate |
+| **Apache Commons Lang3** | 3.12+ | Utilitários |
+| **Jackson** | 2.15+ | Serialização JSON |
+| **Caffeine Cache** | 3.1+ | Cache em memória |
+| **Spring Mail** | 3.x | Notificações por email |
 
-### 1. Análise de Feridas por IA
-- Segmentação automática de feridas
-- Classificação de tipos de tecido
-- Medição precisa de área e perímetro
-- Detecção de sinais de infecção
-- Predição de trajetória de cicatrização
+### 🎨 Frontend
+| Tecnologia | Versão | Propósito |
+|------------|--------|-----------|
+| **HTML5** | 5.0 | Estrutura semântica |
+| **CSS3** | 3.0 | Estilização e animações |
+| **JavaScript** | ES6+ | Lógica de interação |
+| **WebRTC** | 1.0 | Comunicação em tempo real |
+| **Chart.js** | 4.0+ | Visualizações de dados |
 
-### 2. Telessaúde Integrada
-- Consultas por vídeo
-- Análise pré-consulta por IA
-- Compartilhamento de resultados
-- Documentação automática
+### 🤖 IA e Machine Learning
+| Tecnologia | Propósito | Implementação |
+|------------|-----------|---------------|
+| **U-Net** | Segmentação de feridas | Arquitetura encoder-decoder |
+| **CNNs (ResNet50/VGG16)** | Classificação de tecidos | Transfer learning |
+| **Random Forest** | Análise preditiva | Modelos de risco |
+| **Grad-CAM** | Explicabilidade visual | Mapas de calor |
+| **LIME** | Explicabilidade local | Importância de features |
+| **GANs** | Aumento de dados | Geração de imagens sintéticas |
 
-### 3. Gestão de Pacientes
-- Portal personalizado
-- Acompanhamento de progresso
-- Lembretes automáticos
-- Educação em saúde
+### 🔒 Segurança e Conformidade
+| Tecnologia | Propósito |
+|------------|-----------|
+| **JWT** | Autenticação stateless |
+| **BCrypt** | Hash de senhas |
+| **AES-256** | Criptografia de dados |
+| **RBAC** | Controle de acesso |
+| **Audit Logs** | Rastreabilidade |
 
-### 4. Suporte à Decisão Clínica
-- Recomendações baseadas em evidências
-- Alertas de risco
-- Explicabilidade das decisões de IA
-- Integração com PEPs (HL7 FHIR)
+## ⚡ Funcionalidades Principais
 
-### 5. Conformidade Regulatória
-- LGPD (Lei Geral de Proteção de Dados)
-- ANVISA (Software as Medical Device)
-- Auditoria e rastreabilidade
-- Gestão de consentimento
+### 1. 🧠 Análise de Feridas por IA
+- **Segmentação Automática**: U-Net para delimitação precisa de feridas
+- **Classificação de Tecidos**: CNN para identificação de granulação, esfacelo, necrose
+- **Medição Precisa**: Cálculo automático de área, perímetro e volume
+- **Detecção de Infecção**: Análise de sinais clínicos e biofilme
+- **Predição de Cicatrização**: Modelos de machine learning para trajetória
+- **IA Explicável**: Grad-CAM e LIME para transparência nas decisões
 
-## Instalação e Configuração
+### 2. 📹 Telessaúde Integrada
+- **Consultas por Vídeo**: WebRTC para comunicação segura
+- **Análise Pré-Consulta**: IA processa imagens antes da consulta
+- **Compartilhamento de Tela**: Visualização de análises em tempo real
+- **Documentação Automática**: Geração de relatórios com IA
+- **Gravação Segura**: Armazenamento com consentimento LGPD
 
-### Pré-requisitos
-- Java 17+
-- MySQL 8.0+
-- Node.js (para desenvolvimento frontend)
+### 3. 👥 Gestão de Pacientes
+- **Portal Personalizado**: Dashboard adaptado ao perfil do paciente
+- **Acompanhamento Visual**: Gráficos de progresso de cicatrização
+- **Lembretes Inteligentes**: Notificações personalizadas
+- **Educação em Saúde**: Conteúdo adaptado ao nível de literacia
+- **Gamificação**: Sistema de pontos e conquistas
 
-### Backend
-1. Clone o repositório
-2. Configure o banco de dados MySQL
-3. Atualize as configurações em `application.properties`
-4. Execute: `./gradlew bootRun`
+### 4. 🎯 Suporte à Decisão Clínica
+- **Recomendações Baseadas em Evidências**: Algoritmos baseados no TIMERS
+- **Alertas de Risco**: Notificações de pacientes de alto risco
+- **Explicabilidade**: Transparência nas decisões de IA
+- **Integração PEPs**: Compatibilidade com HL7 FHIR
+- **Workflow Guiado**: Interface baseada no framework TIMERS
 
-### Frontend
-1. Navegue para a pasta `frontend`
-2. Abra os arquivos HTML em um navegador
-3. Configure a URL da API no JavaScript
+### 5. 🛡️ Conformidade Regulatória
+- **LGPD**: Conformidade total com a Lei Geral de Proteção de Dados
+- **ANVISA SaMD**: Preparação para regulamentação de Software como Dispositivo Médico
+- **Auditoria Completa**: Rastreabilidade de todas as ações
+- **Gestão de Consentimento**: Controle granular de permissões
+- **Criptografia End-to-End**: Proteção de dados sensíveis
 
-### Configurações Importantes
+## 🚀 Instalação e Configuração
 
-#### Email (application.properties)
+### 📋 Pré-requisitos
+- **Java**: 17 ou superior
+- **MySQL**: 8.0 ou superior
+- **Node.js**: 16+ (para desenvolvimento frontend)
+- **Git**: Para clonagem do repositório
+
+### 🔧 Backend
+
+#### 1. Clone o Repositório
+```bash
+git clone https://github.com/seu-usuario/healplus.git
+cd healplus/backend
+```
+
+#### 2. Configure o Banco de Dados
+```sql
+CREATE DATABASE healplus_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'healplus_user'@'localhost' IDENTIFIED BY 'sua_senha_segura';
+GRANT ALL PRIVILEGES ON healplus_db.* TO 'healplus_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+#### 3. Configure as Variáveis de Ambiente
+```bash
+export JWT_SECRET="sua_chave_secreta_jwt_muito_segura"
+export MAIL_USERNAME="seu_email@gmail.com"
+export MAIL_PASSWORD="sua_senha_de_app"
+export DB_PASSWORD="sua_senha_do_banco"
+```
+
+#### 4. Execute a Aplicação
+```bash
+./gradlew bootRun
+```
+
+### 🎨 Frontend
+
+#### 1. Navegue para a Pasta Frontend
+```bash
+cd ../frontend
+```
+
+#### 2. Configure a URL da API
+Edite o arquivo `js/app.js` e atualize a URL da API:
+```javascript
+const API_BASE_URL = 'http://localhost:8080/api';
+```
+
+#### 3. Abra no Navegador
+```bash
+# Usando Python (recomendado para desenvolvimento)
+python -m http.server 8000
+
+# Ou simplesmente abra os arquivos HTML diretamente
+open index.html
+```
+
+### ⚙️ Configurações Importantes
+
+#### 📧 Email (application.properties)
 ```properties
+# Configuração Gmail
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
 spring.mail.username=${MAIL_USERNAME}
 spring.mail.password=${MAIL_PASSWORD}
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+# Configuração da aplicação
+app.email.from=noreply@healplus.com
+app.frontend.url=http://localhost:8000
 ```
 
-#### JWT
+#### 🔐 JWT e Segurança
 ```properties
+# JWT Configuration
 app.jwt.secret=${JWT_SECRET}
-app.jwt.expiration=86400000
-app.jwt.refresh-expiration=604800000
+app.jwt.expiration=86400000  # 24 horas
+app.jwt.refresh-expiration=604800000  # 7 dias
+
+# LGPD Configuration
+app.lgpd.consent-version=1.0
+app.lgpd.data-retention-days=2555  # 7 anos
 ```
 
-## Uso do Sistema
+#### 🗄️ Banco de Dados
+```properties
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/healplus_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+spring.datasource.username=healplus_user
+spring.datasource.password=${DB_PASSWORD}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
-### Para Pacientes
-1. Registre-se no portal
-2. Complete o questionário de fatores sociais
-3. Agende consultas
-4. Use o assistente de IA para dúvidas
-5. Acompanhe seu progresso
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+```
 
-### Para Clínicos
-1. Acesse o portal do clínico
-2. Visualize pacientes e alertas
-3. Realize avaliações TIMERS
-4. Analise resultados de IA
-5. Agende teleconsultas
+## 📖 Guia de Uso do Sistema
 
-## Conformidade e Segurança
+### 👤 Para Pacientes
 
-### LGPD
-- Consentimento granular
-- Direito ao esquecimento
-- Portabilidade de dados
-- Auditoria de acesso
+#### 🚀 Primeiro Acesso
+1. **Registro**: Acesse o portal e crie sua conta
+2. **Questionário Social**: Complete o questionário TIMERS 'S' (fatores sociais)
+3. **Verificação**: Confirme seu email
+4. **Onboarding**: Configure suas preferências
 
-### ANVISA
-- Classificação como SaMD Classe II/III
-- Documentação técnica
-- Validação clínica
-- Rastreabilidade
+#### 📱 Uso Diário
+1. **Dashboard**: Visualize seu progresso de cicatrização
+2. **Agendamentos**: Marque consultas online
+3. **Assistente IA**: Faça perguntas sobre seu tratamento
+4. **Lembretes**: Receba notificações de medicação
+5. **Histórico**: Acesse seus exames e relatórios
 
-### Segurança
-- Criptografia end-to-end
-- Autenticação multifator
-- Controle de acesso baseado em função
-- Auditoria de segurança
+#### 🎯 Funcionalidades Especiais
+- **Gamificação**: Ganhe pontos por seguir o tratamento
+- **Educação**: Acesse conteúdo personalizado
+- **Teleconsulta**: Participe de consultas remotas
+- **Exportação**: Baixe seus dados (LGPD)
 
-## Roadmap
+### 👨‍⚕️ Para Clínicos
 
-### Fase 1 (Atual)
-- ✅ Implementação do framework TIMERS
-- ✅ Serviços de IA básicos
-- ✅ Portais de paciente e clínico
-- ✅ Sistema de autenticação
+#### 🏥 Portal Principal
+1. **Dashboard**: Visão geral de todos os pacientes
+2. **Alertas**: Pacientes de alto risco em destaque
+3. **Agenda**: Consultas do dia
+4. **Analytics**: Métricas de performance
 
-### Fase 2
-- [ ] Integração com PEPs (HL7 FHIR)
-- [ ] Modelos de IA avançados
-- [ ] Aplicativo móvel
-- [ ] Integração com dispositivos IoT
+#### 🔬 Avaliações TIMERS
+1. **Seleção**: Escolha o paciente
+2. **Imagem**: Faça upload da foto da ferida
+3. **Análise IA**: Revise os resultados automáticos
+4. **Avaliação**: Complete os campos TIMERS
+5. **Recomendações**: Siga as sugestões do sistema
 
-### Fase 3
-- [ ] IA generativa para relatórios
-- [ ] Análise preditiva avançada
-- [ ] Integração com laboratórios
-- [ ] Marketplace de especialistas
+#### 📹 Teleconsultas
+1. **Agendamento**: Marque consultas remotas
+2. **Pré-análise**: IA processa imagens enviadas
+3. **Vídeo**: Realize a consulta por vídeo
+4. **Compartilhamento**: Mostre análises ao paciente
+5. **Documentação**: Sistema gera relatório automático
 
-## Contribuição
+#### 📊 Analytics e Relatórios
+- **Progresso**: Acompanhe evolução dos pacientes
+- **Eficácia**: Analise sucesso dos tratamentos
+- **Alertas**: Identifique casos críticos
+- **Exportação**: Gere relatórios para PEPs
 
-Para contribuir com o projeto:
+## 🛡️ Conformidade e Segurança
 
-1. Fork o repositório
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
-5. Abra um Pull Request
+### 📋 LGPD (Lei Geral de Proteção de Dados)
 
-## Licença
+#### ✅ Implementações
+- **Consentimento Granular**: Controle específico por tipo de dados
+- **Direito ao Esquecimento**: Exclusão completa de dados
+- **Portabilidade**: Exportação de dados em formato padrão
+- **Auditoria de Acesso**: Log completo de quem acessou o quê
+- **Minimização**: Coleta apenas de dados necessários
+- **Transparência**: Política de privacidade clara
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+#### 🔧 Funcionalidades Técnicas
+```java
+// Exemplo de gestão de consentimento
+@PostMapping("/consent")
+public ResponseEntity<Void> updateConsent(
+    @RequestBody ConsentRequest request,
+    Authentication authentication
+) {
+    authService.updateConsent(authentication.getName(), request);
+    return ResponseEntity.ok().build();
+}
+```
 
-## Contato
+### 🏥 ANVISA (Software as Medical Device)
 
-Para mais informações sobre o Heal+, entre em contato:
+#### 📊 Classificação de Risco
+| Funcionalidade | Classificação | Justificativa |
+|----------------|---------------|---------------|
+| Classificação de Tecido | Classe II | Auxilia diagnóstico, decisão final do clínico |
+| Escore de Risco de Infecção | Classe III | Falso negativo pode levar a deterioração grave |
+| Trajetória de Cicatrização | Classe III | Previsão incorreta pode atrasar intervenção |
+| Recomendações de Tratamento | Classe II | Suporte à decisão, não prescrição |
 
-- Email: contato@healplus.com
-- Website: https://healplus.com
-- Documentação: https://docs.healplus.com
+#### 📋 Documentação Técnica
+- **Arquitetura de Software**: Documentação completa
+- **Algoritmos de IA**: Especificações técnicas
+- **Validação Clínica**: Estudos de eficácia
+- **Rastreabilidade**: Log de todas as decisões
 
-## Agradecimentos
+### 🔒 Segurança Técnica
 
-- Framework TIMERS para estruturação clínica
-- Comunidade Spring Boot
-- Pesquisadores em IA médica
-- Profissionais de saúde que contribuíram com feedback
+#### 🛡️ Implementações de Segurança
+- **Criptografia AES-256**: Dados em repouso e trânsito
+- **JWT com Refresh Tokens**: Autenticação stateless segura
+- **BCrypt**: Hash de senhas com salt
+- **RBAC**: Controle de acesso baseado em função
+- **Rate Limiting**: Proteção contra ataques
+- **Audit Logs**: Rastreabilidade completa
+
+#### 🔐 Configurações de Segurança
+```properties
+# Configurações de segurança
+app.security.jwt.secret=${JWT_SECRET}
+app.security.jwt.expiration=86400000
+app.security.password.min-length=8
+app.security.rate-limit.requests=100
+app.security.rate-limit.window=3600
+```
+
+#### 📊 Monitoramento
+- **Logs de Segurança**: Todas as tentativas de acesso
+- **Alertas de Intrusão**: Detecção de atividades suspeitas
+- **Backup Automático**: Cópias de segurança regulares
+- **Recuperação de Desastres**: Plano de contingência
+
+## 🗺️ Roadmap de Desenvolvimento
+
+### 🚀 Fase 1 - MVP (Concluída)
+- ✅ **Framework TIMERS**: Implementação completa do padrão clínico
+- ✅ **Serviços de IA**: Análise de imagens e predições básicas
+- ✅ **Portais**: Interface para pacientes e clínicos
+- ✅ **Autenticação**: Sistema JWT com conformidade LGPD
+- ✅ **Telessaúde**: Módulo básico de consultas remotas
+- ✅ **Assistente IA**: Chatbot conversacional
+
+### 🔄 Fase 2 - Expansão (Q2 2024)
+- [ ] **Integração PEPs**: Compatibilidade HL7 FHIR
+- [ ] **Modelos Avançados**: Deep learning para análise de feridas
+- [ ] **App Móvel**: Aplicativo nativo iOS/Android
+- [ ] **IoT Integration**: Dispositivos de monitoramento
+- [ ] **Analytics Avançados**: Dashboards executivos
+- [ ] **API Pública**: Integração com terceiros
+
+### 🌟 Fase 3 - Inovação (Q4 2024)
+- [ ] **IA Generativa**: Relatórios automáticos com GPT
+- [ ] **Análise Preditiva**: Modelos de risco avançados
+- [ ] **Integração Lab**: Resultados de exames automatizados
+- [ ] **Marketplace**: Rede de especialistas
+- [ ] **Blockchain**: Rastreabilidade imutável
+- [ ] **Realidade Aumentada**: Visualização 3D de feridas
+
+### 🎯 Fase 4 - Escala (2025)
+- [ ] **Multi-tenant**: Suporte a múltiplas instituições
+- [ ] **IA Federada**: Aprendizado distribuído
+- [ ] **Edge Computing**: Processamento local
+- [ ] **5G Integration**: Consultas ultra-rápidas
+- [ ] **Global Expansion**: Suporte multilíngue
+- [ ] **Regulatory Approval**: Certificação ANVISA completa
+
+## 🤝 Contribuição
+
+### 🚀 Como Contribuir
+
+1. **Fork** o repositório
+2. **Clone** seu fork: `git clone https://github.com/seu-usuario/healplus.git`
+3. **Crie** uma branch: `git checkout -b feature/nova-funcionalidade`
+4. **Commit** suas mudanças: `git commit -m "Adiciona nova funcionalidade"`
+5. **Push** para a branch: `git push origin feature/nova-funcionalidade`
+6. **Abra** um Pull Request
+
+### 📋 Diretrizes de Contribuição
+
+#### 🔧 Desenvolvimento
+- Siga as convenções de código Java (Google Style)
+- Escreva testes unitários para novas funcionalidades
+- Documente APIs com JavaDoc
+- Mantenha cobertura de testes acima de 80%
+
+#### 🏥 Aspectos Clínicos
+- Consulte profissionais de saúde para validação
+- Mantenha conformidade com padrões médicos
+- Documente mudanças que afetem o workflow clínico
+- Teste com dados anonimizados
+
+#### 🛡️ Segurança e Conformidade
+- Nunca commite dados sensíveis
+- Mantenha conformidade LGPD
+- Valide todas as entradas de usuário
+- Documente mudanças de segurança
+
+### 🐛 Reportar Bugs
+
+Use o template de issue para reportar bugs:
+- **Descrição**: O que aconteceu?
+- **Passos**: Como reproduzir?
+- **Esperado**: O que deveria acontecer?
+- **Ambiente**: Sistema operacional, versão, etc.
+
+### 💡 Sugestões de Melhorias
+
+- **Funcionalidades**: Novas features ou melhorias
+- **UX/UI**: Melhorias na interface
+- **Performance**: Otimizações
+- **Documentação**: Melhorias na documentação
+
+## 📄 Licença
+
+Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+```
+MIT License
+
+Copyright (c) 2024 Heal+ Team
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## 📞 Contato e Suporte
+
+### 🏢 Informações da Empresa
+- **Website**: https://healplus.com
+- **Email**: contato@healplus.com
+- **Documentação**: https://docs.healplus.com
+- **Suporte Técnico**: suporte@healplus.com
+
+### 👥 Equipe
+- **CEO**: [Nome do CEO]
+- **CTO**: [Nome do CTO]
+- **Diretor Médico**: [Nome do Diretor Médico]
+- **DPO**: [Nome do DPO]
+
+### 📱 Redes Sociais
+- **LinkedIn**: https://linkedin.com/company/healplus
+- **Twitter**: https://twitter.com/healplus
+- **YouTube**: https://youtube.com/healplus
+
+## 🙏 Agradecimentos
+
+### 🏥 Parceiros Clínicos
+- **Framework TIMERS**: Base científica para estruturação clínica
+- **Profissionais de Saúde**: Feedback valioso durante o desenvolvimento
+- **Instituições Médicas**: Parcerias para validação clínica
+
+### 💻 Comunidade Técnica
+- **Spring Boot Community**: Framework robusto e bem documentado
+- **Pesquisadores em IA Médica**: Avanços em machine learning para saúde
+- **Contribuidores Open Source**: Bibliotecas e ferramentas essenciais
+
+### 🎓 Acadêmicos
+- **Universidades Parceiras**: Pesquisa e desenvolvimento
+- **Estudantes**: Contribuições em projetos de pesquisa
+- **Professores**: Orientação e validação científica
+
+---
+
+<div align="center">
+
+**🏥 Heal+ - Transformando o Cuidado com Feridas através da IA**
+
+*Desenvolvido com ❤️ para melhorar a qualidade de vida dos pacientes*
+
+[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/healplus?style=social)](https://github.com/seu-usuario/healplus)
+[![GitHub forks](https://img.shields.io/github/forks/seu-usuario/healplus?style=social)](https://github.com/seu-usuario/healplus)
+[![GitHub issues](https://img.shields.io/github/issues/seu-usuario/healplus)](https://github.com/seu-usuario/healplus/issues)
+
+</div>
