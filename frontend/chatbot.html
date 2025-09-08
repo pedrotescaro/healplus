@@ -4,840 +4,462 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Assistente de IA</title>
-    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/modern-design.css">
     <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/chatbot.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="app-header">
-        <div class="header-content">
-            <div class="logo">
-                <span class="icon icon-hospital icon-lg"></span>
-                <div class="logo-text">
-                    <h1>Heal+</h1>
-                    <span>Assistente de IA</span>
-                </div>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
             </div>
-            <nav class="header-nav">
-                <a href="#dashboard" class="nav-link active" data-section="dashboard">
-                    <span class="icon icon-chart"></span>
-                    Dashboard
-                </a>
-                <a href="#chat" class="nav-link" data-section="chat">
-                    <span class="icon icon-chat"></span>
-                    Chat
-                </a>
-                <a href="#knowledge" class="nav-link" data-section="knowledge">
-                    <span class="icon icon-shield"></span>
-                    Base de Conhecimento
-                </a>
-                <a href="#analytics" class="nav-link" data-section="analytics">
-                    <span class="icon icon-chart"></span>
-                    Analytics
-                </a>
-                <a href="#settings" class="nav-link" data-section="settings">
-                    <span class="icon icon-settings"></span>
-                    Configurações
-                </a>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a href="dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="wound-capture.html" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Nova Avaliação
+                    </a>
+                    <a href="clinician.html" class="nav-item">
+                        <span class="icon icon-user-group"></span>
+                        Meus Pacientes
+                    </a>
+                    <a href="telehealth.html" class="nav-item">
+                        <span class="icon icon-video"></span>
+                        Teleconsulta
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Assistente IA</div>
+                    <a href="#chat" class="nav-item active">
+                        <span class="icon icon-chat"></span>
+                        Chat
+                    </a>
+                    <a href="#knowledge" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Base de Conhecimento
+                    </a>
+                    <a href="#analytics" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Sistema</div>
+                    <a href="#settings" class="nav-item">
+                        <span class="icon icon-settings"></span>
+                        Configurações
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Perfil
+                    </a>
+                </div>
             </nav>
-                <div class="user-menu">
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">MS</div>
                     <div class="user-info">
-                        <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
-                        <div class="user-details">
-                            <span class="user-name">Dr. Maria Santos</span>
-                            <span class="user-role">Dermatologia</span>
-                        </div>
+                        <div class="user-name">Dr. Maria Santos</div>
+                        <div class="user-email">maria.santos@healplus.com</div>
                     </div>
-                    <button class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
                 </div>
+                <button class="logout-btn">
+                    <span class="icon icon-arrow-right"></span>
+                    Sair
+                </button>
             </div>
-        </div>
-    </header>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="section active">
-                <div class="section-header">
-                    <h1>Dashboard do Assistente de IA</h1>
-                    <p>Visão geral das interações e performance do chatbot</p>
-                </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Content Header -->
+            <header class="content-header">
+                <h1 class="content-title">Assistente de IA</h1>
+                <p class="content-subtitle">Interaja com o assistente inteligente e monitore conversas em tempo real.</p>
+            </header>
 
+            <!-- Content Body -->
+            <div class="content-body">
                 <!-- Quick Stats -->
-                <div class="stats-grid">
+                <div class="stats-grid" style="margin-bottom: 3rem;">
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-comments"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-chat"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +12%
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Conversas Hoje</h3>
-                            <p class="stat-number">47</p>
-                            <p class="stat-label">+12 vs ontem</p>
-                        </div>
+                        <div class="stat-value">47</div>
+                        <div class="stat-label">Conversas Hoje</div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-user-group"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +5%
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Usuários Ativos</h3>
-                            <p class="stat-number">23</p>
-                            <p class="stat-label">Online agora</p>
-                        </div>
+                        <div class="stat-value">23</div>
+                        <div class="stat-label">Usuários Ativos</div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-thumbs-up"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-star"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +2%
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Taxa de Satisfação</h3>
-                            <p class="stat-number">94%</p>
-                            <p class="stat-label">Últimos 7 dias</p>
-                        </div>
+                        <div class="stat-value">94%</div>
+                        <div class="stat-label">Satisfação</div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-clock"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-down"></span>
+                                -0.4s
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Tempo Médio</h3>
-                            <p class="stat-number">2.3s</p>
-                            <p class="stat-label">Por resposta</p>
-                        </div>
+                        <div class="stat-value">2.3s</div>
+                        <div class="stat-label">Tempo Médio</div>
                     </div>
-                </div>
-
-                <!-- Recent Conversations -->
-                <div class="recent-conversations">
-                    <div class="section-header">
-                        <h2>Conversas Recentes</h2>
-                        <button class="btn btn-primary" onclick="showSection('chat')">
-                            Ver Todas
-                        </button>
-                    </div>
-                    <div class="conversations-list">
-                        <div class="conversation-item">
-                            <div class="conversation-header">
-                                <div class="user-info">
-                                    <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar-small">
-                                    <div class="user-details">
-                                        <h3>João Silva</h3>
-                                        <p>Paciente - Úlcera Venosa</p>
-                                    </div>
-                                </div>
-                                <div class="conversation-meta">
-                                    <span class="conversation-time">Há 5 min</span>
-                                    <span class="conversation-status status-active">Ativa</span>
-                                </div>
-                            </div>
-                            <div class="conversation-preview">
-                                <p>"Como devo cuidar da minha ferida durante o banho?"</p>
-                            </div>
-                            <div class="conversation-actions">
-                                <button class="btn btn-outline btn-sm" onclick="viewConversation(1)">
-                                    <i class="fas fa-eye"></i>
-                                    Ver
-                                </button>
-                                <button class="btn btn-primary btn-sm" onclick="joinConversation(1)">
-                                    <i class="fas fa-comments"></i>
-                                    Entrar
-                                </button>
-                            </div>
-                        </div>
-                        <div class="conversation-item">
-                            <div class="conversation-header">
-                                <div class="user-info">
-                                    <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar-small">
-                                    <div class="user-details">
-                                        <h3>Ana Costa</h3>
-                                        <p>Paciente - Ferida Cirúrgica</p>
-                                    </div>
-                                </div>
-                                <div class="conversation-meta">
-                                    <span class="conversation-time">Há 12 min</span>
-                                    <span class="conversation-status status-completed">Concluída</span>
-                                </div>
-                            </div>
-                            <div class="conversation-preview">
-                                <p>"Posso fazer exercícios com minha ferida?"</p>
-                            </div>
-                            <div class="conversation-actions">
-                                <button class="btn btn-outline btn-sm" onclick="viewConversation(2)">
-                                    <i class="fas fa-eye"></i>
-                                    Ver
-                                </button>
-                                <button class="btn btn-outline btn-sm" onclick="rateConversation(2)">
-                                    <i class="fas fa-star"></i>
-                                    Avaliar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Performance -->
-                <div class="ai-performance">
-                    <div class="section-header">
-                        <h2>Performance da IA</h2>
-                        <div class="performance-controls">
-                            <button class="btn btn-outline btn-sm active" data-period="7">7 dias</button>
-                            <button class="btn btn-outline btn-sm" data-period="30">30 dias</button>
-                            <button class="btn btn-outline btn-sm" data-period="90">90 dias</button>
-                        </div>
-                    </div>
-                    <div class="performance-metrics">
-                        <div class="metric-card">
-                            <h3>Precisão das Respostas</h3>
-                            <div class="metric-chart">
-                                <canvas id="accuracyChart"></canvas>
-                            </div>
-                            <div class="metric-summary">
-                                <span class="metric-value">94.2%</span>
-                                <span class="metric-change positive">+2.1%</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Tempo de Resposta</h3>
-                            <div class="metric-chart">
-                                <canvas id="responseTimeChart"></canvas>
-                            </div>
-                            <div class="metric-summary">
-                                <span class="metric-value">2.3s</span>
-                                <span class="metric-change positive">-0.4s</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Satisfação do Usuário</h3>
-                            <div class="metric-chart">
-                                <canvas id="satisfactionChart"></canvas>
-                            </div>
-                            <div class="metric-summary">
-                                <span class="metric-value">4.7/5</span>
-                                <span class="metric-change positive">+0.2</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Top Questions -->
-                <div class="top-questions">
-                    <div class="section-header">
-                        <h2>Perguntas Mais Frequentes</h2>
-                        <button class="btn btn-outline" onclick="showSection('knowledge')">
-                            Ver Base de Conhecimento
-                        </button>
-                    </div>
-                    <div class="questions-list">
-                        <div class="question-item">
-                            <div class="question-header">
-                                <h3>Como cuidar da ferida durante o banho?</h3>
-                                <span class="question-count">47 vezes</span>
-                            </div>
-                            <div class="question-answer">
-                                <p>Durante o banho, é importante proteger a ferida com um curativo impermeável...</p>
-                            </div>
-                            <div class="question-actions">
-                                <button class="btn btn-outline btn-sm" onclick="editAnswer(1)">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </button>
-                                <button class="btn btn-outline btn-sm" onclick="viewQuestionDetails(1)">
-                                    <i class="fas fa-eye"></i>
-                                    Detalhes
-                                </button>
-                            </div>
-                        </div>
-                        <div class="question-item">
-                            <div class="question-header">
-                                <h3>Posso fazer exercícios com minha ferida?</h3>
-                                <span class="question-count">32 vezes</span>
-                            </div>
-                            <div class="question-answer">
-                                <p>Depende do tipo e localização da ferida. Exercícios leves podem ser benéficos...</p>
-                            </div>
-                            <div class="question-actions">
-                                <button class="btn btn-outline btn-sm" onclick="editAnswer(2)">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </button>
-                                <button class="btn btn-outline btn-sm" onclick="viewQuestionDetails(2)">
-                                    <i class="fas fa-eye"></i>
-                                    Detalhes
-                                </button>
-                            </div>
-                        </div>
-                        <div class="question-item">
-                            <div class="question-header">
-                                <h3>Quando devo trocar o curativo?</h3>
-                                <span class="question-count">28 vezes</span>
-                            </div>
-                            <div class="question-answer">
-                                <p>A frequência da troca do curativo depende do tipo de ferida e do curativo usado...</p>
-                            </div>
-                            <div class="question-actions">
-                                <button class="btn btn-outline btn-sm" onclick="editAnswer(3)">
-                                    <i class="fas fa-edit"></i>
-                                    Editar
-                                </button>
-                                <button class="btn btn-outline btn-sm" onclick="viewQuestionDetails(3)">
-                                    <i class="fas fa-eye"></i>
-                                    Detalhes
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Chat Section -->
-            <section id="chat" class="section">
-                <div class="section-header">
-                    <h1>Chat com Assistente de IA</h1>
-                    <p>Interaja com o assistente e monitore conversas em tempo real</p>
                 </div>
 
                 <!-- Chat Interface -->
-                <div class="chat-interface">
-                    <div class="chat-sidebar">
-                        <div class="chat-filters">
-                            <div class="filter-group">
-                                <label>Filtrar:</label>
-                                <select id="chatFilter" class="form-control">
-                                    <option value="all">Todas as conversas</option>
-                                    <option value="active">Ativas</option>
-                                    <option value="completed">Concluídas</option>
-                                    <option value="escalated">Escaladas</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label>Buscar:</label>
-                                <input type="text" id="chatSearch" placeholder="Paciente ou tópico..." class="form-control">
-                            </div>
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <!-- Conversations List -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Conversas Ativas</h3>
+                            <p class="card-subtitle">Selecione uma conversa para visualizar.</p>
                         </div>
-                        <div class="conversations-list">
-                            <div class="conversation-item active">
-                                <div class="conversation-header">
-                                    <div class="user-info">
-                                        <img src="https://via.placeholder.com/30" alt="Avatar" class="user-avatar-small">
-                                        <div class="user-details">
-                                            <h4>João Silva</h4>
-                                            <p>Úlcera Venosa</p>
-                                        </div>
-                                    </div>
-                                    <div class="conversation-meta">
-                                        <span class="conversation-time">Agora</span>
-                                        <span class="conversation-status status-active">Ativa</span>
-                                    </div>
-                                </div>
-                                <div class="conversation-preview">
-                                    <p>"Como devo cuidar da minha ferida durante o banho?"</p>
+                        <div class="card-body">
+                            <div style="margin-bottom: 1rem;">
+                                <div class="search-bar">
+                                    <span class="search-icon icon icon-search"></span>
+                                    <input type="text" class="search-input" placeholder="Buscar conversas...">
                                 </div>
                             </div>
-                            <div class="conversation-item">
-                                <div class="conversation-header">
-                                    <div class="user-info">
-                                        <img src="https://via.placeholder.com/30" alt="Avatar" class="user-avatar-small">
-                                        <div class="user-details">
-                                            <h4>Ana Costa</h4>
-                                            <p>Ferida Cirúrgica</p>
+                            
+                            <div style="display: grid; gap: 1rem;">
+                                <div style="padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-blue); cursor: pointer;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #34D399); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.75rem;">JS</div>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600; color: var(--text-primary);">João Silva</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Úlcera Venosa</div>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Agora</div>
+                                            <span class="badge badge-success">Ativa</span>
                                         </div>
                                     </div>
-                                    <div class="conversation-meta">
-                                        <span class="conversation-time">12 min</span>
-                                        <span class="conversation-status status-completed">Concluída</span>
+                                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                                        "Como devo cuidar da minha ferida durante o banho?"
                                     </div>
                                 </div>
-                                <div class="conversation-preview">
-                                    <p>"Posso fazer exercícios com minha ferida?"</p>
+
+                                <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.75rem;">AC</div>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600; color: var(--text-primary);">Ana Costa</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Ferida Cirúrgica</div>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">12 min</div>
+                                            <span class="badge badge-primary">Concluída</span>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                                        "Posso fazer exercícios com minha ferida?"
+                                    </div>
+                                </div>
+
+                                <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--warning), #FCD34D); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.75rem;">PL</div>
+                                        <div style="flex: 1;">
+                                            <div style="font-weight: 600; color: var(--text-primary);">Pedro Lima</div>
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">Ferida Diabética</div>
+                                        </div>
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 0.75rem; color: var(--text-muted);">1h</div>
+                                            <span class="badge badge-warning">Aguardando</span>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                                        "Quando devo trocar o curativo?"
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="chat-main">
-                        <div class="chat-header">
-                            <div class="chat-user-info">
-                                <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
-                                <div class="user-details">
-                                    <h3>João Silva</h3>
-                                    <p>Paciente - Úlcera Venosa</p>
+
+                    <!-- Chat Messages -->
+                    <div class="card" style="grid-column: span 2;">
+                        <div class="card-header">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #34D399); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">JS</div>
+                                    <div>
+                                        <h3 style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">João Silva</h3>
+                                        <p style="font-size: 0.875rem; color: var(--text-muted);">Paciente - Úlcera Venosa</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="chat-actions">
-                                <button class="btn btn-outline btn-sm" onclick="escalateConversation()">
-                                    <i class="fas fa-user-md"></i>
-                                    Escalar
-                                </button>
-                                <button class="btn btn-outline btn-sm" onclick="endConversation()">
-                                    <i class="fas fa-times"></i>
-                                    Encerrar
-                                </button>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-user"></span>
+                                        Escalar
+                                    </button>
+                                    <button class="btn btn-sm btn-error">
+                                        <span class="icon icon-x"></span>
+                                        Encerrar
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="chat-messages">
-                            <div class="message user-message">
-                                <div class="message-content">
-                                    <p>Olá! Como devo cuidar da minha ferida durante o banho?</p>
+                        <div class="card-body" style="height: 400px; overflow-y: auto; padding: 1rem;">
+                            <!-- User Message -->
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+                                <div style="max-width: 70%; background: var(--accent-blue); color: white; padding: 0.75rem 1rem; border-radius: var(--radius-lg); border-bottom-right-radius: 0.25rem;">
+                                    <p style="margin: 0; font-size: 0.875rem;">Olá! Como devo cuidar da minha ferida durante o banho?</p>
+                                    <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.25rem;">14:30</div>
                                 </div>
-                                <div class="message-time">14:30</div>
                             </div>
-                            <div class="message bot-message">
-                                <div class="message-avatar">
-                                    <i class="fas fa-robot"></i>
+
+                            <!-- Bot Message -->
+                            <div style="display: flex; gap: 0.75rem; margin-bottom: 1rem;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light)); display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                    <span class="icon icon-robot" style="width: 16px; height: 16px;"></span>
                                 </div>
-                                <div class="message-content">
-                                    <p>Olá João! Para cuidar da sua ferida durante o banho, é importante:</p>
-                                    <ul>
+                                <div style="max-width: 70%; background: var(--secondary-bg); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: var(--radius-lg); border-bottom-left-radius: 0.25rem;">
+                                    <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Olá João! Para cuidar da sua ferida durante o banho, é importante:</p>
+                                    <ul style="margin: 0 0 0.5rem 0; padding-left: 1rem; font-size: 0.875rem;">
                                         <li>Proteger a ferida com um curativo impermeável</li>
                                         <li>Evitar água muito quente</li>
                                         <li>Usar sabonete neutro</li>
                                         <li>Secar bem a área após o banho</li>
                                     </ul>
-                                    <p>Gostaria de mais detalhes sobre algum desses pontos?</p>
+                                    <p style="margin: 0; font-size: 0.875rem;">Gostaria de mais detalhes sobre algum desses pontos?</p>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">14:30</div>
                                 </div>
-                                <div class="message-time">14:30</div>
                             </div>
-                            <div class="message user-message">
-                                <div class="message-content">
-                                    <p>Qual tipo de curativo impermeável você recomenda?</p>
+
+                            <!-- User Message -->
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+                                <div style="max-width: 70%; background: var(--accent-blue); color: white; padding: 0.75rem 1rem; border-radius: var(--radius-lg); border-bottom-right-radius: 0.25rem;">
+                                    <p style="margin: 0; font-size: 0.875rem;">Qual tipo de curativo impermeável você recomenda?</p>
+                                    <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.25rem;">14:32</div>
                                 </div>
-                                <div class="message-time">14:32</div>
                             </div>
-                            <div class="message bot-message">
-                                <div class="message-avatar">
-                                    <i class="fas fa-robot"></i>
+
+                            <!-- Bot Message -->
+                            <div style="display: flex; gap: 0.75rem; margin-bottom: 1rem;">
+                                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light)); display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0;">
+                                    <span class="icon icon-robot" style="width: 16px; height: 16px;"></span>
                                 </div>
-                                <div class="message-content">
-                                    <p>Para úlceras venosas, recomendo:</p>
-                                    <ul>
+                                <div style="max-width: 70%; background: var(--secondary-bg); color: var(--text-primary); padding: 0.75rem 1rem; border-radius: var(--radius-lg); border-bottom-left-radius: 0.25rem;">
+                                    <p style="margin: 0 0 0.5rem 0; font-size: 0.875rem;">Para úlceras venosas, recomendo:</p>
+                                    <ul style="margin: 0 0 0.5rem 0; padding-left: 1rem; font-size: 0.875rem;">
                                         <li><strong>Filme transparente:</strong> Para feridas pequenas e superficiais</li>
                                         <li><strong>Curativo hidrocolóide:</strong> Para feridas com exsudato moderado</li>
                                         <li><strong>Curativo de espuma:</strong> Para feridas com exsudato abundante</li>
                                     </ul>
-                                    <p>Consulte sempre seu médico para a escolha mais adequada ao seu caso.</p>
+                                    <p style="margin: 0; font-size: 0.875rem;">Consulte sempre seu médico para a escolha mais adequada ao seu caso.</p>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">14:32</div>
                                 </div>
-                                <div class="message-time">14:32</div>
                             </div>
                         </div>
-                        <div class="chat-input">
-                            <div class="input-container">
-                                <input type="text" id="messageInput" placeholder="Digite sua mensagem..." class="form-control">
-                                <button class="btn btn-primary" onclick="sendMessage()">
-                                    <i class="fas fa-paper-plane"></i>
+                        <div class="card-footer">
+                            <div style="display: flex; gap: 0.75rem; margin-bottom: 0.75rem;">
+                                <div style="flex: 1; position: relative;">
+                                    <input type="text" placeholder="Digite sua mensagem..." style="width: 100%; padding: 0.75rem 1rem; background: var(--secondary-bg); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--radius-md); color: var(--text-primary); font-size: 0.875rem;">
+                                </div>
+                                <button class="btn btn-primary">
+                                    <span class="icon icon-send"></span>
                                 </button>
                             </div>
-                            <div class="input-actions">
-                                <button class="btn btn-outline btn-sm" onclick="suggestResponse()">
-                                    <i class="fas fa-lightbulb"></i>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <button class="btn btn-sm btn-secondary">
+                                    <span class="icon icon-lightbulb"></span>
                                     Sugerir Resposta
                                 </button>
-                                <button class="btn btn-outline btn-sm" onclick="escalateToHuman()">
-                                    <i class="fas fa-user-md"></i>
+                                <button class="btn btn-sm btn-secondary">
+                                    <span class="icon icon-user"></span>
                                     Escalar para Humano
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Knowledge Base Section -->
-            <section id="knowledge" class="section">
-                <div class="section-header">
-                    <h1>Base de Conhecimento</h1>
-                    <p>Gerencie o conhecimento do assistente de IA</p>
-                </div>
-
-                <!-- Knowledge Filters -->
-                <div class="filters">
-                    <div class="filter-group">
-                        <label>Buscar:</label>
-                        <input type="text" id="knowledgeSearch" placeholder="Pergunta, resposta ou categoria..." class="form-control">
+                <!-- Top Questions -->
+                <div class="card" style="margin-top: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Perguntas Mais Frequentes</h3>
+                        <p class="card-subtitle">As perguntas mais comuns dos pacientes.</p>
                     </div>
-                    <div class="filter-group">
-                        <label>Categoria:</label>
-                        <select id="knowledgeCategory" class="form-control">
-                            <option value="all">Todas</option>
-                            <option value="wound-care">Cuidados com Feridas</option>
-                            <option value="medication">Medicamentos</option>
-                            <option value="lifestyle">Estilo de Vida</option>
-                            <option value="emergency">Emergências</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Status:</label>
-                        <select id="knowledgeStatus" class="form-control">
-                            <option value="all">Todos</option>
-                            <option value="active">Ativos</option>
-                            <option value="draft">Rascunhos</option>
-                            <option value="archived">Arquivados</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button class="btn btn-primary" onclick="addNewKnowledge()">
-                            <i class="fas fa-plus"></i>
-                            Novo Conhecimento
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Knowledge Items -->
-                <div class="knowledge-items">
-                    <div class="knowledge-item">
-                        <div class="knowledge-header">
-                            <div class="knowledge-info">
-                                <h3>Como cuidar da ferida durante o banho?</h3>
-                                <div class="knowledge-meta">
-                                    <span class="knowledge-category">Cuidados com Feridas</span>
-                                    <span class="knowledge-usage">47 vezes</span>
-                                    <span class="knowledge-rating">4.8/5</span>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                    <h4 style="font-weight: 600; color: var(--text-primary);">Como cuidar da ferida durante o banho?</h4>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); background: rgba(59, 130, 246, 0.2); padding: 0.25rem 0.5rem; border-radius: var(--radius-full);">47 vezes</span>
+                                </div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                                    Durante o banho, é importante proteger a ferida com um curativo impermeável para evitar que a água entre em contato direto com a ferida...
+                                </p>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-edit"></span>
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-eye"></span>
+                                        Detalhes
+                                    </button>
                                 </div>
                             </div>
-                            <div class="knowledge-status">
-                                <span class="status-badge status-active">Ativo</span>
-                            </div>
-                        </div>
-                        <div class="knowledge-content">
-                            <p>Durante o banho, é importante proteger a ferida com um curativo impermeável para evitar que a água entre em contato direto com a ferida. Use água morna e sabonete neutro, evitando esfregar a área da ferida. Após o banho, seque bem a área ao redor da ferida e troque o curativo se necessário.</p>
-                        </div>
-                        <div class="knowledge-actions">
-                            <button class="btn btn-outline btn-sm" onclick="editKnowledge(1)">
-                                <i class="fas fa-edit"></i>
-                                Editar
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="viewKnowledgeStats(1)">
-                                <i class="fas fa-chart-bar"></i>
-                                Estatísticas
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="testKnowledge(1)">
-                                <i class="fas fa-play"></i>
-                                Testar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="knowledge-item">
-                        <div class="knowledge-header">
-                            <div class="knowledge-info">
-                                <h3>Posso fazer exercícios com minha ferida?</h3>
-                                <div class="knowledge-meta">
-                                    <span class="knowledge-category">Estilo de Vida</span>
-                                    <span class="knowledge-usage">32 vezes</span>
-                                    <span class="knowledge-rating">4.6/5</span>
+
+                            <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                    <h4 style="font-weight: 600; color: var(--text-primary);">Posso fazer exercícios com minha ferida?</h4>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); background: rgba(59, 130, 246, 0.2); padding: 0.25rem 0.5rem; border-radius: var(--radius-full);">32 vezes</span>
+                                </div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                                    Depende do tipo e localização da ferida. Exercícios leves podem ser benéficos para a circulação e cicatrização...
+                                </p>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-edit"></span>
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-eye"></span>
+                                        Detalhes
+                                    </button>
                                 </div>
                             </div>
-                            <div class="knowledge-status">
-                                <span class="status-badge status-active">Ativo</span>
-                            </div>
-                        </div>
-                        <div class="knowledge-content">
-                            <p>Depende do tipo e localização da ferida. Exercícios leves podem ser benéficos para a circulação e cicatrização, mas é importante evitar atividades que possam causar trauma na área da ferida. Consulte sempre seu médico antes de iniciar qualquer atividade física.</p>
-                        </div>
-                        <div class="knowledge-actions">
-                            <button class="btn btn-outline btn-sm" onclick="editKnowledge(2)">
-                                <i class="fas fa-edit"></i>
-                                Editar
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="viewKnowledgeStats(2)">
-                                <i class="fas fa-chart-bar"></i>
-                                Estatísticas
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="testKnowledge(2)">
-                                <i class="fas fa-play"></i>
-                                Testar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!-- Analytics Section -->
-            <section id="analytics" class="section">
-                <div class="section-header">
-                    <h1>Analytics do Assistente</h1>
-                    <p>Análise de performance e métricas do chatbot</p>
-                </div>
-
-                <!-- Analytics Filters -->
-                <div class="analytics-filters">
-                    <div class="filter-group">
-                        <label>Período:</label>
-                        <select id="analyticsPeriod" class="form-control">
-                            <option value="7">Últimos 7 dias</option>
-                            <option value="30">Últimos 30 dias</option>
-                            <option value="90">Últimos 90 dias</option>
-                            <option value="365">Último ano</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Métrica:</label>
-                        <select id="analyticsMetric" class="form-control">
-                            <option value="conversations">Número de Conversas</option>
-                            <option value="satisfaction">Satisfação</option>
-                            <option value="response-time">Tempo de Resposta</option>
-                            <option value="escalation">Taxa de Escalação</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button class="btn btn-primary" onclick="generateAnalyticsReport()">
-                            <i class="fas fa-download"></i>
-                            Gerar Relatório
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Analytics Charts -->
-                <div class="analytics-charts">
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h2>Performance do Assistente</h2>
-                            <div class="chart-controls">
-                                <button class="btn btn-outline btn-sm active" data-chart="line">Linha</button>
-                                <button class="btn btn-outline btn-sm" data-chart="bar">Barras</button>
-                                <button class="btn btn-outline btn-sm" data-chart="area">Área</button>
-                            </div>
-                        </div>
-                        <div class="chart">
-                            <canvas id="analyticsChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Key Metrics -->
-                <div class="key-metrics">
-                    <h2>Métricas Principais</h2>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <h3>Total de Conversas</h3>
-                            <div class="metric-value-large">1,247</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+15% vs período anterior</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Satisfação Média</h3>
-                            <div class="metric-value-large">4.7/5</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+0.2 vs período anterior</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Tempo Médio de Resposta</h3>
-                            <div class="metric-value-large">2.3s</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-down"></i>
-                                <span>-0.4s vs período anterior</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Taxa de Escalação</h3>
-                            <div class="metric-value-large">8%</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-down"></i>
-                                <span>-2% vs período anterior</span>
+                            <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                                    <h4 style="font-weight: 600; color: var(--text-primary);">Quando devo trocar o curativo?</h4>
+                                    <span style="font-size: 0.75rem; color: var(--text-muted); background: rgba(59, 130, 246, 0.2); padding: 0.25rem 0.5rem; border-radius: var(--radius-full);">28 vezes</span>
+                                </div>
+                                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                                    A frequência da troca do curativo depende do tipo de ferida e do curativo usado...
+                                </p>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-edit"></span>
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-eye"></span>
+                                        Detalhes
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Settings Section -->
-            <section id="settings" class="section">
-                <div class="section-header">
-                    <h1>Configurações do Assistente</h1>
-                    <p>Configure o comportamento e respostas do chatbot</p>
-                </div>
-
-                <!-- Settings Tabs -->
-                <div class="settings-tabs">
-                    <button class="tab-btn active" data-tab="general">Geral</button>
-                    <button class="tab-btn" data-tab="responses">Respostas</button>
-                    <button class="tab-btn" data-tab="escalation">Escalação</button>
-                    <button class="tab-btn" data-tab="integration">Integração</button>
-                </div>
-
-                <!-- General Settings -->
-                <div id="general-settings" class="settings-content active">
-                    <div class="settings-section">
-                        <h3>Configurações Gerais</h3>
-                        <div class="form-group">
-                            <label>Nome do Assistente:</label>
-                            <input type="text" class="form-control" value="Heal+ Assistente" placeholder="Nome do assistente">
-                        </div>
-                        <div class="form-group">
-                            <label>Linguagem:</label>
-                            <select class="form-control">
-                                <option value="pt-BR">Português (Brasil)</option>
-                                <option value="en-US">English (US)</option>
-                                <option value="es-ES">Español</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Tom de Voz:</label>
-                            <select class="form-control">
-                                <option value="professional">Profissional</option>
-                                <option value="friendly">Amigável</option>
-                                <option value="formal">Formal</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" checked>
-                                Ativar assistente
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Response Settings -->
-                <div id="responses-settings" class="settings-content">
-                    <div class="settings-section">
-                        <h3>Configurações de Resposta</h3>
-                        <div class="form-group">
-                            <label>Tempo máximo de resposta:</label>
-                            <input type="number" class="form-control" value="5" min="1" max="30">
-                            <small>Segundos</small>
-                        </div>
-                        <div class="form-group">
-                            <label>Número máximo de tentativas:</label>
-                            <input type="number" class="form-control" value="3" min="1" max="10">
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" checked>
-                                Sugerir respostas alternativas
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" checked>
-                                Permitir escalação para humano
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Escalation Settings -->
-                <div id="escalation-settings" class="settings-content">
-                    <div class="settings-section">
-                        <h3>Configurações de Escalação</h3>
-                        <div class="form-group">
-                            <label>Palavras-chave para escalação:</label>
-                            <textarea class="form-control" rows="3" placeholder="emergência, urgente, dor intensa, sangramento..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Número de tentativas antes da escalação:</label>
-                            <input type="number" class="form-control" value="3" min="1" max="10">
-                        </div>
-                        <div class="form-group">
-                            <label>Mensagem de escalação:</label>
-                            <textarea class="form-control" rows="3" placeholder="Vou conectar você com um profissional..."></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Integration Settings -->
-                <div id="integration-settings" class="settings-content">
-                    <div class="settings-section">
-                        <h3>Configurações de Integração</h3>
-                        <div class="form-group">
-                            <label>API Key:</label>
-                            <input type="password" class="form-control" placeholder="Sua API key">
-                        </div>
-                        <div class="form-group">
-                            <label>Webhook URL:</label>
-                            <input type="url" class="form-control" placeholder="https://exemplo.com/webhook">
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" checked>
-                                Sincronizar com base de conhecimento
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" checked>
-                                Log de conversas
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Save Settings -->
-                <div class="settings-actions">
-                    <button class="btn btn-primary" onclick="saveSettings()">
-                        <i class="fas fa-save"></i>
-                        Salvar Configurações
-                    </button>
-                    <button class="btn btn-outline" onclick="resetSettings()">
-                        <i class="fas fa-undo"></i>
-                        Restaurar Padrões
-                    </button>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Modals -->
-    <!-- Knowledge Editor Modal -->
-    <div id="knowledgeEditorModal" class="modal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h2>Editar Conhecimento</h2>
-                <button class="modal-close" onclick="closeModal('knowledgeEditorModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Pergunta:</label>
-                    <input type="text" class="form-control" placeholder="Digite a pergunta...">
-                </div>
-                <div class="form-group">
-                    <label>Resposta:</label>
-                    <textarea class="form-control" rows="6" placeholder="Digite a resposta..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Categoria:</label>
-                    <select class="form-control">
-                        <option value="wound-care">Cuidados com Feridas</option>
-                        <option value="medication">Medicamentos</option>
-                        <option value="lifestyle">Estilo de Vida</option>
-                        <option value="emergency">Emergências</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Palavras-chave:</label>
-                    <input type="text" class="form-control" placeholder="ferida, banho, curativo...">
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeModal('knowledgeEditorModal')">Cancelar</button>
-                <button class="btn btn-primary" onclick="saveKnowledge()">Salvar</button>
-            </div>
-        </div>
-    </div>
+        </main>
 
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="loading-spinner">
-            <i class="fas fa-spinner fa-spin"></i>
-            <p>Processando...</p>
-        </div>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span class="icon icon-menu"></span>
+        </button>
+
+        <!-- Chat Assistant Button -->
+        <button class="chat-assistant-btn" onclick="window.location.href='chatbot.html'">
+            <span class="icon icon-chat"></span>
+        </button>
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/chatbot.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !mobileToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Implement logout logic here
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Chat functions
+        function sendMessage() {
+            const input = document.querySelector('input[placeholder="Digite sua mensagem..."]');
+            const message = input.value.trim();
+            if (message) {
+                // Implement send message logic
+                console.log('Sending message:', message);
+                input.value = '';
+            }
+        }
+
+        // Add enter key support for message input
+        document.addEventListener('keypress', function(event) {
+            if (event.target.placeholder === 'Digite sua mensagem...' && event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>

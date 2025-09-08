@@ -4,149 +4,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Teleconsulta</title>
-    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/modern-design.css">
     <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/telehealth.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="app-header">
-        <div class="header-content">
-            <div class="logo">
-                <span class="icon icon-hospital icon-lg"></span>
-                <div class="logo-text">
-                    <h1>Heal+</h1>
-                    <span>Teleconsulta</span>
-                </div>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
             </div>
-            <nav class="header-nav">
-                <a href="#dashboard" class="nav-link active" data-section="dashboard">
-                    <span class="icon icon-chart"></span>
-                    Dashboard
-                </a>
-                <a href="#sessions" class="nav-link" data-section="sessions">
-                    <span class="icon icon-video"></span>
-                    Sessões
-                </a>
-                <a href="#schedule" class="nav-link" data-section="schedule">
-                    <span class="icon icon-calendar"></span>
-                    Agendamentos
-                </a>
-                <a href="#patients" class="nav-link" data-section="patients">
-                    <span class="icon icon-user-group"></span>
-                    Pacientes
-                </a>
-                <a href="#reports" class="nav-link" data-section="reports">
-                    <span class="icon icon-chart"></span>
-                    Relatórios
-                </a>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a href="dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="wound-capture.html" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Nova Avaliação
+                    </a>
+                    <a href="clinician.html" class="nav-item">
+                        <span class="icon icon-user-group"></span>
+                        Meus Pacientes
+                    </a>
+                    <a href="#agenda" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Agenda
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Teleconsulta</div>
+                    <a href="#telehealth" class="nav-item active">
+                        <span class="icon icon-video"></span>
+                        Sessões
+                    </a>
+                    <a href="#schedule" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Agendamentos
+                    </a>
+                    <a href="#patients" class="nav-item">
+                        <span class="icon icon-user-group"></span>
+                        Pacientes
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Sistema</div>
+                    <a href="#reports" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Relatórios
+                    </a>
+                    <a href="profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Perfil
+                    </a>
+                </div>
             </nav>
-                <div class="user-menu">
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">MS</div>
                     <div class="user-info">
-                        <img src="https://via.placeholder.com/40" alt="Avatar" class="user-avatar">
-                        <div class="user-details">
-                            <span class="user-name">Dr. Maria Santos</span>
-                            <span class="user-role">Dermatologia</span>
-                        </div>
+                        <div class="user-name">Dr. Maria Santos</div>
+                        <div class="user-email">maria.santos@healplus.com</div>
                     </div>
-                    <button class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
                 </div>
+                <button class="logout-btn">
+                    <span class="icon icon-arrow-right"></span>
+                    Sair
+                </button>
             </div>
-        </div>
-    </header>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-            <!-- Dashboard Section -->
-            <section id="dashboard" class="section active">
-                <div class="section-header">
-                    <h1>Dashboard de Teleconsulta</h1>
-                    <p>Visão geral das suas consultas online</p>
-                </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Content Header -->
+            <header class="content-header">
+                <h1 class="content-title">Teleconsulta</h1>
+                <p class="content-subtitle">Gerencie suas consultas online e mantenha contato com seus pacientes.</p>
+            </header>
 
+            <!-- Content Body -->
+            <div class="content-body">
                 <!-- Quick Stats -->
-                <div class="stats-grid">
+                <div class="stats-grid" style="margin-bottom: 3rem;">
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-video"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-video"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +12%
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Sessões Hoje</h3>
-                            <p class="stat-number">5</p>
-                            <p class="stat-label">3 concluídas</p>
-                        </div>
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Sessões Hoje</div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-clock"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-down"></span>
+                                -2min
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Tempo Médio</h3>
-                            <p class="stat-number">28min</p>
-                            <p class="stat-label">Por sessão</p>
-                        </div>
+                        <div class="stat-value">28min</div>
+                        <div class="stat-label">Tempo Médio</div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-star"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-star"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +0.2
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Avaliação Média</h3>
-                            <p class="stat-number">4.7</p>
-                            <p class="stat-label">De 5.0</p>
-                        </div>
+                        <div class="stat-value">4.7</div>
+                        <div class="stat-label">Avaliação Média</div>
                     </div>
+
                     <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-user-group"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +8%
+                            </div>
                         </div>
-                        <div class="stat-content">
-                            <h3>Pacientes Ativos</h3>
-                            <p class="stat-number">127</p>
-                            <p class="stat-label">Este mês</p>
-                        </div>
+                        <div class="stat-value">127</div>
+                        <div class="stat-label">Pacientes Ativos</div>
                     </div>
                 </div>
 
                 <!-- Active Sessions -->
-                <div class="active-sessions">
-                    <div class="section-header">
-                        <h2>Sessões Ativas</h2>
-                        <button class="btn btn-primary" onclick="startNewSession()">
-                            <i class="fas fa-plus"></i>
-                            Nova Sessão
-                        </button>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Sessões Ativas</h3>
+                        <p class="card-subtitle">Suas consultas em andamento no momento.</p>
                     </div>
-                    <div class="sessions-list">
-                        <div class="session-item active">
-                            <div class="session-info">
-                                <div class="session-patient">
-                                    <img src="https://via.placeholder.com/50" alt="Avatar" class="patient-avatar">
-                                    <div class="patient-details">
-                                        <h3>Carlos Santos</h3>
-                                        <p>Consulta de Acompanhamento</p>
-                                        <span class="session-duration">25 min</span>
+                    <div class="card-body">
+                        <div style="padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-lg); border-left: 4px solid var(--success);">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #34D399); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">CS</div>
+                                    <div>
+                                        <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Carlos Santos</h4>
+                                        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.25rem;">Consulta de Acompanhamento</p>
+                                        <span style="font-size: 0.75rem; color: var(--success); font-weight: 500;">25 min em andamento</span>
                                     </div>
                                 </div>
-                                <div class="session-status">
-                                    <span class="status-badge status-active">Em andamento</span>
-                                </div>
+                                <span class="badge badge-success">Em andamento</span>
                             </div>
-                            <div class="session-actions">
-                                <button class="btn btn-primary" onclick="joinSession(1)">
-                                    <i class="fas fa-video"></i>
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="btn btn-primary">
+                                    <span class="icon icon-video"></span>
                                     Entrar na Sessão
                                 </button>
-                                <button class="btn btn-outline" onclick="openChat(1)">
-                                    <i class="fas fa-comments"></i>
+                                <button class="btn btn-secondary">
+                                    <span class="icon icon-chat"></span>
                                     Chat
                                 </button>
                             </div>
@@ -155,77 +187,76 @@
                 </div>
 
                 <!-- Upcoming Sessions -->
-                <div class="upcoming-sessions">
-                    <div class="section-header">
-                        <h2>Próximas Sessões</h2>
-                        <button class="btn btn-outline" onclick="showSection('schedule')">
-                            Ver Agenda
-                        </button>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Próximas Sessões</h3>
+                        <p class="card-subtitle">Suas consultas agendadas para hoje.</p>
                     </div>
-                    <div class="sessions-list">
-                        <div class="session-item">
-                            <div class="session-info">
-                                <div class="session-patient">
-                                    <img src="https://via.placeholder.com/50" alt="Avatar" class="patient-avatar">
-                                    <div class="patient-details">
-                                        <h3>Maria Oliveira</h3>
-                                        <p>Primeira Consulta</p>
-                                        <span class="session-scheduled">14:30 - Hoje</span>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.875rem;">MO</div>
+                                        <div>
+                                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Maria Oliveira</h4>
+                                            <p style="font-size: 0.875rem; color: var(--text-muted);">Primeira Consulta</p>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.875rem; color: var(--text-primary); font-weight: 500;">14:30</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Hoje</div>
                                     </div>
                                 </div>
-                                <div class="session-status">
-                                    <span class="status-badge status-scheduled">Agendada</span>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-eye"></span>
+                                        Detalhes
+                                    </button>
+                                    <button class="btn btn-sm btn-primary">
+                                        <span class="icon icon-settings"></span>
+                                        Preparar
+                                    </button>
                                 </div>
                             </div>
-                            <div class="session-actions">
-                                <button class="btn btn-outline" onclick="viewSessionDetails(2)">
-                                    <i class="fas fa-eye"></i>
-                                    Detalhes
-                                </button>
-                                <button class="btn btn-primary" onclick="prepareSession(2)">
-                                    <i class="fas fa-cog"></i>
-                                    Preparar
-                                </button>
-                            </div>
-                        </div>
-                        <div class="session-item">
-                            <div class="session-info">
-                                <div class="session-patient">
-                                    <img src="https://via.placeholder.com/50" alt="Avatar" class="patient-avatar">
-                                    <div class="patient-details">
-                                        <h3>João Silva</h3>
-                                        <p>Avaliação de Ferida</p>
-                                        <span class="session-scheduled">16:00 - Hoje</span>
+
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--warning), #FCD34D); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.875rem;">JS</div>
+                                        <div>
+                                            <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">João Silva</h4>
+                                            <p style="font-size: 0.875rem; color: var(--text-muted);">Avaliação de Ferida</p>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.875rem; color: var(--text-primary); font-weight: 500;">16:00</div>
+                                        <div style="font-size: 0.75rem; color: var(--text-muted);">Hoje</div>
                                     </div>
                                 </div>
-                                <div class="session-status">
-                                    <span class="status-badge status-scheduled">Agendada</span>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="btn btn-sm btn-secondary">
+                                        <span class="icon icon-eye"></span>
+                                        Detalhes
+                                    </button>
+                                    <button class="btn btn-sm btn-primary">
+                                        <span class="icon icon-settings"></span>
+                                        Preparar
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="session-actions">
-                                <button class="btn btn-outline" onclick="viewSessionDetails(3)">
-                                    <i class="fas fa-eye"></i>
-                                    Detalhes
-                                </button>
-                                <button class="btn btn-primary" onclick="prepareSession(3)">
-                                    <i class="fas fa-cog"></i>
-                                    Preparar
-                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Recent Sessions -->
-                <div class="recent-sessions">
-                    <div class="section-header">
-                        <h2>Sessões Recentes</h2>
-                        <button class="btn btn-outline" onclick="showSection('sessions')">
-                            Ver Todas
-                        </button>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Sessões Recentes</h3>
+                        <p class="card-subtitle">Suas últimas consultas realizadas.</p>
                     </div>
-                    <div class="sessions-table-container">
-                        <table class="sessions-table">
+                    <div class="card-body">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Paciente</th>
@@ -240,70 +271,70 @@
                             <tbody>
                                 <tr>
                                     <td>
-                                        <div class="patient-cell">
-                                            <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
-                                            <div class="patient-details">
-                                                <span class="patient-name">Ana Costa</span>
-                                                <span class="patient-id">ID: 002</span>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #34D399); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.75rem;">AC</div>
+                                            <div>
+                                                <div style="font-weight: 500; color: var(--text-primary);">Ana Costa</div>
+                                                <div style="font-size: 0.75rem; color: var(--text-muted);">ID: 002</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>Acompanhamento</td>
-                                    <td>15/01/2024 - 10:30</td>
+                                    <td>15/01/2025 - 10:30</td>
                                     <td>32 min</td>
-                                    <td><span class="status-badge status-completed">Concluída</span></td>
+                                    <td><span class="badge badge-success">Concluída</span></td>
                                     <td>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span>5.0</span>
+                                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span style="font-size: 0.875rem; color: var(--text-muted); margin-left: 0.25rem;">5.0</span>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="action-buttons">
-                                            <button class="btn btn-outline btn-sm" onclick="viewSessionRecord(1)">
-                                                <i class="fas fa-eye"></i>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn btn-sm btn-secondary">
+                                                <span class="icon icon-eye"></span>
                                             </button>
-                                            <button class="btn btn-outline btn-sm" onclick="downloadSessionReport(1)">
-                                                <i class="fas fa-download"></i>
+                                            <button class="btn btn-sm btn-secondary">
+                                                <span class="icon icon-download"></span>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div class="patient-cell">
-                                            <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
-                                            <div class="patient-details">
-                                                <span class="patient-name">Pedro Lima</span>
-                                                <span class="patient-id">ID: 003</span>
+                                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                            <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.75rem;">PL</div>
+                                            <div>
+                                                <div style="font-weight: 500; color: var(--text-primary);">Pedro Lima</div>
+                                                <div style="font-size: 0.75rem; color: var(--text-muted);">ID: 003</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>Primeira Consulta</td>
-                                    <td>14/01/2024 - 15:45</td>
+                                    <td>14/01/2025 - 15:45</td>
                                     <td>45 min</td>
-                                    <td><span class="status-badge status-completed">Concluída</span></td>
+                                    <td><span class="badge badge-success">Concluída</span></td>
                                     <td>
-                                        <div class="rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <span>4.0</span>
+                                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--warning); width: 14px; height: 14px;"></span>
+                                            <span class="icon icon-star" style="color: var(--text-muted); width: 14px; height: 14px;"></span>
+                                            <span style="font-size: 0.875rem; color: var(--text-muted); margin-left: 0.25rem;">4.0</span>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="action-buttons">
-                                            <button class="btn btn-outline btn-sm" onclick="viewSessionRecord(2)">
-                                                <i class="fas fa-eye"></i>
+                                        <div style="display: flex; gap: 0.5rem;">
+                                            <button class="btn btn-sm btn-secondary">
+                                                <span class="icon icon-eye"></span>
                                             </button>
-                                            <button class="btn btn-outline btn-sm" onclick="downloadSessionReport(2)">
-                                                <i class="fas fa-download"></i>
+                                            <button class="btn btn-sm btn-secondary">
+                                                <span class="icon icon-download"></span>
                                             </button>
                                         </div>
                                     </td>
@@ -312,544 +343,72 @@
                         </table>
                     </div>
                 </div>
-            </section>
-
-            <!-- Sessions Section -->
-            <section id="sessions" class="section">
-                <div class="section-header">
-                    <h1>Histórico de Sessões</h1>
-                    <p>Gerencie todas as suas sessões de teleconsulta</p>
-                </div>
-
-                <!-- Session Filters -->
-                <div class="filters">
-                    <div class="filter-group">
-                        <label>Buscar:</label>
-                        <input type="text" id="sessionSearch" placeholder="Paciente, tipo ou ID..." class="form-control">
-                    </div>
-                    <div class="filter-group">
-                        <label>Status:</label>
-                        <select id="sessionStatusFilter" class="form-control">
-                            <option value="all">Todos</option>
-                            <option value="scheduled">Agendadas</option>
-                            <option value="active">Ativas</option>
-                            <option value="completed">Concluídas</option>
-                            <option value="cancelled">Canceladas</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Período:</label>
-                        <select id="sessionPeriodFilter" class="form-control">
-                            <option value="all">Todos</option>
-                            <option value="today">Hoje</option>
-                            <option value="week">Esta semana</option>
-                            <option value="month">Este mês</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button class="btn btn-primary" onclick="startNewSession()">
-                            <i class="fas fa-plus"></i>
-                            Nova Sessão
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Sessions Table -->
-                <div class="sessions-table-container">
-                    <table class="sessions-table">
-                        <thead>
-                            <tr>
-                                <th>Paciente</th>
-                                <th>Tipo</th>
-                                <th>Data/Hora</th>
-                                <th>Duração</th>
-                                <th>Status</th>
-                                <th>Avaliação</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="patient-cell">
-                                        <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
-                                        <div class="patient-details">
-                                            <span class="patient-name">Carlos Santos</span>
-                                            <span class="patient-id">ID: 001</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Acompanhamento</td>
-                                <td>15/01/2024 - 14:30</td>
-                                <td>25 min</td>
-                                <td><span class="status-badge status-active">Ativa</span></td>
-                                <td>-</td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-primary btn-sm" onclick="joinSession(1)">
-                                            <i class="fas fa-video"></i>
-                                        </button>
-                                        <button class="btn btn-outline btn-sm" onclick="viewSessionDetails(1)">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="patient-cell">
-                                        <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
-                                        <div class="patient-details">
-                                            <span class="patient-name">Ana Costa</span>
-                                            <span class="patient-id">ID: 002</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>Acompanhamento</td>
-                                <td>15/01/2024 - 10:30</td>
-                                <td>32 min</td>
-                                <td><span class="status-badge status-completed">Concluída</span></td>
-                                <td>
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>5.0</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-outline btn-sm" onclick="viewSessionRecord(2)">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-outline btn-sm" onclick="downloadSessionReport(2)">
-                                            <i class="fas fa-download"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Schedule Section -->
-            <section id="schedule" class="section">
-                <div class="section-header">
-                    <h1>Agenda de Teleconsultas</h1>
-                    <p>Gerencie seus agendamentos e disponibilidade</p>
-                </div>
-
-                <!-- Schedule Controls -->
-                <div class="schedule-controls">
-                    <div class="date-navigation">
-                        <button class="btn btn-outline" onclick="previousWeek()">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <span class="current-week">Semana de 15-21 Jan 2024</span>
-                        <button class="btn btn-outline" onclick="nextWeek()">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    <div class="schedule-actions">
-                        <button class="btn btn-outline" onclick="toggleAvailability()">
-                            <i class="fas fa-calendar-plus"></i>
-                            Disponibilidade
-                        </button>
-                        <button class="btn btn-primary" onclick="scheduleNewSession()">
-                            <i class="fas fa-plus"></i>
-                            Agendar Sessão
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Weekly Schedule -->
-                <div class="weekly-schedule">
-                    <div class="schedule-header">
-                        <div class="time-column">Horário</div>
-                        <div class="day-column">Seg</div>
-                        <div class="day-column">Ter</div>
-                        <div class="day-column">Qua</div>
-                        <div class="day-column">Qui</div>
-                        <div class="day-column">Sex</div>
-                        <div class="day-column">Sáb</div>
-                        <div class="day-column">Dom</div>
-                    </div>
-                    <div class="schedule-body">
-                        <div class="schedule-row">
-                            <div class="time-slot">08:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="time-slot">09:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="time-slot">10:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="time-slot">11:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="time-slot">14:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="time-slot">15:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                        <div class="schedule-row">
-                            <div class="time-slot">16:00</div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot available"></div>
-                            <div class="day-slot unavailable"></div>
-                            <div class="day-slot unavailable"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Patients Section -->
-            <section id="patients" class="section">
-                <div class="section-header">
-                    <h1>Pacientes de Teleconsulta</h1>
-                    <p>Gerencie seus pacientes e suas consultas online</p>
-                </div>
-
-                <!-- Patient Filters -->
-                <div class="filters">
-                    <div class="filter-group">
-                        <label>Buscar:</label>
-                        <input type="text" id="patientSearch" placeholder="Nome, CPF ou email..." class="form-control">
-                    </div>
-                    <div class="filter-group">
-                        <label>Status:</label>
-                        <select id="patientStatusFilter" class="form-control">
-                            <option value="all">Todos</option>
-                            <option value="active">Ativos</option>
-                            <option value="scheduled">Com agendamento</option>
-                            <option value="completed">Consultas concluídas</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Última consulta:</label>
-                        <select id="lastConsultationFilter" class="form-control">
-                            <option value="all">Todas</option>
-                            <option value="today">Hoje</option>
-                            <option value="week">Esta semana</option>
-                            <option value="month">Este mês</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button class="btn btn-primary" onclick="addNewPatient()">
-                            <i class="fas fa-plus"></i>
-                            Novo Paciente
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Patients Table -->
-                <div class="patients-table-container">
-                    <table class="patients-table">
-                        <thead>
-                            <tr>
-                                <th>Paciente</th>
-                                <th>Última Consulta</th>
-                                <th>Próxima Consulta</th>
-                                <th>Total de Sessões</th>
-                                <th>Avaliação Média</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="patient-cell">
-                                        <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
-                                        <div class="patient-details">
-                                            <span class="patient-name">Carlos Santos</span>
-                                            <span class="patient-id">ID: 001</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>15/01/2024 - 14:30</td>
-                                <td>22/01/2024 - 14:30</td>
-                                <td>5</td>
-                                <td>
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>4.8</span>
-                                    </div>
-                                </td>
-                                <td><span class="status-badge status-active">Ativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-outline btn-sm" onclick="viewPatient(1)">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-primary btn-sm" onclick="scheduleConsultation(1)">
-                                            <i class="fas fa-calendar-plus"></i>
-                                        </button>
-                                        <button class="btn btn-outline btn-sm" onclick="viewPatientHistory(1)">
-                                            <i class="fas fa-history"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="patient-cell">
-                                        <img src="https://via.placeholder.com/40" alt="Avatar" class="patient-avatar-small">
-                                        <div class="patient-details">
-                                            <span class="patient-name">Ana Costa</span>
-                                            <span class="patient-id">ID: 002</span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>15/01/2024 - 10:30</td>
-                                <td>29/01/2024 - 10:30</td>
-                                <td>3</td>
-                                <td>
-                                    <div class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <span>5.0</span>
-                                    </div>
-                                </td>
-                                <td><span class="status-badge status-active">Ativo</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-outline btn-sm" onclick="viewPatient(2)">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-primary btn-sm" onclick="scheduleConsultation(2)">
-                                            <i class="fas fa-calendar-plus"></i>
-                                        </button>
-                                        <button class="btn btn-outline btn-sm" onclick="viewPatientHistory(2)">
-                                            <i class="fas fa-history"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- Reports Section -->
-            <section id="reports" class="section">
-                <div class="section-header">
-                    <h1>Relatórios de Teleconsulta</h1>
-                    <p>Análise de performance e métricas</p>
-                </div>
-
-                <!-- Report Filters -->
-                <div class="report-filters">
-                    <div class="filter-group">
-                        <label>Período:</label>
-                        <select id="reportPeriod" class="form-control">
-                            <option value="30">Últimos 30 dias</option>
-                            <option value="90">Últimos 90 dias</option>
-                            <option value="180">Últimos 6 meses</option>
-                            <option value="365">Último ano</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label>Métrica:</label>
-                        <select id="reportMetric" class="form-control">
-                            <option value="sessions">Número de Sessões</option>
-                            <option value="duration">Duração Média</option>
-                            <option value="satisfaction">Satisfação</option>
-                            <option value="attendance">Taxa de Comparecimento</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <button class="btn btn-primary" onclick="generateReport()">
-                            <i class="fas fa-download"></i>
-                            Gerar Relatório
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Report Charts -->
-                <div class="report-charts">
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h2>Performance de Teleconsultas</h2>
-                            <div class="chart-controls">
-                                <button class="btn btn-outline btn-sm active" data-chart="line">Linha</button>
-                                <button class="btn btn-outline btn-sm" data-chart="bar">Barras</button>
-                                <button class="btn btn-outline btn-sm" data-chart="area">Área</button>
-                            </div>
-                        </div>
-                        <div class="chart">
-                            <canvas id="telehealthChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Key Metrics -->
-                <div class="key-metrics">
-                    <h2>Métricas Principais</h2>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <h3>Total de Sessões</h3>
-                            <div class="metric-value-large">247</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+15% vs período anterior</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Duração Média</h3>
-                            <div class="metric-value-large">28 min</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-down"></i>
-                                <span>-2 min vs período anterior</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Satisfação Média</h3>
-                            <div class="metric-value-large">4.7/5</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+0.2 vs período anterior</span>
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h3>Taxa de Comparecimento</h3>
-                            <div class="metric-value-large">94%</div>
-                            <div class="metric-trend positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+3% vs período anterior</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Video Call Modal -->
-    <div id="videoCallModal" class="modal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h2>Teleconsulta - Carlos Santos</h2>
-                <button class="modal-close" onclick="closeModal('videoCallModal')">
-                    <i class="fas fa-times"></i>
-                </button>
             </div>
-            <div class="modal-body">
-                <div class="video-call-container">
-                    <div class="video-main">
-                        <div class="video-placeholder">
-                            <i class="fas fa-video"></i>
-                            <p>Vídeo do Paciente</p>
-                        </div>
-                    </div>
-                    <div class="video-controls">
-                        <button class="control-btn" onclick="toggleMute()">
-                            <i class="fas fa-microphone"></i>
-                        </button>
-                        <button class="control-btn" onclick="toggleVideo()">
-                            <i class="fas fa-video"></i>
-                        </button>
-                        <button class="control-btn" onclick="toggleScreenShare()">
-                            <i class="fas fa-desktop"></i>
-                        </button>
-                        <button class="control-btn" onclick="openChat()">
-                            <i class="fas fa-comments"></i>
-                        </button>
-                        <button class="control-btn danger" onclick="endCall()">
-                            <i class="fas fa-phone-slash"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </main>
 
-    <!-- Session Details Modal -->
-    <div id="sessionDetailsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Detalhes da Sessão</h2>
-                <button class="modal-close" onclick="closeModal('sessionDetailsModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Session details content will be populated dynamically -->
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-outline" onclick="closeModal('sessionDetailsModal')">Fechar</button>
-                <button class="btn btn-primary" onclick="joinSession()">Entrar na Sessão</button>
-            </div>
-        </div>
-    </div>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span class="icon icon-menu"></span>
+        </button>
 
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="loading-spinner">
-            <i class="fas fa-spinner fa-spin"></i>
-            <p>Processando...</p>
-        </div>
+        <!-- Chat Assistant Button -->
+        <button class="chat-assistant-btn" onclick="window.location.href='chatbot.html'">
+            <span class="icon icon-chat"></span>
+        </button>
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/telehealth.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !mobileToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Implement logout logic here
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Telehealth functions
+        function joinSession(sessionId) {
+            alert(`Entrando na sessão ${sessionId}...`);
+            // Implement video call logic
+        }
+
+        function viewSessionDetails(sessionId) {
+            alert(`Visualizando detalhes da sessão ${sessionId}...`);
+            // Implement session details modal
+        }
+
+        function prepareSession(sessionId) {
+            alert(`Preparando sessão ${sessionId}...`);
+            // Implement session preparation logic
+        }
+    </script>
 </body>
 </html>
