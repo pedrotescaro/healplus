@@ -4,457 +4,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heal+ - Perfil e Configurações</title>
-    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/modern-design.css">
     <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
-        <header class="app-header">
-            <div class="header-content">
-                <div class="logo">
-                    <span class="icon icon-hospital icon-lg"></span>
-                    <div class="logo-text">
-                        <h1>Heal+</h1>
-                        <span>Perfil e Configurações</span>
-                    </div>
-                </div>
-                <nav class="header-nav">
-                    <a href="index.html" class="nav-link">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a href="dashboard.html" class="nav-item">
                         <span class="icon icon-chart"></span>
                         Dashboard
                     </a>
-                    <a href="clinician.html" class="nav-link">
+                    <a href="wound-capture.html" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Nova Avaliação
+                    </a>
+                    <a href="clinician.html" class="nav-item">
                         <span class="icon icon-user-group"></span>
-                        Portal Clínico
+                        Meus Pacientes
                     </a>
-                    <a href="wound-capture.html" class="nav-link">
-                        <span class="icon icon-camera"></span>
-                        Captura
+                    <a href="#agenda" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Agenda
                     </a>
-                    <a href="remote-monitoring.html" class="nav-link">
-                        <span class="icon icon-heart"></span>
-                        Monitoramento
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Relatórios</div>
+                    <a href="#gerar-relatorio" class="nav-item">
+                        <span class="icon icon-download"></span>
+                        Gerar Relatório
                     </a>
-                </nav>
+                    <a href="#meus-relatorios" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Meus Relatórios
+                    </a>
+                    <a href="#comparar-relatorios" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Comparar Relatórios
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Sistema</div>
+                    <a href="#assessments" class="nav-item">
+                        <span class="icon icon-shield"></span>
+                        Assessments
+                    </a>
+                    <a href="#fhir-logs" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        FHIR Logs
+                    </a>
+                    <a href="profile.html" class="nav-item active">
+                        <span class="icon icon-user"></span>
+                        Perfil
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">PT</div>
+                    <div class="user-info">
+                        <div class="user-name">Pedro Tescaro</div>
+                        <div class="user-email">pedroatescaro@gmail.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <span class="icon icon-arrow-right"></span>
+                    Sair
+                </button>
             </div>
-        </header>
+        </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <div class="profile-container">
-                <!-- Profile Header -->
-                <div class="profile-header">
-                    <div class="profile-avatar">
-                        <div class="avatar-placeholder">
-                            <span class="icon icon-user icon-xl"></span>
-                        </div>
-                        <button class="btn btn-sm btn-secondary avatar-upload">
-                            <span class="icon icon-camera"></span>
-                            Alterar Foto
-                        </button>
+            <!-- Content Header -->
+            <header class="content-header">
+                <h1 class="content-title">Configurações</h1>
+                <p class="content-subtitle">Gerencie seu perfil e preferências de exibição.</p>
+            </header>
+
+            <!-- Content Body -->
+            <div class="content-body">
+                <!-- Profile Section -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Perfil do Usuário</h3>
+                        <p class="card-subtitle">Mantenha suas informações profissionais atualizadas.</p>
                     </div>
-                    <div class="profile-info">
-                        <h1 class="profile-name">Dr. Maria Silva Santos</h1>
-                        <p class="profile-title">Especialista em Feridas</p>
-                        <p class="profile-credentials">CRM: 123456 | COREN: 789012</p>
-                        <div class="profile-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">156</span>
-                                <span class="stat-label">Pacientes Ativos</span>
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem;">
+                            <div style="position: relative;">
+                                <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #34D399); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700;">PT</div>
+                                <button style="position: absolute; bottom: 0; right: 0; width: 24px; height: 24px; background: var(--secondary-bg); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <span class="icon icon-camera" style="width: 12px; height: 12px; color: var(--text-primary);"></span>
+                                </button>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-number">2.3k</span>
-                                <span class="stat-label">Avaliações</span>
+                            <div style="flex: 1;">
+                                <form style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Nome Completo</label>
+                                        <input type="text" class="form-input" value="Pedro Tescaro">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-input" value="pedroatescaro@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Especialidade</label>
+                                        <input type="text" class="form-input" value="Especialista em Feridas">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">CRM/COREN</label>
+                                        <input type="text" class="form-input" value="123456-SP">
+                                    </div>
+                                </form>
                             </div>
-                            <div class="stat-item">
-                                <span class="stat-number">98%</span>
-                                <span class="stat-label">Satisfação</span>
+                        </div>
+                        <div style="display: flex; justify-content: flex-end;">
+                            <button class="btn btn-primary">Salvar Alterações</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferences Section -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Preferências</h3>
+                        <p class="card-subtitle">Personalize a aparência e o idioma do aplicativo.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div class="form-group">
+                                <label class="form-label">Idioma</label>
+                                <select class="form-select">
+                                    <option value="pt-BR" selected>Português (Brasil)</option>
+                                    <option value="en-US">English (US)</option>
+                                    <option value="es-ES">Español</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tamanho da Fonte</label>
+                                <select class="form-select">
+                                    <option value="small">Pequeno</option>
+                                    <option value="medium" selected>Médio (Padrão)</option>
+                                    <option value="large">Grande</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Modo Escuro</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Ative o tema escuro para reduzir a fadiga visual</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div>
+                                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Alto Contraste</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Melhore a legibilidade com cores de alto contraste</div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Profile Tabs -->
-                <div class="profile-tabs">
-                    <button class="tab-btn active" data-tab="personal">
-                        <span class="icon icon-user"></span>
-                        Dados Pessoais
-                    </button>
-                    <button class="tab-btn" data-tab="professional">
-                        <span class="icon icon-shield"></span>
-                        Dados Profissionais
-                    </button>
-                    <button class="tab-btn" data-tab="settings">
-                        <span class="icon icon-settings"></span>
-                        Configurações
-                    </button>
-                    <button class="tab-btn" data-tab="security">
-                        <span class="icon icon-shield"></span>
-                        Segurança
-                    </button>
-                </div>
-
-                <!-- Tab Content -->
-                <div class="tab-content">
-                    <!-- Personal Information Tab -->
-                    <div class="tab-panel active" id="personal">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Informações Pessoais</h3>
-                                <p>Gerencie suas informações pessoais e de contato</p>
-                            </div>
-                            <div class="card-body">
-                                <form class="profile-form">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Nome Completo</label>
-                                            <input type="text" class="form-input" value="Maria Silva Santos" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Email</label>
-                                            <input type="email" class="form-input" value="maria.silva@healplus.com" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Telefone</label>
-                                            <input type="tel" class="form-input" value="(11) 99999-9999">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Data de Nascimento</label>
-                                            <input type="date" class="form-input" value="1985-03-15">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Endereço</label>
-                                        <textarea class="form-textarea" rows="3">Rua das Flores, 123
-Bairro Centro
-São Paulo - SP, 01234-567</textarea>
-                                    </div>
-                                    <div class="form-actions">
-                                        <button type="button" class="btn btn-secondary">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                <!-- Danger Zone Section -->
+                <div class="card" style="border: 1px solid var(--error);">
+                    <div class="card-header" style="border-bottom-color: var(--error);">
+                        <h3 class="card-title" style="color: var(--error);">Zona de Perigo</h3>
+                        <p class="card-subtitle">A ação a seguir é permanente e não pode ser desfeita.</p>
                     </div>
-
-                    <!-- Professional Information Tab -->
-                    <div class="tab-panel" id="professional">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>Dados Profissionais</h3>
-                                <p>Informações sobre sua formação e especialização</p>
+                    <div class="card-body">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Excluir Minha Conta</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">Remova permanentemente sua conta e todos os dados associados</div>
                             </div>
-                            <div class="card-body">
-                                <form class="profile-form">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Especialidade</label>
-                                            <select class="form-select">
-                                                <option value="wound-care" selected>Especialista em Feridas</option>
-                                                <option value="dermatology">Dermatologia</option>
-                                                <option value="surgery">Cirurgia</option>
-                                                <option value="nursing">Enfermagem</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">CRM/COREN</label>
-                                            <input type="text" class="form-input" value="CRM: 123456 | COREN: 789012">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label class="form-label">Instituição</label>
-                                            <input type="text" class="form-input" value="Hospital São Paulo">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Departamento</label>
-                                            <input type="text" class="form-input" value="Centro de Tratamento de Feridas">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Formação Acadêmica</label>
-                                        <textarea class="form-textarea" rows="4">• Medicina - Universidade de São Paulo (2010)
-• Residência em Dermatologia - Hospital das Clínicas (2012-2014)
-• Especialização em Tratamento de Feridas - Instituto de Feridas (2015)
-• Mestrado em Ciências Médicas - USP (2018)</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Certificações</label>
-                                        <textarea class="form-textarea" rows="3">• Certificação Internacional em Tratamento de Feridas (2016)
-• Certificação em Telemedicina - CFM (2020)
-• Certificação em LGPD para Profissionais de Saúde (2021)</textarea>
-                                    </div>
-                                    <div class="form-actions">
-                                        <button type="button" class="btn btn-secondary">Cancelar</button>
-                                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Settings Tab -->
-                    <div class="tab-panel" id="settings">
-                        <div class="settings-grid">
-                            <!-- Language Settings -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Idioma</h3>
-                                    <p>Configure o idioma da interface</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Idioma da Interface</h4>
-                                            <p>Escolha o idioma para exibição da plataforma</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <select class="form-select" id="language-select">
-                                                <option value="pt-BR" selected>Português (Brasil)</option>
-                                                <option value="en-US">English (US)</option>
-                                                <option value="es-ES">Español</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Font Size Settings -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Tamanho da Fonte</h3>
-                                    <p>Ajuste o tamanho do texto para melhor legibilidade</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Tamanho do Texto</h4>
-                                            <p>Médio (Padrão)</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <div class="font-size-options">
-                                                <button class="font-size-btn" data-size="small">
-                                                    <span class="font-size-preview small">Aa</span>
-                                                    <span>Pequeno</span>
-                                                </button>
-                                                <button class="font-size-btn active" data-size="medium">
-                                                    <span class="font-size-preview medium">Aa</span>
-                                                    <span>Médio</span>
-                                                </button>
-                                                <button class="font-size-btn" data-size="large">
-                                                    <span class="font-size-preview large">Aa</span>
-                                                    <span>Grande</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Theme Settings -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Aparência</h3>
-                                    <p>Personalize a aparência da plataforma</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Modo Escuro</h4>
-                                            <p>Ative o tema escuro para reduzir a fadiga visual</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <label class="toggle-switch">
-                                                <input type="checkbox" id="dark-mode-toggle">
-                                                <span class="toggle-slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Alto Contraste</h4>
-                                            <p>Melhore a legibilidade com cores de alto contraste</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <label class="toggle-switch">
-                                                <input type="checkbox" id="high-contrast-toggle">
-                                                <span class="toggle-slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Notification Settings -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Notificações</h3>
-                                    <p>Configure como você deseja receber notificações</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Notificações por Email</h4>
-                                            <p>Receba alertas importantes por email</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <label class="toggle-switch">
-                                                <input type="checkbox" id="email-notifications" checked>
-                                                <span class="toggle-slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Notificações Push</h4>
-                                            <p>Receba notificações no navegador</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <label class="toggle-switch">
-                                                <input type="checkbox" id="push-notifications" checked>
-                                                <span class="toggle-slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>Lembretes de Consulta</h4>
-                                            <p>Notificações sobre consultas agendadas</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <label class="toggle-switch">
-                                                <input type="checkbox" id="appointment-reminders" checked>
-                                                <span class="toggle-slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Security Tab -->
-                    <div class="tab-panel" id="security">
-                        <div class="security-grid">
-                            <!-- Password Change -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Alterar Senha</h3>
-                                    <p>Mantenha sua conta segura com uma senha forte</p>
-                                </div>
-                                <div class="card-body">
-                                    <form class="security-form">
-                                        <div class="form-group">
-                                            <label class="form-label">Senha Atual</label>
-                                            <div class="password-input">
-                                                <input type="password" class="form-input" id="current-password" required>
-                                                <button type="button" class="password-toggle" data-target="current-password">
-                                                    <span class="icon icon-eye"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Nova Senha</label>
-                                            <div class="password-input">
-                                                <input type="password" class="form-input" id="new-password" required>
-                                                <button type="button" class="password-toggle" data-target="new-password">
-                                                    <span class="icon icon-eye"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="form-label">Confirmar Nova Senha</label>
-                                            <div class="password-input">
-                                                <input type="password" class="form-input" id="confirm-password" required>
-                                                <button type="button" class="password-toggle" data-target="confirm-password">
-                                                    <span class="icon icon-eye"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">Alterar Senha</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <!-- Two-Factor Authentication -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Autenticação de Dois Fatores</h3>
-                                    <p>Adicione uma camada extra de segurança à sua conta</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="setting-item">
-                                        <div class="setting-info">
-                                            <h4>2FA Ativado</h4>
-                                            <p>Proteção adicional com código SMS</p>
-                                        </div>
-                                        <div class="setting-control">
-                                            <label class="toggle-switch">
-                                                <input type="checkbox" id="two-factor-auth" checked>
-                                                <span class="toggle-slider"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="security-info">
-                                        <p class="text-sm text-gray-600">
-                                            <span class="icon icon-info"></span>
-                                            A autenticação de dois fatores ajuda a proteger sua conta mesmo se sua senha for comprometida.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Session Management -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Sessões Ativas</h3>
-                                    <p>Gerencie suas sessões de login ativas</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="session-list">
-                                        <div class="session-item">
-                                            <div class="session-info">
-                                                <h4>Navegador Atual</h4>
-                                                <p>Chrome no Windows • São Paulo, SP</p>
-                                                <span class="session-time">Ativo agora</span>
-                                            </div>
-                                            <div class="session-status">
-                                                <span class="status-badge active">Ativo</span>
-                                            </div>
-                                        </div>
-                                        <div class="session-item">
-                                            <div class="session-info">
-                                                <h4>Mobile App</h4>
-                                                <p>iOS • São Paulo, SP</p>
-                                                <span class="session-time">2 horas atrás</span>
-                                            </div>
-                                            <div class="session-status">
-                                                <span class="status-badge">Inativo</span>
-                                                <button class="btn btn-sm btn-error">Encerrar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <button type="button" class="btn btn-error">Encerrar Todas as Outras Sessões</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-error">Excluir Minha Conta</button>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span class="icon icon-menu"></span>
+        </button>
+
+        <!-- Chat Assistant Button -->
+        <button class="chat-assistant-btn" onclick="window.location.href='chatbot.html'">
+            <span class="icon icon-chat"></span>
+        </button>
     </div>
 
     <!-- Scripts -->
     <script src="js/theme-manager.js"></script>
-    <script src="js/profile.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !mobileToggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Implement logout logic here
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Save changes functionality
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            // Implement save logic here
+            alert('Alterações salvas com sucesso!');
+        });
+
+        // Delete account functionality
+        document.querySelector('.btn-error').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.')) {
+                if (confirm('Esta é sua última chance. Tem certeza absoluta?')) {
+                    alert('Conta será excluída em 30 dias. Você receberá um email de confirmação.');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
