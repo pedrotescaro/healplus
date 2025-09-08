@@ -7,6 +7,7 @@ class ProfileManager {
     init() {
         this.setupEventListeners();
         this.loadProfileData();
+        this.loadUserPreferences();
     }
 
     setupEventListeners() {
@@ -33,6 +34,21 @@ class ProfileManager {
                 this.updateSetting(toggle.id, e.target.checked);
             });
         });
+
+        // Theme toggles
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('change', (e) => {
+                this.updateSetting('dark-mode-toggle', e.target.checked);
+            });
+        }
+
+        const highContrastToggle = document.getElementById('high-contrast-toggle');
+        if (highContrastToggle) {
+            highContrastToggle.addEventListener('change', (e) => {
+                this.updateSetting('high-contrast-toggle', e.target.checked);
+            });
+        }
 
         // Font size buttons
         document.querySelectorAll('.font-size-btn').forEach(btn => {
@@ -80,6 +96,64 @@ class ProfileManager {
         };
 
         this.populateProfileForm(profileData);
+    }
+
+    loadUserPreferences() {
+        // Load and apply current preferences
+        const theme = localStorage.getItem('theme') || 'dark';
+        const fontSize = localStorage.getItem('fontSize') || 'medium';
+        const language = localStorage.getItem('language') || 'pt-BR';
+
+        // Apply theme
+        document.documentElement.setAttribute('data-theme', theme);
+
+        // Apply font size
+        document.documentElement.setAttribute('data-font-size', fontSize);
+
+        // Apply language
+        document.documentElement.lang = language;
+
+        // Update UI elements
+        this.updatePreferenceUI();
+    }
+
+    updatePreferenceUI() {
+        // Update theme toggles
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+            const theme = localStorage.getItem('theme') || 'dark';
+            darkModeToggle.checked = theme === 'dark';
+        }
+
+        const highContrastToggle = document.getElementById('high-contrast-toggle');
+        if (highContrastToggle) {
+            const theme = localStorage.getItem('theme') || 'dark';
+            highContrastToggle.checked = theme === 'high-contrast';
+        }
+
+        // Update font size buttons
+        const fontSize = localStorage.getItem('fontSize') || 'medium';
+        document.querySelectorAll('.font-size-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-size') === fontSize) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Update language select
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.value = localStorage.getItem('language') || 'pt-BR';
+        }
+
+        // Update other toggles
+        const toggleIds = ['email-notifications', 'push-notifications', 'appointment-reminders', 'two-factor-auth'];
+        toggleIds.forEach(id => {
+            const toggle = document.getElementById(id);
+            if (toggle) {
+                toggle.checked = localStorage.getItem(id) === 'true';
+            }
+        });
     }
 
     populateProfileForm(data) {
@@ -196,8 +270,14 @@ class ProfileManager {
         // Save setting to localStorage
         localStorage.setItem(settingId, value);
 
-        // Apply setting
+        // Apply setting immediately
         switch (settingId) {
+            case 'dark-mode-toggle':
+                this.setTheme(value ? 'dark' : 'light');
+                break;
+            case 'high-contrast-toggle':
+                this.setTheme(value ? 'high-contrast' : 'dark');
+                break;
             case 'email-notifications':
                 this.toggleEmailNotifications(value);
                 break;
@@ -214,6 +294,16 @@ class ProfileManager {
 
         if (window.healPlusApp) {
             window.healPlusApp.showNotification('Configuração atualizada!', 'success');
+        }
+    }
+
+    setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Update theme manager if available
+        if (window.themeManager) {
+            window.themeManager.setTheme(theme);
         }
     }
 
@@ -260,9 +350,14 @@ class ProfileManager {
             selectedBtn.classList.add('active');
         }
 
-        // Apply font size
+        // Apply font size immediately
         document.documentElement.setAttribute('data-font-size', size);
         localStorage.setItem('fontSize', size);
+
+        // Update theme manager if available
+        if (window.themeManager) {
+            window.themeManager.setFontSize(size);
+        }
 
         if (window.healPlusApp) {
             window.healPlusApp.showNotification(`Tamanho da fonte alterado para: ${this.getFontSizeName(size)}`, 'info');
@@ -272,6 +367,11 @@ class ProfileManager {
     setLanguage(language) {
         document.documentElement.lang = language;
         localStorage.setItem('language', language);
+
+        // Update theme manager if available
+        if (window.themeManager) {
+            window.themeManager.setLanguage(language);
+        }
 
         if (window.healPlusApp) {
             window.healPlusApp.showNotification(`Idioma alterado para: ${this.getLanguageName(language)}`, 'info');

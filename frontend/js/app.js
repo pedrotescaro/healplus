@@ -179,14 +179,32 @@ class HealPlusApp {
 
     async loadUserData() {
         try {
-            // Simulate API call
-            this.currentUser = {
-                id: 1,
-                name: 'João Silva',
-                email: 'joao.silva@email.com',
-                role: 'patient',
-                avatar: 'JS'
-            };
+            // Get user type from localStorage (set during login)
+            const userType = localStorage.getItem('userType') || 'patient';
+            const userEmail = localStorage.getItem('userEmail') || 'usuario@email.com';
+            
+            // Simulate API call based on user type
+            if (userType === 'patient') {
+                this.currentUser = {
+                    id: 1,
+                    name: 'João Silva',
+                    email: userEmail,
+                    role: 'patient',
+                    avatar: 'JS',
+                    type: 'patient'
+                };
+            } else {
+                this.currentUser = {
+                    id: 1,
+                    name: 'Dr. Maria Santos',
+                    email: userEmail,
+                    role: 'clinician',
+                    avatar: 'MS',
+                    type: 'clinician',
+                    specialty: 'Dermatologia',
+                    crm: 'CRM 123456'
+                };
+            }
 
             // Update UI elements
             const userNameElements = document.querySelectorAll('.user-name');
@@ -204,9 +222,79 @@ class HealPlusApp {
                 element.textContent = this.currentUser.avatar;
             });
 
+            // Update user role display if exists
+            const userRoleElements = document.querySelectorAll('.user-role');
+            userRoleElements.forEach(element => {
+                if (this.currentUser.specialty) {
+                    element.textContent = this.currentUser.specialty;
+                } else {
+                    element.textContent = 'Paciente';
+                }
+            });
+
+            // Load user preferences
+            this.loadUserPreferences();
+
         } catch (error) {
             console.error('Error loading user data:', error);
             this.showNotification('Erro ao carregar dados do usuário', 'error');
+        }
+    }
+
+    loadUserPreferences() {
+        // Load theme preferences
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+
+        // Load font size preferences
+        const fontSize = localStorage.getItem('fontSize') || 'medium';
+        document.documentElement.setAttribute('data-font-size', fontSize);
+
+        // Load language preferences
+        const language = localStorage.getItem('language') || 'pt-BR';
+        document.documentElement.lang = language;
+
+        // Update toggle switches
+        this.updateToggleSwitches();
+    }
+
+    updateToggleSwitches() {
+        // Update dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        if (darkModeToggle) {
+            const theme = localStorage.getItem('theme') || 'dark';
+            darkModeToggle.checked = theme === 'dark';
+        }
+
+        // Update high contrast toggle
+        const highContrastToggle = document.getElementById('high-contrast-toggle');
+        if (highContrastToggle) {
+            const theme = localStorage.getItem('theme') || 'dark';
+            highContrastToggle.checked = theme === 'high-contrast';
+        }
+
+        // Update other toggles
+        const toggleIds = ['email-notifications', 'push-notifications', 'appointment-reminders', 'two-factor-auth'];
+        toggleIds.forEach(id => {
+            const toggle = document.getElementById(id);
+            if (toggle) {
+                toggle.checked = localStorage.getItem(id) === 'true';
+            }
+        });
+
+        // Update font size buttons
+        const fontSize = localStorage.getItem('fontSize') || 'medium';
+        document.querySelectorAll('.font-size-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-size') === fontSize) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Update language select
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.value = localStorage.getItem('language') || 'pt-BR';
         }
     }
 

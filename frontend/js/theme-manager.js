@@ -1,7 +1,7 @@
 // Global Theme and Settings Manager
 class ThemeManager {
     constructor() {
-        this.currentTheme = localStorage.getItem('theme') || 'light';
+        this.currentTheme = localStorage.getItem('theme') || 'dark';
         this.currentFontSize = localStorage.getItem('fontSize') || 'medium';
         this.currentLanguage = localStorage.getItem('language') || 'pt-BR';
         

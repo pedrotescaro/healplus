@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Teste de Funcionalidades</title>
+    <link rel="stylesheet" href="css/modern-design.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Teste</div>
+                    <a href="#test" class="nav-item active">
+                        <span class="icon icon-chart"></span>
+                        Teste de Funcionalidades
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">TS</div>
+                    <div class="user-info">
+                        <div class="user-name">Teste Sistema</div>
+                        <div class="user-email">teste@healplus.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <span class="icon icon-arrow-right"></span>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Content Header -->
+            <header class="content-header">
+                <h1 class="content-title">Teste de Funcionalidades</h1>
+                <p class="content-subtitle">Verificação de todas as funcionalidades do sistema.</p>
+            </header>
+
+            <!-- Content Body -->
+            <div class="content-body">
+                <!-- Test Buttons -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Testes de JavaScript</h3>
+                        <p class="card-subtitle">Clique nos botões para testar as funcionalidades.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <button class="btn btn-primary" onclick="testNotification('success')">
+                                <span class="icon icon-check"></span>
+                                Teste Notificação Sucesso
+                            </button>
+                            <button class="btn btn-error" onclick="testNotification('error')">
+                                <span class="icon icon-x"></span>
+                                Teste Notificação Erro
+                            </button>
+                            <button class="btn btn-warning" onclick="testNotification('warning')">
+                                <span class="icon icon-alert-triangle"></span>
+                                Teste Notificação Aviso
+                            </button>
+                            <button class="btn btn-info" onclick="testNotification('info')">
+                                <span class="icon icon-info"></span>
+                                Teste Notificação Info
+                            </button>
+                            <button class="btn btn-secondary" onclick="testLoading()">
+                                <span class="icon icon-clock"></span>
+                                Teste Loading
+                            </button>
+                            <button class="btn btn-secondary" onclick="testThemeToggle()">
+                                <span class="icon icon-moon"></span>
+                                Teste Tema
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Preferences -->
+                <div class="card" style="margin-bottom: 2rem;">
+                    <div class="card-header">
+                        <h3 class="card-title">Teste de Preferências</h3>
+                        <p class="card-subtitle">Teste as configurações de tema, fonte e idioma.</p>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 1.5rem;">
+                            <!-- Theme Toggle -->
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg);">
+                                <div>
+                                    <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">Modo Escuro</h4>
+                                    <p style="font-size: 0.875rem; color: var(--text-muted);">Ativar tema escuro</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="dark-mode-toggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <!-- Font Size -->
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg);">
+                                <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Tamanho da Fonte</h4>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button class="font-size-btn active" data-size="small">Pequeno</button>
+                                    <button class="font-size-btn" data-size="medium">Médio</button>
+                                    <button class="font-size-btn" data-size="large">Grande</button>
+                                </div>
+                            </div>
+
+                            <!-- Language -->
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg);">
+                                <h4 style="font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Idioma</h4>
+                                <select id="language-select" class="form-select" style="max-width: 200px;">
+                                    <option value="pt-BR">Português (Brasil)</option>
+                                    <option value="en-US">English (US)</option>
+                                    <option value="es-ES">Español</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Stats -->
+                <div class="stats-grid" style="margin-bottom: 2rem;">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-chart"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +12%
+                            </div>
+                        </div>
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Funcionalidades OK</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-check"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +5
+                            </div>
+                        </div>
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Páginas Ativas</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-user"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +2
+                            </div>
+                        </div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">Tipos de Login</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-settings"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +3
+                            </div>
+                        </div>
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">Preferências</div>
+                    </div>
+                </div>
+
+                <!-- Test Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Teste de Tabela</h3>
+                        <p class="card-subtitle">Tabela interativa para teste de cliques.</p>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Funcionalidade</th>
+                                    <th>Status</th>
+                                    <th>Teste</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Login</td>
+                                    <td><span class="badge badge-success">OK</span></td>
+                                    <td>Paciente/Clínico</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-secondary" onclick="testTableClick('Login')">
+                                            <span class="icon icon-eye"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Preferências</td>
+                                    <td><span class="badge badge-success">OK</span></td>
+                                    <td>Tema/Fonte/Idioma</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-secondary" onclick="testTableClick('Preferências')">
+                                            <span class="icon icon-eye"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Notificações</td>
+                                    <td><span class="badge badge-success">OK</span></td>
+                                    <td>Toast Messages</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-secondary" onclick="testTableClick('Notificações')">
+                                            <span class="icon icon-eye"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span class="icon icon-menu"></span>
+        </button>
+
+        <!-- Chat Assistant Button -->
+        <button class="chat-assistant-btn" onclick="window.location.href='chatbot.html'">
+            <span class="icon icon-chat"></span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+    <script>
+        // Test functions
+        function testNotification(type) {
+            if (window.healPlusApp) {
+                const messages = {
+                    success: 'Teste de notificação de sucesso funcionando!',
+                    error: 'Teste de notificação de erro funcionando!',
+                    warning: 'Teste de notificação de aviso funcionando!',
+                    info: 'Teste de notificação de informação funcionando!'
+                };
+                window.healPlusApp.showNotification(messages[type], type);
+            }
+        }
+
+        function testLoading() {
+            if (window.healPlusApp) {
+                window.healPlusApp.showLoading();
+                setTimeout(() => {
+                    window.healPlusApp.hideLoading();
+                    window.healPlusApp.showNotification('Teste de loading concluído!', 'success');
+                }, 2000);
+            }
+        }
+
+        function testThemeToggle() {
+            if (window.themeManager) {
+                window.themeManager.toggleTheme();
+            }
+        }
+
+        function testTableClick(item) {
+            if (window.healPlusApp) {
+                window.healPlusApp.showNotification(`Clique na tabela: ${item}`, 'info');
+            }
+        }
+
+        // Initialize test page
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Página de teste carregada com sucesso!');
+            
+            // Set test user type
+            localStorage.setItem('userType', 'patient');
+            localStorage.setItem('userEmail', 'teste@healplus.com');
+            
+            // Initialize profile manager for preferences
+            if (document.querySelector('.toggle-switch') || document.querySelector('.font-size-btn')) {
+                window.profileManager = new ProfileManager();
+            }
+        });
+    </script>
+</body>
+</html>
