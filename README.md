@@ -224,7 +224,7 @@ O sistema implementa completamente o framework **TIMERS** para avaliação holí
 - **Gamificação**: Sistema de pontos e conquistas para engajamento
 - **Alertas Inteligentes**: Notificações baseadas em padrões de risco
 
-### 7. 🎯 Funcionalidades Inspiradas no WoundWise
+### 7. 🎯 Funcionalidades Avançadas de Monitoramento
 - **Análise Fotográfica**: Processamento automático de imagens de feridas
 - **Monitoramento Contínuo**: Acompanhamento 24/7 do progresso
 - **Check-ins Estruturados**: Questionários padronizados para sintomas
