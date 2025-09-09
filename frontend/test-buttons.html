@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Teste de Botões</title>
+    <link rel="stylesheet" href="css/modern-design.css">
+    <link rel="stylesheet" href="css/enhanced-buttons.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .test-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+        
+        .test-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .test-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+        
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-test {
+            max-width: 400px;
+            margin-bottom: 1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .status-indicator {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+        
+        .status-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="text-align: center; margin-bottom: 2rem; color: #1f2937;">
+            🧪 Heal+ - Teste Completo de Botões
+        </h1>
+        
+        <!-- Teste de Botões Básicos -->
+        <div class="test-section">
+            <h2 class="test-title">🔘 Botões Básicos</h2>
+            <p class="test-description">
+                Teste todos os tipos de botões e suas funcionalidades.
+            </p>
+            <div class="button-grid">
+                <button class="btn btn-primary" onclick="testAction('Login')">
+                    Entrar no Sistema
+                </button>
+                <button class="btn btn-secondary" onclick="testAction('Register')">
+                    Criar Conta
+                </button>
+                <button class="btn btn-success" onclick="testAction('Save')">
+                    Salvar Alterações
+                </button>
+                <button class="btn btn-danger" onclick="testAction('Delete')">
+                    Excluir Item
+                </button>
+                <button class="btn btn-warning" onclick="testAction('Warning')">
+                    Aviso Importante
+                </button>
+                <button class="btn btn-info" onclick="testAction('Info')">
+                    Informação
+                </button>
+            </div>
+        </div>
+        
+        <!-- Teste de Botões com Loading -->
+        <div class="test-section">
+            <h2 class="test-title">⏳ Botões com Loading</h2>
+            <p class="test-description">
+                Teste botões que mostram estado de carregamento.
+            </p>
+            <div class="button-grid">
+                <button class="btn btn-primary" data-loading="Processando...">
+                    Processar Dados
+                </button>
+                <button class="btn btn-success" data-loading="Salvando...">
+                    Salvar no Servidor
+                </button>
+                <button class="btn btn-info" data-loading="Enviando...">
+                    Enviar Email
+                </button>
+            </div>
+        </div>
+        
+        <!-- Teste de Botões com Confirmação -->
+        <div class="test-section">
+            <h2 class="test-title">❓ Botões com Confirmação</h2>
+            <p class="test-description">
+                Teste botões que pedem confirmação antes de executar.
+            </p>
+            <div class="button-grid">
+                <button class="btn btn-danger" data-confirm="Tem certeza que deseja excluir este item?">
+                    Excluir Permanentemente
+                </button>
+                <button class="btn btn-warning" data-confirm="Deseja realmente sair do sistema?">
+                    Sair do Sistema
+                </button>
+                <button class="btn btn-info" data-confirm="Confirmar envio do relatório?">
+                    Enviar Relatório
+                </button>
+            </div>
+        </div>
+        
+        <!-- Teste de Ações Rápidas -->
+        <div class="test-section">
+            <h2 class="test-title">⚡ Ações Rápidas</h2>
+            <p class="test-description">
+                Teste botões de ação rápida com animações.
+            </p>
+            <div class="button-grid">
+                <button class="btn btn-primary quick-action-btn" data-action="add">
+                    <span class="icon">➕</span> Adicionar
+                </button>
+                <button class="btn btn-secondary quick-action-btn" data-action="edit">
+                    <span class="icon">✏️</span> Editar
+                </button>
+                <button class="btn btn-danger quick-action-btn" data-action="delete">
+                    <span class="icon">🗑️</span> Excluir
+                </button>
+                <button class="btn btn-info quick-action-btn" data-action="copy">
+                    <span class="icon">📋</span> Copiar
+                </button>
+                <button class="btn btn-success quick-action-btn" data-action="share">
+                    <span class="icon">📤</span> Compartilhar
+                </button>
+            </div>
+        </div>
+        
+        <!-- Teste de Grupos de Botões -->
+        <div class="test-section">
+            <h2 class="test-title">🔗 Grupos de Botões</h2>
+            <p class="test-description">
+                Teste grupos de botões relacionados.
+            </p>
+            <div class="button-group">
+                <button class="btn btn-primary">Primeiro</button>
+                <button class="btn btn-primary">Segundo</button>
+                <button class="btn btn-primary">Terceiro</button>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-secondary">Anterior</button>
+                <button class="btn btn-primary">Atual</button>
+                <button class="btn btn-secondary">Próximo</button>
+            </div>
+        </div>
+        
+        <!-- Teste de Formulários -->
+        <div class="test-section">
+            <h2 class="test-title">📝 Formulários</h2>
+            <p class="test-description">
+                Teste validação de formulários em tempo real.
+            </p>
+            <form class="form-test" onsubmit="handleFormSubmit(event)">
+                <input type="text" class="form-input" placeholder="Nome completo" required>
+                <input type="email" class="form-input" placeholder="Email" required>
+                <input type="tel" class="form-input" placeholder="Telefone">
+                <button type="submit" class="btn btn-primary">
+                    Enviar Formulário
+                </button>
+            </form>
+        </div>
+        
+        <!-- Teste de Navegação -->
+        <div class="test-section">
+            <h2 class="test-title">🧭 Navegação</h2>
+            <p class="test-description">
+                Teste links de navegação com loading.
+            </p>
+            <div class="button-grid">
+                <a href="html/login.html" class="btn btn-primary" data-loading="Carregando...">
+                    Página de Login
+                </a>
+                <a href="html/register.html" class="btn btn-secondary" data-loading="Carregando...">
+                    Página de Cadastro
+                </a>
+                <a href="html/dashboard.html" class="btn btn-info" data-loading="Carregando...">
+                    Dashboard
+                </a>
+                <a href="html/profile.html" class="btn btn-success" data-loading="Carregando...">
+                    Perfil
+                </a>
+            </div>
+        </div>
+        
+        <!-- Teste de Notificações -->
+        <div class="test-section">
+            <h2 class="test-title">🔔 Notificações</h2>
+            <p class="test-description">
+                Teste o sistema de notificações.
+            </p>
+            <div class="button-grid">
+                <button class="btn btn-success" onclick="showNotification('Operação realizada com sucesso!', 'success')">
+                    Notificação de Sucesso
+                </button>
+                <button class="btn btn-danger" onclick="showNotification('Erro ao processar solicitação', 'error')">
+                    Notificação de Erro
+                </button>
+                <button class="btn btn-warning" onclick="showNotification('Atenção: Verifique os dados', 'warning')">
+                    Notificação de Aviso
+                </button>
+                <button class="btn btn-info" onclick="showNotification('Informação importante', 'info')">
+                    Notificação de Info
+                </button>
+            </div>
+        </div>
+        
+        <!-- Status do Sistema -->
+        <div class="test-section">
+            <h2 class="test-title">📊 Status do Sistema</h2>
+            <p class="test-description">
+                Informações sobre o estado atual do sistema.
+            </p>
+            <div id="systemStatus">
+                <div class="status-indicator status-info">
+                    Sistema inicializado e funcionando corretamente
+                </div>
+            </div>
+            <div class="button-grid">
+                <button class="btn btn-primary" onclick="checkSystemStatus()">
+                    Verificar Status
+                </button>
+                <button class="btn btn-success" onclick="simulateSuccess()">
+                    Simular Sucesso
+                </button>
+                <button class="btn btn-danger" onclick="simulateError()">
+                    Simular Erro
+                </button>
+            </div>
+        </div>
+        
+        <!-- Botão Flutuante -->
+        <button class="fab" onclick="showNotification('Botão flutuante clicado!', 'info')">
+            <span class="icon">⚡</span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/button-handler.js"></script>
+    <script src="js/enhanced-buttons.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Funções de teste
+        function testAction(action) {
+            showNotification(`Ação "${action}" executada!`, 'success');
+        }
+        
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+        
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showNotification('Formulário enviado com sucesso!', 'success');
+        }
+        
+        function checkSystemStatus() {
+            showNotification('Verificando status do sistema...', 'info');
+            setTimeout(() => {
+                showNotification('Sistema funcionando perfeitamente!', 'success');
+            }, 1000);
+        }
+        
+        function simulateSuccess() {
+            showNotification('Operação simulada com sucesso!', 'success');
+        }
+        
+        function simulateError() {
+            showNotification('Erro simulado para teste!', 'error');
+        }
+        
+        // Inicializar página de teste
+        document.addEventListener('DOMContentLoaded', () => {
+            showNotification('Página de teste carregada!', 'info');
+        });
+    </script>
+</body>
+</html>

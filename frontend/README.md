@@ -53,9 +53,11 @@ frontend/
 
 ### ✅ Sistema de Botões Funcional
 - **ButtonHandler**: Classe que gerencia todos os cliques de botões
+- **EnhancedButtons**: Funcionalidades avançadas para botões
 - **Detecção automática**: Identifica ações baseadas em texto, classes e atributos
 - **Fallback inteligente**: Múltiplas formas de executar ações
 - **Notificações**: Sistema de notificações integrado
+- **Página de Cadastro**: Sistema completo de registro de usuários
 
 ### ✅ Navegação Inteligente
 - **Menu mobile**: Toggle automático da sidebar
@@ -65,6 +67,7 @@ frontend/
 
 ### ✅ Sistema de Autenticação
 - **Login funcional**: Formulário de login com validação
+- **Cadastro completo**: Página de registro com validação avançada
 - **Persistência**: Dados salvos no localStorage
 - **Redirecionamento**: Baseado no tipo de usuário
 - **Logout**: Funcionalidade de logout com confirmação
@@ -90,16 +93,48 @@ http://localhost:3000/frontend/
 - **Paciente**: Portal com dashboard, avaliações, consultas
 - **Clínico**: Dashboard com pacientes, relatórios, teleconsultas
 
+## 📝 Página de Cadastro
+
+### Funcionalidades
+- **Formulário completo**: Nome, email, telefone, senha
+- **Validação em tempo real**: Campos obrigatórios e formatos
+- **Seleção de tipo**: Paciente ou Clínico
+- **Campos específicos**: CRM e especialidade para clínicos
+- **Máscara de telefone**: Formatação automática
+- **Confirmação de senha**: Validação de correspondência
+- **Loading states**: Feedback visual durante cadastro
+- **Redirecionamento**: Baseado no tipo de usuário
+
+### Validações
+- **Nome**: Obrigatório, mínimo 2 caracteres
+- **Email**: Formato válido e obrigatório
+- **Telefone**: Formato brasileiro (opcional)
+- **Senha**: Mínimo 6 caracteres
+- **Confirmação**: Deve coincidir com a senha
+- **CRM**: Obrigatório para clínicos
+- **Especialidade**: Obrigatória para clínicos
+
+### Acesso
+```
+http://localhost:3000/frontend/html/register.html
+```
+
 ## 🔧 Funcionalidades dos Botões
 
 ### Botões de Ação
 - **Entrar/Login**: Executa login e redireciona
 - **Sair/Logout**: Confirma e executa logout
+- **Cadastrar/Registrar**: Navega para página de cadastro
 - **Capturar Ferida**: Navega para captura
 - **Teleconsulta**: Inicia sessão de vídeo
 - **Editar Perfil**: Ativa modo de edição
 - **Salvar**: Salva alterações
 - **Cancelar**: Cancela operações
+- **Excluir/Deletar**: Confirma e executa exclusão
+- **Buscar/Pesquisar**: Foca em campo de busca
+- **Exportar/Baixar**: Exporta dados
+- **Compartilhar**: Compartilha conteúdo
+- **Imprimir**: Executa impressão
 
 ### Cards Clicáveis
 - **Action Cards**: Executam ações específicas
@@ -189,12 +224,14 @@ http://localhost:3000/frontend/html/test.html
 - [x] Sistema de botões funcional
 - [x] Navegação inteligente
 - [x] Autenticação básica
+- [x] Página de cadastro completa
 - [x] Sistema de temas
 - [x] Notificações
 - [x] Responsividade
 - [x] Menu mobile
 - [x] Formulários funcionais
 - [x] Página de testes
+- [x] Funcionalidades avançadas de botões
 
 ### 🔄 Em Desenvolvimento
 - [ ] Integração com backend

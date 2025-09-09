@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Cadastro</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .register-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .register-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .register-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .register-subtitle {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .user-type-selection {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .user-type-option {
+            position: relative;
+        }
+        
+        .user-type-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .user-type-label {
+            display: block;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+        
+        .user-type-label:hover {
+            border-color: #667eea;
+            background: #f8fafc;
+        }
+        
+        .user-type-option input[type="radio"]:checked + .user-type-label {
+            border-color: #667eea;
+            background: #f0f4ff;
+            color: #667eea;
+        }
+        
+        .user-type-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .user-type-text {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .register-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .register-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .login-link {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .success-message {
+            color: #10b981;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e5e7eb;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 0.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 640px) {
+            .register-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-type-selection {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <div class="register-logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </div>
+                <h1 class="register-title">Criar Conta</h1>
+                <p class="register-subtitle">Preencha os dados abaixo para criar sua conta</p>
+            </div>
+            
+            <form id="registerForm" class="register-form">
+                <div class="user-type-selection">
+                    <div class="user-type-option">
+                        <input type="radio" id="patient" name="userType" value="patient" checked>
+                        <label for="patient" class="user-type-label">
+                            <div class="user-type-icon">👤</div>
+                            <div class="user-type-text">Paciente</div>
+                        </label>
+                    </div>
+                    <div class="user-type-option">
+                        <input type="radio" id="clinician" name="userType" value="clinician">
+                        <label for="clinician" class="user-type-label">
+                            <div class="user-type-icon">👨‍⚕️</div>
+                            <div class="user-type-text">Clínico</div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="form-label">Nome *</label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="form-label">Sobrenome *</label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" required>
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone" class="form-label">Telefone</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="(11) 99999-9999">
+                    <div class="error-message" id="phoneError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Senha *</label>
+                    <input type="password" id="password" name="password" class="form-input" required minlength="6">
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirmar Senha *</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" required>
+                    <div class="error-message" id="confirmPasswordError"></div>
+                </div>
+                
+                <div class="form-group" id="clinicianFields" style="display: none;">
+                    <label for="crm" class="form-label">CRM *</label>
+                    <input type="text" id="crm" name="crm" class="form-input" placeholder="CRM 123456">
+                    <div class="error-message" id="crmError"></div>
+                </div>
+                
+                <div class="form-group" id="clinicianFields2" style="display: none;">
+                    <label for="specialty" class="form-label">Especialidade *</label>
+                    <input type="text" id="specialty" name="specialty" class="form-input" placeholder="Dermatologia">
+                    <div class="error-message" id="specialtyError"></div>
+                </div>
+                
+                <button type="submit" class="register-btn" id="registerBtn">
+                    Criar Conta
+                </button>
+                
+                <div class="loading" id="loading">
+                    <div class="loading-spinner"></div>
+                    <p>Criando conta...</p>
+                </div>
+                
+                <div class="success-message" id="successMessage">
+                    Conta criada com sucesso! Redirecionando...
+                </div>
+            </form>
+            
+            <div class="login-link">
+                Já tem uma conta? <a href="login.html">Faça login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas da página de cadastro
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registerForm');
+            const userTypeRadios = document.querySelectorAll('input[name="userType"]');
+            const clinicianFields = document.getElementById('clinicianFields');
+            const clinicianFields2 = document.getElementById('clinicianFields2');
+            const crmInput = document.getElementById('crm');
+            const specialtyInput = document.getElementById('specialty');
+            
+            // Toggle campos do clínico
+            userTypeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'clinician') {
+                        clinicianFields.style.display = 'block';
+                        clinicianFields2.style.display = 'block';
+                        crmInput.required = true;
+                        specialtyInput.required = true;
+                    } else {
+                        clinicianFields.style.display = 'none';
+                        clinicianFields2.style.display = 'none';
+                        crmInput.required = false;
+                        specialtyInput.required = false;
+                        crmInput.value = '';
+                        specialtyInput.value = '';
+                    }
+                });
+            });
+            
+            // Validação de senha em tempo real
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            
+            confirmPasswordInput.addEventListener('input', function() {
+                if (this.value !== passwordInput.value) {
+                    this.classList.add('error');
+                    showFieldError('confirmPasswordError', 'As senhas não coincidem');
+                } else {
+                    this.classList.remove('error');
+                    hideFieldError('confirmPasswordError');
+                }
+            });
+            
+            // Validação de email
+            const emailInput = document.getElementById('email');
+            emailInput.addEventListener('blur', function() {
+                if (!isValidEmail(this.value)) {
+                    this.classList.add('error');
+                    showFieldError('emailError', 'Email inválido');
+                } else {
+                    this.classList.remove('error');
+                    hideFieldError('emailError');
+                }
+            });
+            
+            // Validação de telefone
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function() {
+                this.value = formatPhone(this.value);
+            });
+            
+            // Submissão do formulário
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleRegister();
+            });
+        });
+        
+        function handleRegister() {
+            const form = document.getElementById('registerForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Validar formulário
+            if (!validateForm(data)) {
+                return;
+            }
+            
+            // Mostrar loading
+            showLoading();
+            
+            // Simular criação de conta
+            setTimeout(() => {
+                hideLoading();
+                showSuccess();
+                
+                // Salvar dados no localStorage
+                localStorage.setItem('userEmail', data.email);
+                localStorage.setItem('userType', data.userType);
+                localStorage.setItem('userName', `${data.firstName} ${data.lastName}`);
+                localStorage.setItem('userPhone', data.phone || '');
+                if (data.userType === 'clinician') {
+                    localStorage.setItem('userCrm', data.crm || '');
+                    localStorage.setItem('userSpecialty', data.specialty || '');
+                }
+                
+                // Redirecionar após 2 segundos
+                setTimeout(() => {
+                    if (data.userType === 'clinician') {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                }, 2000);
+                
+            }, 2000);
+        }
+        
+        function validateForm(data) {
+            let isValid = true;
+            
+            // Limpar erros anteriores
+            clearAllErrors();
+            
+            // Validar nome
+            if (!data.firstName.trim()) {
+                showFieldError('firstNameError', 'Nome é obrigatório');
+                document.getElementById('firstName').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validar sobrenome
+            if (!data.lastName.trim()) {
+                showFieldError('lastNameError', 'Sobrenome é obrigatório');
+                document.getElementById('lastName').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validar email
+            if (!data.email.trim()) {
+                showFieldError('emailError', 'Email é obrigatório');
+                document.getElementById('email').classList.add('error');
+                isValid = false;
+            } else if (!isValidEmail(data.email)) {
+                showFieldError('emailError', 'Email inválido');
+                document.getElementById('email').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validar senha
+            if (!data.password) {
+                showFieldError('passwordError', 'Senha é obrigatória');
+                document.getElementById('password').classList.add('error');
+                isValid = false;
+            } else if (data.password.length < 6) {
+                showFieldError('passwordError', 'Senha deve ter pelo menos 6 caracteres');
+                document.getElementById('password').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validar confirmação de senha
+            if (!data.confirmPassword) {
+                showFieldError('confirmPasswordError', 'Confirmação de senha é obrigatória');
+                document.getElementById('confirmPassword').classList.add('error');
+                isValid = false;
+            } else if (data.password !== data.confirmPassword) {
+                showFieldError('confirmPasswordError', 'As senhas não coincidem');
+                document.getElementById('confirmPassword').classList.add('error');
+                isValid = false;
+            }
+            
+            // Validar campos do clínico
+            if (data.userType === 'clinician') {
+                if (!data.crm.trim()) {
+                    showFieldError('crmError', 'CRM é obrigatório');
+                    document.getElementById('crm').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!data.specialty.trim()) {
+                    showFieldError('specialtyError', 'Especialidade é obrigatória');
+                    document.getElementById('specialty').classList.add('error');
+                    isValid = false;
+                }
+            }
+            
+            return isValid;
+        }
+        
+        function showFieldError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId);
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+        
+        function hideFieldError(fieldId) {
+            const errorElement = document.getElementById(fieldId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        }
+        
+        function clearAllErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.style.display = 'none';
+            });
+            
+            const inputElements = document.querySelectorAll('.form-input');
+            inputElements.forEach(element => {
+                element.classList.remove('error');
+            });
+        }
+        
+        function showLoading() {
+            document.getElementById('registerBtn').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+        }
+        
+        function hideLoading() {
+            document.getElementById('registerBtn').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showSuccess() {
+            document.getElementById('successMessage').style.display = 'block';
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        function formatPhone(value) {
+            // Remove tudo que não é dígito
+            const numbers = value.replace(/\D/g, '');
+            
+            // Aplica a máscara (11) 99999-9999
+            if (numbers.length <= 2) {
+                return numbers;
+            } else if (numbers.length <= 7) {
+                return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`;
+            } else {
+                return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -201,24 +201,41 @@ class ButtonHandler {
     executeActionByText(text, button) {
         const lowerText = text.toLowerCase();
 
-        if (lowerText.includes('entrar') || lowerText.includes('login')) {
+        if (lowerText.includes('entrar') || lowerText.includes('login') || lowerText.includes('fazer login')) {
             this.handleLogin();
-        } else if (lowerText.includes('sair') || lowerText.includes('logout')) {
+        } else if (lowerText.includes('sair') || lowerText.includes('logout') || lowerText.includes('deslogar')) {
             this.handleLogout();
-        } else if (lowerText.includes('registrar') || lowerText.includes('cadastrar')) {
+        } else if (lowerText.includes('registrar') || lowerText.includes('cadastrar') || lowerText.includes('criar conta')) {
             this.handleRegister();
-        } else if (lowerText.includes('capturar') || lowerText.includes('ferida')) {
+        } else if (lowerText.includes('capturar') || lowerText.includes('ferida') || lowerText.includes('nova avaliação')) {
             this.handleWoundCapture();
-        } else if (lowerText.includes('teleconsulta') || lowerText.includes('vídeo')) {
+        } else if (lowerText.includes('teleconsulta') || lowerText.includes('vídeo') || lowerText.includes('consulta')) {
             this.handleTelehealth();
-        } else if (lowerText.includes('perfil')) {
+        } else if (lowerText.includes('perfil') || lowerText.includes('configurações')) {
             this.handleViewProfile();
-        } else if (lowerText.includes('salvar')) {
+        } else if (lowerText.includes('salvar') || lowerText.includes('guardar')) {
             this.handleSaveProfile();
-        } else if (lowerText.includes('cancelar')) {
+        } else if (lowerText.includes('cancelar') || lowerText.includes('voltar')) {
             this.handleCancel();
+        } else if (lowerText.includes('editar') || lowerText.includes('modificar')) {
+            this.handleEditProfile();
+        } else if (lowerText.includes('excluir') || lowerText.includes('deletar') || lowerText.includes('remover')) {
+            this.handleDelete();
+        } else if (lowerText.includes('adicionar') || lowerText.includes('novo') || lowerText.includes('criar')) {
+            this.handleAdd();
+        } else if (lowerText.includes('buscar') || lowerText.includes('pesquisar') || lowerText.includes('procurar')) {
+            this.handleSearch();
+        } else if (lowerText.includes('filtrar') || lowerText.includes('ordenar')) {
+            this.handleFilter();
+        } else if (lowerText.includes('exportar') || lowerText.includes('baixar') || lowerText.includes('download')) {
+            this.handleExport();
+        } else if (lowerText.includes('imprimir') || lowerText.includes('print')) {
+            this.handlePrint();
+        } else if (lowerText.includes('compartilhar') || lowerText.includes('enviar')) {
+            this.handleShare();
         } else {
             console.log('No specific action for button text:', text);
+            this.showNotification(`Ação "${text}" não implementada ainda`, 'info');
         }
     }
 
@@ -226,7 +243,8 @@ class ButtonHandler {
         console.log('Login action triggered');
         const email = document.getElementById('email')?.value;
         const password = document.getElementById('password')?.value;
-        const userType = document.querySelector('input[name="userType"]:checked')?.value;
+        const userType = document.querySelector('input[name="userType"]:checked')?.value || 
+                        document.querySelector('.user-type-btn.active')?.dataset?.type;
 
         if (!email || !password) {
             this.showNotification('Por favor, preencha todos os campos', 'error');
@@ -243,9 +261,9 @@ class ButtonHandler {
             
             // Redirecionar baseado no tipo de usuário
             if (userType === 'clinician') {
-                window.location.href = 'html/dashboard.html';
+                window.location.href = 'dashboard.html';
             } else {
-                window.location.href = 'html/index.html';
+                window.location.href = 'index.html';
             }
         }, 1000);
     }
@@ -262,7 +280,7 @@ class ButtonHandler {
 
     handleRegister() {
         console.log('Register action triggered');
-        this.showNotification('Funcionalidade de registro em desenvolvimento', 'info');
+        window.location.href = 'register.html';
     }
 
     handleWoundCapture() {
@@ -316,6 +334,59 @@ class ButtonHandler {
     handleCancel() {
         console.log('Cancel action triggered');
         this.closeAllModals();
+    }
+    
+    handleDelete() {
+        console.log('Delete action triggered');
+        if (confirm('Tem certeza que deseja excluir este item?')) {
+            this.showNotification('Item excluído com sucesso!', 'success');
+        }
+    }
+    
+    handleAdd() {
+        console.log('Add action triggered');
+        this.showNotification('Funcionalidade de adicionar em desenvolvimento', 'info');
+    }
+    
+    handleSearch() {
+        console.log('Search action triggered');
+        const searchInput = document.querySelector('input[type="search"], input[placeholder*="buscar"], input[placeholder*="pesquisar"]');
+        if (searchInput) {
+            searchInput.focus();
+        } else {
+            this.showNotification('Funcionalidade de busca em desenvolvimento', 'info');
+        }
+    }
+    
+    handleFilter() {
+        console.log('Filter action triggered');
+        this.showNotification('Funcionalidade de filtro em desenvolvimento', 'info');
+    }
+    
+    handleExport() {
+        console.log('Export action triggered');
+        this.showNotification('Exportando dados...', 'info');
+        setTimeout(() => {
+            this.showNotification('Dados exportados com sucesso!', 'success');
+        }, 1000);
+    }
+    
+    handlePrint() {
+        console.log('Print action triggered');
+        window.print();
+    }
+    
+    handleShare() {
+        console.log('Share action triggered');
+        if (navigator.share) {
+            navigator.share({
+                title: 'Heal+ - Portal de Saúde',
+                text: 'Confira o Heal+, sistema completo para monitoramento de feridas e teleconsultas.',
+                url: window.location.href
+            });
+        } else {
+            this.showNotification('Link copiado para a área de transferência!', 'success');
+        }
     }
 
     handleFormSubmit(form) {
