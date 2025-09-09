@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/wound-assessments")
@@ -40,7 +41,7 @@ public class WoundAssessmentController {
      * Obter avaliação por ID
      */
     @GetMapping("/{id}")
-    public ResponseEntity<WoundAssessment> getAssessmentById(@PathVariable Long id) {
+    public ResponseEntity<WoundAssessment> getAssessmentById(@PathVariable UUID id) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
             return ResponseEntity.ok(assessment);
@@ -55,7 +56,7 @@ public class WoundAssessmentController {
      * Obter avaliações por paciente
      */
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity<List<WoundAssessment>> getAssessmentsByPatient(@PathVariable Long patientId) {
+    public ResponseEntity<List<WoundAssessment>> getAssessmentsByPatient(@PathVariable UUID patientId) {
         try {
             List<WoundAssessment> assessments = woundAssessmentService.getAssessmentsByPatient(patientId);
             return ResponseEntity.ok(assessments);
@@ -68,7 +69,7 @@ public class WoundAssessmentController {
      * Obter avaliações por clínico
      */
     @GetMapping("/clinician/{clinicianId}")
-    public ResponseEntity<List<WoundAssessment>> getAssessmentsByClinician(@PathVariable Long clinicianId) {
+    public ResponseEntity<List<WoundAssessment>> getAssessmentsByClinician(@PathVariable UUID clinicianId) {
         try {
             List<WoundAssessment> assessments = woundAssessmentService.getAssessmentsByClinician(clinicianId);
             return ResponseEntity.ok(assessments);
@@ -81,7 +82,7 @@ public class WoundAssessmentController {
      * Obter avaliação mais recente por paciente
      */
     @GetMapping("/patient/{patientId}/latest")
-    public ResponseEntity<WoundAssessment> getLatestAssessmentByPatient(@PathVariable Long patientId) {
+    public ResponseEntity<WoundAssessment> getLatestAssessmentByPatient(@PathVariable UUID patientId) {
         try {
             WoundAssessment assessment = woundAssessmentService.getLatestAssessmentByPatient(patientId);
             return ResponseEntity.ok(assessment);
@@ -111,7 +112,7 @@ public class WoundAssessmentController {
      * Atualizar avaliação
      */
     @PutMapping("/{id}")
-    public ResponseEntity<WoundAssessment> updateAssessment(@PathVariable Long id, @Valid @RequestBody WoundAssessment assessment) {
+    public ResponseEntity<WoundAssessment> updateAssessment(@PathVariable UUID id, @Valid @RequestBody WoundAssessment assessment) {
         try {
             WoundAssessment updatedAssessment = woundAssessmentService.updateAssessment(id, assessment);
             return ResponseEntity.ok(updatedAssessment);
@@ -126,7 +127,7 @@ public class WoundAssessmentController {
      * Deletar avaliação
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAssessment(@PathVariable Long id) {
+    public ResponseEntity<String> deleteAssessment(@PathVariable UUID id) {
         try {
             woundAssessmentService.deleteAssessment(id);
             return ResponseEntity.ok("Avaliação deletada com sucesso");
@@ -141,7 +142,7 @@ public class WoundAssessmentController {
      * Análise completa de ferida com IA
      */
     @PostMapping("/{id}/ai-analysis")
-    public ResponseEntity<Map<String, Object>> performAIAnalysis(@PathVariable Long id, @RequestParam("image") MultipartFile imageFile) {
+    public ResponseEntity<Map<String, Object>> performAIAnalysis(@PathVariable UUID id, @RequestParam("image") MultipartFile imageFile) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
             
@@ -168,7 +169,7 @@ public class WoundAssessmentController {
      * Obter análises de IA por avaliação
      */
     @GetMapping("/{id}/ai-analyses")
-    public ResponseEntity<List<com.healplus.backend.Model.AIAnalysis>> getAIAnalyses(@PathVariable Long id) {
+    public ResponseEntity<List<com.healplus.backend.Model.AIAnalysis>> getAIAnalyses(@PathVariable UUID id) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
             List<com.healplus.backend.Model.AIAnalysis> analyses = aiService.getAnalysesByAssessment(assessment);
@@ -243,7 +244,7 @@ public class WoundAssessmentController {
      */
     @GetMapping("/patient/{patientId}/location/{location}")
     public ResponseEntity<List<WoundAssessment>> getAssessmentHistoryByPatientAndLocation(
-            @PathVariable Long patientId, @PathVariable String location) {
+            @PathVariable UUID patientId, @PathVariable String location) {
         try {
             List<WoundAssessment> assessments = woundAssessmentService.getAssessmentHistoryByPatientAndLocation(patientId, location);
             return ResponseEntity.ok(assessments);
@@ -283,7 +284,7 @@ public class WoundAssessmentController {
      * Upload de imagem para avaliação
      */
     @PostMapping("/{id}/upload-image")
-    public ResponseEntity<Map<String, Object>> uploadImage(@PathVariable Long id, @RequestParam("image") MultipartFile imageFile) {
+    public ResponseEntity<Map<String, Object>> uploadImage(@PathVariable UUID id, @RequestParam("image") MultipartFile imageFile) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
             Map<String, Object> result = woundAssessmentService.uploadImage(assessment, imageFile);
@@ -299,7 +300,7 @@ public class WoundAssessmentController {
      * Obter imagens de uma avaliação
      */
     @GetMapping("/{id}/images")
-    public ResponseEntity<List<com.healplus.backend.Model.WoundImage>> getAssessmentImages(@PathVariable Long id) {
+    public ResponseEntity<List<com.healplus.backend.Model.WoundImage>> getAssessmentImages(@PathVariable UUID id) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
             List<com.healplus.backend.Model.WoundImage> images = woundAssessmentService.getAssessmentImages(assessment);

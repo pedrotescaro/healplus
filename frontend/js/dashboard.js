@@ -172,7 +172,7 @@ class DashboardManager {
             setTimeout(() => {
                 resolve([
                     {
-                        id: 1,
+                        id: '550e8400-e29b-41d4-a716-446655440002',
                         location: 'Pé Direito',
                         date: '2024-01-15',
                         area: 12.5,
@@ -181,7 +181,7 @@ class DashboardManager {
                         aiAnalysis: 'Melhorando'
                     },
                     {
-                        id: 2,
+                        id: '550e8400-e29b-41d4-a716-446655440004',
                         location: 'Pé Esquerdo',
                         date: '2024-01-10',
                         area: 8.3,
@@ -199,7 +199,7 @@ class DashboardManager {
             setTimeout(() => {
                 resolve([
                     {
-                        id: 1,
+                        id: '550e8400-e29b-41d4-a716-446655440003',
                         date: '2024-01-22',
                         time: '14:30',
                         type: 'Presencial',
@@ -208,7 +208,7 @@ class DashboardManager {
                         status: 'confirmed'
                     },
                     {
-                        id: 2,
+                        id: '550e8400-e29b-41d4-a716-446655440005',
                         date: '2024-01-25',
                         time: '10:00',
                         type: 'Teleconsulta',

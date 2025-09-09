@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -163,7 +164,7 @@ public class RemoteMonitoringService {
         // Check for missed check-ins
         if (hasMissedCheckIn(patient)) {
             alerts.add(AlertResponse.builder()
-                    .id(-1L)
+                    .id(UUID.randomUUID())
                     .type("info")
                     .title("Check-in Pendente")
                     .message("Você não fez check-in hoje. Que tal atualizar seu progresso?")
@@ -176,7 +177,7 @@ public class RemoteMonitoringService {
         // Check for medication reminders
         if (isMedicationTime()) {
             alerts.add(AlertResponse.builder()
-                    .id(-2L)
+                    .id(UUID.randomUUID())
                     .type("warning")
                     .title("Lembrete de Medicação")
                     .message("Hora de tomar sua medicação!")
@@ -189,8 +190,8 @@ public class RemoteMonitoringService {
         return alerts;
     }
 
-    public void dismissAlert(Long alertId, String patientEmail) {
-        if (alertId > 0) {
+    public void dismissAlert(UUID alertId, String patientEmail) {
+        if (alertId != null) {
             // For real alerts, mark as reviewed
             RemoteCheckIn checkIn = checkInRepository.findById(alertId)
                     .orElseThrow(() -> new RuntimeException("Check-in not found"));
@@ -331,7 +332,7 @@ public class RemoteMonitoringService {
         return hour == 8 || hour == 14 || hour == 20;
     }
 
-    private String saveImage(MultipartFile image, Long patientId) {
+    private String saveImage(MultipartFile image, UUID patientId) {
         // Implementation would save the image to storage
         // For now, return a mock path
         return "/images/patient_" + patientId + "/" + System.currentTimeMillis() + ".jpg";
@@ -476,7 +477,7 @@ public class RemoteMonitoringService {
 
     // Response DTOs
     public static class RemoteCheckInResponse {
-        public Long id;
+        public UUID id;
         public String type;
         public String notes;
         public String riskLevel;
@@ -489,7 +490,7 @@ public class RemoteMonitoringService {
         }
 
         public static class RemoteCheckInResponseBuilder {
-            private Long id;
+            private UUID id;
             private String type;
             private String notes;
             private String riskLevel;
@@ -497,7 +498,7 @@ public class RemoteMonitoringService {
             private String timestamp;
             private String status;
 
-            public RemoteCheckInResponseBuilder id(Long id) {
+            public RemoteCheckInResponseBuilder id(UUID id) {
                 this.id = id;
                 return this;
             }

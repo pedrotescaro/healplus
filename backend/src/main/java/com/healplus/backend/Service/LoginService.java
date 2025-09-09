@@ -5,6 +5,7 @@ import com.healplus.backend.Repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class LoginService {
@@ -43,7 +44,7 @@ public class LoginService {
         }
     }
 
-    public String deleteLogin(Long id) {
+    public String deleteLogin(UUID id) {
         try {
             if (!loginRepository.findById(id).isPresent()) {
                 throw new IllegalArgumentException("Login not found with id: " + id);
@@ -55,7 +56,7 @@ public class LoginService {
         }
     }
 
-    public String updateLogin(Long id, Login updatedLogin) {
+    public String updateLogin(UUID id, Login updatedLogin) {
         try {
             Login existingLogin = loginRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Login not found with id: " + id));

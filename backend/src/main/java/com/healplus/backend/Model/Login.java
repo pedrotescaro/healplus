@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import java.util.UUID;
 
 @Entity
 @Table(name = "login")
@@ -16,8 +17,8 @@ import lombok.ToString;
 @ToString
 public class Login {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     
     @Column(unique = true, nullable = false)
     private String email;

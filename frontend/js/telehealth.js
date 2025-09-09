@@ -135,7 +135,7 @@ function loadActiveSessions() {
     // Simular dados de sessões ativas
     const activeSessions = [
         {
-            id: 1,
+            id: '550e8400-e29b-41d4-a716-446655440006',
             patientName: 'Carlos Santos',
             type: 'Consulta de Acompanhamento',
             duration: '25 min',
@@ -151,14 +151,14 @@ function loadUpcomingSessions() {
     // Simular dados de próximas sessões
     const upcomingSessions = [
         {
-            id: 2,
+            id: '550e8400-e29b-41d4-a716-446655440007',
             patientName: 'Maria Oliveira',
             type: 'Primeira Consulta',
             scheduled: '14:30 - Hoje',
             status: 'scheduled'
         },
         {
-            id: 3,
+            id: '550e8400-e29b-41d4-a716-446655440008',
             patientName: 'João Silva',
             type: 'Avaliação de Ferida',
             scheduled: '16:00 - Hoje',
@@ -174,7 +174,7 @@ function loadRecentSessions() {
     // Simular dados de sessões recentes
     const recentSessions = [
         {
-            id: 4,
+            id: '550e8400-e29b-41d4-a716-446655440009',
             patientName: 'Ana Costa',
             type: 'Acompanhamento',
             date: '15/01/2024 - 10:30',
@@ -183,7 +183,7 @@ function loadRecentSessions() {
             rating: 5.0
         },
         {
-            id: 5,
+            id: '550e8400-e29b-41d4-a716-446655440010',
             patientName: 'Pedro Lima',
             type: 'Primeira Consulta',
             date: '14/01/2024 - 15:45',

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/monitoring")
@@ -87,7 +88,7 @@ public class RemoteMonitoringController {
 
     @PostMapping("/alerts/{alertId}/dismiss")
     public ResponseEntity<Void> dismissAlert(
-            @PathVariable Long alertId,
+            @PathVariable UUID alertId,
             Authentication authentication
     ) {
         String patientEmail = authentication.getName();
@@ -145,7 +146,7 @@ public class RemoteMonitoringController {
     }
 
     public static class AlertResponse {
-        public Long id;
+        public UUID id;
         public String type;
         public String title;
         public String message;

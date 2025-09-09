@@ -28,7 +28,7 @@ class HealPlusCalendar {
         // Simulate loading appointments from API
         this.appointments = [
             {
-                id: 1,
+                id: '550e8400-e29b-41d4-a716-446655440013',
                 date: '2024-01-22',
                 time: '14:30',
                 type: 'Presencial',
@@ -37,7 +37,7 @@ class HealPlusCalendar {
                 status: 'confirmed'
             },
             {
-                id: 2,
+                id: '550e8400-e29b-41d4-a716-446655440014',
                 date: '2024-01-29',
                 time: '10:00',
                 type: 'Teleconsulta',
@@ -46,7 +46,7 @@ class HealPlusCalendar {
                 status: 'scheduled'
             },
             {
-                id: 3,
+                id: '550e8400-e29b-41d4-a716-446655440015',
                 date: '2024-02-05',
                 time: '09:00',
                 type: 'Presencial',

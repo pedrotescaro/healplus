@@ -131,7 +131,7 @@ function loadRecentPatients() {
     // Simular dados de pacientes
     const recentPatients = [
         {
-            id: 1,
+            id: '550e8400-e29b-41d4-a716-446655440011',
             name: 'João Silva',
             diagnosis: 'Úlcera Venosa - Pé Direito',
             lastAssessment: '15/01/2024',
@@ -140,7 +140,7 @@ function loadRecentPatients() {
             nextAppointment: '22/01/2024'
         },
         {
-            id: 2,
+            id: '550e8400-e29b-41d4-a716-446655440012',
             name: 'Ana Costa',
             diagnosis: 'Ferida Cirúrgica - Abdômen',
             lastAssessment: '14/01/2024',

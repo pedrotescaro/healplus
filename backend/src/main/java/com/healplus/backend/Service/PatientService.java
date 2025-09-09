@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
 public class PatientService {
@@ -28,7 +29,7 @@ public class PatientService {
     /**
      * Obter paciente por ID
      */
-    public Patient getPatientById(Long id) {
+    public Patient getPatientById(UUID id) {
         try {
             return patientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com ID: " + id));
@@ -88,7 +89,7 @@ public class PatientService {
     /**
      * Atualizar paciente
      */
-    public Patient updatePatient(Long id, Patient patient) {
+    public Patient updatePatient(UUID id, Patient patient) {
         try {
             Patient existingPatient = getPatientById(id);
             
@@ -148,7 +149,7 @@ public class PatientService {
     /**
      * Deletar paciente
      */
-    public void deletePatient(Long id) {
+    public void deletePatient(UUID id) {
         try {
             Patient patient = getPatientById(id);
             patientRepository.delete(patient);

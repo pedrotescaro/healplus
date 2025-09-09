@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface WoundImageRepository extends JpaRepository<WoundImage, Long> {
+public interface WoundImageRepository extends JpaRepository<WoundImage, UUID> {
     
     List<WoundImage> findByWoundAssessment(WoundAssessment woundAssessment);
     

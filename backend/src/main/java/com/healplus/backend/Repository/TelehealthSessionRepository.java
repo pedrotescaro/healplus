@@ -10,9 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface TelehealthSessionRepository extends JpaRepository<TelehealthSession, Long> {
+public interface TelehealthSessionRepository extends JpaRepository<TelehealthSession, UUID> {
     
     List<TelehealthSession> findByPatient(Patient patient);
     

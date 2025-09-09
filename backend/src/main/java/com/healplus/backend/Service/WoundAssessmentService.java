@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 @Service
 public class WoundAssessmentService {
@@ -45,7 +46,7 @@ public class WoundAssessmentService {
     /**
      * Obter avaliação por ID
      */
-    public WoundAssessment getAssessmentById(Long id) {
+    public WoundAssessment getAssessmentById(UUID id) {
         try {
             return woundAssessmentRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Avaliação não encontrada com ID: " + id));
@@ -57,7 +58,7 @@ public class WoundAssessmentService {
     /**
      * Obter avaliações por paciente
      */
-    public List<WoundAssessment> getAssessmentsByPatient(Long patientId) {
+    public List<WoundAssessment> getAssessmentsByPatient(UUID patientId) {
         try {
             Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com ID: " + patientId));
@@ -70,7 +71,7 @@ public class WoundAssessmentService {
     /**
      * Obter avaliações por clínico
      */
-    public List<WoundAssessment> getAssessmentsByClinician(Long clinicianId) {
+    public List<WoundAssessment> getAssessmentsByClinician(UUID clinicianId) {
         try {
             Clinician clinician = clinicianRepository.findById(clinicianId)
                 .orElseThrow(() -> new IllegalArgumentException("Clínico não encontrado com ID: " + clinicianId));
@@ -83,7 +84,7 @@ public class WoundAssessmentService {
     /**
      * Obter avaliação mais recente por paciente
      */
-    public WoundAssessment getLatestAssessmentByPatient(Long patientId) {
+    public WoundAssessment getLatestAssessmentByPatient(UUID patientId) {
         try {
             Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com ID: " + patientId));
@@ -131,7 +132,7 @@ public class WoundAssessmentService {
     /**
      * Atualizar avaliação
      */
-    public WoundAssessment updateAssessment(Long id, WoundAssessment assessment) {
+    public WoundAssessment updateAssessment(UUID id, WoundAssessment assessment) {
         try {
             WoundAssessment existingAssessment = getAssessmentById(id);
             
@@ -208,7 +209,7 @@ public class WoundAssessmentService {
     /**
      * Deletar avaliação
      */
-    public void deleteAssessment(Long id) {
+    public void deleteAssessment(UUID id) {
         try {
             WoundAssessment assessment = getAssessmentById(id);
             woundAssessmentRepository.delete(assessment);
@@ -264,7 +265,7 @@ public class WoundAssessmentService {
     /**
      * Obter histórico de avaliações por paciente e localização
      */
-    public List<WoundAssessment> getAssessmentHistoryByPatientAndLocation(Long patientId, String location) {
+    public List<WoundAssessment> getAssessmentHistoryByPatientAndLocation(UUID patientId, String location) {
         try {
             Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado com ID: " + patientId));

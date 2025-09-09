@@ -186,7 +186,7 @@ class HealPlusApp {
             // Simulate API call based on user type
             if (userType === 'patient') {
                 this.currentUser = {
-                    id: 1,
+                    id: '550e8400-e29b-41d4-a716-446655440000',
                     name: 'João Silva',
                     email: userEmail,
                     role: 'patient',
@@ -195,7 +195,7 @@ class HealPlusApp {
                 };
             } else {
                 this.currentUser = {
-                    id: 1,
+                    id: '550e8400-e29b-41d4-a716-446655440001',
                     name: 'Dr. Maria Santos',
                     email: userEmail,
                     role: 'clinician',
@@ -457,7 +457,7 @@ class HealPlusApp {
             setTimeout(() => {
                 resolve([
                     {
-                        id: 1,
+                        id: '550e8400-e29b-41d4-a716-446655440002',
                         location: 'Pé Direito',
                         date: '2024-01-15',
                         area: 12.5,
@@ -475,7 +475,7 @@ class HealPlusApp {
             setTimeout(() => {
                 resolve([
                     {
-                        id: 1,
+                        id: '550e8400-e29b-41d4-a716-446655440003',
                         date: '2024-01-22',
                         time: '14:30',
                         type: 'Presencial',

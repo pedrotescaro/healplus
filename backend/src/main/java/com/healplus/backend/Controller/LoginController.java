@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,7 @@ public class LoginController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteLogin(@PathVariable Long id) {
+    public ResponseEntity<String> deleteLogin(@PathVariable UUID id) {
         try {
             String response = loginService.deleteLogin(id);
             return new ResponseEntity<>(response, HttpStatus.OK);
@@ -65,7 +66,7 @@ public class LoginController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateLogin(@PathVariable Long id, @RequestBody Login updatedLogin) {
+    public ResponseEntity<String> updateLogin(@PathVariable UUID id, @RequestBody Login updatedLogin) {
         try {
             String response = loginService.updateLogin(id, updatedLogin);
             return new ResponseEntity<>(response, HttpStatus.OK);

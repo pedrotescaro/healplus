@@ -7,9 +7,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface ClinicianRepository extends JpaRepository<Clinician, Long> {
+public interface ClinicianRepository extends JpaRepository<Clinician, UUID> {
     
     Optional<Clinician> findByEmail(String email);
     
