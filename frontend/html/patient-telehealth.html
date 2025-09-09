@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Teleconsulta</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="patient-dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Meu Portal</div>
+                    <a href="patient-dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="patient-wound-assessment.html" class="nav-item">
+                        <span class="icon icon-camera"></span>
+                        Avaliar Ferida
+                    </a>
+                    <a href="patient-appointments.html" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Minhas Consultas
+                    </a>
+                    <a href="#telehealth" class="nav-item active">
+                        <span class="icon icon-video"></span>
+                        Teleconsulta
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Monitoramento</div>
+                    <a href="patient-daily-checkin.html" class="nav-item">
+                        <span class="icon icon-heart"></span>
+                        Check-in Diário
+                    </a>
+                    <a href="patient-medications.html" class="nav-item">
+                        <span class="icon icon-pill"></span>
+                        Medicamentos
+                    </a>
+                    <a href="patient-reports.html" class="nav-item">
+                        <span class="icon icon-document"></span>
+                        Meus Relatórios
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Conta</div>
+                    <a href="patient-profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Meu Perfil
+                    </a>
+                    <a href="patient-settings.html" class="nav-item">
+                        <span class="icon icon-settings"></span>
+                        Configurações
+                    </a>
+                    <a href="#" class="nav-item logout-btn">
+                        <span class="icon icon-logout"></span>
+                        Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span class="icon icon-menu"></span>
+                    </button>
+                    <h1 class="page-title">Teleconsulta</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="user-role">Paciente</span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="icon icon-sun"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Telehealth Content -->
+            <div class="telehealth-content">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Teleconsulta</h2>
+                    <p>Conecte-se com sua equipe médica de forma segura e conveniente.</p>
+                    
+                    <div class="action-grid">
+                        <a href="#schedule" class="action-card">
+                            <div class="action-icon">📅</div>
+                            <div class="action-title">Agendar Consulta</div>
+                            <div class="action-description">Marque uma consulta online</div>
+                        </a>
+                        
+                        <a href="#join" class="action-card">
+                            <div class="action-icon">📹</div>
+                            <div class="action-title">Entrar na Consulta</div>
+                            <div class="action-description">Acesse sua consulta agendada</div>
+                        </a>
+                        
+                        <a href="#history" class="action-card">
+                            <div class="action-icon">📋</div>
+                            <div class="action-title">Histórico</div>
+                            <div class="action-description">Veja suas consultas anteriores</div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="upcoming-appointments">
+                    <h3>Próximas Consultas</h3>
+                    <div class="appointments-list">
+                        <div class="appointment-item">
+                            <div class="appointment-info">
+                                <div class="appointment-doctor">Dr. Maria Santos</div>
+                                <div class="appointment-date">15/01/2024 - 14:00</div>
+                                <div class="appointment-type">Consulta de Acompanhamento</div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-primary" onclick="joinConsultation('consultation1')">
+                                    Entrar na Consulta
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="appointment-item">
+                            <div class="appointment-info">
+                                <div class="appointment-doctor">Dr. Carlos Lima</div>
+                                <div class="appointment-date">18/01/2024 - 10:30</div>
+                                <div class="appointment-type">Segunda Opinião</div>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn btn-secondary" disabled>
+                                    Aguardando
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule New Appointment -->
+                <div class="schedule-appointment" id="scheduleSection" style="display: none;">
+                    <h3>Agendar Nova Consulta</h3>
+                    <form id="appointmentForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="doctor">Médico</label>
+                                <select id="doctor" name="doctor" required>
+                                    <option value="">Selecione um médico...</option>
+                                    <option value="dr-maria">Dr. Maria Santos - Dermatologia</option>
+                                    <option value="dr-carlos">Dr. Carlos Lima - Cirurgia</option>
+                                    <option value="dr-ana">Dra. Ana Costa - Clínica Geral</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="appointmentType">Tipo de Consulta</label>
+                                <select id="appointmentType" name="appointmentType" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="follow-up">Acompanhamento</option>
+                                    <option value="second-opinion">Segunda Opinião</option>
+                                    <option value="emergency">Urgência</option>
+                                    <option value="routine">Rotina</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate">Data</label>
+                                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="appointmentTime">Horário</label>
+                                <select id="appointmentTime" name="appointmentTime" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="09:30">09:30</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="10:30">10:30</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="15:30">15:30</option>
+                                    <option value="16:00">16:00</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointmentReason">Motivo da Consulta</label>
+                            <textarea id="appointmentReason" name="appointmentReason" rows="4" placeholder="Descreva o motivo da consulta..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="hideScheduleSection()">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Agendar Consulta
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Consultation Room -->
+                <div class="consultation-room" id="consultationRoom" style="display: none;">
+                    <h3>Sala de Consulta</h3>
+                    <div class="video-container">
+                        <div class="video-grid">
+                            <div class="video-item">
+                                <div class="video-placeholder">
+                                    <span class="icon icon-video"></span>
+                                    <p>Sua Câmera</p>
+                                </div>
+                                <div class="video-controls">
+                                    <button class="btn btn-sm" id="toggleCamera">
+                                        <span class="icon icon-video"></span>
+                                    </button>
+                                    <button class="btn btn-sm" id="toggleMicrophone">
+                                        <span class="icon icon-microphone"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="video-item">
+                                <div class="video-placeholder">
+                                    <span class="icon icon-user"></span>
+                                    <p>Dr. Maria Santos</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="consultation-controls">
+                            <button class="btn btn-danger" id="endCall">
+                                <span class="icon icon-phone"></span>
+                                Encerrar Chamada
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="consultation-chat">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-message">
+                                <div class="message-sender">Dr. Maria Santos</div>
+                                <div class="message-content">Olá João, como você está se sentindo hoje?</div>
+                                <div class="message-time">14:00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+                            <button class="btn btn-primary" id="sendMessage">
+                                <span class="icon icon-send"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consultation History -->
+                <div class="consultation-history" id="historySection" style="display: none;">
+                    <h3>Histórico de Consultas</h3>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <div class="history-info">
+                                <div class="history-doctor">Dr. Maria Santos</div>
+                                <div class="history-date">10/01/2024 - 14:00</div>
+                                <div class="history-duration">45 minutos</div>
+                            </div>
+                            <div class="history-actions">
+                                <button class="btn btn-sm btn-secondary">Ver Resumo</button>
+                            </div>
+                        </div>
+                        
+                        <div class="history-item">
+                            <div class="history-info">
+                                <div class="history-doctor">Dr. Carlos Lima</div>
+                                <div class="history-date">05/01/2024 - 10:30</div>
+                                <div class="history-duration">30 minutos</div>
+                            </div>
+                            <div class="history-actions">
+                                <button class="btn btn-sm btn-secondary">Ver Resumo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chat Support -->
+    <div class="chat-support">
+        <button class="chat-btn" id="chatBtn">
+            <span class="icon icon-chat"></span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas da teleconsulta
+        document.addEventListener('DOMContentLoaded', function() {
+            const scheduleSection = document.getElementById('scheduleSection');
+            const consultationRoom = document.getElementById('consultationRoom');
+            const historySection = document.getElementById('historySection');
+            const appointmentForm = document.getElementById('appointmentForm');
+            const chatInput = document.getElementById('chatInput');
+            const sendMessageBtn = document.getElementById('sendMessage');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            // Configurar data mínima para agendamento
+            const appointmentDate = document.getElementById('appointmentDate');
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            appointmentDate.min = tomorrow.toISOString().split('T')[0];
+            
+            // Submissão do formulário de agendamento
+            appointmentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const appointmentData = {
+                    doctor: formData.get('doctor'),
+                    type: formData.get('appointmentType'),
+                    date: formData.get('appointmentDate'),
+                    time: formData.get('appointmentTime'),
+                    reason: formData.get('appointmentReason'),
+                    status: 'scheduled'
+                };
+                
+                showNotification('Consulta agendada com sucesso!', 'success');
+                
+                // Salvar no localStorage
+                const appointments = JSON.parse(localStorage.getItem('patientAppointments') || '[]');
+                appointments.push(appointmentData);
+                localStorage.setItem('patientAppointments', JSON.stringify(appointments));
+                
+                // Limpar formulário e esconder seção
+                this.reset();
+                hideScheduleSection();
+            });
+            
+            // Envio de mensagem no chat
+            sendMessageBtn.addEventListener('click', function() {
+                sendMessage();
+            });
+            
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage('Você', message, new Date());
+                    chatInput.value = '';
+                    
+                    // Simular resposta do médico
+                    setTimeout(() => {
+                        addMessage('Dr. Maria Santos', 'Entendi. Vamos analisar isso juntos.', new Date());
+                    }, 1000);
+                }
+            }
+            
+            function addMessage(sender, content, time) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'chat-message';
+                messageElement.innerHTML = `
+                    <div class="message-sender">${sender}</div>
+                    <div class="message-content">${content}</div>
+                    <div class="message-time">${time.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
+                `;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+        
+        // Funções globais para navegação
+        function showScheduleSection() {
+            document.getElementById('scheduleSection').style.display = 'block';
+            document.getElementById('historySection').style.display = 'none';
+            document.getElementById('consultationRoom').style.display = 'none';
+        }
+        
+        function hideScheduleSection() {
+            document.getElementById('scheduleSection').style.display = 'none';
+        }
+        
+        function showHistorySection() {
+            document.getElementById('historySection').style.display = 'block';
+            document.getElementById('scheduleSection').style.display = 'none';
+            document.getElementById('consultationRoom').style.display = 'none';
+        }
+        
+        function joinConsultation(consultationId) {
+            document.getElementById('consultationRoom').style.display = 'block';
+            document.getElementById('scheduleSection').style.display = 'none';
+            document.getElementById('historySection').style.display = 'none';
+            
+            showNotification('Entrando na consulta...', 'info');
+        }
+        
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+        
+        // Configurar links de navegação
+        document.addEventListener('DOMContentLoaded', function() {
+            // Link para agendar
+            document.querySelector('a[href="#schedule"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                showScheduleSection();
+            });
+            
+            // Link para histórico
+            document.querySelector('a[href="#history"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                showHistorySection();
+            });
+        });
+    </script>
+</body>
+</html>

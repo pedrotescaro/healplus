@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealPlus - Demonstração</title>
+    <link rel="stylesheet" href="../css/healplus-design.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="healplus-app">
+        <!-- Header -->
+        <header class="healplus-header">
+            <div class="flex items-center gap-4">
+                <a href="healplus-dashboard.html" class="healplus-logo">
+                    <div class="healplus-logo-icon">H+</div>
+                    <span>HealPlus</span>
+                </a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="text-right">
+                        <div class="font-semibold text-sm">Demo User</div>
+                        <div class="text-xs text-gray-500">Demonstração</div>
+                    </div>
+                    <div class="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                        DU
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="toggleTheme()">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="healplus-main">
+            <!-- Content -->
+            <div class="healplus-content">
+                <!-- Header Section -->
+                <div class="mb-8">
+                    <h1 class="text-2xl font-bold mb-2">Demonstração HealPlus</h1>
+                    <p class="text-gray-600">Explore todas as funcionalidades do sistema modernizado.</p>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Dashboard -->
+                    <div class="healplus-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Dashboard</h2>
+                            <i class="fas fa-chart-line text-primary-600"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Interface moderna com estatísticas em tempo real e ações rápidas.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Estatísticas em tempo real</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Atividade recente</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Progresso da saúde</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full mt-4" onclick="navigateTo('healplus-dashboard.html')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Ver Dashboard
+                        </button>
+                    </div>
+
+                    <!-- Wound Assessment -->
+                    <div class="healplus-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Avaliação de Feridas</h2>
+                            <i class="fas fa-camera text-primary-600"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Sistema completo de captura e análise de feridas com IA.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Captura de imagem</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Questionário TIMERS</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Análise com IA</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full mt-4" onclick="navigateTo('healplus-wound-assessment.html')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Avaliar Ferida
+                        </button>
+                    </div>
+
+                    <!-- Login -->
+                    <div class="healplus-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Login Moderno</h2>
+                            <i class="fas fa-sign-in-alt text-primary-600"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Interface de login elegante com seleção de tipo de usuário.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Seleção de usuário</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Login social</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Validação em tempo real</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-full mt-4" onclick="navigateTo('healplus-login.html')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Fazer Login
+                        </button>
+                    </div>
+
+                    <!-- Patient Portal -->
+                    <div class="healplus-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Portal do Paciente</h2>
+                            <i class="fas fa-user text-primary-600"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Sistema completo para pacientes com todas as funcionalidades.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Consultas</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Check-in diário</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Medicamentos</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary w-full mt-4" onclick="navigateTo('patient-dashboard.html')">
+                            <i class="fas fa-external-link-alt"></i>
+                            Portal Paciente
+                        </button>
+                    </div>
+
+                    <!-- Design System -->
+                    <div class="healplus-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Design System</h2>
+                            <i class="fas fa-palette text-primary-600"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Sistema de design moderno inspirado no HealPlus original.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Cores consistentes</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Tipografia moderna</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Componentes reutilizáveis</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline w-full mt-4" onclick="showDesignSystem()">
+                            <i class="fas fa-eye"></i>
+                            Ver Componentes
+                        </button>
+                    </div>
+
+                    <!-- Responsive -->
+                    <div class="healplus-card">
+                        <div class="card-header">
+                            <h2 class="card-title">Responsivo</h2>
+                            <i class="fas fa-mobile-alt text-primary-600"></i>
+                        </div>
+                        <p class="text-gray-600 mb-4">Interface adaptável para todos os dispositivos.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Mobile first</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Tablet otimizado</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-check text-green-600"></i>
+                                <span class="text-sm">Desktop completo</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline w-full mt-4" onclick="testResponsive()">
+                            <i class="fas fa-mobile-alt"></i>
+                            Testar Responsivo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Design System Demo -->
+                <div id="designSystemDemo" class="healplus-card" style="display: none;">
+                    <div class="card-header">
+                        <h2 class="card-title">Design System - Componentes</h2>
+                        <button class="btn btn-outline btn-sm" onclick="hideDesignSystem()">
+                            <i class="fas fa-times"></i>
+                            Fechar
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Buttons -->
+                        <div>
+                            <h3 class="font-semibold mb-3">Botões</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <button class="btn btn-primary">Primário</button>
+                                <button class="btn btn-secondary">Secundário</button>
+                                <button class="btn btn-outline">Outline</button>
+                                <button class="btn btn-primary btn-sm">Pequeno</button>
+                                <button class="btn btn-primary btn-lg">Grande</button>
+                            </div>
+                        </div>
+
+                        <!-- Status Badges -->
+                        <div>
+                            <h3 class="font-semibold mb-3">Status Badges</h3>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="status-badge status-active">Ativo</span>
+                                <span class="status-badge status-pending">Pendente</span>
+                                <span class="status-badge status-completed">Concluído</span>
+                                <span class="status-badge status-error">Erro</span>
+                            </div>
+                        </div>
+
+                        <!-- Form Elements -->
+                        <div>
+                            <h3 class="font-semibold mb-3">Elementos de Formulário</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Input Normal</label>
+                                    <input type="text" class="form-input" placeholder="Digite algo...">
+                                </div>
+                                <div>
+                                    <label class="form-label">Select</label>
+                                    <select class="form-select">
+                                        <option>Opção 1</option>
+                                        <option>Opção 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cards -->
+                        <div>
+                            <h3 class="font-semibold mb-3">Cards</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="healplus-card">
+                                    <h4 class="font-semibold mb-2">Card Simples</h4>
+                                    <p class="text-sm text-gray-600">Conteúdo do card com informações importantes.</p>
+                                </div>
+                                <div class="healplus-card">
+                                    <h4 class="font-semibold mb-2">Card com Ação</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Card com botão de ação.</p>
+                                    <button class="btn btn-primary btn-sm">Ação</button>
+                                </div>
+                                <div class="healplus-card">
+                                    <h4 class="font-semibold mb-2">Card com Status</h4>
+                                    <p class="text-sm text-gray-600 mb-3">Card com badge de status.</p>
+                                    <span class="status-badge status-active">Ativo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test Credentials -->
+                <div class="healplus-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Credenciais de Teste</h2>
+                        <i class="fas fa-key text-primary-600"></i>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <h3 class="font-semibold text-blue-900 mb-2">Login de Teste</h3>
+                            <div class="space-y-2 text-sm">
+                                <div><strong>Email:</strong> admin@healplus.com</div>
+                                <div><strong>Senha:</strong> admin123</div>
+                                <div><strong>Tipo:</strong> Paciente ou Clínico</div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg">
+                            <h3 class="font-semibold text-green-900 mb-2">Funcionalidades Disponíveis</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+                                <div>✅ Login e autenticação</div>
+                                <div>✅ Dashboard interativo</div>
+                                <div>✅ Avaliação de feridas</div>
+                                <div>✅ Navegação responsiva</div>
+                                <div>✅ Tema claro/escuro</div>
+                                <div>✅ Validação de formulários</div>
+                                <div>✅ Notificações</div>
+                                <div>✅ LocalStorage</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas da demonstração
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar dados de demonstração
+            localStorage.setItem('userData', JSON.stringify({
+                email: 'demo@healplus.com',
+                userType: 'patient',
+                name: 'Demo User',
+                loginTime: new Date().toISOString()
+            }));
+        });
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function showDesignSystem() {
+            document.getElementById('designSystemDemo').style.display = 'block';
+            document.getElementById('designSystemDemo').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideDesignSystem() {
+            document.getElementById('designSystemDemo').style.display = 'none';
+        }
+
+        function testResponsive() {
+            // Simular diferentes tamanhos de tela
+            const currentWidth = window.innerWidth;
+            let message = '';
+            
+            if (currentWidth < 768) {
+                message = 'Modo Mobile ativo! A interface está otimizada para dispositivos móveis.';
+            } else if (currentWidth < 1024) {
+                message = 'Modo Tablet ativo! A interface está otimizada para tablets.';
+            } else {
+                message = 'Modo Desktop ativo! A interface está otimizada para desktops.';
+            }
+            
+            showNotification(message, 'info');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            const themeIcon = document.querySelector('.fa-sun');
+            if (isDark) {
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                themeIcon.className = 'fas fa-sun';
+            }
+        }
+
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+
+        // Aplicar tema salvo
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            const themeIcon = document.querySelector('.fa-sun');
+            if (themeIcon) {
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+    </script>
+</body>
+</html>

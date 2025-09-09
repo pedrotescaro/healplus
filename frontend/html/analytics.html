@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Analytics Avançados</title>
+    <link rel="stylesheet" href="../css/healplus-dark.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .analytics-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .analytics-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .time-selector {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: 0.5rem 1rem;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .stat-icon.blue { background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); }
+        .stat-icon.green { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+        .stat-icon.yellow { background: rgba(245, 158, 11, 0.1); color: var(--accent-yellow); }
+        .stat-icon.purple { background: rgba(139, 92, 246, 0.1); color: #8B5CF6; }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .stat-trend.positive { color: var(--accent-green); }
+        .stat-trend.negative { color: var(--accent-red); }
+        .stat-trend.neutral { color: var(--text-muted); }
+        
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--accent-blue);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .progress-section {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .progress-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .progress-value {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: var(--radius-sm);
+            transition: width 0.3s ease;
+        }
+        
+        .progress-fill.green { background: var(--accent-green); }
+        .progress-fill.yellow { background: var(--accent-yellow); }
+        .progress-fill.red { background: var(--accent-red); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <a href="dashboard.html" class="nav-item">
+                        <i class="fas fa-th-large nav-item-icon"></i>
+                        Dashboard
+                    </a>
+                    <a href="nova-avaliacao.html" class="nav-item">
+                        <i class="fas fa-file-plus nav-item-icon"></i>
+                        Nova Avaliação
+                    </a>
+                    <a href="meus-pacientes.html" class="nav-item">
+                        <i class="fas fa-users nav-item-icon"></i>
+                        Meus Pacientes
+                    </a>
+                    <a href="agenda.html" class="nav-item">
+                        <i class="fas fa-calendar nav-item-icon"></i>
+                        Agenda
+                    </a>
+                    <a href="captura-feridas.html" class="nav-item">
+                        <i class="fas fa-camera nav-item-icon"></i>
+                        Captura de Feridas
+                    </a>
+                    <a href="gerar-relatorio.html" class="nav-item">
+                        <i class="fas fa-file-download nav-item-icon"></i>
+                        Gerar Relatório
+                    </a>
+                    <a href="meus-relatorios.html" class="nav-item">
+                        <i class="fas fa-file-alt nav-item-icon"></i>
+                        Meus Relatórios
+                    </a>
+                    <a href="comparar-relatorios.html" class="nav-item">
+                        <i class="fas fa-file-medical-alt nav-item-icon"></i>
+                        Comparar Relatórios
+                    </a>
+                    <a href="analytics.html" class="nav-item active">
+                        <i class="fas fa-chart-bar nav-item-icon"></i>
+                        Analytics
+                    </a>
+                    <a href="perfil.html" class="nav-item">
+                        <i class="fas fa-user nav-item-icon"></i>
+                        Perfil
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="user-profile">
+                <div class="user-info">
+                    <div class="user-avatar">PT</div>
+                    <div class="user-details">
+                        <h3>Pedro Tescaro</h3>
+                        <p>pedroatescaro@gmail.com</p>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Analytics Avançados</h1>
+                <p class="page-subtitle">Insights detalhados sobre seu trabalho e progressão dos pacientes.</p>
+            </div>
+
+            <!-- Analytics Header -->
+            <div class="analytics-header">
+                <div>
+                    <h2 class="page-title">Analytics Avançados</h2>
+                    <p class="page-subtitle">Insights e métricas do seu trabalho</p>
+                </div>
+                <div class="analytics-controls">
+                    <select class="time-selector">
+                        <option value="7">7 dias</option>
+                        <option value="30" selected>30 dias</option>
+                        <option value="90">90 dias</option>
+                        <option value="365">1 ano</option>
+                    </select>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-sync-alt"></i>
+                        Atualizar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Pacientes únicos atendidos</div>
+                            <div class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                Crescimento
+                            </div>
+                        </div>
+                        <div class="stat-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">0 realizados</div>
+                            <div class="stat-trend neutral">
+                                <i class="fas fa-minus"></i>
+                                Estável
+                            </div>
+                        </div>
+                        <div class="stat-icon green">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Análises com IA</div>
+                            <div class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                Crescimento
+                            </div>
+                        </div>
+                        <div class="stat-icon yellow">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">Análises de progressão</div>
+                            <div class="stat-trend positive">
+                                <i class="fas fa-arrow-up"></i>
+                                Crescimento
+                            </div>
+                        </div>
+                        <div class="stat-icon purple">
+                            <i class="fas fa-file-medical-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('overview')">Visão Geral</div>
+                <div class="tab" onclick="switchTab('progression')">Progressão</div>
+                <div class="tab" onclick="switchTab('appointments')">Agendamentos</div>
+                <div class="tab" onclick="switchTab('wound-types')">Tipos de Feridas</div>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="overview" class="tab-content active">
+                <!-- Appointment Status -->
+                <div class="progress-section">
+                    <h3 class="card-title">Status dos Agendamentos</h3>
+                    <p class="card-subtitle">Distribuição atual dos agendamentos</p>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Realizados</span>
+                            <span class="progress-value">0 (NaN%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill green" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Pendentes</span>
+                            <span class="progress-value">0 (NaN%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill yellow" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Em Atraso</span>
+                            <span class="progress-value">0 (NaN%)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill red" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Distribution -->
+                <div class="progress-section">
+                    <h3 class="card-title">Distribuição de Prioridades</h3>
+                    <p class="card-subtitle">Agendamentos por nível de prioridade</p>
+                    
+                    <div class="text-center" style="padding: 2rem 0; color: var(--text-muted);">
+                        <i class="fas fa-chart-pie" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                        <p>Nenhum dado disponível</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="progression" class="tab-content">
+                <div class="card">
+                    <h3 class="card-title">Análise de Progressão</h3>
+                    <p class="card-subtitle">Evolução dos pacientes ao longo do tempo</p>
+                    <div class="text-center" style="padding: 2rem 0; color: var(--text-muted);">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                        <p>Gráficos de progressão serão exibidos aqui</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="appointments" class="tab-content">
+                <div class="card">
+                    <h3 class="card-title">Análise de Agendamentos</h3>
+                    <p class="card-subtitle">Padrões e tendências de agendamentos</p>
+                    <div class="text-center" style="padding: 2rem 0; color: var(--text-muted);">
+                        <i class="fas fa-calendar-alt" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                        <p>Análise de agendamentos será exibida aqui</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="wound-types" class="tab-content">
+                <div class="card">
+                    <h3 class="card-title">Tipos de Feridas</h3>
+                    <p class="card-subtitle">Distribuição por tipo e localização</p>
+                    <div class="text-center" style="padding: 2rem 0; color: var(--text-muted);">
+                        <i class="fas fa-band-aid" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                        <p>Análise de tipos de feridas será exibida aqui</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab">
+        <i class="fas fa-comment"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Funcionalidades das abas
+        function switchTab(tabName) {
+            // Remover classe active de todas as abas
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remover classe active de todo conteúdo
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Adicionar classe active na aba clicada
+            event.target.classList.add('active');
+            
+            // Mostrar conteúdo correspondente
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Funcionalidades básicas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Logout
+            document.querySelector('.logout-btn').addEventListener('click', function() {
+                if (confirm('Tem certeza que deseja sair?')) {
+                    localStorage.removeItem('userData');
+                    window.location.href = '../index.html';
+                }
+            });
+
+            // Navegação
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (this.href && !this.href.includes('#')) {
+                        e.preventDefault();
+                        const page = this.href.split('/').pop();
+                        if (page !== 'analytics.html') {
+                            showNotification('Carregando página...', 'info');
+                            setTimeout(() => {
+                                window.location.href = this.href;
+                            }, 500);
+                        }
+                    }
+                });
+            });
+
+            // Seletor de tempo
+            document.querySelector('.time-selector').addEventListener('change', function() {
+                showNotification(`Atualizando dados para ${this.options[this.selectedIndex].text}...`, 'info');
+            });
+
+            // Botão atualizar
+            document.querySelector('.btn-outline').addEventListener('click', function() {
+                showNotification('Atualizando analytics...', 'info');
+                setTimeout(() => {
+                    showNotification('Dados atualizados!', 'success');
+                }, 1500);
+            });
+        });
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: var(--bg-card);
+                border: 1px solid var(--bg-tertiary);
+                border-radius: var(--radius-lg);
+                color: var(--text-primary);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

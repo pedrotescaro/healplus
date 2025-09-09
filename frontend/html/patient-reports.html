@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Meus Relatórios</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="patient-dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Meu Portal</div>
+                    <a href="patient-dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="patient-wound-assessment.html" class="nav-item">
+                        <span class="icon icon-camera"></span>
+                        Avaliar Ferida
+                    </a>
+                    <a href="patient-appointments.html" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Minhas Consultas
+                    </a>
+                    <a href="patient-telehealth.html" class="nav-item">
+                        <span class="icon icon-video"></span>
+                        Teleconsulta
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Monitoramento</div>
+                    <a href="patient-daily-checkin.html" class="nav-item">
+                        <span class="icon icon-heart"></span>
+                        Check-in Diário
+                    </a>
+                    <a href="patient-medications.html" class="nav-item">
+                        <span class="icon icon-pill"></span>
+                        Medicamentos
+                    </a>
+                    <a href="#reports" class="nav-item active">
+                        <span class="icon icon-document"></span>
+                        Meus Relatórios
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Conta</div>
+                    <a href="patient-profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Meu Perfil
+                    </a>
+                    <a href="patient-settings.html" class="nav-item">
+                        <span class="icon icon-settings"></span>
+                        Configurações
+                    </a>
+                    <a href="#" class="nav-item logout-btn">
+                        <span class="icon icon-logout"></span>
+                        Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span class="icon icon-menu"></span>
+                    </button>
+                    <h1 class="page-title">Meus Relatórios</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="user-role">Paciente</span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="icon icon-sun"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Reports Content -->
+            <div class="reports-content">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Relatórios de Saúde</h2>
+                    <p>Acompanhe sua evolução e histórico médico.</p>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="generateReport()">
+                            <span class="icon icon-download"></span>
+                            Gerar Relatório Completo
+                        </button>
+                        <button class="btn btn-secondary" onclick="exportData()">
+                            <span class="icon icon-export"></span>
+                            Exportar Dados
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Health Summary -->
+                <div class="health-summary">
+                    <h3>Resumo da Saúde</h3>
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="summary-icon">📊</div>
+                            <div class="summary-info">
+                                <div class="summary-title">Avaliações de Feridas</div>
+                                <div class="summary-value">12</div>
+                                <div class="summary-trend positive">+2 este mês</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">💊</div>
+                            <div class="summary-info">
+                                <div class="summary-title">Medicamentos Ativos</div>
+                                <div class="summary-value">3</div>
+                                <div class="summary-trend neutral">Estável</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">📅</div>
+                            <div class="summary-info">
+                                <div class="summary-title">Consultas Realizadas</div>
+                                <div class="summary-value">8</div>
+                                <div class="summary-trend positive">+1 este mês</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">💓</div>
+                            <div class="summary-info">
+                                <div class="summary-title">Check-ins Completos</div>
+                                <div class="summary-value">28</div>
+                                <div class="summary-trend positive">93% este mês</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Reports -->
+                <div class="recent-reports">
+                    <h3>Relatórios Recentes</h3>
+                    <div class="reports-list">
+                        <div class="report-item">
+                            <div class="report-header">
+                                <div class="report-title">Relatório de Progresso - Janeiro 2024</div>
+                                <div class="report-date">15/01/2024</div>
+                            </div>
+                            <div class="report-summary">
+                                <div class="report-section">
+                                    <span class="section-title">Avaliações:</span>
+                                    <span class="section-value">5 avaliações realizadas</span>
+                                </div>
+                                <div class="report-section">
+                                    <span class="section-title">Evolução:</span>
+                                    <span class="section-value">Melhoria significativa</span>
+                                </div>
+                                <div class="report-section">
+                                    <span class="section-title">Recomendações:</span>
+                                    <span class="section-value">Continuar tratamento atual</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-sm btn-primary" onclick="viewReport('report1')">
+                                    Ver Relatório
+                                </button>
+                                <button class="btn btn-sm btn-secondary" onclick="downloadReport('report1')">
+                                    Baixar PDF
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="report-item">
+                            <div class="report-header">
+                                <div class="report-title">Relatório de Consulta - Dr. Maria Santos</div>
+                                <div class="report-date">10/01/2024</div>
+                            </div>
+                            <div class="report-summary">
+                                <div class="report-section">
+                                    <span class="section-title">Tipo:</span>
+                                    <span class="section-value">Consulta de acompanhamento</span>
+                                </div>
+                                <div class="report-section">
+                                    <span class="section-title">Duração:</span>
+                                    <span class="section-value">45 minutos</span>
+                                </div>
+                                <div class="report-section">
+                                    <span class="section-title">Diagnóstico:</span>
+                                    <span class="section-value">Evolução positiva</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-sm btn-primary" onclick="viewReport('report2')">
+                                    Ver Relatório
+                                </button>
+                                <button class="btn btn-sm btn-secondary" onclick="downloadReport('report2')">
+                                    Baixar PDF
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="report-item">
+                            <div class="report-header">
+                                <div class="report-title">Relatório de Análise de Ferida</div>
+                                <div class="report-date">08/01/2024</div>
+                            </div>
+                            <div class="report-summary">
+                                <div class="report-section">
+                                    <span class="section-title">Análise:</span>
+                                    <span class="section-value">IA + Revisão médica</span>
+                                </div>
+                                <div class="report-section">
+                                    <span class="section-title">Resultado:</span>
+                                    <span class="section-value">Cicatrização em progresso</span>
+                                </div>
+                                <div class="report-section">
+                                    <span class="section-title">Próxima avaliação:</span>
+                                    <span class="section-value">15/01/2024</span>
+                                </div>
+                            </div>
+                            <div class="report-actions">
+                                <button class="btn btn-sm btn-primary" onclick="viewReport('report3')">
+                                    Ver Relatório
+                                </button>
+                                <button class="btn btn-sm btn-secondary" onclick="downloadReport('report3')">
+                                    Baixar PDF
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Trends -->
+                <div class="health-trends">
+                    <h3>Tendências de Saúde</h3>
+                    <div class="trends-grid">
+                        <div class="trend-card">
+                            <div class="trend-title">Nível de Dor</div>
+                            <div class="trend-chart">
+                                <div class="chart-placeholder">
+                                    <span class="chart-icon">📈</span>
+                                    <p>Gráfico de evolução da dor</p>
+                                </div>
+                            </div>
+                            <div class="trend-summary">
+                                <span class="trend-value">Redução de 40%</span>
+                                <span class="trend-period">nos últimos 30 dias</span>
+                            </div>
+                        </div>
+                        
+                        <div class="trend-card">
+                            <div class="trend-title">Frequência de Check-ins</div>
+                            <div class="trend-chart">
+                                <div class="chart-placeholder">
+                                    <span class="chart-icon">📊</span>
+                                    <p>Gráfico de aderência</p>
+                                </div>
+                            </div>
+                            <div class="trend-summary">
+                                <span class="trend-value">93% de aderência</span>
+                                <span class="trend-period">este mês</span>
+                            </div>
+                        </div>
+                        
+                        <div class="trend-card">
+                            <div class="trend-title">Uso de Medicamentos</div>
+                            <div class="trend-chart">
+                                <div class="chart-placeholder">
+                                    <span class="chart-icon">💊</span>
+                                    <p>Gráfico de aderência</p>
+                                </div>
+                            </div>
+                            <div class="trend-summary">
+                                <span class="trend-value">98% de aderência</span>
+                                <span class="trend-period">este mês</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="export-options">
+                    <h3>Exportar Dados</h3>
+                    <div class="export-grid">
+                        <button class="export-card" onclick="exportToPDF()">
+                            <div class="export-icon">📄</div>
+                            <div class="export-title">Relatório PDF</div>
+                            <div class="export-description">Relatório completo em PDF</div>
+                        </button>
+                        
+                        <button class="export-card" onclick="exportToExcel()">
+                            <div class="export-icon">📊</div>
+                            <div class="export-title">Planilha Excel</div>
+                            <div class="export-description">Dados em formato de planilha</div>
+                        </button>
+                        
+                        <button class="export-card" onclick="exportToCSV()">
+                            <div class="export-icon">📋</div>
+                            <div class="export-title">Arquivo CSV</div>
+                            <div class="export-description">Dados em formato CSV</div>
+                        </button>
+                        
+                        <button class="export-card" onclick="shareReport()">
+                            <div class="export-icon">📤</div>
+                            <div class="export-title">Compartilhar</div>
+                            <div class="export-description">Compartilhar com médico</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chat Support -->
+    <div class="chat-support">
+        <button class="chat-btn" id="chatBtn">
+            <span class="icon icon-chat"></span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas dos relatórios
+        document.addEventListener('DOMContentLoaded', function() {
+            loadReportsData();
+        });
+        
+        function loadReportsData() {
+            // Carregar dados dos relatórios do localStorage
+            const reports = JSON.parse(localStorage.getItem('patientReports') || '[]');
+            
+            if (reports.length === 0) {
+                // Dados padrão se não houver relatórios salvos
+                const defaultReports = [
+                    {
+                        id: 'report1',
+                        title: 'Relatório de Progresso - Janeiro 2024',
+                        date: '2024-01-15',
+                        type: 'progress',
+                        summary: {
+                            evaluations: '5 avaliações realizadas',
+                            evolution: 'Melhoria significativa',
+                            recommendations: 'Continuar tratamento atual'
+                        }
+                    },
+                    {
+                        id: 'report2',
+                        title: 'Relatório de Consulta - Dr. Maria Santos',
+                        date: '2024-01-10',
+                        type: 'consultation',
+                        summary: {
+                            type: 'Consulta de acompanhamento',
+                            duration: '45 minutos',
+                            diagnosis: 'Evolução positiva'
+                        }
+                    },
+                    {
+                        id: 'report3',
+                        title: 'Relatório de Análise de Ferida',
+                        date: '2024-01-08',
+                        type: 'wound-analysis',
+                        summary: {
+                            analysis: 'IA + Revisão médica',
+                            result: 'Cicatrização em progresso',
+                            nextEvaluation: '15/01/2024'
+                        }
+                    }
+                ];
+                
+                localStorage.setItem('patientReports', JSON.stringify(defaultReports));
+            }
+        }
+        
+        function generateReport() {
+            showNotification('Gerando relatório completo...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Relatório gerado com sucesso!', 'success');
+                // Aqui você pode implementar a geração real do relatório
+            }, 2000);
+        }
+        
+        function exportData() {
+            showNotification('Exportando dados...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Dados exportados com sucesso!', 'success');
+                // Aqui você pode implementar a exportação real dos dados
+            }, 1500);
+        }
+        
+        function viewReport(reportId) {
+            showNotification('Abrindo relatório...', 'info');
+            // Aqui você pode abrir um modal ou navegar para uma página de visualização
+        }
+        
+        function downloadReport(reportId) {
+            showNotification('Baixando relatório em PDF...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Download iniciado!', 'success');
+                // Aqui você pode implementar o download real do PDF
+            }, 1000);
+        }
+        
+        function exportToPDF() {
+            showNotification('Exportando para PDF...', 'info');
+            
+            setTimeout(() => {
+                showNotification('PDF gerado com sucesso!', 'success');
+            }, 2000);
+        }
+        
+        function exportToExcel() {
+            showNotification('Exportando para Excel...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Planilha Excel gerada!', 'success');
+            }, 1500);
+        }
+        
+        function exportToCSV() {
+            showNotification('Exportando para CSV...', 'info');
+            
+            setTimeout(() => {
+                showNotification('Arquivo CSV gerado!', 'success');
+            }, 1000);
+        }
+        
+        function shareReport() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Relatório de Saúde - Heal+',
+                    text: 'Confira meu relatório de saúde atualizado',
+                    url: window.location.href
+                });
+            } else {
+                showNotification('Link copiado para compartilhamento!', 'success');
+            }
+        }
+        
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+    </script>
+</body>
+</html>

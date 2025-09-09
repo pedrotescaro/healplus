@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Medicamentos</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="patient-dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Meu Portal</div>
+                    <a href="patient-dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="patient-wound-assessment.html" class="nav-item">
+                        <span class="icon icon-camera"></span>
+                        Avaliar Ferida
+                    </a>
+                    <a href="patient-appointments.html" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Minhas Consultas
+                    </a>
+                    <a href="patient-telehealth.html" class="nav-item">
+                        <span class="icon icon-video"></span>
+                        Teleconsulta
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Monitoramento</div>
+                    <a href="patient-daily-checkin.html" class="nav-item">
+                        <span class="icon icon-heart"></span>
+                        Check-in Diário
+                    </a>
+                    <a href="#medications" class="nav-item active">
+                        <span class="icon icon-pill"></span>
+                        Medicamentos
+                    </a>
+                    <a href="patient-reports.html" class="nav-item">
+                        <span class="icon icon-document"></span>
+                        Meus Relatórios
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Conta</div>
+                    <a href="patient-profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Meu Perfil
+                    </a>
+                    <a href="patient-settings.html" class="nav-item">
+                        <span class="icon icon-settings"></span>
+                        Configurações
+                    </a>
+                    <a href="#" class="nav-item logout-btn">
+                        <span class="icon icon-logout"></span>
+                        Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span class="icon icon-menu"></span>
+                    </button>
+                    <h1 class="page-title">Medicamentos</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="user-role">Paciente</span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="icon icon-sun"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Medications Content -->
+            <div class="medications-content">
+                <!-- Today's Medications -->
+                <div class="today-medications">
+                    <h2>Medicamentos de Hoje</h2>
+                    <p>15 de Janeiro, 2024</p>
+                    
+                    <div class="medications-list">
+                        <div class="medication-item">
+                            <div class="medication-info">
+                                <div class="medication-name">Amoxicilina 500mg</div>
+                                <div class="medication-dosage">1 comprimido a cada 8 horas</div>
+                                <div class="medication-purpose">Antibiótico para infecção</div>
+                            </div>
+                            <div class="medication-times">
+                                <div class="time-slot">
+                                    <span class="time">08:00</span>
+                                    <button class="btn btn-sm btn-success" onclick="markTaken('med1-morning')">
+                                        ✅ Tomado
+                                    </button>
+                                </div>
+                                <div class="time-slot">
+                                    <span class="time">16:00</span>
+                                    <button class="btn btn-sm btn-outline" onclick="markTaken('med1-afternoon')">
+                                        ⏰ Pendente
+                                    </button>
+                                </div>
+                                <div class="time-slot">
+                                    <span class="time">00:00</span>
+                                    <button class="btn btn-sm btn-outline" onclick="markTaken('med1-night')">
+                                        ⏰ Pendente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="medication-item">
+                            <div class="medication-info">
+                                <div class="medication-name">Paracetamol 500mg</div>
+                                <div class="medication-dosage">1 comprimido a cada 6 horas</div>
+                                <div class="medication-purpose">Analgésico para dor</div>
+                            </div>
+                            <div class="medication-times">
+                                <div class="time-slot">
+                                    <span class="time">14:00</span>
+                                    <button class="btn btn-sm btn-outline" onclick="markTaken('med2-afternoon')">
+                                        ⏰ Pendente
+                                    </button>
+                                </div>
+                                <div class="time-slot">
+                                    <span class="time">20:00</span>
+                                    <button class="btn btn-sm btn-outline" onclick="markTaken('med2-evening')">
+                                        ⏰ Pendente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="medication-item">
+                            <div class="medication-info">
+                                <div class="medication-name">Vitamina D 1000UI</div>
+                                <div class="medication-dosage">1 cápsula por dia</div>
+                                <div class="medication-purpose">Suplemento vitamínico</div>
+                            </div>
+                            <div class="medication-times">
+                                <div class="time-slot">
+                                    <span class="time">12:00</span>
+                                    <button class="btn btn-sm btn-outline" onclick="markTaken('med3-noon')">
+                                        ⏰ Pendente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Medications -->
+                <div class="all-medications">
+                    <h3>Todos os Medicamentos</h3>
+                    
+                    <div class="medications-grid">
+                        <div class="medication-card active">
+                            <div class="medication-header">
+                                <div class="medication-name">Amoxicilina 500mg</div>
+                                <div class="medication-status active">Ativo</div>
+                            </div>
+                            <div class="medication-details">
+                                <div class="detail-item">
+                                    <span class="label">Dosagem:</span>
+                                    <span class="value">1 comprimido a cada 8 horas</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Duração:</span>
+                                    <span class="value">7 dias (até 22/01/2024)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Prescrito por:</span>
+                                    <span class="value">Dr. Maria Santos</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Finalidade:</span>
+                                    <span class="value">Tratamento de infecção</span>
+                                </div>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-sm btn-secondary" onclick="viewMedicationDetails('med1')">
+                                    Ver Detalhes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="medication-card active">
+                            <div class="medication-header">
+                                <div class="medication-name">Paracetamol 500mg</div>
+                                <div class="medication-status active">Ativo</div>
+                            </div>
+                            <div class="medication-details">
+                                <div class="detail-item">
+                                    <span class="label">Dosagem:</span>
+                                    <span class="value">1 comprimido a cada 6 horas</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Duração:</span>
+                                    <span class="value">5 dias (até 20/01/2024)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Prescrito por:</span>
+                                    <span class="value">Dr. Maria Santos</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Finalidade:</span>
+                                    <span class="value">Controle da dor</span>
+                                </div>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-sm btn-secondary" onclick="viewMedicationDetails('med2')">
+                                    Ver Detalhes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="medication-card active">
+                            <div class="medication-header">
+                                <div class="medication-name">Vitamina D 1000UI</div>
+                                <div class="medication-status active">Ativo</div>
+                            </div>
+                            <div class="medication-details">
+                                <div class="detail-item">
+                                    <span class="label">Dosagem:</span>
+                                    <span class="value">1 cápsula por dia</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Duração:</span>
+                                    <span class="value">30 dias (até 15/02/2024)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Prescrito por:</span>
+                                    <span class="value">Dr. Carlos Lima</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Finalidade:</span>
+                                    <span class="value">Suplementação vitamínica</span>
+                                </div>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-sm btn-secondary" onclick="viewMedicationDetails('med3')">
+                                    Ver Detalhes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="medication-card completed">
+                            <div class="medication-header">
+                                <div class="medication-name">Ibuprofeno 400mg</div>
+                                <div class="medication-status completed">Concluído</div>
+                            </div>
+                            <div class="medication-details">
+                                <div class="detail-item">
+                                    <span class="label">Dosagem:</span>
+                                    <span class="value">1 comprimido a cada 8 horas</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Período:</span>
+                                    <span class="value">01/01/2024 - 10/01/2024</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Prescrito por:</span>
+                                    <span class="value">Dr. Maria Santos</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Finalidade:</span>
+                                    <span class="value">Redução da inflamação</span>
+                                </div>
+                            </div>
+                            <div class="medication-actions">
+                                <button class="btn btn-sm btn-outline" onclick="viewMedicationHistory('med4')">
+                                    Ver Histórico
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medication History -->
+                <div class="medication-history">
+                    <h3>Histórico de Medicamentos</h3>
+                    <div class="history-list">
+                        <div class="history-item">
+                            <div class="history-date">10/01/2024</div>
+                            <div class="history-medication">Ibuprofeno 400mg</div>
+                            <div class="history-status completed">Concluído</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-date">05/01/2024</div>
+                            <div class="history-medication">Dipirona 500mg</div>
+                            <div class="history-status completed">Concluído</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-date">01/01/2024</div>
+                            <div class="history-medication">Cetoprofeno 100mg</div>
+                            <div class="history-status completed">Concluído</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chat Support -->
+    <div class="chat-support">
+        <button class="chat-btn" id="chatBtn">
+            <span class="icon icon-chat"></span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas dos medicamentos
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMedicationData();
+        });
+        
+        function loadMedicationData() {
+            // Carregar dados dos medicamentos do localStorage
+            const medications = JSON.parse(localStorage.getItem('patientMedications') || '[]');
+            
+            if (medications.length === 0) {
+                // Dados padrão se não houver medicamentos salvos
+                const defaultMedications = [
+                    {
+                        id: 'med1',
+                        name: 'Amoxicilina 500mg',
+                        dosage: '1 comprimido a cada 8 horas',
+                        purpose: 'Antibiótico para infecção',
+                        doctor: 'Dr. Maria Santos',
+                        startDate: '2024-01-15',
+                        endDate: '2024-01-22',
+                        status: 'active'
+                    },
+                    {
+                        id: 'med2',
+                        name: 'Paracetamol 500mg',
+                        dosage: '1 comprimido a cada 6 horas',
+                        purpose: 'Analgésico para dor',
+                        doctor: 'Dr. Maria Santos',
+                        startDate: '2024-01-15',
+                        endDate: '2024-01-20',
+                        status: 'active'
+                    },
+                    {
+                        id: 'med3',
+                        name: 'Vitamina D 1000UI',
+                        dosage: '1 cápsula por dia',
+                        purpose: 'Suplemento vitamínico',
+                        doctor: 'Dr. Carlos Lima',
+                        startDate: '2024-01-15',
+                        endDate: '2024-02-15',
+                        status: 'active'
+                    }
+                ];
+                
+                localStorage.setItem('patientMedications', JSON.stringify(defaultMedications));
+            }
+        }
+        
+        function markTaken(medicationTimeId) {
+            const button = document.querySelector(`[onclick="markTaken('${medicationTimeId}')"]`);
+            
+            if (button.classList.contains('btn-outline')) {
+                button.innerHTML = '✅ Tomado';
+                button.className = 'btn btn-sm btn-success';
+                showNotification('Medicamento marcado como tomado!', 'success');
+                
+                // Salvar no localStorage
+                const takenMedications = JSON.parse(localStorage.getItem('takenMedications') || '[]');
+                takenMedications.push({
+                    id: medicationTimeId,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('takenMedications', JSON.stringify(takenMedications));
+            }
+        }
+        
+        function viewMedicationDetails(medicationId) {
+            showNotification('Abrindo detalhes do medicamento...', 'info');
+            // Aqui você pode abrir um modal ou navegar para uma página de detalhes
+        }
+        
+        function viewMedicationHistory(medicationId) {
+            showNotification('Abrindo histórico do medicamento...', 'info');
+            // Aqui você pode abrir um modal ou navegar para uma página de histórico
+        }
+        
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+    </script>
+</body>
+</html>

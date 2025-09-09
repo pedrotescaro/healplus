@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Avaliar Ferida</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="patient-dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Meu Portal</div>
+                    <a href="patient-dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="#assessment" class="nav-item active">
+                        <span class="icon icon-camera"></span>
+                        Avaliar Ferida
+                    </a>
+                    <a href="patient-appointments.html" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Minhas Consultas
+                    </a>
+                    <a href="patient-telehealth.html" class="nav-item">
+                        <span class="icon icon-video"></span>
+                        Teleconsulta
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Monitoramento</div>
+                    <a href="patient-daily-checkin.html" class="nav-item">
+                        <span class="icon icon-heart"></span>
+                        Check-in Diário
+                    </a>
+                    <a href="patient-medications.html" class="nav-item">
+                        <span class="icon icon-pill"></span>
+                        Medicamentos
+                    </a>
+                    <a href="patient-reports.html" class="nav-item">
+                        <span class="icon icon-document"></span>
+                        Meus Relatórios
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Conta</div>
+                    <a href="patient-profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Meu Perfil
+                    </a>
+                    <a href="patient-settings.html" class="nav-item">
+                        <span class="icon icon-settings"></span>
+                        Configurações
+                    </a>
+                    <a href="#" class="nav-item logout-btn">
+                        <span class="icon icon-logout"></span>
+                        Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span class="icon icon-menu"></span>
+                    </button>
+                    <h1 class="page-title">Avaliar Ferida</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="user-role">Paciente</span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="icon icon-sun"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Assessment Content -->
+            <div class="assessment-content">
+                <!-- Instructions -->
+                <div class="instructions-section">
+                    <h2>Como Avaliar sua Ferida</h2>
+                    <div class="instructions-grid">
+                        <div class="instruction-card">
+                            <div class="instruction-number">1</div>
+                            <div class="instruction-content">
+                                <h3>Prepare o Ambiente</h3>
+                                <p>Certifique-se de ter boa iluminação e limpe a área ao redor da ferida.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="instruction-card">
+                            <div class="instruction-number">2</div>
+                            <div class="instruction-content">
+                                <h3>Capture a Imagem</h3>
+                                <p>Use a câmera para fotografar a ferida de diferentes ângulos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="instruction-card">
+                            <div class="instruction-number">3</div>
+                            <div class="instruction-content">
+                                <h3>Responda as Perguntas</h3>
+                                <p>Complete o questionário sobre sintomas e cuidados.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="instruction-card">
+                            <div class="instruction-number">4</div>
+                            <div class="instruction-content">
+                                <h3>Envie para Análise</h3>
+                                <p>Sua avaliação será analisada por nossa equipe médica.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Camera Section -->
+                <div class="camera-section">
+                    <h3>Capturar Imagem da Ferida</h3>
+                    <div class="camera-container">
+                        <div class="camera-preview" id="cameraPreview">
+                            <div class="camera-placeholder">
+                                <span class="icon icon-camera"></span>
+                                <p>Clique para ativar a câmera</p>
+                            </div>
+                        </div>
+                        
+                        <div class="camera-controls">
+                            <button class="btn btn-primary" id="startCamera">
+                                <span class="icon icon-camera"></span>
+                                Ativar Câmera
+                            </button>
+                            
+                            <button class="btn btn-success" id="capturePhoto" style="display: none;">
+                                <span class="icon icon-capture"></span>
+                                Capturar Foto
+                            </button>
+                            
+                            <button class="btn btn-secondary" id="retakePhoto" style="display: none;">
+                                <span class="icon icon-refresh"></span>
+                                Tirar Novamente
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="captured-photos" id="capturedPhotos" style="display: none;">
+                        <h4>Fotos Capturadas</h4>
+                        <div class="photos-grid" id="photosGrid">
+                            <!-- Fotos capturadas aparecerão aqui -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment Form -->
+                <div class="assessment-form">
+                    <h3>Questionário de Avaliação</h3>
+                    <form id="assessmentForm">
+                        <div class="form-group">
+                            <label for="woundLocation">Localização da Ferida</label>
+                            <select id="woundLocation" name="woundLocation" required>
+                                <option value="">Selecione...</option>
+                                <option value="foot">Pé</option>
+                                <option value="leg">Perna</option>
+                                <option value="arm">Braço</option>
+                                <option value="hand">Mão</option>
+                                <option value="torso">Tronco</option>
+                                <option value="head">Cabeça</option>
+                                <option value="other">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="woundSize">Tamanho da Ferida</label>
+                            <select id="woundSize" name="woundSize" required>
+                                <option value="">Selecione...</option>
+                                <option value="small">Pequena (menos de 2cm)</option>
+                                <option value="medium">Média (2-5cm)</option>
+                                <option value="large">Grande (mais de 5cm)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="painLevel">Nível de Dor (0-10)</label>
+                            <input type="range" id="painLevel" name="painLevel" min="0" max="10" value="0">
+                            <div class="range-labels">
+                                <span>0 - Sem dor</span>
+                                <span>10 - Dor extrema</span>
+                            </div>
+                            <div class="pain-value">Dor: <span id="painValue">0</span></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="symptoms">Sintomas (marque todos que se aplicam)</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="redness">
+                                    <span class="checkmark"></span>
+                                    Vermelhidão
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="swelling">
+                                    <span class="checkmark"></span>
+                                    Inchaço
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="heat">
+                                    <span class="checkmark"></span>
+                                    Calor na região
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="discharge">
+                                    <span class="checkmark"></span>
+                                    Secreção
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="odor">
+                                    <span class="checkmark"></span>
+                                    Odor
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="careNotes">Observações sobre os Cuidados</label>
+                            <textarea id="careNotes" name="careNotes" rows="4" placeholder="Descreva como tem cuidado da ferida, medicamentos usados, etc."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="history.back()">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="icon icon-send"></span>
+                                Enviar Avaliação
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chat Support -->
+    <div class="chat-support">
+        <button class="chat-btn" id="chatBtn">
+            <span class="icon icon-chat"></span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas da avaliação de feridas
+        document.addEventListener('DOMContentLoaded', function() {
+            const startCameraBtn = document.getElementById('startCamera');
+            const capturePhotoBtn = document.getElementById('capturePhoto');
+            const retakePhotoBtn = document.getElementById('retakePhoto');
+            const cameraPreview = document.getElementById('cameraPreview');
+            const capturedPhotos = document.getElementById('capturedPhotos');
+            const photosGrid = document.getElementById('photosGrid');
+            const painLevel = document.getElementById('painLevel');
+            const painValue = document.getElementById('painValue');
+            const assessmentForm = document.getElementById('assessmentForm');
+            
+            let camera = null;
+            let capturedImages = [];
+            
+            // Controle do nível de dor
+            painLevel.addEventListener('input', function() {
+                painValue.textContent = this.value;
+            });
+            
+            // Iniciar câmera
+            startCameraBtn.addEventListener('click', function() {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        camera = stream;
+                        cameraPreview.innerHTML = '<video autoplay></video>';
+                        cameraPreview.querySelector('video').srcObject = stream;
+                        
+                        startCameraBtn.style.display = 'none';
+                        capturePhotoBtn.style.display = 'inline-block';
+                    })
+                    .catch(function(error) {
+                        alert('Erro ao acessar a câmera: ' + error.message);
+                    });
+            });
+            
+            // Capturar foto
+            capturePhotoBtn.addEventListener('click', function() {
+                const video = cameraPreview.querySelector('video');
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                context.drawImage(video, 0, 0);
+                
+                const imageData = canvas.toDataURL('image/jpeg');
+                capturedImages.push(imageData);
+                
+                // Mostrar foto capturada
+                const photoElement = document.createElement('div');
+                photoElement.className = 'captured-photo';
+                photoElement.innerHTML = `
+                    <img src="${imageData}" alt="Ferida capturada">
+                    <button class="remove-photo" onclick="removePhoto(${capturedImages.length - 1})">×</button>
+                `;
+                photosGrid.appendChild(photoElement);
+                
+                capturedPhotos.style.display = 'block';
+                capturePhotoBtn.style.display = 'none';
+                retakePhotoBtn.style.display = 'inline-block';
+            });
+            
+            // Tirar novamente
+            retakePhotoBtn.addEventListener('click', function() {
+                capturePhotoBtn.style.display = 'inline-block';
+                retakePhotoBtn.style.display = 'none';
+            });
+            
+            // Submissão do formulário
+            assessmentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (capturedImages.length === 0) {
+                    alert('Por favor, capture pelo menos uma foto da ferida.');
+                    return;
+                }
+                
+                const formData = new FormData(this);
+                const assessmentData = {
+                    images: capturedImages,
+                    location: formData.get('woundLocation'),
+                    size: formData.get('woundSize'),
+                    painLevel: formData.get('painLevel'),
+                    symptoms: formData.getAll('symptoms'),
+                    careNotes: formData.get('careNotes'),
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Simular envio
+                showNotification('Enviando avaliação...', 'info');
+                
+                setTimeout(() => {
+                    showNotification('Avaliação enviada com sucesso!', 'success');
+                    // Salvar no localStorage
+                    const assessments = JSON.parse(localStorage.getItem('woundAssessments') || '[]');
+                    assessments.push(assessmentData);
+                    localStorage.setItem('woundAssessments', JSON.stringify(assessments));
+                    
+                    // Redirecionar
+                    setTimeout(() => {
+                        window.location.href = 'patient-dashboard.html';
+                    }, 2000);
+                }, 2000);
+            });
+        });
+        
+        function removePhoto(index) {
+            capturedImages.splice(index, 1);
+            const photosGrid = document.getElementById('photosGrid');
+            photosGrid.innerHTML = '';
+            
+            capturedImages.forEach((imageData, i) => {
+                const photoElement = document.createElement('div');
+                photoElement.className = 'captured-photo';
+                photoElement.innerHTML = `
+                    <img src="${imageData}" alt="Ferida capturada">
+                    <button class="remove-photo" onclick="removePhoto(${i})">×</button>
+                `;
+                photosGrid.appendChild(photoElement);
+            });
+            
+            if (capturedImages.length === 0) {
+                document.getElementById('capturedPhotos').style.display = 'none';
+            }
+        }
+        
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+    </script>
+</body>
+</html>

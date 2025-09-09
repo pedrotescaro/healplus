@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Check-in Diário</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="patient-dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Meu Portal</div>
+                    <a href="patient-dashboard.html" class="nav-item">
+                        <span class="icon icon-chart"></span>
+                        Dashboard
+                    </a>
+                    <a href="patient-wound-assessment.html" class="nav-item">
+                        <span class="icon icon-camera"></span>
+                        Avaliar Ferida
+                    </a>
+                    <a href="patient-appointments.html" class="nav-item">
+                        <span class="icon icon-calendar"></span>
+                        Minhas Consultas
+                    </a>
+                    <a href="patient-telehealth.html" class="nav-item">
+                        <span class="icon icon-video"></span>
+                        Teleconsulta
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Monitoramento</div>
+                    <a href="#checkin" class="nav-item active">
+                        <span class="icon icon-heart"></span>
+                        Check-in Diário
+                    </a>
+                    <a href="patient-medications.html" class="nav-item">
+                        <span class="icon icon-pill"></span>
+                        Medicamentos
+                    </a>
+                    <a href="patient-reports.html" class="nav-item">
+                        <span class="icon icon-document"></span>
+                        Meus Relatórios
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Conta</div>
+                    <a href="patient-profile.html" class="nav-item">
+                        <span class="icon icon-user"></span>
+                        Meu Perfil
+                    </a>
+                    <a href="patient-settings.html" class="nav-item">
+                        <span class="icon icon-settings"></span>
+                        Configurações
+                    </a>
+                    <a href="#" class="nav-item logout-btn">
+                        <span class="icon icon-logout"></span>
+                        Sair
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span class="icon icon-menu"></span>
+                    </button>
+                    <h1 class="page-title">Check-in Diário</h1>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">João Silva</span>
+                        <span class="user-role">Paciente</span>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <span class="icon icon-sun"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Check-in Content -->
+            <div class="checkin-content">
+                <!-- Daily Status -->
+                <div class="daily-status">
+                    <h2>Como você está se sentindo hoje?</h2>
+                    <p>Registre seu estado de saúde diário para acompanhamento contínuo.</p>
+                    
+                    <div class="status-indicator">
+                        <div class="status-date">
+                            <span class="date">15 de Janeiro, 2024</span>
+                            <span class="day">Segunda-feira</span>
+                        </div>
+                        <div class="status-badge" id="todayStatus">
+                            <span class="status-text">Aguardando check-in</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Check-in Form -->
+                <div class="checkin-form">
+                    <form id="dailyCheckinForm">
+                        <!-- Pain Level -->
+                        <div class="form-section">
+                            <h3>Nível de Dor</h3>
+                            <div class="pain-scale">
+                                <div class="scale-labels">
+                                    <span>0 - Sem dor</span>
+                                    <span>10 - Dor extrema</span>
+                                </div>
+                                <input type="range" id="painLevel" name="painLevel" min="0" max="10" value="0">
+                                <div class="pain-value">Dor: <span id="painValue">0</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Energy Level -->
+                        <div class="form-section">
+                            <h3>Nível de Energia</h3>
+                            <div class="energy-levels">
+                                <label class="energy-option">
+                                    <input type="radio" name="energyLevel" value="very-low">
+                                    <span class="energy-icon">😴</span>
+                                    <span>Muito baixo</span>
+                                </label>
+                                <label class="energy-option">
+                                    <input type="radio" name="energyLevel" value="low">
+                                    <span class="energy-icon">😔</span>
+                                    <span>Baixo</span>
+                                </label>
+                                <label class="energy-option">
+                                    <input type="radio" name="energyLevel" value="moderate">
+                                    <span class="energy-icon">😐</span>
+                                    <span>Moderado</span>
+                                </label>
+                                <label class="energy-option">
+                                    <input type="radio" name="energyLevel" value="good">
+                                    <span class="energy-icon">😊</span>
+                                    <span>Bom</span>
+                                </label>
+                                <label class="energy-option">
+                                    <input type="radio" name="energyLevel" value="excellent">
+                                    <span class="energy-icon">🤩</span>
+                                    <span>Excelente</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Sleep Quality -->
+                        <div class="form-section">
+                            <h3>Qualidade do Sono</h3>
+                            <div class="sleep-quality">
+                                <label class="sleep-option">
+                                    <input type="radio" name="sleepQuality" value="poor">
+                                    <span class="sleep-icon">😵</span>
+                                    <span>Ruim</span>
+                                </label>
+                                <label class="sleep-option">
+                                    <input type="radio" name="sleepQuality" value="fair">
+                                    <span class="sleep-icon">😴</span>
+                                    <span>Regular</span>
+                                </label>
+                                <label class="sleep-option">
+                                    <input type="radio" name="sleepQuality" value="good">
+                                    <span class="sleep-icon">😊</span>
+                                    <span>Bom</span>
+                                </label>
+                                <label class="sleep-option">
+                                    <input type="radio" name="sleepQuality" value="excellent">
+                                    <span class="sleep-icon">😴</span>
+                                    <span>Excelente</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Symptoms -->
+                        <div class="form-section">
+                            <h3>Sintomas (marque todos que se aplicam)</h3>
+                            <div class="symptoms-grid">
+                                <label class="symptom-option">
+                                    <input type="checkbox" name="symptoms" value="fever">
+                                    <span class="symptom-icon">🌡️</span>
+                                    <span>Febre</span>
+                                </label>
+                                <label class="symptom-option">
+                                    <input type="checkbox" name="symptoms" value="nausea">
+                                    <span class="symptom-icon">🤢</span>
+                                    <span>Náusea</span>
+                                </label>
+                                <label class="symptom-option">
+                                    <input type="checkbox" name="symptoms" value="fatigue">
+                                    <span class="symptom-icon">😴</span>
+                                    <span>Fadiga</span>
+                                </label>
+                                <label class="symptom-option">
+                                    <input type="checkbox" name="symptoms" value="headache">
+                                    <span class="symptom-icon">🤕</span>
+                                    <span>Dor de cabeça</span>
+                                </label>
+                                <label class="symptom-option">
+                                    <input type="checkbox" name="symptoms" value="swelling">
+                                    <span class="symptom-icon">🦵</span>
+                                    <span>Inchaço</span>
+                                </label>
+                                <label class="symptom-option">
+                                    <input type="checkbox" name="symptoms" value="redness">
+                                    <span class="symptom-icon">🔴</span>
+                                    <span>Vermelhidão</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Medications Taken -->
+                        <div class="form-section">
+                            <h3>Medicamentos Tomados Hoje</h3>
+                            <div class="medications-list">
+                                <label class="medication-option">
+                                    <input type="checkbox" name="medications" value="antibiotic">
+                                    <span class="medication-name">Antibiótico (Amoxicilina)</span>
+                                    <span class="medication-time">08:00</span>
+                                </label>
+                                <label class="medication-option">
+                                    <input type="checkbox" name="medications" value="painkiller">
+                                    <span class="medication-name">Analgésico (Paracetamol)</span>
+                                    <span class="medication-time">14:00</span>
+                                </label>
+                                <label class="medication-option">
+                                    <input type="checkbox" name="medications" value="vitamin">
+                                    <span class="medication-name">Vitamina D</span>
+                                    <span class="medication-time">12:00</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="form-section">
+                            <h3>Observações Adicionais</h3>
+                            <textarea id="additionalNotes" name="additionalNotes" rows="4" placeholder="Descreva como está se sentindo, atividades realizadas, preocupações, etc."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <span class="icon icon-check"></span>
+                                Enviar Check-in
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Recent Check-ins -->
+                <div class="recent-checkins">
+                    <h3>Check-ins Recentes</h3>
+                    <div class="checkins-list">
+                        <div class="checkin-item">
+                            <div class="checkin-date">14/01/2024</div>
+                            <div class="checkin-summary">
+                                <span class="pain-level">Dor: 3/10</span>
+                                <span class="energy-level">Energia: Boa</span>
+                                <span class="symptoms">Sintomas: Nenhum</span>
+                            </div>
+                        </div>
+                        <div class="checkin-item">
+                            <div class="checkin-date">13/01/2024</div>
+                            <div class="checkin-summary">
+                                <span class="pain-level">Dor: 5/10</span>
+                                <span class="energy-level">Energia: Moderada</span>
+                                <span class="symptoms">Sintomas: Fadiga</span>
+                            </div>
+                        </div>
+                        <div class="checkin-item">
+                            <div class="checkin-date">12/01/2024</div>
+                            <div class="checkin-summary">
+                                <span class="pain-level">Dor: 2/10</span>
+                                <span class="energy-level">Energia: Excelente</span>
+                                <span class="symptoms">Sintomas: Nenhum</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Chat Support -->
+    <div class="chat-support">
+        <button class="chat-btn" id="chatBtn">
+            <span class="icon icon-chat"></span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/enhanced-buttons.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        // Funcionalidades específicas do check-in diário
+        document.addEventListener('DOMContentLoaded', function() {
+            const painLevel = document.getElementById('painLevel');
+            const painValue = document.getElementById('painValue');
+            const checkinForm = document.getElementById('dailyCheckinForm');
+            const todayStatus = document.getElementById('todayStatus');
+            
+            // Controle do nível de dor
+            painLevel.addEventListener('input', function() {
+                painValue.textContent = this.value;
+            });
+            
+            // Verificar se já fez check-in hoje
+            checkTodayCheckin();
+            
+            // Submissão do formulário
+            checkinForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const checkinData = {
+                    date: new Date().toISOString().split('T')[0],
+                    painLevel: formData.get('painLevel'),
+                    energyLevel: formData.get('energyLevel'),
+                    sleepQuality: formData.get('sleepQuality'),
+                    symptoms: formData.getAll('symptoms'),
+                    medications: formData.getAll('medications'),
+                    additionalNotes: formData.get('additionalNotes'),
+                    timestamp: new Date().toISOString()
+                };
+                
+                // Salvar no localStorage
+                const checkins = JSON.parse(localStorage.getItem('dailyCheckins') || '[]');
+                checkins.push(checkinData);
+                localStorage.setItem('dailyCheckins', JSON.stringify(checkins));
+                
+                // Atualizar status
+                updateTodayStatus('completed');
+                
+                showNotification('Check-in enviado com sucesso!', 'success');
+                
+                // Limpar formulário
+                this.reset();
+                painValue.textContent = '0';
+            });
+        });
+        
+        function checkTodayCheckin() {
+            const today = new Date().toISOString().split('T')[0];
+            const checkins = JSON.parse(localStorage.getItem('dailyCheckins') || '[]');
+            
+            const todayCheckin = checkins.find(checkin => checkin.date === today);
+            
+            if (todayCheckin) {
+                updateTodayStatus('completed');
+            } else {
+                updateTodayStatus('pending');
+            }
+        }
+        
+        function updateTodayStatus(status) {
+            const statusBadge = document.getElementById('todayStatus');
+            
+            if (status === 'completed') {
+                statusBadge.innerHTML = '<span class="status-text">✅ Check-in concluído</span>';
+                statusBadge.className = 'status-badge completed';
+            } else {
+                statusBadge.innerHTML = '<span class="status-text">⏳ Aguardando check-in</span>';
+                statusBadge.className = 'status-badge pending';
+            }
+        }
+        
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+    </script>
+</body>
+</html>

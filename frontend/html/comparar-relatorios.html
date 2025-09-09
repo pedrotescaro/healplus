@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Relatório Comparativo de Progressão</title>
+    <link rel="stylesheet" href="../css/healplus-dark.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .comparison-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .report-selector {
+            background: var(--bg-card);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+        }
+        
+        .report-selector.active {
+            border-color: var(--accent-blue);
+        }
+        
+        .report-selector h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .report-selector select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-input);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+        
+        .analyze-button {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .reports-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .report-card {
+            background: var(--bg-card);
+            border: 2px dashed var(--bg-tertiary);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            min-height: 500px;
+        }
+        
+        .report-card.active {
+            border-color: var(--accent-blue);
+        }
+        
+        .report-header {
+            margin-bottom: 1rem;
+        }
+        
+        .report-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .report-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .wound-image {
+            width: 100%;
+            height: 200px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .report-content {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+        
+        .report-content h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .report-content h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+        
+        .report-content p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .report-content strong {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="logo">
+                    <div class="logo-icon">H+</div>
+                    <div class="logo-text">Heal+</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <a href="dashboard.html" class="nav-item">
+                        <i class="fas fa-th-large nav-item-icon"></i>
+                        Dashboard
+                    </a>
+                    <a href="nova-avaliacao.html" class="nav-item">
+                        <i class="fas fa-file-plus nav-item-icon"></i>
+                        Nova Avaliação
+                    </a>
+                    <a href="meus-pacientes.html" class="nav-item">
+                        <i class="fas fa-users nav-item-icon"></i>
+                        Meus Pacientes
+                    </a>
+                    <a href="agenda.html" class="nav-item">
+                        <i class="fas fa-calendar nav-item-icon"></i>
+                        Agenda
+                    </a>
+                    <a href="captura-feridas.html" class="nav-item">
+                        <i class="fas fa-camera nav-item-icon"></i>
+                        Captura de Feridas
+                    </a>
+                    <a href="gerar-relatorio.html" class="nav-item">
+                        <i class="fas fa-file-download nav-item-icon"></i>
+                        Gerar Relatório
+                    </a>
+                    <a href="meus-relatorios.html" class="nav-item">
+                        <i class="fas fa-file-alt nav-item-icon"></i>
+                        Meus Relatórios
+                    </a>
+                    <a href="comparar-relatorios.html" class="nav-item active">
+                        <i class="fas fa-file-medical-alt nav-item-icon"></i>
+                        Comparar Relatórios
+                    </a>
+                    <a href="analytics.html" class="nav-item">
+                        <i class="fas fa-chart-bar nav-item-icon"></i>
+                        Analytics
+                    </a>
+                    <a href="perfil.html" class="nav-item">
+                        <i class="fas fa-user nav-item-icon"></i>
+                        Perfil
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="user-profile">
+                <div class="user-info">
+                    <div class="user-avatar">PT</div>
+                    <div class="user-details">
+                        <h3>Pedro Tescaro</h3>
+                        <p>pedroatescaro@gmail.com</p>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Sair
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Relatório Comparativo de Progressão</h1>
+                <p class="page-subtitle">Análise comparativa de progressão de feridas com IA.</p>
+            </div>
+
+            <div class="comparison-container">
+                <!-- Report Selection -->
+                <div class="comparison-controls">
+                    <div class="report-selector">
+                        <h3>Relatório 1 (Mais antigo)</h3>
+                        <select id="report1">
+                            <option value="">Selecione um relatório...</option>
+                            <option value="1" selected>Pedro Antonio Silvestre Tescaro - 08/09/2025</option>
+                            <option value="2">Guilherme - 05/09/2025</option>
+                            <option value="3">Pedro Antonio Silvestre Tescaro - 02/09/2025</option>
+                        </select>
+                    </div>
+                    
+                    <div class="report-selector active">
+                        <h3>Relatório 2 (Mais recente)</h3>
+                        <select id="report2">
+                            <option value="">Selecione um relatório...</option>
+                            <option value="1">Pedro Antonio Silvestre Tescaro - 08/09/2025</option>
+                            <option value="2" selected>Pedro Antonio Silvestre Tescaro - 09/09/2025</option>
+                            <option value="3">Guilherme - 05/09/2025</option>
+                        </select>
+                    </div>
+                    
+                    <div class="analyze-button">
+                        <button class="btn btn-primary btn-lg">
+                            <i class="fas fa-sparkles"></i>
+                            Analisar Progressão
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Reports Comparison -->
+                <div class="reports-comparison">
+                    <!-- Report 1 -->
+                    <div class="report-card">
+                        <div class="report-header">
+                            <h3 class="report-title">Relatório 1</h3>
+                            <p class="report-date">Pedro Antonio Silvestre Tescaro - 08/09/2025</p>
+                        </div>
+                        
+                        <div class="wound-image">
+                            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <div>Imagem da ferida</div>
+                        </div>
+                        
+                        <div class="report-content">
+                            <h2>## Relatório de Avaliação de Ferida</h2>
+                            <p><strong>Paciente:</strong> Pedro Antonio Silvestre Tescaro</p>
+                            <p><strong>Data da Avaliação:</strong> 07/09/2025</p>
+                            
+                            <h3>### 1. Avaliação da Ferida</h3>
+                            <p><strong>Localização:</strong> Perna Esquerda (Anterior)</p>
+                            <p><strong>Tipo de Tecido:</strong> Granulação</p>
+                            <p><strong>Dimensões:</strong> 3.2cm x 2.8cm</p>
+                            <p><strong>Exsudato:</strong> Moderado, serossanguinolento</p>
+                            
+                            <h3>### 2. Análise TIMERS</h3>
+                            <p><strong>T - Tecido:</strong> 70% tecido viável</p>
+                            <p><strong>I - Infecção:</strong> Sinais leves de inflamação</p>
+                            <p><strong>M - Umidade:</strong> Exsudato moderado</p>
+                            <p><strong>E - Bordas:</strong> Aderidas</p>
+                            <p><strong>R - Reparo:</strong> Em progresso</p>
+                            <p><strong>S - Sociais:</strong> Paciente colaborativo</p>
+                        </div>
+                    </div>
+
+                    <!-- Report 2 -->
+                    <div class="report-card active">
+                        <div class="report-header">
+                            <h3 class="report-title">Relatório 2</h3>
+                            <p class="report-date">Pedro Antonio Silvestre Tescaro - 09/09/2025</p>
+                        </div>
+                        
+                        <div class="wound-image">
+                            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem;"></i>
+                            <div>Imagem da ferida</div>
+                        </div>
+                        
+                        <div class="report-content">
+                            <h2>## Relatório de Avaliação de Ferida</h2>
+                            <p><strong>Paciente:</strong> Pedro Antonio Silvestre Tescaro</p>
+                            <p><strong>Data da Avaliação:</strong> 07/09/2025</p>
+                            
+                            <h3>### 1. Avaliação da Ferida</h3>
+                            <p><strong>Localização:</strong> Perna Esquerda (Anterior)</p>
+                            <p><strong>Tipo de Tecido:</strong> Granulação</p>
+                            <p><strong>Dimensões:</strong> 2.8cm x 2.4cm</p>
+                            <p><strong>Exsudato:</strong> Leve, seroso</p>
+                            
+                            <h3>### 2. Análise TIMERS</h3>
+                            <p><strong>T - Tecido:</strong> 85% tecido viável</p>
+                            <p><strong>I - Infecção:</strong> Sem sinais de infecção</p>
+                            <p><strong>M - Umidade:</strong> Exsudato leve</p>
+                            <p><strong>E - Bordas:</strong> Aderidas</p>
+                            <p><strong>R - Reparo:</strong> Boa progressão</p>
+                            <p><strong>S - Sociais:</strong> Paciente colaborativo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab">
+        <i class="fas fa-comment"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script>
+        // Funcionalidades básicas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Logout
+            document.querySelector('.logout-btn').addEventListener('click', function() {
+                if (confirm('Tem certeza que deseja sair?')) {
+                    localStorage.removeItem('userData');
+                    window.location.href = '../index.html';
+                }
+            });
+
+            // Navegação
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (this.href && !this.href.includes('#')) {
+                        e.preventDefault();
+                        const page = this.href.split('/').pop();
+                        if (page !== 'comparar-relatorios.html') {
+                            showNotification('Carregando página...', 'info');
+                            setTimeout(() => {
+                                window.location.href = this.href;
+                            }, 500);
+                        }
+                    }
+                });
+            });
+
+            // Seleção de relatórios
+            document.querySelectorAll('select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const selector = this.closest('.report-selector');
+                    if (this.value) {
+                        selector.classList.add('active');
+                        showNotification(`Relatório selecionado: ${this.options[this.selectedIndex].text}`, 'info');
+                    } else {
+                        selector.classList.remove('active');
+                    }
+                });
+            });
+
+            // Analisar progressão
+            document.querySelector('.btn-primary').addEventListener('click', function() {
+                const report1 = document.getElementById('report1').value;
+                const report2 = document.getElementById('report2').value;
+                
+                if (!report1 || !report2) {
+                    showNotification('Por favor, selecione ambos os relatórios para comparação.', 'error');
+                    return;
+                }
+                
+                if (report1 === report2) {
+                    showNotification('Por favor, selecione relatórios diferentes para comparação.', 'error');
+                    return;
+                }
+                
+                showNotification('Analisando progressão com IA...', 'info');
+                
+                // Simular análise
+                setTimeout(() => {
+                    showNotification('Análise concluída! Progressão positiva detectada.', 'success');
+                    // Aqui você mostraria os resultados da comparação
+                }, 3000);
+            });
+        });
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: var(--bg-card);
+                border: 1px solid var(--bg-tertiary);
+                border-radius: var(--radius-lg);
+                color: var(--text-primary);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heal+ - Dashboard Profissional</title>
+    <title>Heal+ - Meus Pacientes</title>
     <link rel="stylesheet" href="../css/healplus-dark.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,7 +21,7 @@
             
             <nav class="sidebar-nav">
                 <div class="nav-section">
-                    <a href="dashboard.html" class="nav-item active">
+                    <a href="dashboard.html" class="nav-item">
                         <i class="fas fa-th-large nav-item-icon"></i>
                         Dashboard
                     </a>
@@ -29,7 +29,7 @@
                         <i class="fas fa-file-plus nav-item-icon"></i>
                         Nova Avaliação
                     </a>
-                    <a href="meus-pacientes.html" class="nav-item">
+                    <a href="meus-pacientes.html" class="nav-item active">
                         <i class="fas fa-users nav-item-icon"></i>
                         Meus Pacientes
                     </a>
@@ -64,7 +64,7 @@
                 </div>
             </nav>
             
-                <div class="user-profile">
+            <div class="user-profile">
                 <div class="user-info">
                     <div class="user-avatar">PT</div>
                     <div class="user-details">
@@ -82,63 +82,17 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-header">
-                <h1 class="page-title">Dashboard Profissional</h1>
-                <p class="page-subtitle">Gerencie suas avaliações, relatórios e pacientes em um só lugar.</p>
+                <h1 class="page-title">Meus Pacientes</h1>
+                <p class="page-subtitle">Visualize e gerencie todos os seus registros de pacientes.</p>
             </div>
 
-                <!-- Action Cards -->
-            <div class="grid grid-cols-3 gap-6 mb-8">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <h3 class="card-title">Nova Avaliação de Ferida</h3>
-                            <p class="card-subtitle">Crie uma nova ficha de avaliação guiada pelo framework TIMERS.</p>
-                        </div>
-                        <i class="fas fa-file-plus" style="font-size: 2rem; color: var(--accent-blue);"></i>
-                    </div>
-                    <button class="btn btn-primary w-full">
-                        <i class="fas fa-plus"></i>
-                            Criar Avaliação
-                        </button>
-                    </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <h3 class="card-title">Gerar Relatório da Ferida</h3>
-                            <p class="card-subtitle">Compile um relatório em PDF a partir de uma ficha de anamnese salva.</p>
-                        </div>
-                        <i class="fas fa-file-download" style="font-size: 2rem; color: var(--accent-green);"></i>
-                    </div>
-                    <button class="btn btn-primary w-full">
-                        <i class="fas fa-download"></i>
-                            Criar Relatório
-                        </button>
-                    </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <h3 class="card-title">Comparar Relatórios</h3>
-                            <p class="card-subtitle">Analise a progressão da cicatrização comparando relatórios com IA.</p>
-                        </div>
-                        <i class="fas fa-file-medical-alt" style="font-size: 2rem; color: var(--accent-yellow);"></i>
-                    </div>
-                    <button class="btn btn-primary w-full">
-                        <i class="fas fa-balance-scale"></i>
-                            Comparar Relatórios
-                        </button>
-                    </div>
-                </div>
-
-            <!-- Recent Evaluations -->
+            <!-- All Records -->
             <div class="card">
                 <div class="card-header">
                     <div>
-                        <h3 class="card-title">Avaliações Recentes</h3>
-                        <p class="card-subtitle">Veja as últimas fichas de avaliação que você preencheu.</p>
+                        <h3 class="card-title">Todos os Registros</h3>
+                        <p class="card-subtitle">Aqui estão todas as fichas de pacientes que você já criou, ordenadas pela data mais recente.</p>
                     </div>
-                    <button class="btn btn-outline btn-sm">Ver todas as fichas</button>
                 </div>
                 
                 <table class="table">
@@ -172,40 +126,6 @@
                     </tbody>
                 </table>
             </div>
-
-                    <!-- Activity Summary -->
-                    <div class="card">
-                        <div class="card-header">
-                    <div>
-                            <h3 class="card-title">Resumo das Atividades</h3>
-                            <p class="card-subtitle">Sua atividade recente na plataforma.</p>
-                        </div>
-                                </div>
-                
-                <div class="flex items-center justify-center" style="min-height: 200px;">
-                    <div class="text-center">
-                        <div style="width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--accent-blue) 0deg 90deg, var(--bg-tertiary) 90deg 234deg, var(--text-muted) 234deg 360deg); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
-                            <div style="width: 100px; height: 100px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <span style="font-size: 1.5rem; font-weight: 700; color: var(--text-primary);">16</span>
-                            </div>
-                                </div>
-                        <div class="flex justify-center gap-4 text-sm">
-                            <div class="flex items-center gap-2">
-                                <div style="width: 8px; height: 8px; background: var(--accent-blue); border-radius: 50%;"></div>
-                                <span style="color: var(--text-secondary);">Fichas Concluídas: 3</span>
-                                </div>
-                            <div class="flex items-center gap-2">
-                                <div style="width: 8px; height: 8px; background: var(--bg-tertiary); border-radius: 50%;"></div>
-                                <span style="color: var(--text-secondary);">Relatórios Gerados: 5</span>
-                                </div>
-                            <div class="flex items-center gap-2">
-                                <div style="width: 8px; height: 8px; background: var(--text-muted); border-radius: 50%;"></div>
-                                <span style="color: var(--text-secondary);">Comparações: 8</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
     </div>
 
@@ -232,8 +152,7 @@
                     if (this.href && !this.href.includes('#')) {
                         e.preventDefault();
                         const page = this.href.split('/').pop();
-                        if (page !== 'dashboard.html') {
-                            // Simular carregamento
+                        if (page !== 'meus-pacientes.html') {
                             showNotification('Carregando página...', 'info');
                             setTimeout(() => {
                                 window.location.href = this.href;
@@ -243,25 +162,74 @@
                 });
             });
 
-            // Botões de ação
-            document.querySelectorAll('.btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const text = this.textContent.trim();
-                    if (text.includes('Criar Avaliação')) {
-                        window.location.href = 'nova-avaliacao.html';
-                    } else if (text.includes('Criar Relatório')) {
-                        window.location.href = 'gerar-relatorio.html';
-                    } else if (text.includes('Comparar Relatórios')) {
-                        window.location.href = 'comparar-relatorios.html';
-                    } else if (text.includes('Ver todas as fichas')) {
-                        window.location.href = 'meus-pacientes.html';
-                    }
+            // Ações da tabela
+            document.querySelectorAll('.fa-ellipsis-h').forEach(icon => {
+                icon.addEventListener('click', function() {
+                    showActionMenu(this);
                 });
             });
         });
 
+        function showActionMenu(icon) {
+            // Criar menu de ações
+            const menu = document.createElement('div');
+            menu.style.cssText = `
+                position: absolute;
+                background: var(--bg-card);
+                border: 1px solid var(--bg-tertiary);
+                border-radius: var(--radius-lg);
+                padding: 0.5rem 0;
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+                min-width: 150px;
+            `;
+            
+            const actions = [
+                { icon: 'fas fa-eye', text: 'Visualizar', action: () => showNotification('Visualizando paciente...', 'info') },
+                { icon: 'fas fa-edit', text: 'Editar', action: () => showNotification('Editando paciente...', 'info') },
+                { icon: 'fas fa-file-download', text: 'Gerar Relatório', action: () => window.location.href = 'gerar-relatorio.html' },
+                { icon: 'fas fa-trash', text: 'Excluir', action: () => confirm('Tem certeza que deseja excluir?') && showNotification('Paciente excluído!', 'success') }
+            ];
+            
+            actions.forEach(action => {
+                const item = document.createElement('div');
+                item.style.cssText = `
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: var(--text-primary);
+                    transition: background-color 0.2s;
+                `;
+                item.innerHTML = `<i class="${action.icon}"></i> ${action.text}`;
+                item.addEventListener('click', action.action);
+                item.addEventListener('mouseenter', () => {
+                    item.style.backgroundColor = 'var(--bg-tertiary)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.backgroundColor = 'transparent';
+                });
+                menu.appendChild(item);
+            });
+            
+            // Posicionar menu
+            const rect = icon.getBoundingClientRect();
+            menu.style.top = `${rect.bottom + 5}px`;
+            menu.style.left = `${rect.left - 100}px`;
+            
+            document.body.appendChild(menu);
+            
+            // Remover menu ao clicar fora
+            setTimeout(() => {
+                document.addEventListener('click', function removeMenu() {
+                    menu.remove();
+                    document.removeEventListener('click', removeMenu);
+                });
+            }, 100);
+        }
+
         function showNotification(message, type) {
-            // Criar notificação
             const notification = document.createElement('div');
             notification.style.cssText = `
                 position: fixed;
@@ -279,7 +247,6 @@
             notification.textContent = message;
             document.body.appendChild(notification);
 
-            // Remover após 3 segundos
             setTimeout(() => {
                 notification.remove();
             }, 3000);

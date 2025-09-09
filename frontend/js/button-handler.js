@@ -261,9 +261,9 @@ class ButtonHandler {
             
             // Redirecionar baseado no tipo de usuário
             if (userType === 'clinician') {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'clinician-dashboard.html';
             } else {
-                window.location.href = 'index.html';
+                window.location.href = 'patient-dashboard.html';
             }
         }, 1000);
     }
