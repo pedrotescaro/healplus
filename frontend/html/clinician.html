@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heal+ - Dashboard</title>
-    <link rel="stylesheet" href="css/modern-design.css">
-    <link rel="stylesheet" href="css/icons.css">
+    <title>Heal+ - Portal do Clínico</title>
+    <link rel="stylesheet" href="../css/modern-design.css">
+    <link rel="stylesheet" href="../css/icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -30,7 +30,7 @@
                         <span class="icon icon-shield"></span>
                         Nova Avaliação
                     </a>
-                    <a href="clinician.html" class="nav-item">
+                    <a href="#patients" class="nav-item">
                         <span class="icon icon-user-group"></span>
                         Meus Pacientes
                     </a>
@@ -67,10 +67,10 @@
             
             <div class="sidebar-footer">
                 <div class="user-profile">
-                    <div class="user-avatar">PT</div>
+                    <div class="user-avatar">MS</div>
                     <div class="user-info">
-                        <div class="user-name">Pedro Tescaro</div>
-                        <div class="user-email">pedroatescaro@gmail.com</div>
+                        <div class="user-name">Dr. Maria Santos</div>
+                        <div class="user-email">maria.santos@healplus.com</div>
                     </div>
                 </div>
                 <button class="logout-btn">
@@ -162,6 +162,65 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Patient Stats -->
+                <div class="stats-grid" style="margin-top: 3rem;">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-user-group"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +8%
+                            </div>
+                        </div>
+                        <div class="stat-value">156</div>
+                        <div class="stat-label">Pacientes Ativos</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-shield"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +15%
+                            </div>
+                        </div>
+                        <div class="stat-value">2.3k</div>
+                        <div class="stat-label">Avaliações</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-heart"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +2%
+                            </div>
+                        </div>
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Satisfação</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <span class="icon icon-calendar"></span>
+                            </div>
+                            <div class="stat-change positive">
+                                <span class="icon icon-arrow-up"></span>
+                                +12%
+                            </div>
+                        </div>
+                        <div class="stat-value">45</div>
+                        <div class="stat-label">Consultas Hoje</div>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -177,7 +236,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/theme-manager.js"></script>
+    <script src="../js/theme-manager.js"></script>
+    <script src="../js/button-handler.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         // Mobile menu toggle
         document.getElementById('mobileMenuToggle').addEventListener('click', function() {
@@ -202,6 +263,14 @@
             const sidebar = document.getElementById('sidebar');
             if (window.innerWidth > 1024) {
                 sidebar.classList.remove('open');
+            }
+        });
+
+        // Logout functionality
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Implement logout logic here
+                window.location.href = 'login.html';
             }
         });
     </script>

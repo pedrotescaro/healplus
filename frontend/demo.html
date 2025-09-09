@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Demonstração de Funcionalidades</title>
+    <link rel="stylesheet" href="css/modern-design.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .demo-description {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .demo-btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .demo-btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .demo-btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .demo-btn-warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .demo-btn-error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .demo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-card {
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+        
+        .demo-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+        
+        .demo-card-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-card-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .demo-form {
+            max-width: 400px;
+        }
+        
+        .demo-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .demo-status {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .demo-status-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .demo-status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+        
+        .demo-status-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 style="text-align: center; margin-bottom: 2rem; color: #1f2937;">
+            🚀 Heal+ - Demonstração de Funcionalidades
+        </h1>
+        
+        <!-- Sistema de Notificações -->
+        <div class="demo-section">
+            <h2 class="demo-title">🔔 Sistema de Notificações</h2>
+            <p class="demo-description">
+                Teste o sistema de notificações com diferentes tipos e mensagens.
+            </p>
+            <div class="demo-buttons">
+                <button class="demo-btn demo-btn-success" onclick="showNotification('Operação realizada com sucesso!', 'success')">
+                    Sucesso
+                </button>
+                <button class="demo-btn demo-btn-error" onclick="showNotification('Erro ao processar solicitação', 'error')">
+                    Erro
+                </button>
+                <button class="demo-btn demo-btn-warning" onclick="showNotification('Atenção: Verifique os dados', 'warning')">
+                    Aviso
+                </button>
+                <button class="demo-btn demo-btn-primary" onclick="showNotification('Informação importante', 'info')">
+                    Informação
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sistema de Botões -->
+        <div class="demo-section">
+            <h2 class="demo-title">🔘 Sistema de Botões</h2>
+            <p class="demo-description">
+                Teste diferentes tipos de botões e suas funcionalidades.
+            </p>
+            <div class="demo-buttons">
+                <button class="demo-btn demo-btn-primary" onclick="handleLogin()">
+                    Entrar no Sistema
+                </button>
+                <button class="demo-btn demo-btn-secondary" onclick="handleLogout()">
+                    Sair do Sistema
+                </button>
+                <button class="demo-btn demo-btn-success" onclick="handleSave()">
+                    Salvar Alterações
+                </button>
+                <button class="demo-btn demo-btn-warning" onclick="handleCancel()">
+                    Cancelar Operação
+                </button>
+            </div>
+        </div>
+        
+        <!-- Cards Interativos -->
+        <div class="demo-section">
+            <h2 class="demo-title">📱 Cards Interativos</h2>
+            <p class="demo-description">
+                Teste os cards clicáveis e suas ações.
+            </p>
+            <div class="demo-cards">
+                <div class="demo-card" onclick="handleCardClick('Nova Avaliação')">
+                    <div class="demo-card-title">Nova Avaliação</div>
+                    <div class="demo-card-description">Capturar e analisar ferida</div>
+                </div>
+                <div class="demo-card" onclick="handleCardClick('Teleconsulta')">
+                    <div class="demo-card-title">Teleconsulta</div>
+                    <div class="demo-card-description">Iniciar consulta remota</div>
+                </div>
+                <div class="demo-card" onclick="handleCardClick('Perfil')">
+                    <div class="demo-card-title">Perfil</div>
+                    <div class="demo-card-description">Editar informações pessoais</div>
+                </div>
+                <div class="demo-card" onclick="handleCardClick('Relatórios')">
+                    <div class="demo-card-title">Relatórios</div>
+                    <div class="demo-card-description">Visualizar relatórios médicos</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sistema de Temas -->
+        <div class="demo-section">
+            <h2 class="demo-title">🎨 Sistema de Temas</h2>
+            <p class="demo-description">
+                Teste a alternância entre tema claro e escuro.
+            </p>
+            <div class="demo-buttons">
+                <button class="demo-btn demo-btn-primary" onclick="toggleTheme()">
+                    Alternar Tema
+                </button>
+                <button class="demo-btn demo-btn-secondary" onclick="setTheme('light')">
+                    Tema Claro
+                </button>
+                <button class="demo-btn demo-btn-secondary" onclick="setTheme('dark')">
+                    Tema Escuro
+                </button>
+            </div>
+        </div>
+        
+        <!-- Formulários -->
+        <div class="demo-section">
+            <h2 class="demo-title">📝 Formulários</h2>
+            <p class="demo-description">
+                Teste a validação e submissão de formulários.
+            </p>
+            <form class="demo-form" onsubmit="handleFormSubmit(event)">
+                <input type="text" class="demo-input" placeholder="Nome completo" required>
+                <input type="email" class="demo-input" placeholder="Email" required>
+                <input type="tel" class="demo-input" placeholder="Telefone">
+                <button type="submit" class="demo-btn demo-btn-primary">
+                    Enviar Formulário
+                </button>
+            </form>
+        </div>
+        
+        <!-- Status do Sistema -->
+        <div class="demo-section">
+            <h2 class="demo-title">📊 Status do Sistema</h2>
+            <p class="demo-description">
+                Informações sobre o estado atual do sistema.
+            </p>
+            <div id="systemStatus">
+                <div class="demo-status demo-status-info">
+                    Sistema inicializado e funcionando corretamente
+                </div>
+            </div>
+            <div class="demo-buttons">
+                <button class="demo-btn demo-btn-primary" onclick="checkSystemStatus()">
+                    Verificar Status
+                </button>
+                <button class="demo-btn demo-btn-success" onclick="simulateSuccess()">
+                    Simular Sucesso
+                </button>
+                <button class="demo-btn demo-btn-error" onclick="simulateError()">
+                    Simular Erro
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navegação -->
+        <div class="demo-section">
+            <h2 class="demo-title">🧭 Navegação</h2>
+            <p class="demo-description">
+                Teste os links de navegação para diferentes páginas.
+            </p>
+            <div class="demo-buttons">
+                <a href="html/login.html" class="demo-btn demo-btn-primary">Página de Login</a>
+                <a href="html/index.html" class="demo-btn demo-btn-secondary">Portal do Paciente</a>
+                <a href="html/dashboard.html" class="demo-btn demo-btn-secondary">Dashboard do Clínico</a>
+                <a href="html/profile.html" class="demo-btn demo-btn-secondary">Perfil do Usuário</a>
+                <a href="html/telehealth.html" class="demo-btn demo-btn-secondary">Teleconsultas</a>
+                <a href="html/wound-capture.html" class="demo-btn demo-btn-secondary">Captura de Feridas</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/button-handler.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Funções de demonstração
+        function showNotification(message, type) {
+            if (window.buttonHandler && window.buttonHandler.showNotification) {
+                window.buttonHandler.showNotification(message, type);
+            } else {
+                alert(message);
+            }
+        }
+        
+        function handleLogin() {
+            showNotification('Simulando login...', 'info');
+            setTimeout(() => {
+                showNotification('Login realizado com sucesso!', 'success');
+            }, 1000);
+        }
+        
+        function handleLogout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                showNotification('Logout realizado com sucesso!', 'success');
+            }
+        }
+        
+        function handleSave() {
+            showNotification('Dados salvos com sucesso!', 'success');
+        }
+        
+        function handleCancel() {
+            showNotification('Operação cancelada', 'info');
+        }
+        
+        function handleCardClick(cardName) {
+            showNotification(`Card "${cardName}" clicado!`, 'info');
+        }
+        
+        function toggleTheme() {
+            if (window.healPlusMain && window.healPlusMain.toggleTheme) {
+                window.healPlusMain.toggleTheme();
+            } else {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                showNotification(`Tema alterado para ${newTheme}`, 'info');
+            }
+        }
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            showNotification(`Tema definido como ${theme}`, 'info');
+        }
+        
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showNotification('Formulário enviado com sucesso!', 'success');
+        }
+        
+        function checkSystemStatus() {
+            showNotification('Verificando status do sistema...', 'info');
+            setTimeout(() => {
+                showNotification('Sistema funcionando perfeitamente!', 'success');
+            }, 1000);
+        }
+        
+        function simulateSuccess() {
+            showNotification('Operação simulada com sucesso!', 'success');
+        }
+        
+        function simulateError() {
+            showNotification('Erro simulado para teste!', 'error');
+        }
+        
+        // Inicializar página de demonstração
+        document.addEventListener('DOMContentLoaded', () => {
+            showNotification('Página de demonstração carregada!', 'info');
+        });
+    </script>
+</body>
+</html>

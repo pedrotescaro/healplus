@@ -3,295 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heal+ - Portal do Paciente</title>
+    <title>Heal+ - Portal de Saúde</title>
     <link rel="stylesheet" href="css/modern-design.css">
     <link rel="stylesheet" href="css/icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .landing-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .landing-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .landing-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .landing-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .landing-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .landing-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .landing-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 200px;
+        }
+        
+        .landing-btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .landing-btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .landing-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .landing-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .landing-title {
+                font-size: 2.5rem;
+            }
+            
+            .landing-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .landing-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .landing-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="#" class="logo">
-                    <div class="logo-icon">H+</div>
-                    <div class="logo-text">Heal+</div>
+    <div class="landing-container">
+        <div class="landing-content">
+            <h1 class="landing-title">Heal+</h1>
+            <h2 class="landing-subtitle">Portal de Saúde Inteligente</h2>
+            <p class="landing-description">
+                Sistema completo para monitoramento de feridas, teleconsultas e acompanhamento médico. 
+                Tecnologia de ponta para cuidar da sua saúde de forma inteligente e eficiente.
+            </p>
+            
+            <div class="landing-buttons">
+                <a href="html/login.html" class="landing-btn landing-btn-primary">
+                    Entrar no Sistema
+                </a>
+                <a href="html/dashboard.html" class="landing-btn landing-btn-secondary">
+                    Ver Dashboard
                 </a>
             </div>
             
-            <nav class="sidebar-nav">
-                <div class="nav-section">
-                    <div class="nav-section-title">Paciente</div>
-                    <a href="#dashboard" class="nav-item active">
-                        <span class="icon icon-chart"></span>
-                        Dashboard
-                    </a>
-                    <a href="#assessments" class="nav-item">
-                        <span class="icon icon-shield"></span>
-                        Minhas Avaliações
-                    </a>
-                    <a href="#appointments" class="nav-item">
-                        <span class="icon icon-calendar"></span>
-                        Consultas
-                    </a>
-                    <a href="telehealth.html" class="nav-item">
-                        <span class="icon icon-video"></span>
-                        Teleconsulta
-                    </a>
+            <div class="landing-features">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Monitoramento Inteligente</h3>
+                    <p class="feature-description">
+                        Acompanhe a evolução de suas feridas com análise de IA e relatórios detalhados.
+                    </p>
                 </div>
                 
-                <div class="nav-section">
-                    <div class="nav-section-title">Monitoramento</div>
-                    <a href="remote-monitoring.html" class="nav-item">
-                        <span class="icon icon-heart"></span>
-                        Check-in Diário
-                    </a>
-                    <a href="wound-capture.html" class="nav-item">
-                        <span class="icon icon-camera"></span>
-                        Captura de Feridas
-                    </a>
+                <div class="feature-card">
+                    <div class="feature-icon">📹</div>
+                    <h3 class="feature-title">Teleconsultas</h3>
+                    <p class="feature-description">
+                        Consulte com especialistas de forma remota, segura e conveniente.
+                    </p>
                 </div>
                 
-                <div class="nav-section">
-                    <div class="nav-section-title">Suporte</div>
-                    <a href="chatbot.html" class="nav-item">
-                        <span class="icon icon-chat"></span>
-                        Assistente IA
-                    </a>
-                    <a href="profile.html" class="nav-item">
-                        <span class="icon icon-user"></span>
-                        Perfil
-                    </a>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">IA Avançada</h3>
+                    <p class="feature-description">
+                        Análise automática de imagens e sugestões personalizadas de tratamento.
+                    </p>
                 </div>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <div class="user-avatar">JS</div>
-                    <div class="user-info">
-                        <div class="user-name">João Silva</div>
-                        <div class="user-email">joao.silva@email.com</div>
-                    </div>
-                </div>
-                <button class="logout-btn">
-                    <span class="icon icon-arrow-right"></span>
-                    Sair
-                </button>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Content Header -->
-            <header class="content-header">
-                <h1 class="content-title">Bem-vindo ao Heal+</h1>
-                <p class="content-subtitle">Seu portal de saúde inteligente. Acompanhe sua recuperação e mantenha contato com sua equipe médica.</p>
-            </header>
-
-            <!-- Content Body -->
-            <div class="content-body">
-                <!-- Stats Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <span class="icon icon-shield"></span>
-                            </div>
-                            <div class="stat-change positive">
-                                <span class="icon icon-arrow-up"></span>
-                                +12%
-                            </div>
-                        </div>
-                        <div class="stat-value">24</div>
-                        <div class="stat-label">Avaliações Completas</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <span class="icon icon-calendar"></span>
-                            </div>
-                            <div class="stat-change positive">
-                                <span class="icon icon-arrow-up"></span>
-                                +5%
-                            </div>
-                        </div>
-                        <div class="stat-value">8</div>
-                        <div class="stat-label">Consultas Agendadas</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <span class="icon icon-heart"></span>
-                            </div>
-                            <div class="stat-change positive">
-                                <span class="icon icon-arrow-up"></span>
-                                +8%
-                            </div>
-                        </div>
-                        <div class="stat-value">15</div>
-                        <div class="stat-label">Dias de Check-in</div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <span class="icon icon-chart"></span>
-                            </div>
-                            <div class="stat-change positive">
-                                <span class="icon icon-arrow-up"></span>
-                                +3%
-                            </div>
-                        </div>
-                        <div class="stat-value">92%</div>
-                        <div class="stat-label">Progresso da Cura</div>
-                    </div>
-                </div>
-
-                <!-- Action Cards -->
-                <div class="btn-grid" style="margin-bottom: 3rem;">
-                    <div class="action-card" onclick="window.location.href='wound-capture.html'">
-                        <div class="action-card-icon">
-                            <span class="icon icon-camera"></span>
-                        </div>
-                        <h3 class="action-card-title">Capturar Ferida</h3>
-                        <p class="action-card-description">Registre fotos da sua ferida para acompanhamento médico com análise de IA.</p>
-                        <button class="btn btn-primary">
-                            <span class="icon icon-camera"></span>
-                            Capturar Agora
-                        </button>
-                    </div>
-
-                    <div class="action-card" onclick="window.location.href='remote-monitoring.html'">
-                        <div class="action-card-icon">
-                            <span class="icon icon-heart"></span>
-                        </div>
-                        <h3 class="action-card-title">Check-in Diário</h3>
-                        <p class="action-card-description">Complete seu check-in diário com sintomas e progresso da cicatrização.</p>
-                        <button class="btn btn-primary">
-                            <span class="icon icon-check"></span>
-                            Fazer Check-in
-                        </button>
-                    </div>
-
-                    <div class="action-card" onclick="window.location.href='telehealth.html'">
-                        <div class="action-card-icon">
-                            <span class="icon icon-video"></span>
-                        </div>
-                        <h3 class="action-card-title">Teleconsulta</h3>
-                        <p class="action-card-description">Agende ou participe de consultas virtuais com sua equipe médica.</p>
-                        <button class="btn btn-primary">
-                            <span class="icon icon-calendar"></span>
-                            Agendar Consulta
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="grid grid-cols-2">
-
-                    <!-- Upcoming Appointments -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Próximas Consultas</h3>
-                            <p class="card-subtitle">Suas consultas agendadas.</p>
-                        </div>
-                        <div class="card-body">
-                            <div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-blue);">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                    <span style="font-weight: 600; color: var(--text-primary);">Dr. Maria Santos</span>
-                                    <span style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 600;">HOJE</span>
-                                </div>
-                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-                                    Teleconsulta - 14:30
-                                </div>
-                                <button class="btn btn-sm btn-primary">
-                                    <span class="icon icon-video"></span>
-                                    Entrar na Consulta
-                                </button>
-                            </div>
-
-                            <div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg);">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                    <span style="font-weight: 600; color: var(--text-primary);">Dr. Carlos Silva</span>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">22/01</span>
-                                </div>
-                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-                                    Consulta Presencial - 10:00
-                                </div>
-                                <button class="btn btn-sm btn-secondary">
-                                    <span class="icon icon-eye"></span>
-                                    Ver Detalhes
-                                </button>
-                            </div>
-
-                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-lg);">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                    <span style="font-weight: 600; color: var(--text-primary);">Dr. Ana Costa</span>
-                                    <span style="font-size: 0.75rem; color: var(--text-muted);">28/01</span>
-                                </div>
-                                <div style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem;">
-                                    Teleconsulta - 16:00
-                                </div>
-                                <button class="btn btn-sm btn-secondary">
-                                    <span class="icon icon-eye"></span>
-                                    Ver Detalhes
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Relatórios Detalhados</h3>
+                    <p class="feature-description">
+                        Acompanhe seu progresso com gráficos e relatórios profissionais.
+                    </p>
                 </div>
             </div>
-        </main>
-
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">
-            <span class="icon icon-menu"></span>
-        </button>
-
-        <!-- Chat Assistant Button -->
-        <button class="chat-assistant-btn" onclick="window.location.href='chatbot.html'">
-            <span class="icon icon-chat"></span>
-        </button>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="js/theme-manager.js"></script>
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-        });
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const mobileToggle = document.getElementById('mobileMenuToggle');
-            
-            if (window.innerWidth <= 1024 && 
-                !sidebar.contains(event.target) && 
-                !mobileToggle.contains(event.target)) {
-                sidebar.classList.remove('open');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const sidebar = document.getElementById('sidebar');
-            if (window.innerWidth > 1024) {
-                sidebar.classList.remove('open');
-            }
-        });
-
-        // Logout functionality
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            if (confirm('Tem certeza que deseja sair?')) {
-                // Implement logout logic here
-                window.location.href = 'login.html';
-            }
-        });
-    </script>
+    <script src="js/button-handler.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
