@@ -1,6 +1,6 @@
-package com.healplus.backend.Controller;
+package com.healplus.backend.Controller.Wound;
 
-import com.healplus.backend.Model.WoundAssessment;
+import com.healplus.backend.Model.Entity.WoundAssessment;
 import com.healplus.backend.mvp.presenter.WoundAssessmentPresenter;
 import com.healplus.backend.mvp.view.WoundAssessmentView;
 import com.healplus.backend.security.annotation.RateLimited;

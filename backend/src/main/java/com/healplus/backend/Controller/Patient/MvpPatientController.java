@@ -1,6 +1,6 @@
-package com.healplus.backend.Controller;
+package com.healplus.backend.Controller.Patient;
 
-import com.healplus.backend.Model.Patient;
+import com.healplus.backend.Model.Entity.Patient;
 import com.healplus.backend.mvp.presenter.PatientPresenter;
 import com.healplus.backend.mvp.view.PatientControllerView;
 import com.healplus.backend.security.annotation.RateLimited;

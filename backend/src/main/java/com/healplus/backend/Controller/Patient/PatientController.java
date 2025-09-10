@@ -1,7 +1,7 @@
-package com.healplus.backend.Controller;
+package com.healplus.backend.Controller.Patient;
 
-import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Service.PatientService;
+import com.healplus.backend.Model.Entity.Patient;
+import com.healplus.backend.Service.Patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package com.healplus.backend.Controller;
+package com.healplus.backend.Controller.Auth;
 
-import com.healplus.backend.Model.Login;
-import com.healplus.backend.Service.LoginService;
+import com.healplus.backend.Model.Entity.Login;
+import com.healplus.backend.Service.Auth.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,8 +1,8 @@
-package com.healplus.backend.Controller;
+package com.healplus.backend.Controller.Wound;
 
-import com.healplus.backend.Model.WoundAssessment;
-import com.healplus.backend.Service.WoundAssessmentService;
-import com.healplus.backend.Service.AIService;
+import com.healplus.backend.Model.Entity.WoundAssessment;
+import com.healplus.backend.Service.Wound.WoundAssessmentService;
+import com.healplus.backend.Service.AI.AIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
