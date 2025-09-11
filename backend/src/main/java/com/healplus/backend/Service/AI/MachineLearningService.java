@@ -1,4 +1,4 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.AI;
 
 import com.healplus.backend.Model.WoundAssessment;
 import com.healplus.backend.Model.AIAnalysis;

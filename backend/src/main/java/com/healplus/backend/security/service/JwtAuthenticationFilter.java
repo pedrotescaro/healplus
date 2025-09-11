@@ -1,6 +1,6 @@
 package com.healplus.backend.security.service;
 
-import com.healplus.backend.Service.JwtService;
+import com.healplus.backend.Service.Auth.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

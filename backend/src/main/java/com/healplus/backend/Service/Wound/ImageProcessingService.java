@@ -1,8 +1,8 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Wound;
 
-import com.healplus.backend.Model.WoundImage;
-import com.healplus.backend.Model.WoundAssessment;
-import com.healplus.backend.Repository.WoundImageRepository;
+import com.healplus.backend.Model.Entity.WoundImage;
+import com.healplus.backend.Model.Entity.WoundAssessment;
+import com.healplus.backend.Repository.Wound.WoundImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

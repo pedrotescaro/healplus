@@ -1,7 +1,5 @@
 package com.healplus.backend.Controller.Monitoring;
 
-import com.healplus.backend.Model.DTO.RemoteCheckInRequest;
-import com.healplus.backend.Model.DTO.RemoteCheckInResponse;
 import com.healplus.backend.Model.Entity.Patient;
 import com.healplus.backend.Model.Entity.RemoteCheckIn;
 import com.healplus.backend.Service.Monitoring.RemoteMonitoringService;

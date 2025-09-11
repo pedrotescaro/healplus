@@ -1,4 +1,4 @@
-package com.healplus.backend.Model;
+package com.healplus.backend.Model.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

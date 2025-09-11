@@ -1,9 +1,10 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.AI;
 
 import com.healplus.backend.Model.*;
 import com.healplus.backend.Repository.AIAnalysisRepository;
 import com.healplus.backend.Repository.WoundImageRepository;
 import com.healplus.backend.Repository.WoundAssessmentRepository;
+import com.healplus.backend.Service.Wound.ImageProcessingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

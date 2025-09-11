@@ -1,4 +1,4 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

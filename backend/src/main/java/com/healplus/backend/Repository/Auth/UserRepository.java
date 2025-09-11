@@ -1,7 +1,7 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.Auth;
 
-import com.healplus.backend.Model.User;
-import com.healplus.backend.Model.UserRole;
+import com.healplus.backend.Model.Entity.User;
+import com.healplus.backend.Model.Entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

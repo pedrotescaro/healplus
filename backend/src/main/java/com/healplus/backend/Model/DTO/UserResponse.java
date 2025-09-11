@@ -1,7 +1,7 @@
-package com.healplus.backend.DTO;
+package com.healplus.backend.Model.DTO;
 
-import com.healplus.backend.Model.User;
-import com.healplus.backend.Model.UserRole;
+import com.healplus.backend.Model.Entity.User;
+import com.healplus.backend.Model.Entity.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

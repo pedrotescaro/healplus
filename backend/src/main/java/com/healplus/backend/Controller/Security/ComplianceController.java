@@ -1,6 +1,6 @@
-package com.healplus.backend.Controller;
+package com.healplus.backend.Controller.Security;
 
-import com.healplus.backend.Model.DigitalSignature;
+import com.healplus.backend.Model.Entity.DigitalSignature;
 import com.healplus.backend.Service.Security.DigitalSignatureService;
 import com.healplus.backend.Service.Security.DataRetentionService;
 import com.healplus.backend.Service.Security.BackupService;

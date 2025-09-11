@@ -1,4 +1,4 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Security;
 
 import com.healplus.backend.Model.DataRetention;
 import com.healplus.backend.Repository.Security.DataRetentionRepository;

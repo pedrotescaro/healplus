@@ -1,5 +1,5 @@
-package com.healplus.backend.Repository;
-import com.healplus.backend.Model.Login;
+package com.healplus.backend.Repository.Auth;
+import com.healplus.backend.Model.Entity.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.*;
 import java.util.UUID;

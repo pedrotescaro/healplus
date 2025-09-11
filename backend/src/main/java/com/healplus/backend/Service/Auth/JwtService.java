@@ -1,6 +1,6 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Auth;
 
-import com.healplus.backend.Model.User;
+import com.healplus.backend.Model.Entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

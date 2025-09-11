@@ -1,6 +1,6 @@
-package com.healplus.backend.DTO;
+package com.healplus.backend.Model.DTO;
 
-import com.healplus.backend.Model.UserRole;
+import com.healplus.backend.Model.Entity.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

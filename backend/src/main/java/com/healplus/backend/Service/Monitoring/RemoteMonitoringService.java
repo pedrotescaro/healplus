@@ -1,10 +1,12 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Monitoring;
 
-import com.healplus.backend.Controller.RemoteMonitoringController.*;
-import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Model.RemoteCheckIn;
+import com.healplus.backend.Controller.Monitoring.RemoteMonitoringController.*;
+import com.healplus.backend.Model.Entity.Patient;
+import com.healplus.backend.Model.Entity.RemoteCheckIn;
 import com.healplus.backend.Repository.PatientRepository;
 import com.healplus.backend.Repository.RemoteCheckInRepository;
+import com.healplus.backend.Service.AI.AIService;
+import com.healplus.backend.Service.Wound.ImageProcessingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

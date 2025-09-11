@@ -1,7 +1,7 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.Monitoring;
 
-import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Model.RemoteCheckIn;
+import com.healplus.backend.Model.Entity.Patient;
+import com.healplus.backend.Model.Entity.RemoteCheckIn;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

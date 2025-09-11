@@ -1,11 +1,11 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Auth;
 
-import com.healplus.backend.DTO.AuthRequest;
-import com.healplus.backend.DTO.AuthResponse;
-import com.healplus.backend.DTO.RegisterRequest;
-import com.healplus.backend.DTO.UserResponse;
-import com.healplus.backend.Model.User;
-import com.healplus.backend.Repository.UserRepository;
+import com.healplus.backend.Model.DTO.AuthRequest;
+import com.healplus.backend.Model.DTO.AuthResponse;
+import com.healplus.backend.Model.DTO.RegisterRequest;
+import com.healplus.backend.Model.DTO.UserResponse;
+import com.healplus.backend.Model.Entity.User;
+import com.healplus.backend.Repository.Auth.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

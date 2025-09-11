@@ -1,7 +1,7 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Auth;
 
-import com.healplus.backend.Model.Login;
-import com.healplus.backend.Repository.LoginRepository;
+import com.healplus.backend.Model.Entity.Login;
+import com.healplus.backend.Repository.Auth.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;

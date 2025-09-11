@@ -1,4 +1,4 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Patient;
 
 import com.healplus.backend.Model.Patient;
 import com.healplus.backend.Repository.PatientRepository;

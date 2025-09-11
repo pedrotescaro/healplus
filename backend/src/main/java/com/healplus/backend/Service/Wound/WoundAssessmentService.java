@@ -1,4 +1,4 @@
-package com.healplus.backend.Service;
+package com.healplus.backend.Service.Wound;
 
 import com.healplus.backend.Model.*;
 import com.healplus.backend.Repository.WoundAssessmentRepository;
