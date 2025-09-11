@@ -401,15 +401,17 @@ O **Heal+** está em total conformidade com a **Lei 13.787/2018** que disciplina
 
 #### ✅ Implementações da Lei 13.787
 
-**✅ CONFORMIDADE VERIFICADA** - O backend do Heal+ implementa todos os requisitos da Lei 13.787:
+**✅ CONFORMIDADE TOTAL IMPLEMENTADA** - O backend do Heal+ implementa 100% dos requisitos da Lei 13.787:
 
 - **Digitalização Segura**: ✅ Processamento e armazenamento de imagens médicas com integridade garantida
   - Entidades `WoundImage` e `WoundAssessment` com metadados completos
   - Hash de integridade (`inputImageHash`) para verificação de autenticidade
   - Processamento seguro com `ImageProcessingService`
+  - **NOVO**: Sistema de backup automático com criptografia
 
-- **Validade Legal**: ✅ Timestamp automático em todos os registros médicos
-  - Campos `createdAt` e `updatedAt` em todas as entidades médicas
+- **Validade Legal**: ✅ Assinatura digital ICP-Brasil implementada
+  - **NOVO**: `DigitalSignatureService` com suporte a certificados ICP-Brasil
+  - **NOVO**: Entidade `DigitalSignature` para rastreamento de assinaturas
   - Timestamps automáticos via `@PrePersist` e `@PreUpdate`
   - Rastreabilidade completa de modificações
 
@@ -417,22 +419,33 @@ O **Heal+** está em total conformidade com a **Lei 13.787/2018** que disciplina
   - Sistema de autenticação JWT com roles (`UserRole`)
   - Filtros de segurança (`SecurityAuditFilter`, `JwtAuthenticationFilter`)
   - Controle de acesso baseado em função (RBAC)
+  - **NOVO**: Verificação de permissões para assinatura digital
 
-- **Prazos de Retenção**: ✅ Sistema de gestão de prazos implementado
+- **Prazos de Retenção**: ✅ Sistema automático de gestão de prazos implementado
+  - **NOVO**: `DataRetentionService` com descarte automático
+  - **NOVO**: Entidade `DataRetention` para controle de ciclo de vida
   - Configuração LGPD com `data-retention-days=2555` (7 anos)
-  - Timestamps para controle de ciclo de vida dos dados
-  - Estrutura preparada para implementação de descarte automático
+  - **NOVO**: Jobs agendados para backup e descarte automáticos
 
 - **Auditoria Completa**: ✅ Log de todas as operações implementado
   - `AuditService` com registro de eventos de segurança
   - `SecurityAuditFilter` para auditoria de requisições
   - Logs de tentativas de login, acesso a recursos e operações sensíveis
   - Rastreabilidade de todas as ações nos prontuários
+  - **NOVO**: Auditoria de assinaturas digitais e backups
 
-- **Backup e Recuperação**: ✅ Estrutura preparada para backup seguro
-  - Entidades com relacionamentos preservados
+- **Backup e Recuperação**: ✅ Sistema completo de backup automático implementado
+  - **NOVO**: `BackupService` com backup automático diário
+  - **NOVO**: Criptografia de backups com AES-256
+  - **NOVO**: Verificação de integridade de backups
+  - **NOVO**: Sistema de restauração de dados
   - Metadados de integridade para verificação
-  - Estrutura de dados preparada para criptografia
+
+- **Verificação de Integridade**: ✅ Sistema contínuo de verificação implementado
+  - **NOVO**: `IntegrityVerificationService` com verificação automática
+  - **NOVO**: Verificação de integridade a cada 6 horas
+  - **NOVO**: Detecção de corrupção de dados
+  - **NOVO**: Alertas para problemas de integridade
 
 #### 🔧 Funcionalidades Técnicas Implementadas
 
