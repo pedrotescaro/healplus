@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Repositório para retenção de dados
  * Conformidade com Lei 13.787 - Prontuário Eletrônico
  */
 @Repository
-public interface DataRetentionRepository extends JpaRepository<DataRetention, String> {
+public interface DataRetentionRepository extends JpaRepository<DataRetention, UUID> {
     
     /**
      * Buscar por tipo de entidade

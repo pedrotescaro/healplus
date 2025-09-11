@@ -5,9 +5,6 @@ import com.healplus.backend.Model.Entity.Patient;
 import com.healplus.backend.Model.Entity.RemoteCheckIn;
 import com.healplus.backend.Repository.Patient.PatientRepository;
 import com.healplus.backend.Repository.Monitoring.RemoteCheckInRepository;
-import com.healplus.backend.Service.AI.AIService;
-import com.healplus.backend.Service.Wound.ImageProcessingService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,19 +13,21 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class RemoteMonitoringService {
 
     private final RemoteCheckInRepository checkInRepository;
     private final PatientRepository patientRepository;
-    private final AIService aiService;
-    private final ImageProcessingService imageProcessingService;
+
+    public RemoteMonitoringService(RemoteCheckInRepository checkInRepository, 
+                                 PatientRepository patientRepository) {
+        this.checkInRepository = checkInRepository;
+        this.patientRepository = patientRepository;
+    }
 
     public DashboardResponse getDashboard(String patientEmail) {
         Patient patient = patientRepository.findByEmail(patientEmail)
@@ -46,12 +45,12 @@ public class RemoteMonitoringService {
         // Get alerts
         List<AlertResponse> alerts = getAlerts(patient.getEmail());
 
-        return DashboardResponse.builder()
-                .streak(streak)
-                .weeklyProgress(weeklyProgress)
-                .recentActivity(recentActivity)
-                .alerts(alerts)
-                .build();
+        DashboardResponse response = new DashboardResponse();
+        response.streak = streak;
+        response.weeklyProgress = weeklyProgress;
+        response.recentActivity = recentActivity;
+        response.alerts = alerts;
+        return response;
     }
 
     public RemoteCheckInResponse processPhotoCheckIn(String patientEmail, MultipartFile image, String notes) {
@@ -152,41 +151,41 @@ public class RemoteMonitoringService {
                 patient, LocalDateTime.now().minusDays(7));
 
         for (RemoteCheckIn checkIn : highRiskCheckIns) {
-            alerts.add(AlertResponse.builder()
-                    .id(checkIn.getId())
-                    .type("warning")
-                    .title("Alto Risco Detectado")
-                    .message("Sua última avaliação indicou alto risco. Consulte seu médico.")
-                    .time(formatTimeAgo(checkIn.getCheckinTime()))
-                    .action("Marcar como lido")
-                    .dismissed(false)
-                    .build());
+            AlertResponse alert = new AlertResponse();
+            alert.id = checkIn.getId();
+            alert.type = "warning";
+            alert.title = "Alto Risco Detectado";
+            alert.message = "Sua última avaliação indicou alto risco. Consulte seu médico.";
+            alert.time = formatTimeAgo(checkIn.getCheckinTime());
+            alert.action = "Marcar como lido";
+            alert.dismissed = false;
+            alerts.add(alert);
         }
 
         // Check for missed check-ins
         if (hasMissedCheckIn(patient)) {
-            alerts.add(AlertResponse.builder()
-                    .id(UUID.randomUUID())
-                    .type("info")
-                    .title("Check-in Pendente")
-                    .message("Você não fez check-in hoje. Que tal atualizar seu progresso?")
-                    .time("Há algumas horas")
-                    .action("Fazer check-in")
-                    .dismissed(false)
-                    .build());
+            AlertResponse alert = new AlertResponse();
+            alert.id = UUID.randomUUID();
+            alert.type = "info";
+            alert.title = "Check-in Pendente";
+            alert.message = "Você não fez check-in hoje. Que tal atualizar seu progresso?";
+            alert.time = "Há algumas horas";
+            alert.action = "Fazer check-in";
+            alert.dismissed = false;
+            alerts.add(alert);
         }
 
         // Check for medication reminders
         if (isMedicationTime()) {
-            alerts.add(AlertResponse.builder()
-                    .id(UUID.randomUUID())
-                    .type("warning")
-                    .title("Lembrete de Medicação")
-                    .message("Hora de tomar sua medicação!")
-                    .time("Agora")
-                    .action("Marcar como lido")
-                    .dismissed(false)
-                    .build());
+            AlertResponse alert = new AlertResponse();
+            alert.id = UUID.randomUUID();
+            alert.type = "warning";
+            alert.title = "Lembrete de Medicação";
+            alert.message = "Hora de tomar sua medicação!";
+            alert.time = "Agora";
+            alert.action = "Marcar como lido";
+            alert.dismissed = false;
+            alerts.add(alert);
         }
 
         return alerts;
@@ -218,12 +217,12 @@ public class RemoteMonitoringService {
         String trend = calculateTrend(checkIns);
         String recommendation = generateRecommendation(checkIns, trend);
 
-        return ProgressResponse.builder()
-                .period(period)
-                .data(dataPoints)
-                .trend(trend)
-                .recommendation(recommendation)
-                .build();
+        ProgressResponse response = new ProgressResponse();
+        response.period = period;
+        response.data = dataPoints;
+        response.trend = trend;
+        response.recommendation = recommendation;
+        return response;
     }
 
     // Helper methods
@@ -256,11 +255,24 @@ public class RemoteMonitoringService {
         long medicationCount = checkInRepository.countCheckInsByTypeSince(
                 patient, RemoteCheckIn.CheckInType.MEDICATION, weekStart);
 
-        return WeeklyProgress.builder()
-                .photos(ProgressItem.builder().completed((int) photoCount).total(7).build())
-                .checkIns(ProgressItem.builder().completed((int) symptomCount).total(7).build())
-                .medications(ProgressItem.builder().completed((int) medicationCount).total(7).build())
-                .build();
+        WeeklyProgress progress = new WeeklyProgress();
+        
+        ProgressItem photos = new ProgressItem();
+        photos.completed = (int) photoCount;
+        photos.total = 7;
+        progress.photos = photos;
+        
+        ProgressItem checkIns = new ProgressItem();
+        checkIns.completed = (int) symptomCount;
+        checkIns.total = 7;
+        progress.checkIns = checkIns;
+        
+        ProgressItem medications = new ProgressItem();
+        medications.completed = (int) medicationCount;
+        medications.total = 7;
+        progress.medications = medications;
+        
+        return progress;
     }
 
     private List<ActivityItem> getRecentActivity(Patient patient) {
@@ -280,13 +292,13 @@ public class RemoteMonitoringService {
         String status = checkIn.getStatus().name().toLowerCase();
         String message = getActivityMessage(checkIn);
 
-        return ActivityItem.builder()
-                .type(type)
-                .title(title)
-                .time(time)
-                .status(status)
-                .message(message)
-                .build();
+        ActivityItem item = new ActivityItem();
+        item.type = type;
+        item.title = title;
+        item.time = time;
+        item.status = status;
+        item.message = message;
+        return item;
     }
 
     private String getActivityTitle(RemoteCheckIn.CheckInType type) {
@@ -406,15 +418,15 @@ public class RemoteMonitoringService {
     }
 
     private RemoteCheckInResponse createResponse(RemoteCheckIn checkIn) {
-        return RemoteCheckInResponse.builder()
-                .id(checkIn.getId())
-                .type(checkIn.getType().name())
-                .notes(checkIn.getNotes())
-                .riskLevel(checkIn.getRiskLevel().name())
-                .riskScore(checkIn.getRiskScore())
-                .timestamp(checkIn.getCheckinTime().toString())
-                .status(checkIn.getStatus().name())
-                .build();
+        RemoteCheckInResponse response = new RemoteCheckInResponse();
+        response.id = checkIn.getId();
+        response.type = checkIn.getType().name();
+        response.notes = checkIn.getNotes();
+        response.riskLevel = checkIn.getRiskLevel().name();
+        response.riskScore = checkIn.getRiskScore();
+        response.timestamp = checkIn.getCheckinTime().toString();
+        response.status = checkIn.getStatus().name();
+        return response;
     }
 
     private LocalDateTime getPeriodStart(String period) {
@@ -434,11 +446,11 @@ public class RemoteMonitoringService {
             LocalDateTime date = LocalDateTime.now().minusDays(i);
             double value = Math.random() * 100;
             
-            dataPoints.add(ProgressDataPoint.builder()
-                    .date(date.toLocalDate().toString())
-                    .value(value)
-                    .label("Dia " + (7 - i))
-                    .build());
+            ProgressDataPoint dataPoint = new ProgressDataPoint();
+            dataPoint.date = date.toLocalDate().toString();
+            dataPoint.value = value;
+            dataPoint.label = "Dia " + (7 - i);
+            dataPoints.add(dataPoint);
         }
         
         return dataPoints;

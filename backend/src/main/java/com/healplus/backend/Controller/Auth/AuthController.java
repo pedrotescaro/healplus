@@ -6,22 +6,22 @@ import com.healplus.backend.Model.DTO.RegisterRequest;
 import com.healplus.backend.Model.DTO.UserResponse;
 import com.healplus.backend.Model.Entity.User;
 import com.healplus.backend.Service.Auth.AuthService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthController {
 
     private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
@@ -61,7 +61,7 @@ public class AuthController {
 
     @PostMapping("/change-password")
     public ResponseEntity<Void> changePassword(
-            @RequestBody ChangePasswordRequest request,
+            @RequestBody AuthService.ChangePasswordRequest request,
             Authentication authentication
     ) {
         authService.changePassword(authentication.getName(), request);
@@ -83,7 +83,7 @@ public class AuthController {
     // LGPD Compliance endpoints
     @PostMapping("/consent")
     public ResponseEntity<Void> updateConsent(
-            @RequestBody ConsentRequest request,
+            @RequestBody AuthService.ConsentRequest request,
             Authentication authentication
     ) {
         authService.updateConsent(authentication.getName(), request);
@@ -91,14 +91,14 @@ public class AuthController {
     }
 
     @GetMapping("/data-export")
-    public ResponseEntity<DataExportResponse> exportUserData(Authentication authentication) {
-        DataExportResponse data = authService.exportUserData(authentication.getName());
+    public ResponseEntity<AuthService.DataExportResponse> exportUserData(Authentication authentication) {
+        AuthService.DataExportResponse data = authService.exportUserData(authentication.getName());
         return ResponseEntity.ok(data);
     }
 
     @DeleteMapping("/account")
     public ResponseEntity<Void> deleteAccount(
-            @RequestBody DeleteAccountRequest request,
+            @RequestBody AuthService.DeleteAccountRequest request,
             Authentication authentication
     ) {
         authService.deleteAccount(authentication.getName(), request);
@@ -106,38 +106,20 @@ public class AuthController {
     }
 
     // DTOs
-    public static class ChangePasswordRequest {
-        public String currentPassword;
-        public String newPassword;
-    }
-
     public static class ForgotPasswordRequest {
         public String email;
+        
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
     }
 
     public static class ResetPasswordRequest {
         public String token;
         public String newPassword;
-    }
-
-    public static class ConsentRequest {
-        public Boolean dataProcessingConsent;
-        public Boolean marketingConsent;
-        public Boolean analyticsConsent;
-        public String consentVersion;
-    }
-
-    public static class DataExportResponse {
-        public UserResponse user;
-        public Object assessments;
-        public Object appointments;
-        public Object chatHistory;
-        public LocalDateTime exportedAt;
-    }
-
-    public static class DeleteAccountRequest {
-        public String password;
-        public String reason;
-        public Boolean confirmDeletion;
+        
+        public String getToken() { return token; }
+        public void setToken(String token) { this.token = token; }
+        public String getNewPassword() { return newPassword; }
+        public void setNewPassword(String newPassword) { this.newPassword = newPassword; }
     }
 }

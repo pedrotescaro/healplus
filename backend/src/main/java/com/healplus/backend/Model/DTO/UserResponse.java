@@ -39,18 +39,18 @@ public class UserResponse {
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .phone(user.getPhone())
+                .phone(user.getPhoneNumber())
                 .role(user.getRole())
-                .isActive(user.isActive())
-                .emailVerified(user.isEmailVerified())
+                .isActive(user.getIsActive())
+                .emailVerified(user.getEmailVerified())
                 .dataProcessingConsent(user.getDataProcessingConsent())
                 .marketingConsent(user.getMarketingConsent())
                 .analyticsConsent(user.getAnalyticsConsent())
                 .consentVersion(user.getConsentVersion())
-                .consentDate(user.getConsentDate())
+                .consentDate(user.getConsentGivenAt())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
-                .lastLogin(user.getLastLogin())
+                .lastLogin(user.getLastLoginAt())
                 .build();
     }
 }

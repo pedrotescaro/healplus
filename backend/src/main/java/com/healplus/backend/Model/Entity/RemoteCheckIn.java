@@ -17,7 +17,7 @@ import java.util.UUID;
 public class RemoteCheckIn {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -123,6 +123,73 @@ public class RemoteCheckIn {
         ESCALATED,
         RESOLVED
     }
+    
+    // Getters e Setters explícitos para resolver problemas do Lombok
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
+    
+    public Patient getPatient() { return patient; }
+    public void setPatient(Patient patient) { this.patient = patient; }
+    
+    public CheckInType getType() { return type; }
+    public void setType(CheckInType type) { this.type = type; }
+    
+    public String getNotes() { return notes; }
+    public void setNotes(String notes) { this.notes = notes; }
+    
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    
+    public String getImageAnalysis() { return imageAnalysis; }
+    public void setImageAnalysis(String imageAnalysis) { this.imageAnalysis = imageAnalysis; }
+    
+    public String getAppearanceRating() { return appearanceRating; }
+    public void setAppearanceRating(String appearanceRating) { this.appearanceRating = appearanceRating; }
+    
+    public List<String> getSymptoms() { return symptoms; }
+    public void setSymptoms(List<String> symptoms) { this.symptoms = symptoms; }
+    
+    public Integer getPainLevel() { return painLevel; }
+    public void setPainLevel(Integer painLevel) { this.painLevel = painLevel; }
+    
+    public List<String> getMedications() { return medications; }
+    public void setMedications(List<String> medications) { this.medications = medications; }
+    
+    public String getMedicationNotes() { return medicationNotes; }
+    public void setMedicationNotes(String medicationNotes) { this.medicationNotes = medicationNotes; }
+    
+    public String getAiAnalysisResults() { return aiAnalysisResults; }
+    public void setAiAnalysisResults(String aiAnalysisResults) { this.aiAnalysisResults = aiAnalysisResults; }
+    
+    public Double getRiskScore() { return riskScore; }
+    public void setRiskScore(Double riskScore) { this.riskScore = riskScore; }
+    
+    public RiskLevel getRiskLevel() { return riskLevel; }
+    public void setRiskLevel(RiskLevel riskLevel) { this.riskLevel = riskLevel; }
+    
+    public String getRecommendations() { return recommendations; }
+    public void setRecommendations(String recommendations) { this.recommendations = recommendations; }
+    
+    public LocalDateTime getCheckinTime() { return checkinTime; }
+    public void setCheckinTime(LocalDateTime checkinTime) { this.checkinTime = checkinTime; }
+    
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+    
+    public CheckInStatus getStatus() { return status; }
+    public void setStatus(CheckInStatus status) { this.status = status; }
+    
+    public String getReviewedBy() { return reviewedBy; }
+    public void setReviewedBy(String reviewedBy) { this.reviewedBy = reviewedBy; }
+    
+    public LocalDateTime getReviewedAt() { return reviewedAt; }
+    public void setReviewedAt(LocalDateTime reviewedAt) { this.reviewedAt = reviewedAt; }
+    
+    public String getReviewNotes() { return reviewNotes; }
+    public void setReviewNotes(String reviewNotes) { this.reviewNotes = reviewNotes; }
     
     public enum RiskLevel {
         LOW,

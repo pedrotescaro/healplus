@@ -19,7 +19,7 @@ import java.util.UUID;
 @ToString
 public class Professional {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
     @Column(nullable = false)

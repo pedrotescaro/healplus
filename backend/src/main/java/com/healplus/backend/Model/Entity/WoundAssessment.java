@@ -19,7 +19,7 @@ import java.util.UUID;
 @ToString
 public class WoundAssessment {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
     @ManyToOne(fetch = FetchType.LAZY)

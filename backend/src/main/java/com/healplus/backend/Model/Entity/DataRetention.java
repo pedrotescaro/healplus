@@ -23,7 +23,7 @@ import java.util.UUID;
 public class DataRetention {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     
     @Column(nullable = false)

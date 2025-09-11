@@ -6,7 +6,6 @@ import com.healplus.backend.Model.DTO.RegisterRequest;
 import com.healplus.backend.Model.DTO.UserResponse;
 import com.healplus.backend.Model.Entity.User;
 import com.healplus.backend.Repository.Auth.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,12 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class AuthService {
 
@@ -31,6 +27,16 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final EmailService emailService;
 
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, 
+                      JwtService jwtService, AuthenticationManager authenticationManager, 
+                      EmailService emailService) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        this.emailService = emailService;
+    }
+
     public AuthResponse register(RegisterRequest request) {
         // Validate unique email
         if (userRepository.existsByEmail(request.getEmail())) {
@@ -38,21 +44,20 @@ public class AuthService {
         }
 
         // Create new user
-        User user = User.builder()
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .role(request.getRole())
-                .isActive(true)
-                .emailVerified(false)
-                .dataProcessingConsent(request.getDataProcessingConsent())
-                .marketingConsent(request.getMarketingConsent())
-                .analyticsConsent(request.getAnalyticsConsent())
-                .consentVersion("1.0")
-                .consentDate(LocalDateTime.now())
-                .createdAt(LocalDateTime.now())
-                .build();
+        User user = new User();
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setRole(request.getRole());
+        user.setIsActive(true);
+        user.setEmailVerified(false);
+        user.setDataProcessingConsent(request.getDataProcessingConsent());
+        user.setMarketingConsent(request.getMarketingConsent());
+        user.setAnalyticsConsent(request.getAnalyticsConsent());
+        user.setConsentVersion("1.0");
+        user.setConsentGivenAt(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
 
         user = userRepository.save(user);
 
@@ -63,11 +68,11 @@ public class AuthService {
         String accessToken = jwtService.generateToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
 
-        return AuthResponse.builder()
-                .accessToken(accessToken)
-                .refreshToken(refreshToken)
-                .user(UserResponse.fromUser(user))
-                .build();
+        AuthResponse response = new AuthResponse();
+        response.setAccessToken(accessToken);
+        response.setRefreshToken(refreshToken);
+        response.setUser(UserResponse.fromUser(user));
+        return response;
     }
 
     public AuthResponse login(AuthRequest request) {
@@ -80,23 +85,23 @@ public class AuthService {
 
         User user = (User) authentication.getPrincipal();
         
-        if (!user.isActive()) {
+        if (!user.getIsActive()) {
             throw new IllegalArgumentException("Conta desativada");
         }
 
         // Update last login
-        user.setLastLogin(LocalDateTime.now());
+        user.setLastLoginAt(LocalDateTime.now());
         userRepository.save(user);
 
         // Generate tokens
         String accessToken = jwtService.generateToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
 
-        return AuthResponse.builder()
-                .accessToken(accessToken)
-                .refreshToken(refreshToken)
-                .user(UserResponse.fromUser(user))
-                .build();
+        AuthResponse response = new AuthResponse();
+        response.setAccessToken(accessToken);
+        response.setRefreshToken(refreshToken);
+        response.setUser(UserResponse.fromUser(user));
+        return response;
     }
 
     public AuthResponse refresh(String refreshToken) {
@@ -108,7 +113,7 @@ public class AuthService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
-        if (!user.isActive()) {
+        if (!user.getIsActive()) {
             throw new IllegalArgumentException("Conta desativada");
         }
 
@@ -116,11 +121,11 @@ public class AuthService {
         String newAccessToken = jwtService.generateToken(user);
         String newRefreshToken = jwtService.generateRefreshToken(user);
 
-        return AuthResponse.builder()
-                .accessToken(newAccessToken)
-                .refreshToken(newRefreshToken)
-                .user(UserResponse.fromUser(user))
-                .build();
+        AuthResponse response = new AuthResponse();
+        response.setAccessToken(newAccessToken);
+        response.setRefreshToken(newRefreshToken);
+        response.setUser(UserResponse.fromUser(user));
+        return response;
     }
 
     public void logout(String email) {
@@ -139,7 +144,7 @@ public class AuthService {
         
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-        user.setPhone(request.getPhone());
+        user.setPhoneNumber(request.getPhone());
         user.setUpdatedAt(LocalDateTime.now());
 
         return userRepository.save(user);
@@ -193,7 +198,7 @@ public class AuthService {
         user.setMarketingConsent(request.marketingConsent);
         user.setAnalyticsConsent(request.analyticsConsent);
         user.setConsentVersion(request.consentVersion);
-        user.setConsentDate(LocalDateTime.now());
+        user.setConsentGivenAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
 
         userRepository.save(user);
@@ -222,7 +227,7 @@ public class AuthService {
         }
 
         // Soft delete - mark as inactive instead of hard delete
-        user.setActive(false);
+        user.setIsActive(false);
         user.setDeletedAt(LocalDateTime.now());
         user.setDeletionReason(request.reason);
         userRepository.save(user);
