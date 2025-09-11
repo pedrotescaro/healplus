@@ -1,4 +1,4 @@
-package com.healplus.backend.DTO;
+package com.healplus.backend.Model.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
