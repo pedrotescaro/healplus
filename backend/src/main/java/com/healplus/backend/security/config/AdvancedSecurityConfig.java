@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -50,17 +51,17 @@ public class AdvancedSecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authz -> authz
                 // Endpoints públicos
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/public/**").permitAll()
-                .requestMatchers("/actuator/health").permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/public/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/actuator/health")).permitAll()
                 
                 // Endpoints que requerem autenticação
-                .requestMatchers("/api/patients/**").hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
-                .requestMatchers("/api/assessments/**").hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
-                .requestMatchers("/api/appointments/**").hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
-                .requestMatchers("/api/telehealth/**").hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
-                .requestMatchers("/api/remote-monitoring/**").hasAnyRole("CLINICIAN", "ADMIN")
-                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/patients/**")).hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/assessments/**")).hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/appointments/**")).hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/telehealth/**")).hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/remote-monitoring/**")).hasAnyRole("CLINICIAN", "ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/api/admin/**")).hasRole("ADMIN")
                 
                 // Todos os outros endpoints requerem autenticação
                 .anyRequest().authenticated()
@@ -70,8 +71,6 @@ public class AdvancedSecurityConfig {
                 .contentTypeOptions().and()
                 .httpStrictTransportSecurity(hstsConfig -> hstsConfig
                     .maxAgeInSeconds(31536000)
-                    .includeSubdomains(true)
-                    .preload(true)
                 )
                 .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
             )

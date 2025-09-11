@@ -49,9 +49,19 @@ public interface DataRetentionRepository extends JpaRepository<DataRetention, UU
     List<DataRetention> findByIsBackedUpTrue();
     
     /**
+     * Buscar registros com backup que não foram deletados
+     */
+    List<DataRetention> findByIsBackedUpTrueAndIsDeletedFalse();
+    
+    /**
      * Buscar registros deletados
      */
     List<DataRetention> findByIsDeletedTrue();
+    
+    /**
+     * Buscar registros que não foram deletados
+     */
+    List<DataRetention> findByIsDeletedFalse();
     
     /**
      * Buscar registros que requerem tratamento especial
@@ -81,11 +91,21 @@ public interface DataRetentionRepository extends JpaRepository<DataRetention, UU
     List<DataRetention> findExpiredRecordsReadyForDeletion(@Param("currentDate") LocalDateTime currentDate);
     
     /**
+     * Buscar registros que expiraram e estão prontos para exclusão (método alternativo)
+     */
+    List<DataRetention> findByRetentionUntilBeforeAndIsDeletedFalseAndIsMarkedForDeletionFalse(LocalDateTime date);
+    
+    /**
      * Buscar registros marcados para exclusão há mais de X dias
      */
     @Query("SELECT dr FROM DataRetention dr WHERE dr.markedForDeletionAt < :thresholdDate " +
            "AND dr.isDeleted = false")
     List<DataRetention> findRecordsMarkedForDeletionBefore(@Param("thresholdDate") LocalDateTime thresholdDate);
+    
+    /**
+     * Buscar registros marcados para exclusão há mais de X dias (método alternativo)
+     */
+    List<DataRetention> findByMarkedForDeletionAtBeforeAndIsDeletedFalse(LocalDateTime thresholdDate);
     
     /**
      * Contar registros por status de backup

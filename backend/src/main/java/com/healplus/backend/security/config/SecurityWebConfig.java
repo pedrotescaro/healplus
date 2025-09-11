@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * Configuração web para interceptores de segurança
  */
-@Configuration
+//@Configuration
 public class SecurityWebConfig implements WebMvcConfigurer {
     
     @Autowired
