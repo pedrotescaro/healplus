@@ -23,48 +23,48 @@
         </div>
         
         <div class="sidebar-content">
-        <nav class="sidebar-nav">
+            <nav class="sidebar-nav">
                 <button class="nav-button" onclick="handleLinkClick('professional-dashboard.html')">
                     <i class="fas fa-tachometer-alt nav-icon"></i>
-                        <span>Dashboard</span>
+                    <span>Dashboard</span>
                 </button>
                 <button class="nav-button active">
                     <i class="fas fa-file-medical nav-icon"></i>
-                        <span>Nova Avaliação</span>
+                    <span>Nova Avaliação</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-users nav-icon"></i>
-                        <span>Meus Pacientes</span>
+                    <span>Meus Pacientes</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-calendar-alt nav-icon"></i>
-                        <span>Agenda</span>
+                    <span>Agenda</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-camera nav-icon"></i>
-                        <span>Captura de Feridas</span>
+                    <span>Captura de Feridas</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-file-text nav-icon"></i>
-                        <span>Gerar Relatório</span>
+                    <span>Gerar Relatório</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-archive nav-icon"></i>
-                        <span>Meus Relatórios</span>
+                    <span>Meus Relatórios</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-copy nav-icon"></i>
-                        <span>Comparar Relatórios</span>
+                    <span>Comparar Relatórios</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-chart-bar nav-icon"></i>
-                        <span>Analytics</span>
+                    <span>Analytics</span>
                 </button>
                 <button class="nav-button" onclick="handleLinkClick('#')">
                     <i class="fas fa-user nav-icon"></i>
-                        <span>Perfil</span>
+                    <span>Perfil</span>
                 </button>
-        </nav>
+            </nav>
         </div>
         
         <div class="sidebar-footer">
@@ -113,7 +113,7 @@
             <form id="anamnesisForm" class="evaluation-form">
                 <div class="accordion" id="accordion">
                     <!-- Accordion items will be added here -->
-            </div>
+                </div>
                 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">
@@ -126,38 +126,268 @@
                     </button>
                 </div>
             </form>
-                        </div>
-                        </div>
+        </div>
+    </div>
+
+    <!-- Modal de Seleção de Localização -->
+    <div id="locationModal" class="location-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Selecione a Localização da Ferida</h3>
+                <button class="modal-close" onclick="closeLocationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-description">Clique em uma parte do corpo para selecioná-la.</p>
+                
+                <!-- Tabs de Vista -->
+                <div class="view-tabs">
+                    <button class="view-tab active" onclick="switchView('front')" id="frontTab">
+                        Vista Anterior
+                    </button>
+                    <button class="view-tab" onclick="switchView('back')" id="backTab">
+                        Vista Posterior
+                    </button>
+                </div>
+                
+                <!-- Mapa Corporal -->
+                <div class="body-map-container">
+                    <div id="frontView" class="body-map front-view">
+                        <svg viewBox="0 0 280 320" class="body-svg">
+                            <!-- Cabeça (Anterior) -->
+                            <path d="M120,20 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0" class="body-part" data-part="Cabeça (Anterior)" onclick="selectBodyPart('Cabeça (Anterior)')">
+                                <title>Cabeça (Anterior)</title>
+                            </path>
+                            
+                            <!-- Pescoço (Anterior) -->
+                            <path d="M130,40 h20 v10 h-20 z" class="body-part" data-part="Pescoço (Anterior)" onclick="selectBodyPart('Pescoço (Anterior)')">
+                                <title>Pescoço (Anterior)</title>
+                            </path>
+                            
+                            <!-- Tórax (Anterior) -->
+                            <path d="M110,50 h60 v40 h-60 z" class="body-part" data-part="Tórax (Anterior)" onclick="selectBodyPart('Tórax (Anterior)')">
+                                <title>Tórax (Anterior)</title>
+                            </path>
+                            
+                            <!-- Abdome -->
+                            <path d="M110,90 h60 v40 h-60 z" class="body-part" data-part="Abdome" onclick="selectBodyPart('Abdome')">
+                                <title>Abdome</title>
+                            </path>
+                            
+                            <!-- Pelve (Anterior) -->
+                            <path d="M120,130 h40 v20 h-40 z" class="body-part" data-part="Pelve (Anterior)" onclick="selectBodyPart('Pelve (Anterior)')">
+                                <title>Pelve (Anterior)</title>
+                            </path>
+                            
+                            <!-- Braço Direito (Anterior) -->
+                            <path d="M170,55 h15 v50 h-15 z" class="body-part" data-part="Braço Direito (Anterior)" onclick="selectBodyPart('Braço Direito (Anterior)')">
+                                <title>Braço Direito (Anterior)</title>
+                            </path>
+                            
+                            <!-- Antebraço Direito (Anterior) -->
+                            <path d="M170,105 h15 v40 h-15 z" class="body-part" data-part="Antebraço Direito (Anterior)" onclick="selectBodyPart('Antebraço Direito (Anterior)')">
+                                <title>Antebraço Direito (Anterior)</title>
+                            </path>
+                            
+                            <!-- Mão Direita (Anterior) -->
+                            <path d="M170,145 h15 v15 h-15 z" class="body-part" data-part="Mão Direita (Anterior)" onclick="selectBodyPart('Mão Direita (Anterior)')">
+                                <title>Mão Direita (Anterior)</title>
+                            </path>
+                            
+                            <!-- Braço Esquerdo (Anterior) -->
+                            <path d="M95,55 h15 v50 h-15 z" class="body-part" data-part="Braço Esquerdo (Anterior)" onclick="selectBodyPart('Braço Esquerdo (Anterior)')">
+                                <title>Braço Esquerdo (Anterior)</title>
+                            </path>
+                            
+                            <!-- Antebraço Esquerdo (Anterior) -->
+                            <path d="M95,105 h15 v40 h-15 z" class="body-part" data-part="Antebraço Esquerdo (Anterior)" onclick="selectBodyPart('Antebraço Esquerdo (Anterior)')">
+                                <title>Antebraço Esquerdo (Anterior)</title>
+                            </path>
+                            
+                            <!-- Mão Esquerda (Anterior) -->
+                            <path d="M95,145 h15 v15 h-15 z" class="body-part" data-part="Mão Esquerda (Anterior)" onclick="selectBodyPart('Mão Esquerda (Anterior)')">
+                                <title>Mão Esquerda (Anterior)</title>
+                            </path>
+                            
+                            <!-- Coxa Direita (Anterior) -->
+                            <path d="M145,150 h20 v60 h-20 z" class="body-part" data-part="Coxa Direita (Anterior)" onclick="selectBodyPart('Coxa Direita (Anterior)')">
+                                <title>Coxa Direita (Anterior)</title>
+                            </path>
+                            
+                            <!-- Perna Direita (Anterior) -->
+                            <path d="M145,210 h20 v60 h-20 z" class="body-part" data-part="Perna Direita (Anterior)" onclick="selectBodyPart('Perna Direita (Anterior)')">
+                                <title>Perna Direita (Anterior)</title>
+                            </path>
+                            
+                            <!-- Pé Direito (Anterior) -->
+                            <path d="M145,270 h20 v20 h-20 z" class="body-part" data-part="Pé Direito (Anterior)" onclick="selectBodyPart('Pé Direito (Anterior)')">
+                                <title>Pé Direito (Anterior)</title>
+                            </path>
+                            
+                            <!-- Coxa Esquerda (Anterior) -->
+                            <path d="M115,150 h20 v60 h-20 z" class="body-part" data-part="Coxa Esquerda (Anterior)" onclick="selectBodyPart('Coxa Esquerda (Anterior)')">
+                                <title>Coxa Esquerda (Anterior)</title>
+                            </path>
+                            
+                            <!-- Perna Esquerda (Anterior) -->
+                            <path d="M115,210 h20 v60 h-20 z" class="body-part" data-part="Perna Esquerda (Anterior)" onclick="selectBodyPart('Perna Esquerda (Anterior)')">
+                                <title>Perna Esquerda (Anterior)</title>
+                            </path>
+                            
+                            <!-- Pé Esquerdo (Anterior) -->
+                            <path d="M115,270 h20 v20 h-20 z" class="body-part" data-part="Pé Esquerdo (Anterior)" onclick="selectBodyPart('Pé Esquerdo (Anterior)')">
+                                <title>Pé Esquerdo (Anterior)</title>
+                            </path>
+                        </svg>
+                    </div>
+                    
+                    <div id="backView" class="body-map back-view" style="display: none;">
+                        <svg viewBox="0 0 280 320" class="body-svg">
+                            <!-- Cabeça (Posterior) -->
+                            <path d="M120,20 a20,20 0 1,0 40,0 a20,20 0 1,0 -40,0" class="body-part" data-part="Cabeça (Posterior)" onclick="selectBodyPart('Cabeça (Posterior)')">
+                                <title>Cabeça (Posterior)</title>
+                            </path>
+                            
+                            <!-- Pescoço (Posterior) -->
+                            <path d="M130,40 h20 v10 h-20 z" class="body-part" data-part="Pescoço (Posterior)" onclick="selectBodyPart('Pescoço (Posterior)')">
+                                <title>Pescoço (Posterior)</title>
+                            </path>
+                            
+                            <!-- Dorso (Superior) -->
+                            <path d="M110,50 h60 v40 h-60 z" class="body-part" data-part="Dorso (Superior)" onclick="selectBodyPart('Dorso (Superior)')">
+                                <title>Dorso (Superior)</title>
+                            </path>
+                            
+                            <!-- Dorso (Lombar) -->
+                            <path d="M110,90 h60 v40 h-60 z" class="body-part" data-part="Dorso (Lombar)" onclick="selectBodyPart('Dorso (Lombar)')">
+                                <title>Dorso (Lombar)</title>
+                            </path>
+                            
+                            <!-- Região Sacral -->
+                            <path d="M115,130 h50 v20 h-50 z" class="body-part" data-part="Região Sacral" onclick="selectBodyPart('Região Sacral')">
+                                <title>Região Sacral</title>
+                            </path>
+                            
+                            <!-- Braço Direito (Posterior) -->
+                            <path d="M170,55 h15 v50 h-15 z" class="body-part" data-part="Braço Direito (Posterior)" onclick="selectBodyPart('Braço Direito (Posterior)')">
+                                <title>Braço Direito (Posterior)</title>
+                            </path>
+                            
+                            <!-- Antebraço Direito (Posterior) -->
+                            <path d="M170,105 h15 v40 h-15 z" class="body-part" data-part="Antebraço Direito (Posterior)" onclick="selectBodyPart('Antebraço Direito (Posterior)')">
+                                <title>Antebraço Direito (Posterior)</title>
+                            </path>
+                            
+                            <!-- Mão Direita (Posterior) -->
+                            <path d="M170,145 h15 v15 h-15 z" class="body-part" data-part="Mão Direita (Posterior)" onclick="selectBodyPart('Mão Direita (Posterior)')">
+                                <title>Mão Direita (Posterior)</title>
+                            </path>
+                            
+                            <!-- Braço Esquerdo (Posterior) -->
+                            <path d="M95,55 h15 v50 h-15 z" class="body-part" data-part="Braço Esquerdo (Posterior)" onclick="selectBodyPart('Braço Esquerdo (Posterior)')">
+                                <title>Braço Esquerdo (Posterior)</title>
+                            </path>
+                            
+                            <!-- Antebraço Esquerdo (Posterior) -->
+                            <path d="M95,105 h15 v40 h-15 z" class="body-part" data-part="Antebraço Esquerdo (Posterior)" onclick="selectBodyPart('Antebraço Esquerdo (Posterior)')">
+                                <title>Antebraço Esquerdo (Posterior)</title>
+                            </path>
+                            
+                            <!-- Mão Esquerda (Posterior) -->
+                            <path d="M95,145 h15 v15 h-15 z" class="body-part" data-part="Mão Esquerda (Posterior)" onclick="selectBodyPart('Mão Esquerda (Posterior)')">
+                                <title>Mão Esquerda (Posterior)</title>
+                            </path>
+                            
+                            <!-- Coxa Direita (Posterior) -->
+                            <path d="M145,150 h20 v60 h-20 z" class="body-part" data-part="Coxa Direita (Posterior)" onclick="selectBodyPart('Coxa Direita (Posterior)')">
+                                <title>Coxa Direita (Posterior)</title>
+                            </path>
+                            
+                            <!-- Perna Direita (Posterior) -->
+                            <path d="M145,210 h20 v60 h-20 z" class="body-part" data-part="Perna Direita (Posterior)" onclick="selectBodyPart('Perna Direita (Posterior)')">
+                                <title>Perna Direita (Posterior)</title>
+                            </path>
+                            
+                            <!-- Pé Direito (Posterior) -->
+                            <path d="M145,270 h20 v20 h-20 z" class="body-part" data-part="Pé Direito (Posterior)" onclick="selectBodyPart('Pé Direito (Posterior)')">
+                                <title>Pé Direito (Posterior)</title>
+                            </path>
+                            
+                            <!-- Coxa Esquerda (Posterior) -->
+                            <path d="M115,150 h20 v60 h-20 z" class="body-part" data-part="Coxa Esquerda (Posterior)" onclick="selectBodyPart('Coxa Esquerda (Posterior)')">
+                                <title>Coxa Esquerda (Posterior)</title>
+                            </path>
+                            
+                            <!-- Perna Esquerda (Posterior) -->
+                            <path d="M115,210 h20 v60 h-20 z" class="body-part" data-part="Perna Esquerda (Posterior)" onclick="selectBodyPart('Perna Esquerda (Posterior)')">
+                                <title>Perna Esquerda (Posterior)</title>
+                            </path>
+                            
+                            <!-- Pé Esquerdo (Posterior) -->
+                            <path d="M115,270 h20 v20 h-20 z" class="body-part" data-part="Pé Esquerdo (Posterior)" onclick="selectBodyPart('Pé Esquerdo (Posterior)')">
+                                <title>Pé Esquerdo (Posterior)</title>
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Localização Selecionada -->
+                <div id="selectedLocation" class="selected-location" style="display: none;">
+                    <p class="location-text">
+                        <strong>Localização Selecionada:</strong> <span id="locationName"></span>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeLocationModal()">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="confirmLocation()">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Accordion functionality
         class Accordion {
             constructor(container) {
                 this.container = container;
-                this.items = container.querySelectorAll('.accordion-item');
+                this.items = [];
                 this.init();
             }
 
             init() {
+                // Wait for items to be created
+                setTimeout(() => {
+                    this.items = this.container.querySelectorAll('.accordion-item');
+                    this.setupEventListeners();
+                }, 100);
+            }
+
+            setupEventListeners() {
                 this.items.forEach(item => {
                     const trigger = item.querySelector('.accordion-trigger');
                     const content = item.querySelector('.accordion-content');
                     
-                    trigger.addEventListener('click', () => {
-                        const isOpen = item.classList.contains('active');
-                        
-                        // Close all items
-                        this.items.forEach(otherItem => {
-                            otherItem.classList.remove('active');
-                            otherItem.querySelector('.accordion-content').style.maxHeight = '0';
+                    if (trigger && content) {
+                        trigger.addEventListener('click', () => {
+                            const isOpen = item.classList.contains('active');
+                            
+                            // Close all items
+                            this.items.forEach(otherItem => {
+                                otherItem.classList.remove('active');
+                                const otherContent = otherItem.querySelector('.accordion-content');
+                                if (otherContent) {
+                                    otherContent.style.maxHeight = '0';
+                                }
+                            });
+                            
+                            // Open clicked item if it wasn't open
+                            if (!isOpen) {
+                                item.classList.add('active');
+                                content.style.maxHeight = content.scrollHeight + 'px';
+                            }
                         });
-                        
-                        // Open clicked item if it wasn't open
-                        if (!isOpen) {
-                            item.classList.add('active');
-                            content.style.maxHeight = content.scrollHeight + 'px';
-                        }
-                    });
+                    }
                 });
             }
         }
@@ -244,13 +474,18 @@
                         <div class="accordion-content">
                             <div class="form-section">
                                 ${item.content}
+                            </div>
                         </div>
-                    </div>
                     `;
                     accordion.appendChild(accordionItem);
                 });
                 
                 console.log(`Created ${items.length} accordion items`);
+
+                // Re-setup accordion event listeners after items are created
+                if (this.accordion) {
+                    this.accordion.setupEventListeners();
+                }
 
                 // Open first item by default
                 const firstItem = accordion.querySelector('.accordion-item');
@@ -263,8 +498,8 @@
 
             createPersonalDataFields() {
                 return `
-                        <div class="form-grid">
-                            <div class="form-group">
+                    <div class="form-grid">
+                        <div class="form-group">
                             <label for="nome_cliente">Nome Completo</label>
                             <input type="text" id="nome_cliente" name="nome_cliente" required>
                         </div>
@@ -275,20 +510,20 @@
                         <div class="form-group">
                             <label for="telefone">Telefone</label>
                             <input type="tel" id="telefone" name="telefone">
-                            </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email">
-                            </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="profissao">Profissão</label>
                             <input type="text" id="profissao" name="profissao">
-                            </div>
-                            <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="estado_civil">Estado Civil</label>
                             <input type="text" id="estado_civil" name="estado_civil">
-                            </div>
                         </div>
+                    </div>
                 `;
             }
 
@@ -305,32 +540,37 @@
                         <div class="image-preview" id="imagePreview" style="display: none;">
                             <img id="previewImg" src="" alt="Preview">
                             <button type="button" class="btn btn-sm btn-danger" onclick="removeImage()">Remover</button>
+                        </div>
                     </div>
-                </div>
-
+                    
                     <div class="form-section">
                         <h4>Dimensões e Características Gerais</h4>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="ferida_largura">Largura (cm)</label>
                                 <input type="number" id="ferida_largura" name="ferida_largura" step="0.1">
-                        </div>
+                            </div>
                             <div class="form-group">
                                 <label for="ferida_comprimento">Comprimento (cm)</label>
                                 <input type="number" id="ferida_comprimento" name="ferida_comprimento" step="0.1">
-                        </div>
+                            </div>
                             <div class="form-group">
                                 <label for="ferida_profundidade">Profundidade (cm)</label>
                                 <input type="number" id="ferida_profundidade" name="ferida_profundidade" step="0.1">
+                            </div>
                         </div>
-                    </div>
                         
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="localizacao_ferida">Localização</label>
-                                <input type="text" id="localizacao_ferida" name="localizacao_ferida" placeholder="Selecione no mapa corporal">
+                                <div class="location-input-group">
+                                    <input type="text" id="localizacao_ferida" name="localizacao_ferida" placeholder="Selecione no mapa corporal" readonly>
+                                    <button type="button" class="location-btn" onclick="openLocationModal()">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </button>
+                                </div>
                             </div>
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="tempo_evolucao">Tempo de Evolução</label>
                                 <input type="text" id="tempo_evolucao" name="tempo_evolucao">
                             </div>
@@ -347,29 +587,69 @@
                                     <option value="Queimadura">Queimadura</option>
                                     <option value="Outra">Outra</option>
                                 </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                    
                     <div class="form-section">
                         <h4>Avaliação do Leito da Ferida</h4>
-                        <div class="tissue-progress">
-                            <div class="progress-item">
+                        
+                        <!-- Barra de Progresso Visual -->
+                        <div class="wound-bed-progress">
+                            <div class="progress-bar">
+                                <div class="progress-segment granulacao" id="granulacao-segment" style="width: 25%">
+                                    <span class="segment-label">Granulação 25%</span>
+                                </div>
+                                <div class="progress-segment epitelizacao" id="epitelizacao-segment" style="width: 25%">
+                                    <span class="segment-label">Epitelização 25%</span>
+                                </div>
+                                <div class="progress-segment esfacelo" id="esfacelo-segment" style="width: 25%">
+                                    <span class="segment-label">Esfacelo 25%</span>
+                                </div>
+                                <div class="progress-segment necrose" id="necrose-segment" style="width: 25%">
+                                    <span class="segment-label">Necrose 25%</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Legenda -->
+                            <div class="progress-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color granulacao"></div>
+                                    <span>Granulação (<span id="granulacao-legend">25</span>%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color epitelizacao"></div>
+                                    <span>Epitelização (<span id="epitelizacao-legend">25</span>%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color esfacelo"></div>
+                                    <span>Esfacelo (<span id="esfacelo-legend">25</span>%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color necrose"></div>
+                                    <span>Necrose (<span id="necrose-legend">25</span>%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Campos de Entrada -->
+                        <div class="tissue-inputs">
+                            <div class="input-group">
                                 <label for="percentual_granulacao_leito">Granulação (%)</label>
-                                <input type="number" id="percentual_granulacao_leito" name="percentual_granulacao_leito" min="0" max="100" value="0">
+                                <input type="number" id="percentual_granulacao_leito" name="percentual_granulacao_leito" min="0" max="100" value="25" onchange="updateWoundBedProgress()">
                             </div>
-                            <div class="progress-item">
+                            <div class="input-group">
                                 <label for="percentual_epitelizacao_leito">Epitelização (%)</label>
-                                <input type="number" id="percentual_epitelizacao_leito" name="percentual_epitelizacao_leito" min="0" max="100" value="0">
+                                <input type="number" id="percentual_epitelizacao_leito" name="percentual_epitelizacao_leito" min="0" max="100" value="25" onchange="updateWoundBedProgress()">
                             </div>
-                            <div class="progress-item">
+                            <div class="input-group">
                                 <label for="percentual_esfacelo_leito">Esfacelo (%)</label>
-                                <input type="number" id="percentual_esfacelo_leito" name="percentual_esfacelo_leito" min="0" max="100" value="0">
-                        </div>
-                            <div class="progress-item">
+                                <input type="number" id="percentual_esfacelo_leito" name="percentual_esfacelo_leito" min="0" max="100" value="25" onchange="updateWoundBedProgress()">
+                            </div>
+                            <div class="input-group">
                                 <label for="percentual_necrose_seca_leito">Necrose Seca (%)</label>
-                                <input type="number" id="percentual_necrose_seca_leito" name="percentual_necrose_seca_leito" min="0" max="100" value="0">
-                        </div>
+                                <input type="number" id="percentual_necrose_seca_leito" name="percentual_necrose_seca_leito" min="0" max="100" value="25" onchange="updateWoundBedProgress()">
+                            </div>
                         </div>
                     </div>
                 `;
@@ -400,15 +680,15 @@
                             <label class="checkbox-item">
                                 <input type="checkbox" name="inflamacao_rubor">
                                 <span>Rubor</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="inflamacao_calor">
-                                    <span>Calor</span>
-                                </label>
+                                <span>Calor</span>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="inflamacao_edema">
-                                    <span>Edema</span>
-                                </label>
+                                <span>Edema</span>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="inflamacao_dor_local">
                                 <span>Dor Local</span>
@@ -416,10 +696,10 @@
                             <label class="checkbox-item">
                                 <input type="checkbox" name="inflamacao_perda_funcao">
                                 <span>Perda de Função</span>
-                                </label>
+                            </label>
+                        </div>
                     </div>
-                </div>
-
+                    
                     <div class="form-section">
                         <h4>Sinais de Infecção Local</h4>
                         <div class="checkbox-grid">
@@ -438,21 +718,21 @@
                             <label class="checkbox-item">
                                 <input type="checkbox" name="infeccao_dor_local">
                                 <span>Dor Local</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="infeccao_exsudato">
                                 <span>Exsudato Purulento</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="infeccao_odor">
                                 <span>Odor Fétido</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="infeccao_retardo_cicatrizacao">
                                 <span>Retardo na Cicatrização</span>
-                                </label>
-                            </div>
+                            </label>
                         </div>
+                    </div>
                 `;
             }
 
@@ -510,7 +790,7 @@
                                     <option value="Epitelizadas">Epitelizadas</option>
                                 </select>
                             </div>
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="fixacao_bordas">Fixação das Bordas</label>
                                 <select id="fixacao_bordas" name="fixacao_bordas">
                                     <option value="">Selecione...</option>
@@ -528,10 +808,10 @@
                                     <option value="Lenta">Lenta</option>
                                     <option value="Estagnada">Estagnada</option>
                                 </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                    
                     <div class="form-section">
                         <h4>Pele Perilesional</h4>
                         <div class="form-grid">
@@ -544,12 +824,12 @@
                                     <option value="Macerada">Macerada</option>
                                     <option value="Edemaciada">Edemaciada</option>
                                 </select>
-                        </div>
+                            </div>
                             <div class="form-group">
                                 <label for="pele_perilesional_extensao">Extensão da Alteração</label>
                                 <input type="text" id="pele_perilesional_extensao" name="pele_perilesional_extensao">
+                            </div>
                         </div>
-                    </div>
                         
                         <h5>Condição da Pele</h5>
                         <div class="checkbox-grid">
@@ -584,17 +864,17 @@
                             <label class="checkbox-item">
                                 <input type="checkbox" name="pele_perilesional_indurada">
                                 <span>Indurada</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="pele_perilesional_sensivel">
                                 <span>Sensível</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="pele_perilesional_edema">
                                 <span>Edema</span>
-                                </label>
-                            </div>
+                            </label>
                         </div>
+                    </div>
                 `;
             }
 
@@ -603,8 +883,8 @@
                     <div class="form-group">
                         <label for="observacoes">Observações e Plano de Tratamento</label>
                         <textarea id="observacoes" name="observacoes" rows="5"></textarea>
-                </div>
-
+                    </div>
+                    
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="data_consulta">Data da Consulta</label>
@@ -621,7 +901,7 @@
                         <div class="form-group">
                             <label for="coren">COREN/CRM</label>
                             <input type="text" id="coren" name="coren">
-                    </div>
+                        </div>
                         <div class="form-group">
                             <label for="data_retorno">Data de Retorno</label>
                             <input type="date" id="data_retorno" name="data_retorno">
@@ -638,11 +918,11 @@
                             <div class="form-group">
                                 <label for="nivel_atividade">Nível de Atividade</label>
                                 <input type="text" id="nivel_atividade" name="nivel_atividade" placeholder="Ex: Acamado, Ativo">
-                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="compreensao_adesao">Compreensão e Adesão</label>
                                 <input type="text" id="compreensao_adesao" name="compreensao_adesao" placeholder="Ex: Boa, Regular, Baixa">
-                        </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="suporte_social">Suporte Social e Cuidadores</label>
@@ -656,17 +936,17 @@
                             <label class="checkbox-item">
                                 <input type="checkbox" name="pratica_atividade_fisica">
                                 <span>Pratica atividade física?</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="ingestao_alcool">
                                 <span>Ingere álcool?</span>
-                                </label>
+                            </label>
                             <label class="checkbox-item">
                                 <input type="checkbox" name="fumante">
                                 <span>É fumante?</span>
-                                </label>
-                            </div>
+                            </label>
                         </div>
+                    </div>
                     
                     <div class="form-section">
                         <h4>Estado Nutricional</h4>
@@ -677,8 +957,8 @@
                         <div class="form-group">
                             <label for="ingestao_agua_dia">Ingestão de Água por Dia</label>
                             <input type="text" id="ingestao_agua_dia" name="ingestao_agua_dia">
+                        </div>
                     </div>
-                </div>
                 `;
             }
 
@@ -689,13 +969,13 @@
                         <div class="form-group">
                             <label for="objetivo_tratamento">Objetivo do Tratamento</label>
                             <textarea id="objetivo_tratamento" name="objetivo_tratamento" rows="3"></textarea>
-                </div>
+                        </div>
                         <div class="form-group">
                             <label for="historico_cicrizacao">Histórico de Cicatrização</label>
                             <textarea id="historico_cicrizacao" name="historico_cicrizacao" rows="3"></textarea>
-        </div>
-    </div>
-
+                        </div>
+                    </div>
+                    
                     <div class="form-section">
                         <h4>Comorbidades</h4>
                         <div class="checkbox-grid">
@@ -764,7 +1044,7 @@
                             <label for="outros_hpp">Outras Condições</label>
                             <textarea id="outros_hpp" name="outros_hpp" rows="3"></textarea>
                         </div>
-    </div>
+                    </div>
                 `;
             }
 
@@ -847,8 +1127,7 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            const form = new AnamnesisForm();
-            console.log('AnamnesisForm initialized');
+            new AnamnesisForm();
         });
 
         // Sidebar functions
@@ -882,6 +1161,122 @@
                 banner.style.display = 'none';
             }
         }
+
+        function updateWoundBedProgress() {
+            const granulacao = parseInt(document.getElementById('percentual_granulacao_leito').value) || 0;
+            const epitelizacao = parseInt(document.getElementById('percentual_epitelizacao_leito').value) || 0;
+            const esfacelo = parseInt(document.getElementById('percentual_esfacelo_leito').value) || 0;
+            const necrose = parseInt(document.getElementById('percentual_necrose_seca_leito').value) || 0;
+            
+            // Atualizar segmentos da barra
+            document.getElementById('granulacao-segment').style.width = granulacao + '%';
+            document.getElementById('epitelizacao-segment').style.width = epitelizacao + '%';
+            document.getElementById('esfacelo-segment').style.width = esfacelo + '%';
+            document.getElementById('necrose-segment').style.width = necrose + '%';
+            
+            // Atualizar labels dos segmentos
+            document.querySelector('#granulacao-segment .segment-label').textContent = `Granulação ${granulacao}%`;
+            document.querySelector('#epitelizacao-segment .segment-label').textContent = `Epitelização ${epitelizacao}%`;
+            document.querySelector('#esfacelo-segment .segment-label').textContent = `Esfacelo ${esfacelo}%`;
+            document.querySelector('#necrose-segment .segment-label').textContent = `Necrose ${necrose}%`;
+            
+            // Atualizar legenda
+            document.getElementById('granulacao-legend').textContent = granulacao;
+            document.getElementById('epitelizacao-legend').textContent = epitelizacao;
+            document.getElementById('esfacelo-legend').textContent = esfacelo;
+            document.getElementById('necrose-legend').textContent = necrose;
+        }
+
+        // Modal de Localização
+        let selectedBodyPart = '';
+
+        function openLocationModal() {
+            document.getElementById('locationModal').style.display = 'flex';
+            selectedBodyPart = '';
+            clearBodyPartSelection();
+        }
+
+        function closeLocationModal() {
+            document.getElementById('locationModal').style.display = 'none';
+            selectedBodyPart = '';
+            clearBodyPartSelection();
+        }
+
+        function switchView(view) {
+            const frontView = document.getElementById('frontView');
+            const backView = document.getElementById('backView');
+            const frontTab = document.getElementById('frontTab');
+            const backTab = document.getElementById('backTab');
+            
+            if (view === 'front') {
+                frontView.style.display = 'block';
+                backView.style.display = 'none';
+                frontTab.classList.add('active');
+                backTab.classList.remove('active');
+            } else {
+                frontView.style.display = 'none';
+                backView.style.display = 'block';
+                frontTab.classList.remove('active');
+                backTab.classList.add('active');
+            }
+            
+            // Limpar seleção ao trocar de vista
+            selectedBodyPart = '';
+            clearBodyPartSelection();
+        }
+
+        function selectBodyPart(part) {
+            selectedBodyPart = part;
+            
+            // Remover seleção anterior
+            clearBodyPartSelection();
+            
+            // Adicionar seleção atual
+            const bodyParts = document.querySelectorAll('.body-part');
+            bodyParts.forEach(bp => {
+                if (bp.getAttribute('data-part') === part) {
+                    bp.classList.add('selected');
+                }
+            });
+            
+            // Mostrar localização selecionada
+            const selectedLocationDiv = document.getElementById('selectedLocation');
+            const locationNameSpan = document.getElementById('locationName');
+            if (selectedLocationDiv && locationNameSpan) {
+                locationNameSpan.textContent = part;
+                selectedLocationDiv.style.display = 'block';
+            }
+        }
+
+        function clearBodyPartSelection() {
+            const bodyParts = document.querySelectorAll('.body-part');
+            bodyParts.forEach(bp => {
+                bp.classList.remove('selected');
+            });
+            
+            // Esconder localização selecionada
+            const selectedLocationDiv = document.getElementById('selectedLocation');
+            if (selectedLocationDiv) {
+                selectedLocationDiv.style.display = 'none';
+            }
+        }
+
+        function confirmLocation() {
+            if (selectedBodyPart) {
+                document.getElementById('localizacao_ferida').value = selectedBodyPart;
+                closeLocationModal();
+            } else {
+                alert('Por favor, selecione uma parte do corpo.');
+            }
+        }
+
+        // Fechar modal ao clicar fora dele
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('locationModal');
+            if (event.target === modal) {
+                closeLocationModal();
+            }
+        });
     </script>
 </body>
 </html>
