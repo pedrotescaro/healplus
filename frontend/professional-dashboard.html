@@ -4,103 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Profissional - Heal+</title>
-    <meta name="description" content="Gerencie suas avaliações, relatórios e pacientes em um só lugar.">
+    <meta name="description" content="Plataforma inteligente para gestão de feridas com IA. Gerencie avaliações, relatórios e pacientes em um só lugar.">
     <link rel="icon" type="image/png" href="icons/icon.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/professional-dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="professional-dashboard">
     <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
+    <aside class="app-sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon">H</div>
-                <span>Heal+</span>
-            </div>
+            <a href="professional-dashboard.html" class="logo-link">
+                <img alt="Heal+ Logo" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" class="h-20 w-20" src="icons/icon.png" style="color: transparent;">
+                <span class="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent -ml-1">Heal+</span>
+            </a>
         </div>
         
+        <div class="sidebar-content">
         <nav class="sidebar-nav">
-            <ul class="nav-list">
-                <li class="nav-item active">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-tachometer-alt"></i>
+                <button class="nav-button active" onclick="handleLinkClick('professional-dashboard.html')">
+                    <i class="fas fa-tachometer-alt nav-icon"></i>
                         <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="wound-evaluation.html" class="nav-link">
-                        <i class="fas fa-file-medical"></i>
-                        <span>Nova Avaliação</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-users"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('wound-evaluation.html')">
+                    <i class="fas fa-clipboard-list nav-icon"></i>
+                    <span>Nova Anamnese</span>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-users nav-icon"></i>
                         <span>Meus Pacientes</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-calendar-alt"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-calendar-alt nav-icon"></i>
                         <span>Agenda</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-camera"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('wound-capture.html')">
+                    <i class="fas fa-camera nav-icon"></i>
                         <span>Captura de Feridas</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-file-alt"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-file-text nav-icon"></i>
                         <span>Gerar Relatório</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-folder"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-archive nav-icon"></i>
                         <span>Meus Relatórios</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-file-medical-alt"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-copy nav-icon"></i>
                         <span>Comparar Relatórios</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-chart-bar"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-chart-bar nav-icon"></i>
                         <span>Analytics</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-user"></i>
+                </button>
+                
+                <button class="nav-button" onclick="handleLinkClick('#')">
+                    <i class="fas fa-user nav-icon"></i>
                         <span>Perfil</span>
-                    </a>
-                </li>
-            </ul>
+                </button>
         </nav>
+        </div>
         
         <div class="sidebar-footer">
             <div class="user-profile">
                 <div class="user-avatar">
-                    <i class="fas fa-user-circle"></i>
+                    <img src="https://via.placeholder.com/40x40/3b82f6/ffffff?text=PT" alt="User Avatar" class="avatar-image">
+                    <div class="avatar-fallback">PT</div>
                 </div>
                 <div class="user-info">
                     <div class="user-name">Pedro Tescaro</div>
                     <div class="user-email">pedroatescaro@gmail.com</div>
                 </div>
             </div>
-            <button class="logout-btn">
+            <button class="logout-button" onclick="handleLogout()">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Sair</span>
             </button>
+        </div>
+    </aside>
+
+    <!-- Guest Banner -->
+    <div class="guest-banner" id="guestBanner">
+        <div class="guest-banner-content">
+            <div class="guest-banner-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Acesso como Visitante (Profissional)</span>
+            </div>
+            <div class="guest-banner-actions">
+                <button class="guest-login-btn" onclick="window.location.href='login.html'">Fazer Login</button>
+                <button class="guest-close-btn" onclick="closeGuestBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -120,44 +126,53 @@
             <div class="quick-actions">
                 <div class="action-card">
                     <div class="action-icon">
-                        <i class="fas fa-file-medical"></i>
+                        <i class="fas fa-clipboard-list"></i>
                     </div>
                     <div class="action-content">
-                        <h3>Nova Avaliação de Ferida</h3>
+                        <h3>Nova Anamnese</h3>
                         <p>Crie uma nova ficha de avaliação guiada pelo framework TIMERS.</p>
-                        <button class="action-btn" onclick="window.location.href='wound-evaluation.html'">Criar Avaliação</button>
+                        <button class="action-btn" onclick="window.location.href='wound-evaluation.html'">
+                            <i class="fas fa-plus mr-2"></i>
+                            Criar Ficha
+                        </button>
                     </div>
                 </div>
                 
                 <div class="action-card">
                     <div class="action-icon">
-                        <i class="fas fa-file-chart-line"></i>
+                        <i class="fas fa-file-text"></i>
                     </div>
                     <div class="action-content">
-                        <h3>Gerar Relatório da Ferida</h3>
+                        <h3>Gerar Relatório</h3>
                         <p>Compile um relatório em PDF a partir de uma ficha de anamnese salva.</p>
-                        <button class="action-btn">Criar Relatório</button>
+                        <button class="action-btn">
+                            <i class="fas fa-download mr-2"></i>
+                            Criar Relatório
+                        </button>
                     </div>
                 </div>
                 
                 <div class="action-card">
                     <div class="action-icon">
-                        <i class="fas fa-file-medical-alt"></i>
+                        <i class="fas fa-copy"></i>
                     </div>
                     <div class="action-content">
                         <h3>Comparar Relatórios</h3>
                         <p>Analise a progressão da cicatrização comparando relatórios com IA.</p>
-                        <button class="action-btn">Comparar Relatórios</button>
+                        <button class="action-btn">
+                            <i class="fas fa-search mr-2"></i>
+                            Comparar Relatórios
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- Dashboard Grid -->
             <div class="dashboard-grid">
-                <!-- Recent Assessments -->
+                <!-- Recent Anamneses -->
                 <div class="dashboard-section">
                     <div class="section-header">
-                        <h2>Avaliações Recentes</h2>
+                        <h2>Anamneses Recentes</h2>
                         <p>Veja as últimas fichas de avaliação que você preencheu.</p>
                     </div>
                     
@@ -166,36 +181,114 @@
                             <thead>
                                 <tr>
                                     <th>Paciente</th>
-                                    <th>Localização da Ferida</th>
-                                    <th>Data da Consulta</th>
-                                    <th>Ações</th>
+                                    <th class="hidden sm:table-cell">Localização da Ferida</th>
+                                    <th class="hidden md:table-cell">Data da Consulta</th>
+                                    <th class="text-right">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Pedro Antonio Silvestre Tescaro</td>
-                                    <td><span class="location-tag">Perna Esquerda (Anterior)</span></td>
-                                    <td>07/09/2025</td>
-                                    <td><i class="fas fa-ellipsis-h"></i></td>
+                                    <td class="font-medium">Maria Silva Santos</td>
+                                    <td class="hidden sm:table-cell">
+                                        <span class="location-tag">Perna Esquerda</span>
+                                    </td>
+                                    <td class="hidden md:table-cell">15/01/2025</td>
+                                    <td class="text-right">
+                                        <div class="dropdown-menu">
+                                            <button class="dropdown-trigger" aria-haspopup="true">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                                <span class="sr-only">Toggle menu</span>
+                                            </button>
+                                            <div class="dropdown-content">
+                                                <div class="dropdown-label">Ações</div>
+                                                <div class="dropdown-separator"></div>
+                                                <button class="dropdown-item" onclick="viewDetails('1')">
+                                                    <i class="fas fa-eye mr-2"></i>
+                                                    Ver Detalhes
+                                                </button>
+                                                <button class="dropdown-item" onclick="editRecord('1')">
+                                                    <i class="fas fa-edit mr-2"></i>
+                                                    Editar
+                                                </button>
+                                                <button class="dropdown-item text-destructive" onclick="deleteRecord('1')">
+                                                    <i class="fas fa-trash mr-2"></i>
+                                                    Excluir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>Guilherme</td>
-                                    <td><span class="location-tag">Pelve (Anterior)</span></td>
-                                    <td>05/09/2025</td>
-                                    <td><i class="fas fa-ellipsis-h"></i></td>
+                                    <td class="font-medium">João Carlos Oliveira</td>
+                                    <td class="hidden sm:table-cell">
+                                        <span class="location-tag">Abdômen</span>
+                                    </td>
+                                    <td class="hidden md:table-cell">14/01/2025</td>
+                                    <td class="text-right">
+                                        <div class="dropdown-menu">
+                                            <button class="dropdown-trigger" aria-haspopup="true">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                                <span class="sr-only">Toggle menu</span>
+                                            </button>
+                                            <div class="dropdown-content">
+                                                <div class="dropdown-label">Ações</div>
+                                                <div class="dropdown-separator"></div>
+                                                <button class="dropdown-item" onclick="viewDetails('2')">
+                                                    <i class="fas fa-eye mr-2"></i>
+                                                    Ver Detalhes
+                                                </button>
+                                                <button class="dropdown-item" onclick="editRecord('2')">
+                                                    <i class="fas fa-edit mr-2"></i>
+                                                    Editar
+                                                </button>
+                                                <button class="dropdown-item text-destructive" onclick="deleteRecord('2')">
+                                                    <i class="fas fa-trash mr-2"></i>
+                                                    Excluir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>Pedro Antonio Silvestre Tescaro</td>
-                                    <td><span class="location-tag">Perna Direita (Anterior)</span></td>
-                                    <td>02/09/2025</td>
-                                    <td><i class="fas fa-ellipsis-h"></i></td>
+                                    <td class="font-medium">Ana Paula Costa</td>
+                                    <td class="hidden sm:table-cell">
+                                        <span class="location-tag">Pé Direito</span>
+                                    </td>
+                                    <td class="hidden md:table-cell">13/01/2025</td>
+                                    <td class="text-right">
+                                        <div class="dropdown-menu">
+                                            <button class="dropdown-trigger" aria-haspopup="true">
+                                                <i class="fas fa-ellipsis-h"></i>
+                                                <span class="sr-only">Toggle menu</span>
+                                            </button>
+                                            <div class="dropdown-content">
+                                                <div class="dropdown-label">Ações</div>
+                                                <div class="dropdown-separator"></div>
+                                                <button class="dropdown-item" onclick="viewDetails('3')">
+                                                    <i class="fas fa-eye mr-2"></i>
+                                                    Ver Detalhes
+                                                </button>
+                                                <button class="dropdown-item" onclick="editRecord('3')">
+                                                    <i class="fas fa-edit mr-2"></i>
+                                                    Editar
+                                                </button>
+                                                <button class="dropdown-item text-destructive" onclick="deleteRecord('3')">
+                                                    <i class="fas fa-trash mr-2"></i>
+                                                    Excluir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     
                     <div class="section-footer">
-                        <a href="#" class="view-all-link">Ver todas as fichas</a>
+                        <a href="#" class="view-all-link">
+                            <i class="fas fa-list mr-2"></i>
+                            Ver todos os registros
+                        </a>
                     </div>
                 </div>
 
@@ -209,9 +302,6 @@
                     <div class="activity-content">
                         <div class="activity-chart">
                             <div class="donut-chart">
-                                <div class="chart-segment segment-1"></div>
-                                <div class="chart-segment segment-2"></div>
-                                <div class="chart-segment segment-3"></div>
                                 <div class="chart-center">
                                     <div class="chart-label">Comparações</div>
                                     <div class="chart-value">8</div>
@@ -245,8 +335,167 @@
         </div>
     </div>
 
+    <!-- Alert Dialog for Deletion -->
+    <div id="deleteDialog" class="alert-dialog" style="display: none;">
+        <div class="alert-dialog-content">
+            <div class="alert-dialog-header">
+                <h3 class="alert-dialog-title">Tem certeza?</h3>
+                <p class="alert-dialog-description">
+                    Esta ação não pode ser desfeita. Isso excluirá permanentemente o registro da anamnese.
+                </p>
+            </div>
+            <div class="alert-dialog-footer">
+                <button class="alert-dialog-cancel" onclick="closeDeleteDialog()">Cancelar</button>
+                <button class="alert-dialog-action" onclick="confirmDelete()">Excluir</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dialog for Viewing Details -->
+    <div id="viewDialog" class="dialog" style="display: none;">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <h3 class="dialog-title">Detalhes da Anamnese</h3>
+                <p class="dialog-description">
+                    Paciente: <span id="patientName"></span> | Data: <span id="consultationDate"></span>
+                </p>
+            </div>
+            <div class="dialog-body">
+                <div id="anamnesisDetails" class="anamnesis-details">
+                    <!-- Details will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button class="dialog-close" onclick="closeViewDialog()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/dashboard.js"></script>
+    
+    <!-- Dashboard specific JavaScript -->
+    <script>
+        let recordToDelete = null;
+        let recordToView = null;
+
+        // Sidebar functions
+        function handleLinkClick(href) {
+            if (href && href !== '#') {
+                window.location.href = href;
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Simulate logout
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Guest banner functions
+        function closeGuestBanner() {
+            const banner = document.getElementById('guestBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        // Set active nav button based on current page
+        function setActiveNavButton() {
+            const currentPage = window.location.pathname.split('/').pop();
+            const navButtons = document.querySelectorAll('.nav-button');
+            
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+                const href = button.getAttribute('onclick');
+                if (href && href.includes(currentPage)) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        // Dashboard functions
+        function viewDetails(recordId) {
+            // Simulate fetching record details
+            const record = {
+                id: recordId,
+                nome_cliente: document.querySelector(`tr:nth-child(${parseInt(recordId) + 1}) td:first-child`).textContent,
+                data_consulta: document.querySelector(`tr:nth-child(${parseInt(recordId) + 1}) td:nth-child(3)`).textContent,
+                localizacao_ferida: document.querySelector(`tr:nth-child(${parseInt(recordId) + 1}) td:nth-child(2) .location-tag`).textContent
+            };
+            
+            recordToView = record;
+            document.getElementById('patientName').textContent = record.nome_cliente;
+            document.getElementById('consultationDate').textContent = record.data_consulta;
+            
+            // Populate details
+            document.getElementById('anamnesisDetails').innerHTML = `
+                <div class="detail-section">
+                    <h4>Informações do Paciente</h4>
+                    <p><strong>Nome:</strong> ${record.nome_cliente}</p>
+                    <p><strong>Data da Consulta:</strong> ${record.data_consulta}</p>
+                    <p><strong>Localização da Ferida:</strong> ${record.localizacao_ferida}</p>
+                </div>
+                <div class="detail-section">
+                    <h4>Status TIMERS</h4>
+                    <p>Framework TIMERS aplicado com sucesso</p>
+                </div>
+            `;
+            
+            document.getElementById('viewDialog').style.display = 'flex';
+        }
+
+        function editRecord(recordId) {
+            // Redirect to edit page
+            window.location.href = `wound-evaluation.html?edit=${recordId}`;
+        }
+
+        function deleteRecord(recordId) {
+            recordToDelete = recordId;
+            document.getElementById('deleteDialog').style.display = 'flex';
+        }
+
+        function closeDeleteDialog() {
+            recordToDelete = null;
+            document.getElementById('deleteDialog').style.display = 'none';
+        }
+
+        function confirmDelete() {
+            if (recordToDelete) {
+                // Simulate deletion
+                const row = document.querySelector(`tr:nth-child(${parseInt(recordToDelete) + 1})`);
+                if (row) {
+                    row.remove();
+                }
+                
+                // Show success message
+                alert('Registro excluído com sucesso!');
+                
+                closeDeleteDialog();
+            }
+        }
+
+        function closeViewDialog() {
+            recordToView = null;
+            document.getElementById('viewDialog').style.display = 'none';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setActiveNavButton();
+        });
+
+        // Close dialogs when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('alert-dialog')) {
+                closeDeleteDialog();
+            }
+            if (e.target.classList.contains('dialog')) {
+                closeViewDialog();
+            }
+        });
+    </script>
 </body>
 </html>
