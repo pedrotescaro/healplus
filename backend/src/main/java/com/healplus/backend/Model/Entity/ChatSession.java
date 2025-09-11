@@ -27,8 +27,8 @@ public class ChatSession {
     private Patient patient;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "clinician_id")
-    private Clinician clinician;
+    @JoinColumn(name = "professional_id")
+    private Professional professional;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

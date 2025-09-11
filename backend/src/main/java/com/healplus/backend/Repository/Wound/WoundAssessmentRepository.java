@@ -2,7 +2,7 @@ package com.healplus.backend.Repository;
 
 import com.healplus.backend.Model.WoundAssessment;
 import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Model.Clinician;
+import com.healplus.backend.Model.Professional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,11 +17,11 @@ public interface WoundAssessmentRepository extends JpaRepository<WoundAssessment
     
     List<WoundAssessment> findByPatient(Patient patient);
     
-    List<WoundAssessment> findByClinician(Clinician clinician);
+    List<WoundAssessment> findByProfessional(Professional professional);
     
     List<WoundAssessment> findByPatientOrderByAssessmentDateDesc(Patient patient);
     
-    List<WoundAssessment> findByClinicianOrderByAssessmentDateDesc(Clinician clinician);
+    List<WoundAssessment> findByProfessionalOrderByAssessmentDateDesc(Professional professional);
     
     @Query("SELECT wa FROM WoundAssessment wa WHERE wa.patient = :patient AND wa.assessmentDate >= :startDate ORDER BY wa.assessmentDate DESC")
     List<WoundAssessment> findRecentAssessmentsByPatient(@Param("patient") Patient patient, 

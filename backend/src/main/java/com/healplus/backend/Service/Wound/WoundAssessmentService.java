@@ -3,7 +3,7 @@ package com.healplus.backend.Service;
 import com.healplus.backend.Model.*;
 import com.healplus.backend.Repository.WoundAssessmentRepository;
 import com.healplus.backend.Repository.PatientRepository;
-import com.healplus.backend.Repository.ClinicianRepository;
+import com.healplus.backend.Repository.ProfessionalRepository;
 import com.healplus.backend.Repository.WoundImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class WoundAssessmentService {
     private PatientRepository patientRepository;
     
     @Autowired
-    private ClinicianRepository clinicianRepository;
+    private ProfessionalRepository professionalRepository;
     
     @Autowired
     private WoundImageRepository woundImageRepository;
@@ -69,15 +69,15 @@ public class WoundAssessmentService {
     }
     
     /**
-     * Obter avaliações por clínico
+     * Obter avaliações por profissional
      */
-    public List<WoundAssessment> getAssessmentsByClinician(UUID clinicianId) {
+    public List<WoundAssessment> getAssessmentsByProfessional(UUID professionalId) {
         try {
-            Clinician clinician = clinicianRepository.findById(clinicianId)
-                .orElseThrow(() -> new IllegalArgumentException("Clínico não encontrado com ID: " + clinicianId));
-            return woundAssessmentRepository.findByClinicianOrderByAssessmentDateDesc(clinician);
+            Professional professional = professionalRepository.findById(professionalId)
+                .orElseThrow(() -> new IllegalArgumentException("Profissional não encontrado com ID: " + professionalId));
+            return woundAssessmentRepository.findByProfessionalOrderByAssessmentDateDesc(professional);
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao obter avaliações do clínico: " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao obter avaliações do profissional: " + e.getMessage(), e);
         }
     }
     
@@ -105,10 +105,10 @@ public class WoundAssessmentService {
                 .orElseThrow(() -> new IllegalArgumentException("Paciente não encontrado"));
             assessment.setPatient(patient);
             
-            // Validar clínico
-            Clinician clinician = clinicianRepository.findById(assessment.getClinician().getId())
-                .orElseThrow(() -> new IllegalArgumentException("Clínico não encontrado"));
-            assessment.setClinician(clinician);
+            // Validar profissional
+            Professional professional = professionalRepository.findById(assessment.getProfessional().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Profissional não encontrado"));
+            assessment.setProfessional(professional);
             
             // Definir data de avaliação
             if (assessment.getAssessmentDate() == null) {

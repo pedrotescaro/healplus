@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "clinicians")
+@Table(name = "professionals")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Clinician {
+public class Professional {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -36,7 +36,7 @@ public class Clinician {
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private ClinicianType clinicianType;
+    private ProfessionalType professionalType;
     
     @Column(length = 100)
     private String specialization; // Especialização
@@ -83,13 +83,13 @@ public class Clinician {
     @Column
     private LocalDateTime updatedAt;
     
-    @OneToMany(mappedBy = "clinician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<WoundAssessment> woundAssessments;
     
-    @OneToMany(mappedBy = "clinician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Appointment> appointments;
     
-    @OneToMany(mappedBy = "clinician", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "professional", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TelehealthSession> telehealthSessions;
     
     @PreUpdate
@@ -97,7 +97,7 @@ public class Clinician {
         updatedAt = LocalDateTime.now();
     }
     
-    public enum ClinicianType {
+    public enum ProfessionalType {
         DOCTOR, NURSE, WOUND_CARE_SPECIALIST, DERMATOLOGIST, 
         PLASTIC_SURGEON, GENERAL_PRACTITIONER
     }

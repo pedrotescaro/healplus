@@ -2,7 +2,7 @@ package com.healplus.backend.Repository;
 
 import com.healplus.backend.Model.TelehealthSession;
 import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Model.Clinician;
+import com.healplus.backend.Model.Professional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,18 +17,18 @@ public interface TelehealthSessionRepository extends JpaRepository<TelehealthSes
     
     List<TelehealthSession> findByPatient(Patient patient);
     
-    List<TelehealthSession> findByClinician(Clinician clinician);
+    List<TelehealthSession> findByProfessional(Professional professional);
     
     List<TelehealthSession> findByPatientOrderByScheduledStartTimeDesc(Patient patient);
     
-    List<TelehealthSession> findByClinicianOrderByScheduledStartTimeDesc(Clinician clinician);
+    List<TelehealthSession> findByProfessionalOrderByScheduledStartTimeDesc(Professional professional);
     
     @Query("SELECT ts FROM TelehealthSession ts WHERE ts.patient = :patient AND ts.status = :status")
     List<TelehealthSession> findByPatientAndStatus(@Param("patient") Patient patient, 
                                                   @Param("status") TelehealthSession.SessionStatus status);
     
-    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.clinician = :clinician AND ts.status = :status")
-    List<TelehealthSession> findByClinicianAndStatus(@Param("clinician") Clinician clinician, 
+    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.professional = :professional AND ts.status = :status")
+    List<TelehealthSession> findByProfessionalAndStatus(@Param("professional") Professional professional, 
                                                     @Param("status") TelehealthSession.SessionStatus status);
     
     @Query("SELECT ts FROM TelehealthSession ts WHERE ts.sessionType = :type")
@@ -41,8 +41,8 @@ public interface TelehealthSessionRepository extends JpaRepository<TelehealthSes
     List<TelehealthSession> findByDateRange(@Param("startDate") LocalDateTime startDate, 
                                            @Param("endDate") LocalDateTime endDate);
     
-    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.clinician = :clinician AND ts.scheduledStartTime >= :startDate AND ts.scheduledStartTime <= :endDate")
-    List<TelehealthSession> findByClinicianAndDateRange(@Param("clinician") Clinician clinician,
+    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.professional = :professional AND ts.scheduledStartTime >= :startDate AND ts.scheduledStartTime <= :endDate")
+    List<TelehealthSession> findByProfessionalAndDateRange(@Param("professional") Professional professional,
                                                        @Param("startDate") LocalDateTime startDate, 
                                                        @Param("endDate") LocalDateTime endDate);
     
@@ -66,14 +66,14 @@ public interface TelehealthSessionRepository extends JpaRepository<TelehealthSes
     @Query("SELECT ts FROM TelehealthSession ts WHERE ts.patientSatisfaction IS NOT NULL ORDER BY ts.patientSatisfaction DESC")
     List<TelehealthSession> findSessionsOrderedByPatientSatisfaction();
     
-    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.clinicianSatisfaction IS NOT NULL ORDER BY ts.clinicianSatisfaction DESC")
-    List<TelehealthSession> findSessionsOrderedByClinicianSatisfaction();
+    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.professionalSatisfaction IS NOT NULL ORDER BY ts.professionalSatisfaction DESC")
+    List<TelehealthSession> findSessionsOrderedByProfessionalSatisfaction();
     
     @Query("SELECT AVG(ts.patientSatisfaction) FROM TelehealthSession ts WHERE ts.patientSatisfaction IS NOT NULL")
     Double getAveragePatientSatisfaction();
     
-    @Query("SELECT AVG(ts.clinicianSatisfaction) FROM TelehealthSession ts WHERE ts.clinicianSatisfaction IS NOT NULL")
-    Double getAverageClinicianSatisfaction();
+    @Query("SELECT AVG(ts.professionalSatisfaction) FROM TelehealthSession ts WHERE ts.professionalSatisfaction IS NOT NULL")
+    Double getAverageProfessionalSatisfaction();
     
     @Query("SELECT AVG(ts.sessionDuration) FROM TelehealthSession ts WHERE ts.sessionDuration IS NOT NULL")
     Double getAverageSessionDuration();

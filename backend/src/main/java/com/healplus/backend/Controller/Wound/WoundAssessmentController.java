@@ -66,12 +66,12 @@ public class WoundAssessmentController {
     }
     
     /**
-     * Obter avaliações por clínico
+     * Obter avaliações por profissional
      */
-    @GetMapping("/clinician/{clinicianId}")
-    public ResponseEntity<List<WoundAssessment>> getAssessmentsByClinician(@PathVariable UUID clinicianId) {
+    @GetMapping("/professional/{professionalId}")
+    public ResponseEntity<List<WoundAssessment>> getAssessmentsByProfessional(@PathVariable UUID professionalId) {
         try {
-            List<WoundAssessment> assessments = woundAssessmentService.getAssessmentsByClinician(clinicianId);
+            List<WoundAssessment> assessments = woundAssessmentService.getAssessmentsByProfessional(professionalId);
             return ResponseEntity.ok(assessments);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();

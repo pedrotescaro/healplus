@@ -2,7 +2,7 @@ package com.healplus.backend.Repository;
 
 import com.healplus.backend.Model.ChatSession;
 import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Model.Clinician;
+import com.healplus.backend.Model.Professional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,18 +17,18 @@ public interface ChatSessionRepository extends JpaRepository<ChatSession, UUID> 
     
     List<ChatSession> findByPatient(Patient patient);
     
-    List<ChatSession> findByClinician(Clinician clinician);
+    List<ChatSession> findByProfessional(Professional professional);
     
     List<ChatSession> findByPatientOrderByStartedAtDesc(Patient patient);
     
-    List<ChatSession> findByClinicianOrderByStartedAtDesc(Clinician clinician);
+    List<ChatSession> findByProfessionalOrderByStartedAtDesc(Professional professional);
     
     @Query("SELECT cs FROM ChatSession cs WHERE cs.patient = :patient AND cs.status = :status")
     List<ChatSession> findByPatientAndStatus(@Param("patient") Patient patient, 
                                            @Param("status") ChatSession.SessionStatus status);
     
-    @Query("SELECT cs FROM ChatSession cs WHERE cs.clinician = :clinician AND cs.status = :status")
-    List<ChatSession> findByClinicianAndStatus(@Param("clinician") Clinician clinician, 
+    @Query("SELECT cs FROM ChatSession cs WHERE cs.professional = :professional AND cs.status = :status")
+    List<ChatSession> findByProfessionalAndStatus(@Param("professional") Professional professional, 
                                              @Param("status") ChatSession.SessionStatus status);
     
     @Query("SELECT cs FROM ChatSession cs WHERE cs.sessionType = :type")
