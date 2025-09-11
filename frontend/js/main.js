@@ -1,4 +1,6 @@
 // Main JavaScript - Inicializa todas as funcionalidades do Heal+
+// NOTA: Verificações de autenticação foram comentadas para funcionar com Live Server
+// Para produção, descomente as verificações de login necessárias
 class HealPlusMain {
     constructor() {
         this.init();
@@ -18,21 +20,24 @@ class HealPlusMain {
         } else {
             this.initializeDashboard();
         }
+        
+        // Verificar se é acesso como visitante
+        this.checkGuestAccess();
     }
 
     initializeLogin() {
         console.log('Initializing login page');
         
-        // Verificar se já está logado
-        const userEmail = localStorage.getItem('userEmail');
-        if (userEmail) {
-            const userType = localStorage.getItem('userType') || 'patient';
-            if (userType === 'clinician') {
-                window.location.href = 'clinician-dashboard.html';
-            } else {
-                window.location.href = 'patient-dashboard.html';
-            }
-        }
+        // COMENTADO PARA FUNCIONAR COM LIVE SERVER - Verificar se já está logado
+        // const userEmail = localStorage.getItem('userEmail');
+        // if (userEmail) {
+        //     const userType = localStorage.getItem('userType') || 'patient';
+        //     if (userType === 'clinician') {
+        //         window.location.href = 'professional-dashboard.html';
+        //     } else {
+        //         window.location.href = 'patient-dashboard.html';
+        //     }
+        // }
 
         // Configurar formulário de login
         const loginForm = document.getElementById('loginForm');
@@ -54,12 +59,12 @@ class HealPlusMain {
     initializeDashboard() {
         console.log('Initializing dashboard');
         
-        // Verificar autenticação
-        const userEmail = localStorage.getItem('userEmail');
-        if (!userEmail) {
-            window.location.href = 'login.html';
-            return;
-        }
+        // COMENTADO PARA FUNCIONAR COM LIVE SERVER - Verificar autenticação
+        // const userEmail = localStorage.getItem('userEmail');
+        // if (!userEmail) {
+        //     window.location.href = 'login.html';
+        //     return;
+        // }
 
         // Carregar dados do usuário
         this.loadUserProfile();
@@ -103,16 +108,17 @@ class HealPlusMain {
         const userEmail = localStorage.getItem('userEmail');
         const userType = localStorage.getItem('userType') || 'patient';
         
-        if (userEmail) {
+        // COMENTADO PARA FUNCIONAR COM LIVE SERVER - Verificação de email
+        // if (userEmail) {
             // Atualizar elementos da interface com dados do usuário
             document.querySelectorAll('.user-email').forEach(element => {
-                element.textContent = userEmail;
+                element.textContent = userEmail || 'usuario@exemplo.com';
             });
             
             document.querySelectorAll('.user-type').forEach(element => {
                 element.textContent = userType === 'clinician' ? 'Clínico' : 'Paciente';
             });
-        }
+        // }
     }
 
     loadUserProfile() {
@@ -122,7 +128,7 @@ class HealPlusMain {
         // Simular carregamento de perfil
         const profileData = {
             name: userType === 'clinician' ? 'Dr. Maria Santos' : 'João Silva',
-            email: userEmail,
+            email: userEmail || 'usuario@exemplo.com',
             role: userType,
             avatar: userType === 'clinician' ? 'MS' : 'JS'
         };
@@ -309,7 +315,7 @@ class HealPlusMain {
             
             // Redirecionar baseado no tipo de usuário
             if (userType === 'clinician') {
-                window.location.href = 'clinician-dashboard.html';
+                window.location.href = 'professional-dashboard.html';
             } else {
                 window.location.href = 'patient-dashboard.html';
             }
@@ -432,6 +438,152 @@ class HealPlusMain {
             // Fallback simples
             alert(message);
         }
+    }
+
+    checkGuestAccess() {
+        // Não mostrar banner na página de login
+        if (window.location.pathname.includes('login.html')) {
+            return;
+        }
+        
+        const isGuest = localStorage.getItem('isGuest') === 'true';
+        const guestAccess = localStorage.getItem('guestAccess');
+        
+        if (isGuest && guestAccess) {
+            // Aguardar o DOM estar pronto
+            setTimeout(() => {
+                this.showGuestBanner(guestAccess);
+                this.limitGuestFeatures();
+            }, 100);
+        }
+    }
+
+    showGuestBanner(accessType) {
+        // Verificar se o banner já existe
+        if (document.querySelector('.guest-banner')) {
+            return;
+        }
+
+        // Criar banner de visitante
+        const banner = document.createElement('div');
+        banner.className = 'guest-banner';
+        banner.innerHTML = `
+            <div class="guest-banner-content">
+                <div class="guest-banner-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Acesso como Visitante (${accessType === 'patient' ? 'Paciente' : accessType === 'clinician' ? 'Profissional' : 'Demonstração'})</span>
+                </div>
+                <div class="guest-banner-actions">
+                    <button class="guest-login-btn">Fazer Login</button>
+                    <button class="guest-close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // Adicionar estilos apenas uma vez
+        if (!document.querySelector('#guest-banner-styles')) {
+            const style = document.createElement('style');
+            style.id = 'guest-banner-styles';
+            style.textContent = `
+                .guest-banner {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+                    border-bottom: 1px solid #f59e0b;
+                    z-index: 1000;
+                    padding: 0.75rem 1rem;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+                .guest-banner-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+                .guest-banner-info {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: #92400e;
+                    font-weight: 500;
+                }
+                .guest-banner-actions {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                }
+                .guest-login-btn {
+                    background: #f59e0b;
+                    color: white;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.375rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: background-color 0.2s;
+                }
+                .guest-login-btn:hover {
+                    background: #d97706;
+                }
+                .guest-close-btn {
+                    background: none;
+                    border: none;
+                    color: #92400e;
+                    cursor: pointer;
+                    padding: 0.25rem;
+                    border-radius: 0.25rem;
+                    transition: background-color 0.2s;
+                }
+                .guest-close-btn:hover {
+                    background: rgba(146, 64, 14, 0.1);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        document.body.insertBefore(banner, document.body.firstChild);
+        
+        // Ajustar padding do body para o banner
+        document.body.style.paddingTop = '60px';
+        
+        // Adicionar event listeners
+        const self = this;
+        banner.querySelector('.guest-login-btn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+        
+        banner.querySelector('.guest-close-btn').addEventListener('click', () => {
+            self.hideGuestBanner();
+        });
+    }
+
+    hideGuestBanner() {
+        const banner = document.querySelector('.guest-banner');
+        if (banner) {
+            banner.remove();
+            document.body.style.paddingTop = '0';
+            // Limpar o status de visitante quando fechar o banner
+            localStorage.removeItem('isGuest');
+            localStorage.removeItem('guestAccess');
+        }
+    }
+
+    limitGuestFeatures() {
+        // Limitar funcionalidades para visitantes
+        console.log('Limiting features for guest access');
+        
+        // Exemplo: desabilitar botões de ação específicos
+        const actionButtons = document.querySelectorAll('.action-btn, .save-btn, .delete-btn');
+        actionButtons.forEach(btn => {
+            btn.disabled = true;
+            btn.title = 'Login necessário para esta ação';
+            btn.style.opacity = '0.5';
+        });
     }
 }
 

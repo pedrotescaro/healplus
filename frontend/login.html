@@ -6,7 +6,7 @@
     <title>Heal+</title>
     <meta name="description" content="Cuidado aprimorado para feridas crônicas por telessaúde.">
     <link rel="icon" type="image/png" href="icons/icon.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -137,6 +137,16 @@
                         <div class="mt-4 text-center text-sm text-muted-foreground">
                             Não tem uma conta? <a class="font-medium text-primary hover:underline" href="#">Cadastre-se</a>
                         </div>
+                        
+                        <div class="mt-6 pt-4 border-t border-gray-200">
+                            <button class="guest-access-btn" onclick="accessAsGuest()">
+                                <i class="fas fa-user-circle"></i>
+                                Acessar como Visitante
+                            </button>
+                            <p class="text-xs text-gray-500 mt-2 text-center">
+                                Acesso limitado sem necessidade de login
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -160,6 +170,93 @@
                 toggleButton.classList.add('fa-eye');
             }
         }
+
+        function accessAsGuest() {
+            // Show modal to choose guest access type
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h3 class="modal-title">Acesso como Visitante</h3>
+                    <p class="modal-description">Escolha o tipo de acesso que deseja:</p>
+                    
+                    <div class="modal-options">
+                        <button onclick="accessAsGuestType('patient')" class="modal-option patient">
+                            <i class="fas fa-user"></i>
+                            Acesso como Paciente
+                        </button>
+                        <button onclick="accessAsGuestType('clinician')" class="modal-option clinician">
+                            <i class="fas fa-briefcase"></i>
+                            Acesso como Profissional
+                        </button>
+                        <button onclick="accessAsGuestType('demo')" class="modal-option demo">
+                            <i class="fas fa-play"></i>
+                            Modo Demonstração
+                        </button>
+                    </div>
+                    
+                    <button onclick="closeGuestModal()" class="modal-cancel">
+                        Cancelar
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function accessAsGuestType(type) {
+            // Store guest access type in localStorage
+            localStorage.setItem('guestAccess', type);
+            localStorage.setItem('isGuest', 'true');
+            
+            // Close modal
+            closeGuestModal();
+            
+            // Redirect based on type
+            switch(type) {
+                case 'patient':
+                    window.location.href = 'patient-dashboard.html';
+                    break;
+                case 'clinician':
+                    window.location.href = 'professional-dashboard.html';
+                    break;
+                case 'demo':
+                    window.location.href = 'index.html';
+                    break;
+            }
+        }
+
+        function closeGuestModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const userType = document.querySelector('input[name="userType"]:checked').value;
+            
+            if (email && password) {
+                // Simulate login
+                console.log('Login attempt:', { email, userType });
+                
+                // Clear guest access
+                localStorage.removeItem('guestAccess');
+                localStorage.removeItem('isGuest');
+                
+                // Redirect based on user type
+                if (userType === 'patient') {
+                    window.location.href = 'patient-dashboard.html';
+                } else {
+                    window.location.href = 'clinician-dashboard.html';
+                }
+            }
+        });
     </script>
 </body>
 </html>
