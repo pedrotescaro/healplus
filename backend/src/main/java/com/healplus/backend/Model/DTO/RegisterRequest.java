@@ -38,6 +38,8 @@ public class RegisterRequest {
     @NotNull(message = "Consentimento para processamento de dados é obrigatório")
     private Boolean dataProcessingConsent;
     
+    @Builder.Default
     private Boolean marketingConsent = false;
+    @Builder.Default
     private Boolean analyticsConsent = false;
 }

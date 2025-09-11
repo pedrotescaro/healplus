@@ -44,7 +44,7 @@ public class RemoteMonitoringService {
         List<ActivityItem> recentActivity = getRecentActivity(patient);
 
         // Get alerts
-        List<AlertResponse> alerts = getAlerts(patient);
+        List<AlertResponse> alerts = getAlerts(patient.getEmail());
 
         return DashboardResponse.builder()
                 .streak(streak)

@@ -147,7 +147,7 @@ public class WoundAssessmentController {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
             
             // Executar análise de IA de forma assíncrona
-            CompletableFuture<com.healplus.backend.Model.AIAnalysis> analysisFuture = 
+            CompletableFuture<com.healplus.backend.Model.Entity.AIAnalysis> analysisFuture = 
                 aiService.analyzeWoundComprehensive(assessment, imageFile);
             
             // Retornar resposta imediata
@@ -169,10 +169,10 @@ public class WoundAssessmentController {
      * Obter análises de IA por avaliação
      */
     @GetMapping("/{id}/ai-analyses")
-    public ResponseEntity<List<com.healplus.backend.Model.AIAnalysis>> getAIAnalyses(@PathVariable UUID id) {
+      public ResponseEntity<List<com.healplus.backend.Model.Entity.AIAnalysis>> getAIAnalyses(@PathVariable UUID id) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
-            List<com.healplus.backend.Model.AIAnalysis> analyses = aiService.getAnalysesByAssessment(assessment);
+            List<com.healplus.backend.Model.Entity.AIAnalysis> analyses = aiService.getAnalysesByAssessment(assessment);
             return ResponseEntity.ok(analyses);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
@@ -300,10 +300,10 @@ public class WoundAssessmentController {
      * Obter imagens de uma avaliação
      */
     @GetMapping("/{id}/images")
-    public ResponseEntity<List<com.healplus.backend.Model.WoundImage>> getAssessmentImages(@PathVariable UUID id) {
+      public ResponseEntity<List<com.healplus.backend.Model.Entity.WoundImage>> getAssessmentImages(@PathVariable UUID id) {
         try {
             WoundAssessment assessment = woundAssessmentService.getAssessmentById(id);
-            List<com.healplus.backend.Model.WoundImage> images = woundAssessmentService.getAssessmentImages(assessment);
+            List<com.healplus.backend.Model.Entity.WoundImage> images = woundAssessmentService.getAssessmentImages(assessment);
             return ResponseEntity.ok(images);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();

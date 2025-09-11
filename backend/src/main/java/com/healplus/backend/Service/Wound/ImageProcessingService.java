@@ -205,7 +205,7 @@ public class ImageProcessingService {
     /**
      * Obter imagem por ID
      */
-    public WoundImage getImageById(Long id) {
+    public WoundImage getImageById(UUID id) {
         return woundImageRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Imagem não encontrada: " + id));
     }
@@ -228,7 +228,7 @@ public class ImageProcessingService {
     /**
      * Deletar imagem
      */
-    public void deleteImage(Long id) {
+    public void deleteImage(UUID id) {
         WoundImage image = getImageById(id);
         
         try {

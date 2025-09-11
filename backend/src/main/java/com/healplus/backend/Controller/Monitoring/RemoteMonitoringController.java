@@ -3,6 +3,7 @@ package com.healplus.backend.Controller.Monitoring;
 import com.healplus.backend.Model.Entity.Patient;
 import com.healplus.backend.Model.Entity.RemoteCheckIn;
 import com.healplus.backend.Service.Monitoring.RemoteMonitoringService;
+import com.healplus.backend.Service.Monitoring.RemoteMonitoringService.RemoteCheckInResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
