@@ -1,7 +1,7 @@
 package com.healplus.backend.Service.AI;
 
-import com.healplus.backend.Model.WoundAssessment;
-import com.healplus.backend.Model.AIAnalysis;
+import com.healplus.backend.Model.Entity.WoundAssessment;
+import com.healplus.backend.Model.Entity.AIAnalysis;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;

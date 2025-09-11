@@ -1,8 +1,8 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.AI;
 
-import com.healplus.backend.Model.AIAnalysis;
-import com.healplus.backend.Model.WoundAssessment;
-import com.healplus.backend.Model.WoundImage;
+import com.healplus.backend.Model.Entity.AIAnalysis;
+import com.healplus.backend.Model.Entity.WoundAssessment;
+import com.healplus.backend.Model.Entity.WoundImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

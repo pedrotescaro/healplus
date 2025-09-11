@@ -1,6 +1,6 @@
 package com.healplus.backend.security.service;
 
-import com.healplus.backend.Model.User;
+import com.healplus.backend.Model.Entity.User;
 import com.healplus.backend.security.exception.AccessDeniedException;
 import com.healplus.backend.security.exception.InvalidTokenException;
 import org.springframework.security.core.Authentication;

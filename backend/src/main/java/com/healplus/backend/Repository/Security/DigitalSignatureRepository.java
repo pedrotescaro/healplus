@@ -1,6 +1,6 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.Security;
 
-import com.healplus.backend.Model.DigitalSignature;
+import com.healplus.backend.Model.Entity.DigitalSignature;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

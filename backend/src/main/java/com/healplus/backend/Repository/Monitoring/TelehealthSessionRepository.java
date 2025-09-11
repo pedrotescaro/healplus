@@ -1,8 +1,8 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.Monitoring;
 
-import com.healplus.backend.Model.TelehealthSession;
-import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Model.Professional;
+import com.healplus.backend.Model.Entity.TelehealthSession;
+import com.healplus.backend.Model.Entity.Patient;
+import com.healplus.backend.Model.Entity.Professional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

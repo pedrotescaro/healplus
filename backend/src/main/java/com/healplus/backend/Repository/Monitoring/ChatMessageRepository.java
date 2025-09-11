@@ -1,7 +1,7 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.Monitoring;
 
-import com.healplus.backend.Model.ChatMessage;
-import com.healplus.backend.Model.ChatSession;
+import com.healplus.backend.Model.Entity.ChatMessage;
+import com.healplus.backend.Model.Entity.ChatSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

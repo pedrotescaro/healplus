@@ -1,6 +1,6 @@
 package com.healplus.backend.Service.Security;
 
-import com.healplus.backend.Model.DigitalSignature;
+import com.healplus.backend.Model.Entity.DigitalSignature;
 import com.healplus.backend.Repository.Security.DigitalSignatureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

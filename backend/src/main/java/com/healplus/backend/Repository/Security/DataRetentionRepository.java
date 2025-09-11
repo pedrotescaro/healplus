@@ -1,6 +1,6 @@
-package com.healplus.backend.Repository;
+package com.healplus.backend.Repository.Security;
 
-import com.healplus.backend.Model.DataRetention;
+import com.healplus.backend.Model.Entity.DataRetention;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

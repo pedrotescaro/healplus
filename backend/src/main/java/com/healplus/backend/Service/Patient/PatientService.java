@@ -1,7 +1,7 @@
 package com.healplus.backend.Service.Patient;
 
-import com.healplus.backend.Model.Patient;
-import com.healplus.backend.Repository.PatientRepository;
+import com.healplus.backend.Model.Entity.Patient;
+import com.healplus.backend.Repository.Patient.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;

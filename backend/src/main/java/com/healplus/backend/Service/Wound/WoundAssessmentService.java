@@ -1,10 +1,11 @@
 package com.healplus.backend.Service.Wound;
 
-import com.healplus.backend.Model.*;
-import com.healplus.backend.Repository.WoundAssessmentRepository;
-import com.healplus.backend.Repository.PatientRepository;
-import com.healplus.backend.Repository.ProfessionalRepository;
-import com.healplus.backend.Repository.WoundImageRepository;
+import com.healplus.backend.Model.Entity.*;
+import com.healplus.backend.Model.DTO.*;
+import com.healplus.backend.Repository.Wound.WoundAssessmentRepository;
+import com.healplus.backend.Repository.Patient.PatientRepository;
+import com.healplus.backend.Repository.Auth.ProfessionalRepository;
+import com.healplus.backend.Repository.Wound.WoundImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
