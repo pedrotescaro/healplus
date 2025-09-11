@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Heal+</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Heal+</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item active">
+                    <a href="patient-dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="wound-capture.html" class="nav-link">
+                        <i class="fas fa-camera"></i>
+                        <span>Captura de Ferida</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="remote-monitoring.html" class="nav-link">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Monitoramento</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="telehealth.html" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Teleconsulta</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <span class="user-avatar-text">JS</span>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">João Silva</span>
+                    <span class="user-email">joao@email.com</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-menu-btn">
+                        <div class="user-avatar">
+                            <span class="user-avatar-text">JS</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h2>Olá, João! 👋</h2>
+                    <p>Como você está se sentindo hoje? Vamos acompanhar seu progresso.</p>
+                </div>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary" onclick="openWoundCapture()">
+                        <i class="fas fa-camera"></i>
+                        Nova Avaliação
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-wound"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">1</span>
+                        <span class="stat-label">Ferida Ativa</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">75%</span>
+                        <span class="stat-label">Progresso</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">Dias</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-value">Baixo</span>
+                        <span class="stat-label">Risco</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="section-header">
+                    <h3>Progresso da Recuperação</h3>
+                    <button class="btn btn-outline btn-sm">Ver Detalhes</button>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-info">
+                        <div class="progress-item">
+                            <span class="progress-label">Área da Ferida</span>
+                            <span class="progress-value">12.5 cm²</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <div class="progress-details">
+                            <span class="progress-change positive">-2.3 cm² esta semana</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>Ações Rápidas</h3>
+                <div class="actions-grid">
+                    <button class="action-card" onclick="openWoundCapture()">
+                        <div class="action-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Nova Avaliação</h4>
+                            <p>Capture uma foto da ferida</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="openRemoteMonitoring()">
+                        <div class="action-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Check-in Diário</h4>
+                            <p>Registre seus sintomas</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="openTelehealth()">
+                        <div class="action-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Teleconsulta</h4>
+                            <p>Converse com seu médico</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="generateReport()">
+                        <div class="action-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Relatório</h4>
+                            <p>Gere relatório de progresso</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h3>Atividade Recente</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Foto enviada</h4>
+                            <p>Análise concluída - Melhorando</p>
+                            <span class="activity-time">Hoje, 14:30</span>
+                        </div>
+                        <div class="activity-status success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Check-in de sintomas</h4>
+                            <p>Completado com sucesso</p>
+                            <span class="activity-time">Hoje, 09:15</span>
+                        </div>
+                        <div class="activity-status success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Medicação registrada</h4>
+                            <p>Em dia com o tratamento</p>
+                            <span class="activity-time">Ontem, 20:00</span>
+                        </div>
+                        <div class="activity-status success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointments -->
+            <div class="appointments-section">
+                <h3>Próximas Consultas</h3>
+                <div class="appointments-list">
+                    <div class="appointment-card">
+                        <div class="appointment-info">
+                            <div class="appointment-time">
+                                <span class="time">14:30</span>
+                                <span class="date">22 Jan</span>
+                            </div>
+                            <div class="appointment-details">
+                                <h4>Consulta de Acompanhamento</h4>
+                                <p>Dr. Maria Santos - Dermatologia</p>
+                                <span class="appointment-type">Presencial</span>
+                            </div>
+                        </div>
+                        <div class="appointment-actions">
+                            <button class="btn btn-outline btn-sm">Detalhes</button>
+                            <button class="btn btn-primary btn-sm">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userType');
+            window.location.href = 'login.html';
+        }
+
+        function openWoundCapture() {
+            window.location.href = 'wound-capture.html';
+        }
+
+        function openRemoteMonitoring() {
+            window.location.href = 'remote-monitoring.html';
+        }
+
+        function openTelehealth() {
+            window.location.href = 'telehealth.html';
+        }
+
+        function generateReport() {
+            if (window.dashboardManager) {
+                window.dashboardManager.generateReport();
+            }
+        }
+    </script>
+</body>
+</html>

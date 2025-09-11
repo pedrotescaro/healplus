@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+ - Plataforma de Cuidados com Feridas</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-heart-pulse"></i>
+                </div>
+                <h1>Heal+</h1>
+            </div>
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+            <p>Carregando sua plataforma de cuidados...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <i class="fas fa-heart-pulse"></i>
+                    <span>Heal+</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link">Recursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contato</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Entrar</a>
+                <a href="login.html" class="btn btn-primary">Começar Agora</a>
+            </div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Cuidados Inteligentes para 
+                        <span class="text-gradient">Feridas</span>
+                    </h1>
+                    <p class="hero-description">
+                        Plataforma completa de monitoramento e análise de feridas com IA, 
+                        conectando pacientes e profissionais de saúde para um tratamento mais eficaz.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="login.html" class="btn btn-primary btn-large">
+                            <i class="fas fa-rocket"></i>
+                            Começar Agora
+                        </a>
+                        <a href="#features" class="btn btn-outline btn-large">
+                            <i class="fas fa-play"></i>
+                            Ver Demonstração
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Pacientes Ativos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Taxa de Sucesso</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Monitoramento</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image">
+                        <div class="dashboard-preview">
+                            <div class="preview-header">
+                                <div class="preview-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <span class="preview-title">Heal+ Dashboard</span>
+                            </div>
+                            <div class="preview-content">
+                                <div class="preview-card">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Análise de Progresso</span>
+                                </div>
+                                <div class="preview-card">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Captura de Imagem</span>
+                                </div>
+                                <div class="preview-card">
+                                    <i class="fas fa-video"></i>
+                                    <span>Teleconsulta</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recursos Avançados</h2>
+                <p class="section-description">
+                    Tecnologia de ponta para cuidados eficazes com feridas
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Análise com IA</h3>
+                    <p class="feature-description">
+                        Inteligência artificial para análise precisa de feridas e acompanhamento do progresso.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Monitoramento Remoto</h3>
+                    <p class="feature-description">
+                        Acompanhe sua recuperação 24/7 com check-ins diários e alertas inteligentes.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="feature-title">Teleconsulta</h3>
+                    <p class="feature-description">
+                        Conecte-se com profissionais de saúde sem sair de casa.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">Relatórios Detalhados</h3>
+                    <p class="feature-description">
+                        Relatórios completos para acompanhar o progresso e compartilhar com médicos.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Segurança Total</h3>
+                    <p class="feature-description">
+                        Seus dados protegidos com criptografia de nível bancário e conformidade LGPD.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Equipe Multidisciplinar</h3>
+                    <p class="feature-description">
+                        Acesso a especialistas em feridas, enfermeiros e médicos especializados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Como Funciona</h2>
+                <p class="section-description">
+                    Processo simples e eficaz para seus cuidados
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Cadastro e Avaliação</h3>
+                        <p>Faça seu cadastro e receba uma avaliação inicial completa</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Monitoramento Diário</h3>
+                        <p>Envie fotos e faça check-ins regulares sobre sua condição</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Análise Inteligente</h3>
+                        <p>Nossa IA analisa o progresso e gera insights personalizados</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Acompanhamento Médico</h3>
+                        <p>Profissionais acompanham seu caso e ajustam o tratamento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Sobre o Heal+</h2>
+                    <p class="about-description">
+                        O Heal+ é uma plataforma inovadora que revoluciona o cuidado com feridas, 
+                        combinando tecnologia de ponta com expertise médica para oferecer o melhor 
+                        tratamento possível aos nossos pacientes.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Certificação médica</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Conformidade LGPD</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Suporte 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-description">
+                    Estamos aqui para ajudar com suas dúvidas
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contato@healplus.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>São Paulo, SP - Brasil</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-heart-pulse"></i>
+                        <span>Heal+</span>
+                    </div>
+                    <p>Plataforma de cuidados inteligentes para feridas</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produto</h4>
+                        <ul>
+                            <li><a href="#features">Recursos</a></li>
+                            <li><a href="#about">Sobre</a></li>
+                            <li><a href="login.html">Login</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Suporte</h4>
+                        <ul>
+                            <li><a href="#contact">Contato</a></li>
+                            <li><a href="#">Ajuda</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacidade</a></li>
+                            <li><a href="#">Termos</a></li>
+                            <li><a href="#">LGPD</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Heal+. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

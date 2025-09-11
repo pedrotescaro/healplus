@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captura de Ferida - Heal+</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Heal+</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="patient-dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="wound-capture.html" class="nav-link">
+                        <i class="fas fa-camera"></i>
+                        <span>Captura de Ferida</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="remote-monitoring.html" class="nav-link">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Monitoramento</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="telehealth.html" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Teleconsulta</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <span class="user-avatar-text">JS</span>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">João Silva</span>
+                    <span class="user-email">joao@email.com</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Captura de Ferida</h1>
+            </div>
+            <div class="header-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">1</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-menu-btn">
+                        <div class="user-avatar">
+                            <span class="user-avatar-text">JS</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Capture Content -->
+        <div class="dashboard-content">
+            <!-- Instructions -->
+            <div class="instructions-section">
+                <div class="instructions-card">
+                    <h2>Como capturar uma boa foto da ferida</h2>
+                    <div class="instructions-grid">
+                        <div class="instruction-item">
+                            <div class="instruction-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Boa iluminação</h4>
+                            <p>Use luz natural ou uma lâmpada clara. Evite sombras na ferida.</p>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instruction-icon">
+                                <i class="fas fa-ruler"></i>
+                            </div>
+                            <h4>Distância adequada</h4>
+                            <p>Mantenha o celular a 15-20cm da ferida para melhor nitidez.</p>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instruction-icon">
+                                <i class="fas fa-crosshairs"></i>
+                            </div>
+                            <h4>Centralize a ferida</h4>
+                            <p>Posicione a ferida no centro da tela, ocupando 60-80% da imagem.</p>
+                        </div>
+                        <div class="instruction-item">
+                            <div class="instruction-icon">
+                                <i class="fas fa-hand-paper"></i>
+                            </div>
+                            <h4>Mantenha firme</h4>
+                            <p>Segure o celular com as duas mãos para evitar fotos borradas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Camera Section -->
+            <div class="camera-section">
+                <div class="camera-container">
+                    <div class="camera-preview">
+                        <video id="camera-video" autoplay muted></video>
+                        <div class="camera-overlay">
+                            <div class="focus-frame"></div>
+                            <div class="camera-instructions">
+                                <p>Posicione a ferida dentro do quadro</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="camera-controls">
+                        <button class="btn btn-outline" id="switchCameraBtn">
+                            <i class="fas fa-sync-alt"></i>
+                            Trocar Câmera
+                        </button>
+                        <button class="btn btn-primary btn-large" id="captureBtn">
+                            <i class="fas fa-camera"></i>
+                            Capturar Foto
+                        </button>
+                        <button class="btn btn-outline" id="galleryBtn">
+                            <i class="fas fa-images"></i>
+                            Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Analysis -->
+            <div class="analysis-section" id="analysisSection" style="display: none;">
+                <div class="analysis-card">
+                    <h3>Análise da Imagem</h3>
+                    <div class="analysis-content">
+                        <div class="analysis-image">
+                            <img id="captured-image" src="" alt="Imagem capturada">
+                        </div>
+                        <div class="analysis-results">
+                            <div class="analysis-item">
+                                <span class="analysis-label">Qualidade da imagem:</span>
+                                <span class="analysis-value good">Boa</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="analysis-label">Área estimada:</span>
+                                <span class="analysis-value">12.5 cm²</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="analysis-label">Tipo de tecido:</span>
+                                <span class="analysis-value">75% Granulação</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="analysis-label">Risco de infecção:</span>
+                                <span class="analysis-value low">Baixo</span>
+                            </div>
+                            <div class="analysis-item">
+                                <span class="analysis-label">Recomendação:</span>
+                                <span class="analysis-value">Continue o tratamento atual</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="analysis-actions">
+                        <button class="btn btn-outline" onclick="retakePhoto()">
+                            <i class="fas fa-redo"></i>
+                            Tirar Nova Foto
+                        </button>
+                        <button class="btn btn-primary" onclick="savePhoto()">
+                            <i class="fas fa-save"></i>
+                            Salvar Análise
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Captures -->
+            <div class="recent-captures">
+                <h3>Capturas Recentes</h3>
+                <div class="captures-grid">
+                    <div class="capture-item">
+                        <div class="capture-image">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZmFmYyIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjQ3NDhiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2VtPC90ZXh0Pjwvc3ZnPg==" alt="Captura anterior">
+                        </div>
+                        <div class="capture-info">
+                            <h4>15 Jan 2024</h4>
+                            <p>12.5 cm² - Melhorando</p>
+                            <span class="capture-status good">Boa</span>
+                        </div>
+                    </div>
+                    <div class="capture-item">
+                        <div class="capture-image">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZmFmYyIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjQ3NDhiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2VtPC90ZXh0Pjwvc3ZnPg==" alt="Captura anterior">
+                        </div>
+                        <div class="capture-info">
+                            <h4>10 Jan 2024</h4>
+                            <p>14.8 cm² - Estável</p>
+                            <span class="capture-status medium">Média</span>
+                        </div>
+                    </div>
+                    <div class="capture-item">
+                        <div class="capture-image">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZmFmYyIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjQ3NDhiIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2VtPC90ZXh0Pjwvc3ZnPg==" alt="Captura anterior">
+                        </div>
+                        <div class="capture-info">
+                            <h4>05 Jan 2024</h4>
+                            <p>16.2 cm² - Inicial</p>
+                            <span class="capture-status good">Boa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Hidden file input for gallery -->
+    <input type="file" id="galleryInput" accept="image/*" style="display: none;">
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/wound-capture.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userType');
+            window.location.href = 'login.html';
+        }
+
+        function retakePhoto() {
+            document.getElementById('analysisSection').style.display = 'none';
+            document.getElementById('camera-video').style.display = 'block';
+        }
+
+        function savePhoto() {
+            alert('Foto salva com sucesso! A análise foi enviada para seu médico.');
+            window.location.href = 'patient-dashboard.html';
+        }
+
+        // Initialize camera when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.woundCapture) {
+                window.woundCapture.initCamera();
+            }
+        });
+    </script>
+</body>
+</html>

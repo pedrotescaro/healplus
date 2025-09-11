@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heal+</title>
+    <meta name="description" content="Cuidado aprimorado para feridas crônicas por telessaúde.">
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 flex">
+        <!-- Left Section - Welcome Info -->
+        <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent flex-col justify-center items-center p-12">
+            <div class="max-w-md text-center space-y-6">
+                <div class="flex items-center">
+                    <img alt="Heal+ Logo" loading="lazy" width="100" height="100" decoding="async" class="h-20 w-20" style="color:transparent" src="icons/icon.png"/>
+                    <span class="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent -ml-1">Heal+</span>
+                </div>
+                <div class="space-y-4">
+                    <h1 class="text-4xl font-bold text-foreground">Bem-vindo ao <span class="text-primary">Heal+</span></h1>
+                    <p class="text-lg text-muted-foreground">A plataforma inteligente para gestão e análise de feridas com tecnologia de ponta.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm text-muted-foreground">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Análise com IA</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Relatórios Automáticos</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Acompanhamento Médico</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Histórico Completo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section - Login Form -->
+        <div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-8">
+            <div class="w-full max-w-md space-y-8">
+                <!-- Mobile Logo -->
+                <div class="lg:hidden text-center">
+                    <div class="flex items-center">
+                        <img alt="Heal+ Logo" loading="lazy" width="100" height="100" decoding="async" class="h-20 w-20" style="color:transparent" src="icons/icon.png"/>
+                        <span class="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent -ml-1">Heal+</span>
+                    </div>
+                </div>
+
+                <div class="text-center space-y-2">
+                    <h2 class="text-3xl font-bold text-foreground">Bem-vindo(a) de volta</h2>
+                    <p class="text-muted-foreground">Insira suas credenciais para acessar sua conta</p>
+                </div>
+
+                <div class="rounded-lg text-card-foreground shadow-2xl border-0 bg-card/50 backdrop-blur-sm">
+                    <div class="p-8">
+                        <form class="space-y-4">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2" for="email">
+                                    <i class="fas fa-envelope h-4 w-4"></i>
+                                    Email
+                                </label>
+                                <input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="name@example.com" id="email" name="email" value=""/>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 flex items-center gap-2" for="password">
+                                    <i class="fas fa-lock h-4 w-4"></i>
+                                    Senha
+                                </label>
+                                <div class="relative">
+                                    <input type="password" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm" placeholder="••••••••" name="password" value=""/>
+                                    <button type="button" class="password-toggle absolute inset-y-0 right-0 flex items-center pr-3 text-muted-foreground hover:text-foreground transition-colors" aria-label="Mostrar senha" onclick="togglePassword()">
+                                        <i class="fas fa-eye h-4 w-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- User Type Selection -->
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium leading-none">Tipo de usuário</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="user-type-option">
+                                        <input type="radio" name="userType" value="patient" checked class="sr-only">
+                                        <div class="option-content">
+                                            <i class="fas fa-user"></i>
+                                            <span>Paciente</span>
+                                        </div>
+                                    </label>
+                                    <label class="user-type-option">
+                                        <input type="radio" name="userType" value="clinician" class="sr-only">
+                                        <div class="option-content">
+                                            <i class="fas fa-briefcase"></i>
+                                            <span>Profissional</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="btn-primary" type="submit">Entrar</button>
+                        </form>
+
+                        <div class="relative my-4">
+                            <div class="absolute inset-0 flex items-center">
+                                <span class="w-full border-t"></span>
+                            </div>
+                            <div class="relative flex justify-center text-xs uppercase">
+                                <span class="bg-background px-2 text-muted-foreground">Ou continue com</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="social-btn" type="button">
+                                <i class="fab fa-google" style="color: #4285F4;"></i>
+                                <span>Google</span>
+                            </button>
+                            <button class="social-btn" type="button">
+                                <i class="fab fa-microsoft" style="color: #00a4ef;"></i>
+                                <span>Microsoft</span>
+                            </button>
+                            <button class="social-btn col-span-2" type="button">
+                                <i class="fab fa-apple"></i>
+                                <span>Apple</span>
+                            </button>
+                        </div>
+
+                        <div class="mt-4 text-center text-sm text-muted-foreground">
+                            Não tem uma conta? <a class="font-medium text-primary hover:underline" href="#">Cadastre-se</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.classList.remove('fa-eye');
+                toggleButton.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.classList.remove('fa-eye-slash');
+                toggleButton.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>

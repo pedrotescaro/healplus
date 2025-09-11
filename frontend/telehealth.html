@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleconsulta - Heal+</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Heal+</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="patient-dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="wound-capture.html" class="nav-link">
+                        <i class="fas fa-camera"></i>
+                        <span>Captura de Ferida</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="remote-monitoring.html" class="nav-link">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Monitoramento</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="telehealth.html" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Teleconsulta</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <span class="user-avatar-text">JS</span>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">João Silva</span>
+                    <span class="user-email">joao@email.com</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Teleconsulta</h1>
+            </div>
+            <div class="header-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">1</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-menu-btn">
+                        <div class="user-avatar">
+                            <span class="user-avatar-text">JS</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Telehealth Content -->
+        <div class="dashboard-content">
+            <!-- Upcoming Consultations -->
+            <div class="consultations-section">
+                <h2>Próximas Consultas</h2>
+                <div class="consultations-list">
+                    <div class="consultation-card">
+                        <div class="consultation-info">
+                            <div class="consultation-time">
+                                <span class="time">14:30</span>
+                                <span class="date">22 Jan</span>
+                            </div>
+                            <div class="consultation-details">
+                                <h3>Consulta de Acompanhamento</h3>
+                                <p><strong>Dr. Maria Santos</strong> - Dermatologia</p>
+                                <span class="consultation-type">Presencial</span>
+                                <span class="consultation-status confirmed">Confirmada</span>
+                            </div>
+                        </div>
+                        <div class="consultation-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-info-circle"></i>
+                                Detalhes
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Ver Local
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="consultation-card">
+                        <div class="consultation-info">
+                            <div class="consultation-time">
+                                <span class="time">10:00</span>
+                                <span class="date">25 Jan</span>
+                            </div>
+                            <div class="consultation-details">
+                                <h3>Teleconsulta</h3>
+                                <p><strong>Dr. João Oliveira</strong> - Cirurgia Vascular</p>
+                                <span class="consultation-type">Online</span>
+                                <span class="consultation-status scheduled">Agendada</span>
+                            </div>
+                        </div>
+                        <div class="consultation-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-info-circle"></i>
+                                Detalhes
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="startVideoCall()">
+                                <i class="fas fa-video"></i>
+                                Entrar na Consulta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="telehealth-actions">
+                <h3>Ações Rápidas</h3>
+                <div class="actions-grid">
+                    <button class="action-card" onclick="scheduleConsultation()">
+                        <div class="action-icon">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Agendar Consulta</h4>
+                            <p>Marque uma nova consulta</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="startVideoCall()">
+                        <div class="action-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Iniciar Videochamada</h4>
+                            <p>Conecte-se com seu médico</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="viewHistory()">
+                        <div class="action-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Histórico</h4>
+                            <p>Veja consultas anteriores</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="emergencyCall()">
+                        <div class="action-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Emergência</h4>
+                            <p>Contato de emergência</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Call Interface (Hidden by default) -->
+            <div class="video-call-interface" id="videoCallInterface" style="display: none;">
+                <div class="video-container">
+                    <div class="video-main">
+                        <video id="remote-video" autoplay muted></video>
+                        <div class="video-overlay">
+                            <div class="call-info">
+                                <h3>Dr. João Oliveira</h3>
+                                <p>Cirurgia Vascular</p>
+                                <span class="call-status">Conectando...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-local">
+                        <video id="local-video" autoplay muted></video>
+                    </div>
+                </div>
+                
+                <div class="video-controls">
+                    <button class="control-btn" id="muteBtn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="control-btn" id="videoBtn">
+                        <i class="fas fa-video"></i>
+                    </button>
+                    <button class="control-btn" id="chatBtn">
+                        <i class="fas fa-comment"></i>
+                    </button>
+                    <button class="control-btn end-call" id="endCallBtn">
+                        <i class="fas fa-phone-slash"></i>
+                    </button>
+                </div>
+
+                <div class="chat-panel" id="chatPanel" style="display: none;">
+                    <div class="chat-header">
+                        <h4>Chat da Consulta</h4>
+                        <button class="close-chat" onclick="toggleChat()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="chat-messages">
+                        <div class="message doctor">
+                            <div class="message-content">
+                                <p>Olá João! Como você está se sentindo hoje?</p>
+                                <span class="message-time">14:32</span>
+                            </div>
+                        </div>
+                        <div class="message patient">
+                            <div class="message-content">
+                                <p>Olá doutor! Estou me sentindo bem, a ferida está melhorando.</p>
+                                <span class="message-time">14:33</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Digite sua mensagem..." id="chatInput">
+                        <button class="send-btn" onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Doctors -->
+            <div class="doctors-section">
+                <h3>Médicos Disponíveis</h3>
+                <div class="doctors-grid">
+                    <div class="doctor-card">
+                        <div class="doctor-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiMyNTYzZWIiLz48dGV4dCB4PSIzMCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1TPC90ZXh0Pjwvc3ZnPg==" alt="Dr. Maria Santos">
+                        </div>
+                        <div class="doctor-info">
+                            <h4>Dr. Maria Santos</h4>
+                            <p>Dermatologia</p>
+                            <span class="doctor-status online">Online</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm">Consultar</button>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiMxMGI5ODEiLz48dGV4dCB4PSIzMCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkpPPC90ZXh0Pjwvc3ZnPg==" alt="Dr. João Oliveira">
+                        </div>
+                        <div class="doctor-info">
+                            <h4>Dr. João Oliveira</h4>
+                            <p>Cirurgia Vascular</p>
+                            <span class="doctor-status online">Online</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm">Consultar</button>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-avatar">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9IiNmNTllMGIiLz48dGV4dCB4PSIzMCIgeT0iMzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFMPC90ZXh0Pjwvc3ZnPg==" alt="Dr. Ana Lima">
+                        </div>
+                        <div class="doctor-info">
+                            <h4>Dr. Ana Lima</h4>
+                            <p>Enfermagem</p>
+                            <span class="doctor-status offline">Offline</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm" disabled>Indisponível</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/telehealth.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userType');
+            window.location.href = 'login.html';
+        }
+
+        function startVideoCall() {
+            document.getElementById('videoCallInterface').style.display = 'block';
+            if (window.telehealth) {
+                window.telehealth.startVideoCall();
+            }
+        }
+
+        function scheduleConsultation() {
+            alert('Funcionalidade de agendamento será implementada em breve!');
+        }
+
+        function viewHistory() {
+            alert('Histórico de consultas será implementado em breve!');
+        }
+
+        function emergencyCall() {
+            if (confirm('Deseja entrar em contato com o serviço de emergência?')) {
+                window.location.href = 'tel:192';
+            }
+        }
+
+        function toggleChat() {
+            const chatPanel = document.getElementById('chatPanel');
+            chatPanel.style.display = chatPanel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (message) {
+                // Add message to chat
+                const messagesContainer = document.querySelector('.chat-messages');
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message patient';
+                messageElement.innerHTML = `
+                    <div class="message-content">
+                        <p>${message}</p>
+                        <span class="message-time">${new Date().toLocaleTimeString('pt-BR', {hour: '2-digit', minute: '2-digit'})}</span>
+                    </div>
+                `;
+                messagesContainer.appendChild(messageElement);
+                input.value = '';
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        }
+
+        // Initialize telehealth when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.telehealth) {
+                window.telehealth.init();
+            }
+        });
+    </script>
+</body>
+</html>

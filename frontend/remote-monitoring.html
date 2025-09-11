@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Remoto - Heal+</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Heal+</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="patient-dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="wound-capture.html" class="nav-link">
+                        <i class="fas fa-camera"></i>
+                        <span>Captura de Ferida</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a href="remote-monitoring.html" class="nav-link">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Monitoramento</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="telehealth.html" class="nav-link">
+                        <i class="fas fa-video"></i>
+                        <span>Teleconsulta</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="profile.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <span class="user-avatar-text">JS</span>
+                </div>
+                <div class="user-details">
+                    <span class="user-name">João Silva</span>
+                    <span class="user-email">joao@email.com</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Monitoramento Remoto</h1>
+            </div>
+            <div class="header-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-menu-btn">
+                        <div class="user-avatar">
+                            <span class="user-avatar-text">JS</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Monitoring Content -->
+        <div class="dashboard-content">
+            <!-- Streak Section -->
+            <div class="streak-section">
+                <div class="streak-content">
+                    <div class="streak-info">
+                        <h2>Sequência de Check-ins</h2>
+                        <div class="streak-number">
+                            <span id="streak-count">7</span>
+                            <span class="streak-label">dias</span>
+                        </div>
+                        <p>Continue assim! Você está no caminho certo para uma recuperação completa.</p>
+                    </div>
+                    <div class="streak-visual">
+                        <div class="streak-circle">
+                            <div class="streak-progress">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Overview -->
+            <div class="progress-overview">
+                <h3>Progresso Semanal</h3>
+                <div class="progress-items">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Fotos Enviadas</span>
+                            <span class="progress-value">5/7</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 71%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Check-ins Diários</span>
+                            <span class="progress-value">6/7</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 86%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Medicações</span>
+                            <span class="progress-value">7/7</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="monitoring-actions">
+                <h3>Ações Rápidas</h3>
+                <div class="actions-grid">
+                    <button class="action-card" onclick="startPhotoCheckIn()">
+                        <div class="action-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Enviar Foto</h4>
+                            <p>Capture uma nova foto da ferida</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="startSymptomCheckIn()">
+                        <div class="action-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Check-in de Sintomas</h4>
+                            <p>Registre como você está se sentindo</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="startPainAssessment()">
+                        <div class="action-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Avaliação de Dor</h4>
+                            <p>Informe seu nível de dor atual</p>
+                        </div>
+                    </button>
+                    <button class="action-card" onclick="openMedicationCheckIn()">
+                        <div class="action-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="action-content">
+                            <h4>Registrar Medicação</h4>
+                            <p>Confirme que tomou seus medicamentos</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h3>Atividade Recente</h3>
+                <div class="activity-timeline">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Foto enviada</h4>
+                            <p>Análise concluída - Melhorando</p>
+                            <span class="activity-time">Hoje, 14:30</span>
+                        </div>
+                        <div class="activity-status success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Check-in de sintomas</h4>
+                            <p>Completado com sucesso</p>
+                            <span class="activity-time">Hoje, 09:15</span>
+                        </div>
+                        <div class="activity-status success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Medicação registrada</h4>
+                            <p>Em dia com o tratamento</p>
+                            <span class="activity-time">Ontem, 20:00</span>
+                        </div>
+                        <div class="activity-status success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Alerta de risco</h4>
+                            <p>Monitorar evolução</p>
+                            <span class="activity-time">Ontem, 16:45</span>
+                        </div>
+                        <div class="activity-status warning">
+                            <i class="fas fa-exclamation"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts -->
+            <div class="alerts-section">
+                <h3>Alertas e Lembretes</h3>
+                <div class="alerts-list">
+                    <div class="alert-item warning">
+                        <div class="alert-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Lembrete de Medicação</h4>
+                            <p>Hora de tomar o antibiótico</p>
+                            <span class="alert-time">Há 15 minutos</span>
+                        </div>
+                        <button class="alert-action" onclick="handleAlertAction(this)">Marcar como lido</button>
+                    </div>
+                    <div class="alert-item info">
+                        <div class="alert-icon">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Dica de Cuidado</h4>
+                            <p>Mantenha a ferida seca após o banho</p>
+                            <span class="alert-time">Há 2 horas</span>
+                        </div>
+                        <button class="alert-action" onclick="handleAlertAction(this)">Marcar como lido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Check-in Forms Modal -->
+    <div id="checkin-forms" class="checkin-modal">
+        <div class="checkin-overlay" onclick="closeCheckIn()"></div>
+        <div class="checkin-content">
+            <div class="checkin-header">
+                <h3 id="checkin-title">Check-in Diário</h3>
+                <button class="close-btn" onclick="closeCheckIn()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Photo Check-in Form -->
+            <div id="photo-checkin" class="checkin-form" style="display: none;">
+                <div class="camera-container">
+                    <video id="photo-video" autoplay muted></video>
+                    <div class="camera-controls">
+                        <button class="btn btn-secondary" onclick="switchCamera()">
+                            <i class="fas fa-sync-alt"></i>
+                            Trocar Câmera
+                        </button>
+                        <button class="btn btn-primary" onclick="capturePhoto()">
+                            <i class="fas fa-camera"></i>
+                            Capturar
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo-notes">Observações (opcional)</label>
+                    <textarea id="photo-notes" placeholder="Descreva como está a ferida hoje..."></textarea>
+                </div>
+            </div>
+
+            <!-- Symptom Check-in Form -->
+            <div id="symptom-checkin" class="checkin-form" style="display: none;">
+                <div class="form-group">
+                    <label>Aparência da ferida</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="appearance" value="melhor">
+                            <span class="radio-label">Melhorando</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="appearance" value="igual">
+                            <span class="radio-label">Igual</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="appearance" value="pior">
+                            <span class="radio-label">Piorando</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Sintomas (selecione todos que se aplicam)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="symptoms" value="dor">
+                            <span class="checkbox-label">Dor</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="symptoms" value="coceira">
+                            <span class="checkbox-label">Coceira</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="symptoms" value="vermelhidao">
+                            <span class="checkbox-label">Vermelhidão</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="symptoms" value="inchaço">
+                            <span class="checkbox-label">Inchaço</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="symptoms" value="secrecao">
+                            <span class="checkbox-label">Secreção</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Nível de dor (0-10)</label>
+                    <div class="pain-scale">
+                        <div class="scale-item" data-level="0">
+                            <span class="scale-number">0</span>
+                            <span class="scale-label">Sem dor</span>
+                        </div>
+                        <div class="scale-item" data-level="2">
+                            <span class="scale-number">2</span>
+                            <span class="scale-label">Leve</span>
+                        </div>
+                        <div class="scale-item" data-level="4">
+                            <span class="scale-number">4</span>
+                            <span class="scale-label">Moderada</span>
+                        </div>
+                        <div class="scale-item" data-level="6">
+                            <span class="scale-number">6</span>
+                            <span class="scale-label">Forte</span>
+                        </div>
+                        <div class="scale-item" data-level="8">
+                            <span class="scale-number">8</span>
+                            <span class="scale-label">Muito forte</span>
+                        </div>
+                        <div class="scale-item" data-level="10">
+                            <span class="scale-number">10</span>
+                            <span class="scale-label">Insuportável</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="symptom-notes">Observações adicionais</label>
+                    <textarea id="symptom-notes" placeholder="Descreva como você está se sentindo..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-outline" onclick="closeCheckIn()">Cancelar</button>
+                    <button class="btn btn-primary" onclick="submitSymptomCheckIn()">Enviar</button>
+                </div>
+            </div>
+
+            <!-- Medication Check-in Form -->
+            <div id="medication-checkin" class="checkin-form" style="display: none;">
+                <div class="medication-list">
+                    <div class="medication-item">
+                        <label class="medication-checkbox">
+                            <input type="checkbox" name="medication" value="amoxicillin">
+                            <span class="checkmark"></span>
+                            <div class="medication-info">
+                                <h4>Amoxicilina</h4>
+                                <p>500mg - 3x ao dia</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="medication-item">
+                        <label class="medication-checkbox">
+                            <input type="checkbox" name="medication" value="paracetamol">
+                            <span class="checkmark"></span>
+                            <div class="medication-info">
+                                <h4>Paracetamol</h4>
+                                <p>500mg - 2x ao dia</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="medication-item">
+                        <label class="medication-checkbox">
+                            <input type="checkbox" name="medication" value="vitamin-c">
+                            <span class="checkmark"></span>
+                            <div class="medication-info">
+                                <h4>Vitamina C</h4>
+                                <p>1000mg - 1x ao dia</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="med-notes">Observações</label>
+                    <textarea id="med-notes" placeholder="Alguma observação sobre os medicamentos..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-outline" onclick="closeCheckIn()">Cancelar</button>
+                    <button class="btn btn-primary" onclick="submitMedicationCheckIn()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/remote-monitoring.js"></script>
+    <script>
+        function logout() {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userType');
+            window.location.href = 'login.html';
+        }
+
+        function startPhotoCheckIn() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.startPhotoCheckIn();
+            }
+        }
+
+        function startSymptomCheckIn() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.startSymptomCheckIn();
+            }
+        }
+
+        function startPainAssessment() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.startPainAssessment();
+            }
+        }
+
+        function openMedicationCheckIn() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.startMedicationCheckIn();
+            }
+        }
+
+        function closeCheckIn() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.closeCheckIn();
+            }
+        }
+
+        function capturePhoto() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.capturePhoto();
+            }
+        }
+
+        function switchCamera() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.switchCamera();
+            }
+        }
+
+        function submitSymptomCheckIn() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.submitSymptomCheckIn();
+            }
+        }
+
+        function submitMedicationCheckIn() {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.submitMedicationCheckIn();
+            }
+        }
+
+        function handleAlertAction(button) {
+            if (window.remoteMonitoring) {
+                window.remoteMonitoring.handleAlertAction(button);
+            }
+        }
+    </script>
+</body>
+</html>
