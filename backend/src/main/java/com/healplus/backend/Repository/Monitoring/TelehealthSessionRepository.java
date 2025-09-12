@@ -66,13 +66,13 @@ public interface TelehealthSessionRepository extends JpaRepository<TelehealthSes
     @Query("SELECT ts FROM TelehealthSession ts WHERE ts.patientSatisfaction IS NOT NULL ORDER BY ts.patientSatisfaction DESC")
     List<TelehealthSession> findSessionsOrderedByPatientSatisfaction();
     
-    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.professionalSatisfaction IS NOT NULL ORDER BY ts.professionalSatisfaction DESC")
+    @Query("SELECT ts FROM TelehealthSession ts WHERE ts.clinicianSatisfaction IS NOT NULL ORDER BY ts.clinicianSatisfaction DESC")
     List<TelehealthSession> findSessionsOrderedByProfessionalSatisfaction();
     
     @Query("SELECT AVG(ts.patientSatisfaction) FROM TelehealthSession ts WHERE ts.patientSatisfaction IS NOT NULL")
     Double getAveragePatientSatisfaction();
     
-    @Query("SELECT AVG(ts.professionalSatisfaction) FROM TelehealthSession ts WHERE ts.professionalSatisfaction IS NOT NULL")
+    @Query("SELECT AVG(ts.clinicianSatisfaction) FROM TelehealthSession ts WHERE ts.clinicianSatisfaction IS NOT NULL")
     Double getAverageProfessionalSatisfaction();
     
     @Query("SELECT AVG(ts.sessionDuration) FROM TelehealthSession ts WHERE ts.sessionDuration IS NOT NULL")

@@ -6,7 +6,7 @@ import com.healplus.backend.Model.DTO.RegisterRequest;
 import com.healplus.backend.Model.DTO.UserResponse;
 import com.healplus.backend.Model.Entity.User;
 import com.healplus.backend.Service.Auth.AuthService;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

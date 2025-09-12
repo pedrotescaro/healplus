@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Repositório para assinaturas digitais
- * Conformidade com Lei 13.787 - Prontuário Eletrônico
  */
 @Repository
-public interface DigitalSignatureRepository extends JpaRepository<DigitalSignature, String> {
+public interface DigitalSignatureRepository extends JpaRepository<DigitalSignature, UUID> {
     
     /**
      * Buscar assinaturas por documento
