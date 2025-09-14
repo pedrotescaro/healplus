@@ -7,6 +7,7 @@
     <meta name="description" content="Utilize tecnologia de ponta com IA para análise automática, acompanhamento médico e relatórios detalhados de feridas.">
     <link rel="icon" type="image/png" href="icons/icon.png">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/guest-banner.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -43,6 +44,22 @@
             </div>
         </div>
     </header>
+
+    <!-- Guest Banner -->
+    <div class="guest-banner" id="guestBanner">
+        <div class="guest-banner-content">
+            <div class="guest-banner-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Acesso como Visitante</span>
+            </div>
+            <div class="guest-banner-actions">
+                <button class="guest-login-btn" onclick="window.location.href='login.html'">Fazer Login</button>
+                <button class="guest-close-btn" onclick="closeGuestBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="landing-main">
@@ -720,6 +737,13 @@
         
         // Global function
         window.toggleFAQ = toggleInlineFAQ;
+
+        function closeGuestBanner() {
+            const banner = document.getElementById('guestBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
         
         console.log('Inline FAQ script ready');
     </script>

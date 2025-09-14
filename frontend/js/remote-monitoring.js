@@ -91,7 +91,7 @@ class RemoteMonitoring {
                     message: 'Análise concluída'
                 },
                 {
-                    type: 'symptoms',
+                    type: 'checkin',
                     title: 'Check-in de sintomas',
                     time: 'Hoje, 09:15',
                     status: 'success',
@@ -105,7 +105,7 @@ class RemoteMonitoring {
                     message: 'Em dia'
                 },
                 {
-                    type: 'alert',
+                    type: 'warning',
                     title: 'Alerta de risco',
                     time: 'Ontem, 16:45',
                     status: 'warning',
@@ -114,7 +114,7 @@ class RemoteMonitoring {
             ],
             alerts: [
                 {
-                    type: 'warning',
+                    type: 'medication',
                     title: 'Lembrete de Medicação',
                     message: 'Hora de tomar o antibiótico',
                     time: 'Há 15 minutos',
@@ -175,11 +175,14 @@ class RemoteMonitoring {
             const activityItem = document.createElement('div');
             activityItem.className = 'activity-item';
             activityItem.innerHTML = `
-                <div class="activity-icon">${this.getActivityIcon(activity.type)}</div>
+                <div class="activity-icon ${activity.type}">
+                    <i class="${this.getActivityIcon(activity.type)}"></i>
+                </div>
                 <div class="activity-content">
-                    <div class="activity-title">${activity.title}</div>
-                    <div class="activity-time">${activity.time}</div>
-                    <div class="activity-status ${activity.status}">${activity.message}</div>
+                    <h4>${activity.title}
+                        <span class="activity-time">${activity.time}</span>
+                    </h4>
+                    <p>${activity.message}</p>
                 </div>
             `;
             timeline.appendChild(activityItem);
@@ -194,11 +197,13 @@ class RemoteMonitoring {
             const alertItem = document.createElement('div');
             alertItem.className = `alert-item ${alert.type}`;
             alertItem.innerHTML = `
-                <div class="alert-icon">${this.getAlertIcon(alert.type)}</div>
+                <div class="alert-icon">
+                    <i class="${this.getAlertIcon(alert.type)}"></i>
+                </div>
                 <div class="alert-content">
-                    <div class="alert-title">${alert.title}</div>
-                    <div class="alert-message">${alert.message}</div>
-                    <div class="alert-time">${alert.time}</div>
+                    <h4>${alert.title}</h4>
+                    <p>${alert.message}</p>
+                    <span class="alert-time">${alert.time}</span>
                 </div>
                 <button class="alert-action" onclick="handleAlertAction(this)">${alert.action}</button>
             `;
@@ -208,22 +213,25 @@ class RemoteMonitoring {
 
     getActivityIcon(type) {
         const icons = {
-            photo: '📸',
-            symptoms: '📋',
-            medication: '💊',
-            alert: '⚠️'
+            photo: 'fas fa-camera',
+            symptoms: 'fas fa-clipboard-check',
+            checkin: 'fas fa-clipboard-check',
+            medication: 'fas fa-pills',
+            alert: 'fas fa-exclamation-triangle',
+            warning: 'fas fa-exclamation-triangle'
         };
-        return icons[type] || '📋';
+        return icons[type] || 'fas fa-clipboard-check';
     }
 
     getAlertIcon(type) {
         const icons = {
-            warning: '⚠️',
-            info: 'ℹ️',
-            success: '✅',
-            error: '❌'
+            warning: 'fas fa-exclamation-triangle',
+            info: 'fas fa-info-circle',
+            success: 'fas fa-check-circle',
+            error: 'fas fa-times-circle',
+            medication: 'fas fa-pills'
         };
-        return icons[type] || 'ℹ️';
+        return icons[type] || 'fas fa-info-circle';
     }
 
     // Check-in Functions

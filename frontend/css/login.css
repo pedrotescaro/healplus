@@ -2241,23 +2241,48 @@ a:hover {
 }
 
 .logout-btn {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: var(--spacing-2);
-    padding: var(--spacing-2) var(--spacing-3);
-    background: none;
-    border: 1px solid var(--gray-300);
-    border-radius: var(--radius-md);
-    color: var(--gray-600);
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    font-weight: 500;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.logout-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
     width: 100%;
-    font-size: var(--font-size-sm);
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.logout-btn:hover::before {
+    left: 100%;
 }
 
 .logout-btn:hover {
-    background-color: var(--gray-100);
-    border-color: var(--gray-400);
+    background: linear-gradient(135deg, var(--destructive) 0%, #dc2626 100%);
+    color: var(--destructive-foreground);
+    border-color: var(--destructive);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
 }
 
 /* Main Content */
@@ -4177,22 +4202,47 @@ a:hover {
 
 .logout-btn {
     width: 100%;
-    background: var(--gray-100);
-    border: none;
-    padding: var(--spacing-3);
-    border-radius: var(--radius);
-    color: var(--gray-600);
-    cursor: pointer;
-    transition: all var(--transition-fast);
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--spacing-2);
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.logout-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.logout-btn:hover::before {
+    left: 100%;
 }
 
 .logout-btn:hover {
-    background: var(--error);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--destructive) 0%, #dc2626 100%);
+    color: var(--destructive-foreground);
+    border-color: var(--destructive);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
 }
 
 /* Main Content */
@@ -6056,3 +6106,4 @@ a:hover {
     background: rgba(16, 185, 129, 0.1);
     color: var(--success);
 }
+

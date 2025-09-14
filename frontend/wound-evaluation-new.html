@@ -6,11 +6,644 @@
     <title>Avaliação de Ferida - TIMERS - Heal+</title>
     <meta name="description" content="Preencha os dados do paciente e da ferida seguindo o framework clínico TIMERS.">
     <link rel="icon" type="image/png" href="icons/icon.png">
-    <link rel="stylesheet" href="css/wound-evaluation.css">
+    <link rel="stylesheet" href="css/professional-dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para avaliação de feridas */
+        .evaluation-form {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .accordion-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .accordion-item.active {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            background: linear-gradient(135deg, var(--muted) 0%, var(--card) 100%);
+            border: none;
+            color: var(--foreground);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .accordion-trigger:hover {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--muted) 100%);
+        }
+
+        .accordion-trigger i:first-child {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .accordion-trigger i:last-child {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+            color: var(--muted-foreground);
+        }
+
+        .accordion-item.active .accordion-trigger i:last-child {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .form-section {
+            padding: var(--spacing-xl);
+            background: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--foreground);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--card);
+            color: var(--foreground);
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group input[type="number"] {
+            text-align: center;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
+            transition: background-color 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background: var(--accent);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+            color: var(--primary-foreground);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        .btn-sm {
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: 0.8rem;
+        }
+
+        .btn-danger {
+            background: var(--destructive);
+            color: var(--destructive-foreground);
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        /* Image Upload */
+        .image-upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--muted);
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--primary);
+            background: var(--accent);
+        }
+
+        .image-upload-area i {
+            font-size: 3rem;
+            color: var(--muted-foreground);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .image-upload-area p {
+            color: var(--muted-foreground);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .image-upload-area .text-sm {
+            font-size: 0.8rem;
+            color: var(--muted-foreground);
+        }
+
+        .image-preview {
+            text-align: center;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Location Input */
+        .location-input-group {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .location-input-group input {
+            flex: 1;
+        }
+
+        .location-btn {
+            padding: var(--spacing-md);
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .location-btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        /* Pain Scale */
+        .pain-scale {
+            background: var(--muted);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .pain-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .pain-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+        }
+
+        .pain-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow-md);
+        }
+
+        .pain-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-sm);
+            font-size: 0.8rem;
+            color: var(--muted-foreground);
+        }
+
+        .pain-value {
+            text-align: center;
+            margin-top: var(--spacing-md);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Wound Bed Progress */
+        .wound-bed-progress {
+            background: var(--muted);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-bar {
+            display: flex;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .progress-segment.granulacao {
+            background: #10b981;
+        }
+
+        .progress-segment.epitelizacao {
+            background: #3b82f6;
+        }
+
+        .progress-segment.esfacelo {
+            background: #f59e0b;
+        }
+
+        .progress-segment.necrose {
+            background: #ef4444;
+        }
+
+        .progress-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: var(--radius-sm);
+        }
+
+        .legend-color.granulacao {
+            background: #10b981;
+        }
+
+        .legend-color.epitelizacao {
+            background: #3b82f6;
+        }
+
+        .legend-color.esfacelo {
+            background: #f59e0b;
+        }
+
+        .legend-color.necrose {
+            background: #ef4444;
+        }
+
+        .tissue-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .input-group label {
+            font-weight: 600;
+            color: var(--foreground);
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--card);
+            color: var(--foreground);
+            text-align: center;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Modal de Localização */
+        .location-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: var(--card);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            margin: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: var(--spacing-xl);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--foreground);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        .modal-body {
+            padding: var(--spacing-xl);
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .modal-description {
+            color: var(--muted-foreground);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .view-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .view-tab {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .view-tab.active {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border-color: var(--primary);
+        }
+
+        .view-tab:hover:not(.active) {
+            background: var(--accent);
+            color: var(--accent-foreground);
+        }
+
+        .body-map-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .body-map {
+            background: var(--muted);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        }
+
+        .body-svg {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+        }
+
+        .body-part {
+            fill: var(--border);
+            stroke: var(--foreground);
+            stroke-width: 1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .body-part:hover {
+            fill: var(--accent);
+            stroke: var(--primary);
+            stroke-width: 2;
+        }
+
+        .body-part.selected {
+            fill: var(--primary);
+            stroke: var(--primary-foreground);
+            stroke-width: 2;
+        }
+
+        .selected-location {
+            background: var(--muted);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+        }
+
+        .location-text {
+            color: var(--foreground);
+            font-weight: 500;
+        }
+
+        .modal-footer {
+            padding: var(--spacing-xl);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tissue-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: var(--spacing-sm);
+            }
+            
+            .view-tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body class="professional-dashboard">
     <!-- Sidebar -->
@@ -105,7 +738,7 @@
         <div class="dashboard-header">
             <div class="header-content">
                 <h1 class="dashboard-title">Avaliação de Ferida - TIMERS</h1>
-                <p class="dashboard-subtitle">Preencha os dados do paciente e da ferida seguindo o framework clínico TIMERS.</p>
+                <p class="dashboard-subtitle">Preencha os dados do paciente e da ferida seguindo o framework clínico TIMERS para uma avaliação completa e profissional.</p>
             </div>
         </div>
         
@@ -116,13 +749,13 @@
                 </div>
                 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save"></i>
-                        Salvar Avaliação
-                    </button>
                     <button type="button" class="btn btn-secondary" id="resetForm">
                         <i class="fas fa-refresh"></i>
                         Limpar Formulário
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Salvar Avaliação
                     </button>
                 </div>
             </form>
@@ -340,8 +973,14 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeLocationModal()">Cancelar</button>
-                <button type="button" class="btn btn-primary" onclick="confirmLocation()">Confirmar</button>
+                <button type="button" class="btn btn-secondary" onclick="closeLocationModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+                <button type="button" class="btn btn-primary" onclick="confirmLocation()">
+                    <i class="fas fa-check"></i>
+                    Confirmar
+                </button>
             </div>
         </div>
     </div>

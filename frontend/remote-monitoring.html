@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoramento Remoto - Heal+</title>
     <link rel="icon" type="image/png" href="icons/icon.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/professional-dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,76 +13,80 @@
 </head>
 <body class="dashboard-page">
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="app-sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <i class="fas fa-heart-pulse"></i>
-                <span>Heal+</span>
-            </div>
+            <a href="remote-monitoring.html" class="logo-link">
+                <img alt="Heal+ Logo" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" class="h-20 w-20" src="icons/icon.png" style="color: transparent;">
+                <span class="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent -ml-1">Heal+</span>
+            </a>
             <button class="sidebar-toggle" id="sidebarToggle">
                 <i class="fas fa-times"></i>
             </button>
         </div>
 
-        <nav class="sidebar-nav">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="patient-dashboard.html" class="nav-link">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="wound-capture.html" class="nav-link">
-                        <i class="fas fa-camera"></i>
-                        <span>Captura de Ferida</span>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a href="remote-monitoring.html" class="nav-link">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>Monitoramento</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="telehealth.html" class="nav-link">
-                        <i class="fas fa-video"></i>
-                        <span>Teleconsulta</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="profile.html" class="nav-link">
-                        <i class="fas fa-user"></i>
-                        <span>Perfil</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="sidebar-content">
+            <nav class="sidebar-nav">
+                <button class="nav-button" onclick="handleLinkClick('patient-dashboard.html')">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('wound-capture.html')">
+                    <i class="fas fa-camera nav-icon"></i>
+                    <span>Captura de Ferida</span>
+                </button>
+                <button class="nav-button active" onclick="handleLinkClick('remote-monitoring.html')">
+                    <i class="fas fa-mobile-alt nav-icon"></i>
+                    <span>Monitoramento</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('telehealth.html')">
+                    <i class="fas fa-video nav-icon"></i>
+                    <span>Teleconsulta</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('profile.html')">
+                    <i class="fas fa-user nav-icon"></i>
+                    <span>Perfil</span>
+                </button>
+            </nav>
+        </div>
 
         <div class="sidebar-footer">
-            <div class="user-info">
+            <div class="user-profile">
                 <div class="user-avatar">
-                    <span class="user-avatar-text">JS</span>
+                    <div class="avatar-fallback">JS</div>
                 </div>
-                <div class="user-details">
-                    <span class="user-name">João Silva</span>
-                    <span class="user-email">joao@email.com</span>
+                <div class="user-info">
+                    <div class="user-name">João Silva</div>
+                    <div class="user-email">usuario@exemplo.com</div>
                 </div>
             </div>
-            <button class="logout-btn" onclick="logout()">
+            <button class="logout-button" onclick="logout()">
                 <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
             </button>
         </div>
     </aside>
 
+    <!-- Guest Banner -->
+    <div class="guest-banner" id="guestBanner">
+        <div class="guest-banner-content">
+            <div class="guest-banner-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Acesso como Visitante (Paciente)</span>
+            </div>
+            <div class="guest-banner-actions">
+                <button class="guest-login-btn" onclick="window.location.href='login.html'">Fazer Login</button>
+                <button class="guest-close-btn" onclick="closeGuestBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <main class="main-content">
         <!-- Header -->
-        <header class="header">
-            <div class="header-left">
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+        <header class="dashboard-header">
+            <div class="header-content">
                 <h1 class="page-title">Monitoramento Remoto</h1>
             </div>
             <div class="header-right">
@@ -94,9 +98,7 @@
                 </div>
                 <div class="user-menu">
                     <button class="user-menu-btn">
-                        <div class="user-avatar">
-                            <span class="user-avatar-text">JS</span>
-                        </div>
+                        <div class="user-avatar">JS</div>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </div>
@@ -205,58 +207,56 @@
 
             <!-- Recent Activity -->
             <div class="recent-activity">
-                <h3>Atividade Recente</h3>
+                <div class="activity-header">
+                    <h3>Atividade Recente</h3>
+                    <button class="btn btn-outline btn-sm" onclick="viewAllActivity()">
+                        <i class="fas fa-history"></i>
+                        Ver Todas
+                    </button>
+                </div>
                 <div class="activity-timeline">
                     <div class="activity-item">
-                        <div class="activity-icon">
+                        <div class="activity-icon photo">
                             <i class="fas fa-camera"></i>
                         </div>
                         <div class="activity-content">
-                            <h4>Foto enviada</h4>
-                            <p>Análise concluída - Melhorando</p>
-                            <span class="activity-time">Hoje, 14:30</span>
-                        </div>
-                        <div class="activity-status success">
-                            <i class="fas fa-check"></i>
+                            <h4>Foto enviada
+                                <span class="activity-time">Hoje, 14:30</span>
+                            </h4>
+                            <p>Análise concluída</p>
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon">
+                        <div class="activity-icon checkin">
                             <i class="fas fa-clipboard-check"></i>
                         </div>
                         <div class="activity-content">
-                            <h4>Check-in de sintomas</h4>
-                            <p>Completado com sucesso</p>
-                            <span class="activity-time">Hoje, 09:15</span>
-                        </div>
-                        <div class="activity-status success">
-                            <i class="fas fa-check"></i>
+                            <h4>Check-in de sintomas
+                                <span class="activity-time">Hoje, 09:15</span>
+                            </h4>
+                            <p>Completado</p>
                         </div>
                     </div>
                     <div class="activity-item">
-                        <div class="activity-icon">
+                        <div class="activity-icon medication">
                             <i class="fas fa-pills"></i>
                         </div>
                         <div class="activity-content">
-                            <h4>Medicação registrada</h4>
-                            <p>Em dia com o tratamento</p>
-                            <span class="activity-time">Ontem, 20:00</span>
-                        </div>
-                        <div class="activity-status success">
-                            <i class="fas fa-check"></i>
+                            <h4>Medicação registrada
+                                <span class="activity-time">Ontem, 20:00</span>
+                            </h4>
+                            <p>Em dia</p>
                         </div>
                     </div>
-                    <div class="activity-item">
-                        <div class="activity-icon">
+                    <div class="activity-item alert">
+                        <div class="activity-icon warning">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
                         <div class="activity-content">
-                            <h4>Alerta de risco</h4>
-                            <p>Monitorar evolução</p>
-                            <span class="activity-time">Ontem, 16:45</span>
-                        </div>
-                        <div class="activity-status warning">
-                            <i class="fas fa-exclamation"></i>
+                            <h4>Alerta de risco
+                                <span class="activity-time">Ontem, 16:45</span>
+                            </h4>
+                            <p>Monitorar</p>
                         </div>
                     </div>
                 </div>
@@ -528,6 +528,37 @@
             if (window.remoteMonitoring) {
                 window.remoteMonitoring.handleAlertAction(button);
             }
+        }
+
+        function handleLinkClick(url) {
+            window.location.href = url;
+        }
+
+        function closeGuestBanner() {
+            const banner = document.getElementById('guestBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        function viewAllActivity() {
+            alert('Visualizando todas as atividades...');
+        }
+
+        function viewPhotoAnalysis() {
+            alert('Abrindo análise da foto...');
+        }
+
+        function viewSymptomReport() {
+            alert('Abrindo relatório de sintomas...');
+        }
+
+        function viewMedicationHistory() {
+            alert('Abrindo histórico de medicação...');
+        }
+
+        function viewRiskAlert() {
+            alert('Abrindo detalhes do alerta de risco...');
         }
     </script>
 </body>

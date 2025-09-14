@@ -482,11 +482,16 @@ body {
 /* Sidebar Footer */
 .sidebar-footer {
     padding: var(--spacing-lg);
-    border-top: 1px solid var(--border);
-    background: linear-gradient(180deg, var(--muted) 0%, var(--card) 100%);
+    border-top: 1px solid #e2e8f0;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
     position: relative;
     z-index: 1;
     animation: slideInUp 0.8s ease-out;
+    border-radius: 0;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
 @keyframes slideInUp {
@@ -504,13 +509,14 @@ body {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-lg);
-    background: linear-gradient(135deg, var(--card) 0%, var(--muted) 100%);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border);
-    transition: all 0.3s ease;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
@@ -522,35 +528,40 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+    background: none;
     pointer-events: none;
+    border-radius: 0;
 }
 
 .user-profile:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+    transform: none;
+    box-shadow: none;
+    background: none;
+    border-radius: 0;
+    border: none;
 }
 
 .user-avatar {
     position: relative;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+    background: #3b82f6;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-foreground);
+    color: #ffffff;
     font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: var(--shadow-md);
-    transition: transform 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    transition: none;
+    border: none;
 }
 
 .user-profile:hover .user-avatar {
-    transform: scale(1.05);
+    transform: none;
+    box-shadow: none;
 }
 
 .avatar-image {
@@ -573,24 +584,32 @@ body {
     min-width: 0;
     position: relative;
     z-index: 1;
+    padding: 0;
+    overflow: visible;
+    max-width: calc(100% - 50px);
 }
 
 .user-name {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--foreground);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 1px;
+    letter-spacing: 0;
+    line-height: 1.2;
 }
 
 .user-email {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
     color: var(--muted-foreground);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    opacity: 0.8;
+    font-weight: 400;
+    line-height: 1.2;
 }
 
 .logout-button {
@@ -2308,3 +2327,4 @@ body {
         padding: var(--spacing-lg);
     }
 }
+
