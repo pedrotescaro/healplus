@@ -848,15 +848,16 @@ body {
     width: 100%;
 }
 
-/* Quick Actions */
-.quick-actions {
+/* Quick Actions - DUPLICATE REMOVED */
+/* .quick-actions {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-xl);
     margin-bottom: var(--spacing-2xl);
-}
+} */
 
-.action-card {
+/* DUPLICATE REMOVED - using definitions from line 1575+ */
+/* .action-card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
@@ -865,9 +866,10 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-}
+} */
 
-.action-card::before {
+/* DUPLICATE REMOVED */
+/* .action-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -875,15 +877,17 @@ body {
     right: 0;
     height: 4px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
-}
+} */
 
-.action-card:hover {
+/* DUPLICATE REMOVED */
+/* .action-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
     border-color: var(--primary);
-}
+} */
 
-.action-icon {
+/* DUPLICATE REMOVED - using definitions from line 1575+ */
+/* .action-icon {
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
@@ -924,7 +928,7 @@ body {
 .action-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-}
+} */
 
 /* Dashboard Grid */
 .dashboard-grid {
