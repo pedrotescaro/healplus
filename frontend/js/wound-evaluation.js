@@ -288,3 +288,4 @@ if (document.readyState !== 'loading') {
     new WoundEvaluation();
 }
 
+
