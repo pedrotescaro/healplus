@@ -250,6 +250,24 @@ body {
     pointer-events: none;
 }
 
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--muted-foreground);
+    font-size: 1.2rem;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+    background: var(--accent);
+    color: var(--accent-foreground);
+}
+
 .logo-link {
     display: flex;
     align-items: center;
@@ -1138,6 +1156,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .sidebar-toggle {
+        display: block;
+    }
+    
     .quick-actions {
         grid-template-columns: 1fr;
     }
