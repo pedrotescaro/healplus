@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Profissional - Heal+</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/professional-dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="app-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="professional-dashboard.html" class="logo-link">
+                <img alt="Heal+ Logo" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" class="h-20 w-20" src="icons/icon.png" style="color: transparent;">
+                <span class="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent -ml-1">Heal+</span>
+            </a>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <nav class="sidebar-nav">
+                <button class="nav-button" onclick="handleLinkClick('professional-dashboard.html')">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('wound-evaluation.html')">
+                    <i class="fas fa-clipboard-list nav-icon"></i>
+                    <span>Avaliações</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('patient-dashboard.html')">
+                    <i class="fas fa-users nav-icon"></i>
+                    <span>Pacientes</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('telehealth.html')">
+                    <i class="fas fa-video nav-icon"></i>
+                    <span>Teleconsulta</span>
+                </button>
+                <button class="nav-button active" onclick="handleLinkClick('professional_profile.html')">
+                    <i class="fas fa-user-md nav-icon"></i>
+                    <span>Perfil</span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <div class="avatar-fallback">JS</div>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">João Silva</div>
+                    <div class="user-email">usuario@exemplo.com</div>
+                </div>
+            </div>
+            <button class="logout-button" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="page-title">Meu Perfil Profissional</h1>
+            </div>
+            <div class="header-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-menu-btn">
+                        <div class="user-avatar">JS</div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face" alt="Dr. João Silva" class="avatar-image">
+                        <button class="avatar-edit-btn" onclick="editAvatar()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-basic-info">
+                        <h2>Dr. João Silva</h2>
+                        <p class="profile-email">joao.silva@healplus.com</p>
+                        <div class="profile-status">
+                            <span class="status-badge active">Profissional Ativo</span>
+                            <span class="status-badge verified">Verificado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-outline" onclick="editProfile()">
+                        <i class="fas fa-edit"></i>
+                        Editar Perfil
+                    </button>
+                    <button class="btn btn-primary" onclick="generateReport()">
+                        <i class="fas fa-chart-bar"></i>
+                        Relatório de Atividade
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Professional Information -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Informações Profissionais</h3>
+                        <button class="btn btn-outline btn-sm" onclick="editProfessionalInfo()">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Nome Completo</label>
+                            <span>Dr. João Silva Santos</span>
+                        </div>
+                        <div class="info-item">
+                            <label>CRM</label>
+                            <span>123456-SP</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Especialidade</label>
+                            <span>Dermatologia</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Subespecialidade</label>
+                            <span>Feridas e Cicatrização</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Instituição</label>
+                            <span>Hospital das Clínicas - USP</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Anos de Experiência</label>
+                            <span>15 anos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Informações de Contato</h3>
+                        <button class="btn btn-outline btn-sm" onclick="editContactInfo()">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Email Profissional</label>
+                            <span>joao.silva@healplus.com</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Telefone</label>
+                            <span>(11) 99999-9999</span>
+                        </div>
+                        <div class="info-item">
+                            <label>WhatsApp</label>
+                            <span>(11) 99999-9999</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Endereço Profissional</label>
+                            <span>Av. Dr. Enéas Carvalho de Aguiar, 255 - São Paulo, SP</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Horário de Atendimento</label>
+                            <span>Segunda a Sexta: 8h às 18h</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Idiomas</label>
+                            <span>Português, Inglês, Espanhol</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Stats -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Estatísticas Profissionais</h3>
+                        <button class="btn btn-outline btn-sm" onclick="viewDetailedStats()">
+                            <i class="fas fa-chart-line"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value">247</span>
+                                <span class="stat-label">Pacientes Ativos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value">1,234</span>
+                                <span class="stat-label">Avaliações Realizadas</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value">89</span>
+                                <span class="stat-label">Teleconsultas</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-value">4.9</span>
+                                <span class="stat-label">Avaliação Média</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Atividade Recente</h3>
+                        <button class="btn btn-outline btn-sm" onclick="viewAllActivity()">
+                            <i class="fas fa-history"></i>
+                            Ver Todas
+                        </button>
+                    </div>
+                    <div class="activity-timeline">
+                        <div class="activity-item">
+                            <div class="activity-icon photo">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Avaliação de Ferida
+                                    <span class="activity-time">Hoje, 14:30</span>
+                                </h4>
+                                <p>Paciente: Maria Santos - Melhorando</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon checkin">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Teleconsulta
+                                    <span class="activity-time">Hoje, 10:00</span>
+                                </h4>
+                                <p>Paciente: João Oliveira - Acompanhamento</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon medication">
+                                <i class="fas fa-file-medical"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Relatório Gerado
+                                    <span class="activity-time">Ontem, 16:45</span>
+                                </h4>
+                                <p>Relatório mensal de atividades</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Certificações e Qualificações</h3>
+                        <button class="btn btn-outline btn-sm" onclick="addCertification()">
+                            <i class="fas fa-plus"></i>
+                            Adicionar
+                        </button>
+                    </div>
+                    <div class="certifications-list">
+                        <div class="certification-item">
+                            <div class="cert-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Especialização em Dermatologia</h4>
+                                <p>Universidade de São Paulo - 2010</p>
+                                <span class="cert-status verified">Verificado</span>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="cert-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Curso de Feridas Complexas</h4>
+                                <p>Associação Brasileira de Estomaterapia - 2015</p>
+                                <span class="cert-status verified">Verificado</span>
+                            </div>
+                        </div>
+                        <div class="certification-item">
+                            <div class="cert-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="cert-info">
+                                <h4>Telemedicina e Telessaúde</h4>
+                                <p>Conselho Federal de Medicina - 2020</p>
+                                <span class="cert-status verified">Verificado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Agenda e Disponibilidade</h3>
+                        <button class="btn btn-outline btn-sm" onclick="editSchedule()">
+                            <i class="fas fa-calendar-alt"></i>
+                            Gerenciar Agenda
+                        </button>
+                    </div>
+                    <div class="schedule-overview">
+                        <div class="schedule-card">
+                            <h4>Próximas Consultas</h4>
+                            <div class="appointment-list">
+                                <div class="appointment-item">
+                                    <div class="appointment-time">14:30</div>
+                                    <div class="appointment-info">
+                                        <h5>Maria Santos</h5>
+                                        <p>Consulta de Acompanhamento</p>
+                                    </div>
+                                    <span class="appointment-status confirmed">Confirmada</span>
+                                </div>
+                                <div class="appointment-item">
+                                    <div class="appointment-time">16:00</div>
+                                    <div class="appointment-info">
+                                        <h5>João Oliveira</h5>
+                                        <p>Teleconsulta</p>
+                                    </div>
+                                    <span class="appointment-status pending">Pendente</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-card">
+                            <h4>Disponibilidade</h4>
+                            <div class="availability-info">
+                                <div class="availability-item">
+                                    <span class="day">Segunda</span>
+                                    <span class="hours">8h - 18h</span>
+                                </div>
+                                <div class="availability-item">
+                                    <span class="day">Terça</span>
+                                    <span class="hours">8h - 18h</span>
+                                </div>
+                                <div class="availability-item">
+                                    <span class="day">Quarta</span>
+                                    <span class="hours">8h - 18h</span>
+                                </div>
+                                <div class="availability-item">
+                                    <span class="day">Quinta</span>
+                                    <span class="hours">8h - 18h</span>
+                                </div>
+                                <div class="availability-item">
+                                    <span class="day">Sexta</span>
+                                    <span class="hours">8h - 18h</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function handleLinkClick(url) {
+            window.location.href = url;
+        }
+
+        function logout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        function editAvatar() {
+            alert('Funcionalidade de edição de avatar será implementada em breve!');
+        }
+
+        function editProfile() {
+            alert('Funcionalidade de edição de perfil será implementada em breve!');
+        }
+
+        function generateReport() {
+            alert('Geração de relatório será implementada em breve!');
+        }
+
+        function editProfessionalInfo() {
+            alert('Edição de informações profissionais será implementada em breve!');
+        }
+
+        function editContactInfo() {
+            alert('Edição de informações de contato será implementada em breve!');
+        }
+
+        function viewDetailedStats() {
+            alert('Visualização de estatísticas detalhadas será implementada em breve!');
+        }
+
+        function viewAllActivity() {
+            alert('Visualização de todas as atividades será implementada em breve!');
+        }
+
+        function addCertification() {
+            alert('Adição de certificação será implementada em breve!');
+        }
+
+        function editSchedule() {
+            alert('Gerenciamento de agenda será implementado em breve!');
+        }
+    </script>
+</body>
+</html>

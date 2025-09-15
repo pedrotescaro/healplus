@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Paciente - Heal+</title>
+    <link rel="icon" type="image/png" href="icons/icon.png">
+    <link rel="stylesheet" href="css/professional-dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="app-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="patient-dashboard.html" class="logo-link">
+                <img alt="Heal+ Logo" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" class="h-20 w-20" src="icons/icon.png" style="color: transparent;">
+                <span class="text-4xl font-bold tracking-tight bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent -ml-1">Heal+</span>
+            </a>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <nav class="sidebar-nav">
+                <button class="nav-button" onclick="handleLinkClick('patient-dashboard.html')">
+                    <i class="fas fa-home nav-icon"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('wound-capture.html')">
+                    <i class="fas fa-camera nav-icon"></i>
+                    <span>Captura de Ferida</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('remote-monitoring.html')">
+                    <i class="fas fa-mobile-alt nav-icon"></i>
+                    <span>Monitoramento</span>
+                </button>
+                <button class="nav-button" onclick="handleLinkClick('telehealth.html')">
+                    <i class="fas fa-video nav-icon"></i>
+                    <span>Teleconsulta</span>
+                </button>
+                <button class="nav-button active" onclick="handleLinkClick('patient_profile.html')">
+                    <i class="fas fa-user nav-icon"></i>
+                    <span>Perfil</span>
+                </button>
+            </nav>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <div class="avatar-fallback">JS</div>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">João Silva</div>
+                    <div class="user-email">usuario@exemplo.com</div>
+                </div>
+            </div>
+            <button class="logout-button" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Guest Banner -->
+    <div class="guest-banner" id="guestBanner">
+        <div class="guest-banner-content">
+            <div class="guest-banner-info">
+                <i class="fas fa-user-circle"></i>
+                <span>Acesso como Visitante (Paciente)</span>
+            </div>
+            <div class="guest-banner-actions">
+                <button class="guest-login-btn" onclick="window.location.href='login.html'">Fazer Login</button>
+                <button class="guest-close-btn" onclick="closeGuestBanner()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1 class="page-title">Meu Perfil</h1>
+            </div>
+            <div class="header-right">
+                <div class="notifications">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">2</span>
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <button class="user-menu-btn">
+                        <div class="user-avatar">JS</div>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="João Silva" class="avatar-image">
+                        <button class="avatar-edit-btn" onclick="editAvatar()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="profile-basic-info">
+                        <h2>João Silva</h2>
+                        <p class="profile-email">usuario@exemplo.com</p>
+                        <div class="profile-status">
+                            <span class="status-badge active">Paciente Ativo</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-outline" onclick="editProfile()">
+                        <i class="fas fa-edit"></i>
+                        Editar Perfil
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadReport()">
+                        <i class="fas fa-download"></i>
+                        Baixar Relatório
+                    </button>
+                </div>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Personal Information -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Informações Pessoais</h3>
+                        <button class="btn btn-outline btn-sm" onclick="editPersonalInfo()">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Nome Completo</label>
+                            <span>João Silva Santos</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Data de Nascimento</label>
+                            <span>15/03/1985</span>
+                        </div>
+                        <div class="info-item">
+                            <label>CPF</label>
+                            <span>123.456.789-00</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Telefone</label>
+                            <span>(11) 99999-9999</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Endereço</label>
+                            <span>Rua das Flores, 123 - São Paulo, SP</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Gênero</label>
+                            <span>Masculino</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical Information -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Informações Médicas</h3>
+                        <button class="btn btn-outline btn-sm" onclick="editMedicalInfo()">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>Tipo Sanguíneo</label>
+                            <span>O+</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Alergias</label>
+                            <span>Penicilina, Amoxicilina</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Medicações Atuais</label>
+                            <span>Paracetamol 500mg, Vitamina C</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Condições Crônicas</label>
+                            <span>Diabetes Tipo 2</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Contato de Emergência</label>
+                            <span>Maria Silva - (11) 88888-8888</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Médico Responsável</label>
+                            <span>Dr. Carlos Santos - CRM 123456</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Treatment History -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Histórico de Tratamento</h3>
+                        <button class="btn btn-outline btn-sm" onclick="viewFullHistory()">
+                            <i class="fas fa-history"></i>
+                            Ver Histórico Completo
+                        </button>
+                    </div>
+                    <div class="treatment-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="date">21/01/2024</span>
+                                <span class="time">14:30</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Consulta de Acompanhamento</h4>
+                                <p>Dr. Carlos Santos - Dermatologia</p>
+                                <span class="status success">Concluída</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="date">15/01/2024</span>
+                                <span class="time">10:00</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Captura de Ferida</h4>
+                                <p>Análise de progresso - Melhorando</p>
+                                <span class="status success">Processada</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <span class="date">10/01/2024</span>
+                                <span class="time">09:15</span>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Check-in de Sintomas</h4>
+                                <p>Dor: 3/10, Inchaço: Leve</p>
+                                <span class="status success">Registrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Treatment -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3>Tratamento Atual</h3>
+                        <button class="btn btn-outline btn-sm" onclick="editTreatment()">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                    <div class="treatment-cards">
+                        <div class="treatment-card">
+                            <div class="treatment-icon">
+                                <i class="fas fa-band-aid"></i>
+                            </div>
+                            <div class="treatment-info">
+                                <h4>Ferida no Pé Esquerdo</h4>
+                                <p>Úlcera diabética - 2.5cm x 1.8cm</p>
+                                <div class="treatment-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span class="progress-text">75% de melhora</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="treatment-card">
+                            <div class="treatment-icon">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <div class="treatment-info">
+                                <h4>Medicação Prescrita</h4>
+                                <p>Paracetamol 500mg - 3x ao dia</p>
+                                <div class="medication-status">
+                                    <span class="status success">Em dia</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function handleLinkClick(url) {
+            window.location.href = url;
+        }
+
+        function closeGuestBanner() {
+            const banner = document.getElementById('guestBanner');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        function logout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                window.location.href = 'login.html';
+            }
+        }
+
+        function editAvatar() {
+            alert('Funcionalidade de edição de avatar será implementada em breve!');
+        }
+
+        function editProfile() {
+            alert('Funcionalidade de edição de perfil será implementada em breve!');
+        }
+
+        function downloadReport() {
+            alert('Download do relatório será implementado em breve!');
+        }
+
+        function editPersonalInfo() {
+            alert('Edição de informações pessoais será implementada em breve!');
+        }
+
+        function editMedicalInfo() {
+            alert('Edição de informações médicas será implementada em breve!');
+        }
+
+        function viewFullHistory() {
+            alert('Visualização do histórico completo será implementada em breve!');
+        }
+
+        function editTreatment() {
+            alert('Edição do tratamento será implementada em breve!');
+        }
+    </script>
+</body>
+</html>
