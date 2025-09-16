@@ -1,0 +1,21 @@
+import type { GenkitError } from '../types/error';
+export type Runtime = 'nodejs' | 'go' | undefined;
+export declare class GenkitToolsError extends Error {
+    data?: GenkitError;
+    constructor(msg: string, options?: ErrorOptions);
+}
+export type StreamingCallback<T> = (chunk: T) => void;
+export interface RuntimeInfo {
+    id: string;
+    pid: number;
+    reflectionServerUrl: string;
+    timestamp: string;
+    projectName?: string;
+    name?: string;
+    genkitVersion?: string;
+    reflectionApiSpecVersion?: number;
+}
+export declare enum RuntimeEvent {
+    ADD = "add",
+    REMOVE = "remove"
+}
