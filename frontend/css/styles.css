@@ -675,18 +675,7 @@ a:hover {
     transform: scaleX(1);
 }
 
-.feature-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
-    border-radius: var(--radius-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--spacing-6);
-    color: var(--white);
-    font-size: var(--font-size-2xl);
-}
+/* Removed conflicting feature-icon definition - styles should be on feature-icon-container */
 
 .feature-title {
     font-size: var(--font-size-xl);
@@ -3520,16 +3509,8 @@ a:hover {
 }
 
 .feature-icon {
-    width: 3rem;
-    height: 3rem;
-    background: rgba(37, 99, 235, 0.1);
-    border-radius: var(--radius-lg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--primary-blue);
     font-size: var(--font-size-xl);
-    margin-bottom: var(--spacing-4);
 }
 
 .feature-title {
@@ -6811,10 +6792,7 @@ a:hover {
     transition: background-color 0.3s ease;
 }
 
-.feature-icon {
-    font-size: 1.5rem;
-    color: var(--primary-blue);
-}
+/* Removed duplicate feature-icon definition */
 
 .feature-title {
     font-size: var(--font-size-lg);
@@ -7379,6 +7357,201 @@ a:hover {
 
 .flex-shrink-0 {
     flex-shrink: 0;
+}
+
+/* Centralização específica para ícones em containers flex */
+.flex-shrink-0.flex.items-center.justify-center i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Garantir centralização de ícones Font Awesome */
+.fas, .far, .fab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Centralização específica para ícones em containers de benefícios */
+.bg-primary\/10.rounded-lg.flex.items-center.justify-center i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.25rem;
+    margin: auto;
+}
+
+/* Espaçamento adicional para ícones em containers pequenos */
+.w-10.h-10 i, .w-12.h-12 i {
+    padding: 0.125rem;
+    margin: auto;
+}
+
+/* Garantir que ícones tenham espaço suficiente */
+.flex-shrink-0.flex.items-center.justify-center {
+    padding: 0.25rem;
+}
+
+/* Regra específica para ícones espremidos - dar mais espaço */
+.fas.fa-shield-alt, .fas.fa-check-circle, .fas.fa-bolt {
+    padding: 0.375rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    min-width: 1.25rem;
+    min-height: 1.25rem;
+}
+
+/* Estilos aprimorados para botões CTA */
+.cta-btn {
+    position: relative;
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+}
+
+.cta-btn.primary {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.cta-btn.primary:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+.cta-btn.secondary {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 1);
+    color: var(--primary-blue);
+}
+
+/* Animação de pulso para o botão principal */
+.cta-btn.primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+
+.cta-btn.primary:hover::before {
+    opacity: 1;
+}
+
+/* Animações personalizadas para elementos decorativos */
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+    }
+    33% {
+        transform: translateY(-10px) translateX(5px);
+    }
+    66% {
+        transform: translateY(5px) translateX(-5px);
+    }
+}
+
+@keyframes float-delayed {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px);
+    }
+    25% {
+        transform: translateY(-8px) translateX(-3px);
+    }
+    75% {
+        transform: translateY(8px) translateX(3px);
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: float-delayed 8s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Estilos para ícones de benefícios na seção CTA */
+.cta-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem 1.5rem;
+}
+
+.cta-benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.cta-benefit-item:hover {
+    transform: translateY(-1px);
+}
+
+.cta-benefit-item i {
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.cta-benefit-item:hover i {
+    transform: scale(1.1);
+}
+
+/* Cores específicas para os ícones */
+.cta-benefit-item .fa-star {
+    color: #fbbf24;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
+}
+
+.cta-benefit-item .fa-rocket {
+    color: #60a5fa;
+    text-shadow: 0 0 8px rgba(96, 165, 250, 0.3);
+}
+
+.cta-benefit-item .fa-headset {
+    color: #34d399;
+    text-shadow: 0 0 8px rgba(52, 211, 153, 0.3);
 }
 
 /* Grid utilities */
