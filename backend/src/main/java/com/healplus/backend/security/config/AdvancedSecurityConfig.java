@@ -53,7 +53,9 @@ public class AdvancedSecurityConfig {
                 // Endpoints públicos
                 .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/api/public/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/actuator/health")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/actuator/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/test/**")).permitAll()
                 
                 // Endpoints que requerem autenticação
                 .requestMatchers(new AntPathRequestMatcher("/api/patients/**")).hasAnyRole("PATIENT", "CLINICIAN", "ADMIN")

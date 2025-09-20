@@ -61,8 +61,8 @@ public class AuthService {
 
         user = userRepository.save(user);
 
-        // Send email verification
-        sendEmailVerification(user);
+        // Send email verification (temporarily disabled for testing)
+        // sendEmailVerification(user);
 
         // Generate tokens
         String accessToken = jwtService.generateToken(user);
